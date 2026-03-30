@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum MemberStatus {
+  ACTIVE
+  EXPIRED
+  PENDING
+}
+
+enum PostType {
+  IMAGE
+  VIDEO
+}
+
+model Member {
+  id        Int          @id @default(autoincrement())
+  email     String       @unique
+  status    MemberStatus @default(PENDING)
+  stripeId  String?      @unique
+  joinedAt  DateTime     @default(now())
+  expiresAt DateTime?
+}
+
+model Post {
+  id       Int      @id @default(autoincrement())
+  title    String
+  content  String   @db.Text
+  mediaUrl String?
+  type     PostType
+  date     DateTime @default(now())
+}
