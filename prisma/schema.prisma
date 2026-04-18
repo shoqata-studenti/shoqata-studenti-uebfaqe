@@ -1,21 +1,16 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../lib/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 enum MemberStatus {
   ACTIVE
   EXPIRED
   PENDING
-}
-
-enum PostType {
-  IMAGE
-  VIDEO
 }
 
 model Member {
@@ -28,10 +23,10 @@ model Member {
 }
 
 model Post {
-  id       Int      @id @default(autoincrement())
-  title    String
-  content  String   @db.Text
-  mediaUrl String?
-  type     PostType
-  date     DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String  
+  imageUrl  String   
+  year      Int
+  createdAt DateTime @default(now())
 }

@@ -1,6 +1,7 @@
 import { Playfair_Display } from "next/font/google";
 
 import { HeroCarousel } from "@/components/hero-carousel";
+import { LatestNews } from "@/components/latest-news";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -8,7 +9,10 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
 });
 
-export default function Home() {
+/** Lajmet lexohen nga DB në kërkesë, jo gjatë build-it statik. */
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
   return (
     <main className="w-full bg-white text-black">
       <section className="w-full">
@@ -22,6 +26,8 @@ export default function Home() {
           Rreth Shoqatës
         </h2>
       </section>
+
+      <LatestNews headingClassName={playfair.className} />
     </main>
   );
 }

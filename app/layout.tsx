@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+
+import { HeaderNav } from "@/components/header-nav";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,17 +32,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const navItems = [
-    { label: "HOME", href: "/" },
-    { label: "RRETH NESH", href: "/history" },
-    { label: "STUDIMET", href: "#" },
-    { label: "EVENTE", href: "#" },
-    { label: "PROJEKTE", href: "#" },
-    { label: "FEDERATA", href: "#" },
-    { label: "KONTAKT", href: "#" },
-    { label: "REGJISTROHU", href: "/membership" },
-  ];
-
   return (
     <html
       lang="sq"
@@ -71,19 +62,7 @@ export default function RootLayout({
               </div>
             </Link>
 
-            <nav
-              className={`${playfairNav.className} ml-auto flex max-w-[calc(100%-12rem)] flex-wrap items-center justify-end gap-x-5 gap-y-2 text-[0.65rem] font-semibold uppercase tracking-[0.06em] text-black md:max-w-none md:gap-x-6 md:text-xs lg:text-sm`}
-            >
-              {navItems.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="transition-colors hover:text-[#E11D48] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E11D48]"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
+            <HeaderNav navFontClassName={playfairNav.className} />
           </div>
         </header>
 
