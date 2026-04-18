@@ -3,23 +3,22 @@ import "server-only";
 import Link from "next/link";
 
 import { textExcerpt } from "@/lib/excerpt";
-import { prisma } from "@/lib/db";
+
+export type LatestNewsPost = {
+  id: number;
+  title: string;
+  content: string;
+  imageUrl: string;
+  year: number;
+  createdAt: Date;
+};
 
 type Props = {
   headingClassName: string;
+  posts: LatestNewsPost[];
 };
 
-export async function LatestNews({ headingClassName }: Props) {
-  let posts: Awaited<ReturnType<typeof prisma.post.findMany>> = [];
-  try {
-    posts = await prisma.post.findMany({
-      orderBy: { createdAt: "desc" },
-      take: 3,
-    });
-  } catch {
-    posts = [];
-  }
-
+export function LatestNews({ headingClassName, posts }: Props) {
   if (posts.length === 0) {
     return (
       <section className="border-t border-black/10 bg-black/[0.02]">
@@ -52,7 +51,7 @@ export async function LatestNews({ headingClassName }: Props) {
           Lajmet e fundit
         </h2>
 
-        <ul className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {posts.map((post) => (
             <li key={post.id}>
               <article className="flex h-full flex-col overflow-hidden rounded-sm border border-black/12 bg-white shadow-sm transition-shadow hover:shadow-md">

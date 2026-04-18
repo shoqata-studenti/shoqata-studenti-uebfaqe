@@ -2,6 +2,7 @@ import { Playfair_Display } from "next/font/google";
 
 import { HeroCarousel } from "@/components/hero-carousel";
 import { LatestNews } from "@/components/latest-news";
+import { prisma } from "@/lib/db";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -13,6 +14,16 @@ const playfair = Playfair_Display({
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
+  let latestPosts: Awaited<ReturnType<typeof prisma.post.findMany>> = [];
+  try {
+    latestPosts = await prisma.post.findMany({
+      orderBy: { createdAt: "desc" },
+      take: 8,
+    });
+  } catch {
+    latestPosts = [];
+  }
+
   return (
     <main className="w-full bg-white text-black">
       <section className="w-full">
@@ -27,7 +38,7 @@ export default async function Home() {
         </h2>
       </section>
 
-      <LatestNews headingClassName={playfair.className} />
+      <LatestNews headingClassName={playfair.className} posts={latestPosts} />
     </main>
   );
 }

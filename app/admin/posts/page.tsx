@@ -70,16 +70,19 @@ export default async function AdminPostsPage({ searchParams }: Props) {
             <label htmlFor="year" className="text-sm font-semibold uppercase tracking-wide">
               Viti
             </label>
-            <input
+            <select
               id="year"
               name="year"
-              type="number"
               required
-              min={1900}
-              max={2100}
-              defaultValue={new Date().getFullYear()}
+              defaultValue={2026}
               className="w-full max-w-xs rounded-sm border border-black/20 bg-white px-3 py-2.5 text-sm outline-none transition-[border-color,box-shadow] focus:border-[#E11D48] focus:ring-2 focus:ring-[#E11D48]/25"
-            />
+            >
+              {[2026, 2025, 2024, 2023].map((y) => (
+                <option key={y} value={y}>
+                  {y}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="space-y-2">

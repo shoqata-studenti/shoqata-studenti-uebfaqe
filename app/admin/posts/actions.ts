@@ -21,13 +21,14 @@ export async function createPost(formData: FormData) {
   const yearRaw = formData.get("year")?.toString().trim() ?? "";
   const year = Number.parseInt(yearRaw, 10);
 
+  const allowedYears = new Set([2023, 2024, 2025, 2026]);
+
   if (
     !title ||
     !content.trim() ||
     !imageUrl ||
     Number.isNaN(year) ||
-    year < 1900 ||
-    year > 2100 ||
+    !allowedYears.has(year) ||
     !isValidHttpUrl(imageUrl)
   ) {
     redirect("/admin/posts?error=1");
@@ -43,6 +44,7 @@ export async function createPost(formData: FormData) {
   });
 
   revalidatePath("/");
+  revalidatePath(`/evente/${post.year}`);
   revalidatePath(`/posts/${post.id}`);
 
   redirect("/admin/posts?success=1");

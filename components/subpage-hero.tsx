@@ -5,9 +5,15 @@ const playfair = Playfair_Display({
   weight: ["600", "700"],
 });
 
-export function SubpageHero({ title }: { title: string }) {
+type SubpageHeroProps = {
+  title: string;
+  /** Standard: `main`. Für zusammengesetzte Seiten z. B. `div` innerhalb eines äußeren `main`. */
+  as?: "main" | "div";
+};
+
+export function SubpageHero({ title, as: Root = "main" }: SubpageHeroProps) {
   return (
-    <main className="min-h-[72vh] bg-white text-black">
+    <Root className="min-h-[72vh] bg-white text-black">
       <section className="mx-auto w-full max-w-[1440px] px-6 py-20 md:px-10 md:py-28">
         <div className="max-w-3xl border-l-4 border-[#E11D48] pl-6 md:pl-8">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#E11D48]">
@@ -20,6 +26,6 @@ export function SubpageHero({ title }: { title: string }) {
           </h1>
         </div>
       </section>
-    </main>
+    </Root>
   );
 }
