@@ -1,9 +1,14 @@
 "use client";
 
 import { useState } from "react";
+
+import { useDictionary } from "@/components/locale-provider";
 import { Button } from "@/components/ui/button";
 
 export function MembershipForm() {
+  const dict = useDictionary();
+  const f = dict.membership.form;
+
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -12,18 +17,16 @@ export function MembershipForm() {
     setPending(true);
     setError(null);
 
-    // Formulardaten auslesen
     const formData = new FormData(e.currentTarget);
     const data = {
       name: formData.get("name"),
       email: formData.get("email"),
-      university: formData.get("uni"),       // Wird für Stripe auf 'university' gemappt
-      studyField: formData.get("studium"),   // Wird für Stripe auf 'studyField' gemappt
+      university: formData.get("uni"),
+      studyField: formData.get("studium"),
       type: formData.get("type"),
     };
 
     try {
-      // Unsere API-Route aufrufen
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -33,15 +36,14 @@ export function MembershipForm() {
       const resData = await res.json();
 
       if (resData.url) {
-        // Leitet den User zur Stripe-Kasse weiter
         window.location.href = resData.url;
       } else {
-        setError(resData.error || "Fehler beim Erstellen der Zahlung.");
+        setError(resData.error || f.errorPayment);
         setPending(false);
       }
     } catch (err) {
       console.error(err);
-      setError("Ein Verbindungsfehler ist aufgetreten.");
+      setError(f.errorNetwork);
       setPending(false);
     }
   };
@@ -50,7 +52,7 @@ export function MembershipForm() {
     <form onSubmit={handleSubmit} className="mt-8 max-w-xl space-y-5">
       <div className="space-y-2">
         <label htmlFor="m-name" className="text-sm font-medium text-foreground">
-          Name
+          {f.name}
         </label>
         <input
           id="m-name"
@@ -60,10 +62,10 @@ export function MembershipForm() {
           className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring"
         />
       </div>
-      
+
       <div className="space-y-2">
         <label htmlFor="m-email" className="text-sm font-medium text-foreground">
-          E-Mail
+          {f.email}
         </label>
         <input
           id="m-email"
@@ -74,10 +76,10 @@ export function MembershipForm() {
           className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring"
         />
       </div>
-      
+
       <div className="space-y-2">
         <label htmlFor="m-uni" className="text-sm font-medium text-foreground">
-          Uni
+          {f.uni}
         </label>
         <input
           id="m-uni"
@@ -86,10 +88,10 @@ export function MembershipForm() {
           className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring"
         />
       </div>
-      
+
       <div className="space-y-2">
         <label htmlFor="m-studium" className="text-sm font-medium text-foreground">
-          Studium
+          {f.studium}
         </label>
         <input
           id="m-studium"
@@ -98,17 +100,17 @@ export function MembershipForm() {
           className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring"
         />
       </div>
-      
+
       <fieldset className="space-y-2">
-        <legend className="text-sm font-medium text-foreground">Typ</legend>
+        <legend className="text-sm font-medium text-foreground">{f.typeLegend}</legend>
         <div className="flex flex-wrap gap-4">
           <label className="flex items-center gap-2 text-sm">
             <input type="radio" name="type" value="STUDENT" required defaultChecked />
-            Student
+            {f.student}
           </label>
           <label className="flex items-center gap-2 text-sm">
             <input type="radio" name="type" value="ALUMNI" required />
-            Alumni
+            {f.alumni}
           </label>
         </div>
       </fieldset>
@@ -120,7 +122,7 @@ export function MembershipForm() {
       ) : null}
 
       <Button type="submit" disabled={pending}>
-        {pending ? "Wird umgeleitet…" : "Jetzt kostenpflichtig abschliessen"}
+        {pending ? f.pending : f.submit}
       </Button>
     </form>
   );

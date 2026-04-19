@@ -1,0 +1,176 @@
+{
+  "language": {
+    "menuAria": "Choose language",
+    "label": "Language",
+    "sq": "Albanian",
+    "de": "German",
+    "en": "English",
+    "shortSq": "SQ",
+    "shortDe": "DE",
+    "shortEn": "EN"
+  },
+  "nav": {
+    "home": "HOME",
+    "about": "ABOUT US",
+    "studies": "STUDIES",
+    "events": "EVENTS",
+    "projects": "PROJECTS",
+    "federata": "FEDERATION",
+    "contact": "CONTACT",
+    "register": "JOIN",
+    "info": "Info",
+    "kryesia": "Board",
+    "applicationsAbroad": "Applications outside Switzerland",
+    "sport": "Sport",
+    "kultura": "Culture",
+    "shoqerore": "Community",
+    "ligjerata": "Lectures",
+    "teTjera": "Other"
+  },
+  "layout": {
+    "logoAlt": "Shoqata Studenti Zürich",
+    "line1": "SHOQATA",
+    "line2": "STUDENTI",
+    "line3": "ZÜRICH"
+  },
+  "home": {
+    "aboutTitle": "About the association",
+    "hero": {
+      "title": "The best choice",
+      "subtitle": "Join Shoqata Studenti to learn more about studying in Switzerland.",
+      "cta": "JOIN",
+      "slideLabel": "Show slide {{n}}"
+    }
+  },
+  "latestNews": {
+    "heading": "Latest news",
+    "emptyTitle": "No posts yet.",
+    "emptyBody": "Sign in as admin and add posts.",
+    "adminCta": "Admin login",
+    "readMore": "Read more"
+  },
+  "membership": {
+    "title": "Membership",
+    "intro": "New membership: one year from application. With the same email, renewal is only possible when fewer than seven days remain; then one year is added to the previous expiry date.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "uni": "University",
+      "studium": "Field of study",
+      "typeLegend": "Type",
+      "student": "Student",
+      "alumni": "Alumni",
+      "submit": "Continue to payment (Stripe)",
+      "pending": "Redirecting…",
+      "errorPayment": "Could not create payment.",
+      "errorNetwork": "Connection error."
+    },
+    "status": {
+      "title": "Check status",
+      "hint": "Enter your email to see your membership status.",
+      "emailPlaceholder": "name@example.com",
+      "check": "Check",
+      "checking": "…"
+    }
+  },
+  "membershipSuccess": {
+    "title": "Payment successful!",
+    "body": "Thank you for your payment. Your membership has been registered. You are now an active member!",
+    "homeCta": "Back to home"
+  },
+  "membershipActions": {
+    "fillAll": "Please fill in all fields.",
+    "invalidEmail": "Invalid email address.",
+    "createdNoEmail": "Membership created. The confirmation email could not be sent.",
+    "createdOk": "Membership created. You will receive a confirmation email.",
+    "extendedNoEmail": "Membership extended. The confirmation email could not be sent.",
+    "extendedOk": "Membership extended by one year.",
+    "renewBlocked": "A membership with this email already exists. Renewal is only possible when fewer than 7 days remain (currently active until {{until}}).",
+    "checkEmailMissing": "Please enter an email address.",
+    "none": "No active membership.",
+    "activeUntil": "Active until {{date}}"
+  },
+  "kontakt": {
+    "badge": "Shoqata Studenti Zürich",
+    "title": "Contact",
+    "intro": "Write to us for general questions. We reply when we can — for applications, please read the studies page first.",
+    "formTitle": "Contact form",
+    "sentSim": "Message recorded (simulation). In production it would be sent to",
+    "errorFields": "Please fill in all fields before sending.",
+    "labelName": "Name",
+    "labelEmail": "Email",
+    "labelMessage": "Message",
+    "placeholderName": "First and last name",
+    "placeholderEmail": "email@example.com",
+    "placeholderMessage": "Your message…",
+    "submit": "Send",
+    "socialTitle": "Social media",
+    "socialHint": "Follow us on social media.",
+    "impressum": "Legal notice",
+    "addressLine": "Address (placeholder)",
+    "addressSample": "Street and number, ZIP Zurich, Switzerland"
+  },
+  "kryesia": {
+    "heading": "Board",
+    "intro": "The board team leads the association’s activities, projects, and partnerships.",
+    "members": [
+      { "role": "President", "bio": "MSc ETH Architecture" },
+      { "role": "Finance", "bio": "MSc ETH Civil Engineering" },
+      { "role": "Social media", "bio": "BSc ETH Architecture" },
+      { "role": "Communications", "bio": "MSc ETH Comparative & International Studies" },
+      { "role": "Events", "bio": "BSc ETH Architecture" },
+      { "role": "Events", "bio": "MSc ETH Environmental Engineering" },
+      { "role": "Marketing", "bio": "MSc ETH Architecture" },
+      { "role": "IT", "bio": "BSc ETH Computer Science" }
+    ]
+  },
+  "studimet": {
+    "badge": "Studies",
+    "title": "Applications outside Switzerland",
+    "intro": "Below you’ll find information and notes about studying in Zurich (University of Zurich – UZH and ETH Zurich):",
+    "generalTitle": "General application information",
+    "documentsTitle": "Documents required for application",
+    "techNote": "Example ETH Zurich: open the «Master electrical engineering and information technology» page — it lists extra documents (GRE, English certificate, etc.). Our experience: applicants with a public high-school diploma or bachelor’s from institutions like the University of Tirana or University of Prishtina often have more realistic chances.",
+    "deadlinesTitle": "Application deadlines",
+    "visaTitle": "Visa information",
+    "financeTitle": "Finances and costs",
+    "financeIntro": "Finally: without funds, little is possible. Information about living costs, applications, semester fees, scholarships, etc. is here:",
+    "closing": "Please read all the links above before sending an extra question. Shoqata Studenti does not offer financial aid. Applying takes work — we hope you have the will, time, and motivation to meet the requirements. Good luck!",
+    "linkUzhBachelor": "UZH Bachelor",
+    "linkUzhMaster": "UZH Master",
+    "linkEthBachelor": "ETH Bachelor",
+    "linkEthMaster": "ETH Master",
+    "linkUzhDocs": "UZH Bachelor / Master",
+    "linkEthDocs": "ETH Bachelor / Master",
+    "linkUzhDeadline": "UZH",
+    "linkEthDeadline": "ETH",
+    "linkVisa": "Visa",
+    "linkUzhFinance": "UZH",
+    "linkEthFinance": "ETH"
+  },
+  "infoPage": {
+    "badge": "About us",
+    "title": "Info",
+    "p1": "From around 2000, a group of Albanian-speaking students met informally. Only a year after the war in Kosovo and on the eve of conflict in the Albanian-speaking part of North Macedonia, they founded the Albanian student association «Studenti».",
+    "p2": "The context was bleak — even tragic — including members who were imprisoned for distributing books.",
+    "p3": "Today things are different. «Studenti» is and remains built by and for Albanian-speaking students in Zurich — an information, networking, and advocacy platform."
+  },
+  "history": {
+    "title": "History",
+    "body": "This page will later include videos and images about the association’s history."
+  },
+  "status": {
+    "title": "Status",
+    "body": "This page will later be expanded with email-based membership status checks."
+  },
+  "evente": {
+    "badge": "Events",
+    "title": "Events {{year}}",
+    "intro": "Posts and notices related to {{year}}.",
+    "empty": "No posts for this year.",
+    "readMore": "Read more"
+  },
+  "post": {
+    "backHome": "← Back to home"
+  }
+}

@@ -1,6 +1,12 @@
 import Link from "next/link";
 
-export default function SuccessPage() {
+import { getDictionary } from "@/lib/i18n/get-dictionary";
+import { getLocale } from "@/lib/i18n/server";
+
+export default async function SuccessPage() {
+  const dict = getDictionary(await getLocale());
+  const s = dict.membershipSuccess;
+
   return (
     <main className="mx-auto flex w-full max-w-3xl flex-col items-center justify-center px-6 py-32 text-center">
       <div className="mb-6 rounded-full bg-green-100 p-6">
@@ -18,16 +24,13 @@ export default function SuccessPage() {
           ></path>
         </svg>
       </div>
-      <h1 className="font-serif text-4xl text-black md:text-5xl">Zahlung erfolgreich!</h1>
-      <p className="mt-4 max-w-xl text-black/70">
-        Vielen Dank für deine Zahlung. Deine Mitgliedschaft wurde erfolgreich registriert. 
-        Du bist nun (wieder) aktives Mitglied im Verein!
-      </p>
+      <h1 className="font-serif text-4xl text-black md:text-5xl">{s.title}</h1>
+      <p className="mt-4 max-w-xl text-black/70">{s.body}</p>
       <Link
         href="/"
         className="mt-8 rounded-md bg-black px-6 py-3 text-white transition-colors hover:bg-gray-800"
       >
-        Zurück zur Startseite
+        {s.homeCta}
       </Link>
     </main>
   );

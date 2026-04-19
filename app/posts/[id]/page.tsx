@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { Playfair_Display } from "next/font/google";
 
 import { prisma } from "@/lib/db";
+import { dateLocaleFor, getDictionary } from "@/lib/i18n/get-dictionary";
+import { getLocale } from "@/lib/i18n/server";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -21,6 +23,10 @@ export default async function PostDetailPage({ params }: Props) {
   if (Number.isNaN(numericId)) {
     notFound();
   }
+
+  const locale = await getLocale();
+  const dict = getDictionary(locale);
+  const dateLocale = dateLocaleFor(locale);
 
   let post: Awaited<ReturnType<typeof prisma.post.findUnique>> = null;
   try {
@@ -42,7 +48,7 @@ export default async function PostDetailPage({ params }: Props) {
           href="/"
           className="text-sm font-semibold uppercase tracking-wide text-[#E11D48] underline-offset-2 hover:underline"
         >
-          ← Kthehu te ballina
+          {dict.post.backHome}
         </Link>
 
         <p className="mt-10 text-center text-xs font-semibold uppercase tracking-[0.14em] text-[#E11D48]">
@@ -55,7 +61,7 @@ export default async function PostDetailPage({ params }: Props) {
         </h1>
         <p className="mt-3 text-center text-sm text-black/50">
           <time dateTime={post.createdAt.toISOString()}>
-            {post.createdAt.toLocaleDateString("sq-AL", {
+            {post.createdAt.toLocaleDateString(dateLocale, {
               year: "numeric",
               month: "long",
               day: "numeric",

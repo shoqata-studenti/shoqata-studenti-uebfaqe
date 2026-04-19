@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ChevronDownIcon } from "lucide-react";
 
+import { useDictionary } from "@/components/locale-provider";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -53,39 +54,41 @@ type HeaderNavProps = {
 };
 
 export function HeaderNav({ navFontClassName }: HeaderNavProps) {
+  const d = useDictionary();
+
   return (
     <nav
       className={cn(
         navFontClassName,
-        "ml-auto flex max-w-[calc(100%-12rem)] flex-wrap items-center justify-end gap-x-2 gap-y-2 md:max-w-none md:gap-x-3"
+        "flex min-w-0 max-w-[calc(100%-5rem)] flex-wrap items-center justify-end gap-x-2 gap-y-2 md:max-w-none md:gap-x-3"
       )}
     >
-      <NavLink href="/">HOME</NavLink>
+      <NavLink href="/">{d.nav.home}</NavLink>
 
       <DropdownMenu>
         <DropdownMenuTrigger className={triggerBtn}>
-          RRETH NESH
+          {d.nav.about}
           <ChevronDownIcon className="size-3.5 opacity-70" aria-hidden />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className={menuContent}>
-          <NavMenuLink href="/rreth-nesh/info" label="Info" />
-          <NavMenuLink href="/rreth-nesh/kryesia" label="Kryesia" />
+          <NavMenuLink href="/rreth-nesh/info" label={d.nav.info} />
+          <NavMenuLink href="/rreth-nesh/kryesia" label={d.nav.kryesia} />
         </DropdownMenuContent>
       </DropdownMenu>
 
       <DropdownMenu>
         <DropdownMenuTrigger className={triggerBtn}>
-          STUDIMET
+          {d.nav.studies}
           <ChevronDownIcon className="size-3.5 opacity-70" aria-hidden />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className={cn(menuContent, "min-w-[14rem]")}>
-          <NavMenuLink href="/studimet/aplikime-jasht-zvicres" label="Aplikime jasht Zvicrës" />
+          <NavMenuLink href="/studimet/aplikime-jasht-zvicres" label={d.nav.applicationsAbroad} />
         </DropdownMenuContent>
       </DropdownMenu>
 
       <DropdownMenu>
         <DropdownMenuTrigger className={triggerBtn}>
-          EVENTE
+          {d.nav.events}
           <ChevronDownIcon className="size-3.5 opacity-70" aria-hidden />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className={menuContent}>
@@ -97,21 +100,21 @@ export function HeaderNav({ navFontClassName }: HeaderNavProps) {
 
       <DropdownMenu>
         <DropdownMenuTrigger className={triggerBtn}>
-          PROJEKTE
+          {d.nav.projects}
           <ChevronDownIcon className="size-3.5 opacity-70" aria-hidden />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className={menuContent}>
-          <NavMenuLink href="/projekte/sport" label="Sport" />
-          <NavMenuLink href="/projekte/kultura" label="Kultura" />
-          <NavMenuLink href="/projekte/shoqerore" label="Shoqërore" />
-          <NavMenuLink href="/projekte/ligjerata" label="Ligjërata" />
-          <NavMenuLink href="/projekte/te-tjera" label="Të tjera" />
+          <NavMenuLink href="/projekte/sport" label={d.nav.sport} />
+          <NavMenuLink href="/projekte/kultura" label={d.nav.kultura} />
+          <NavMenuLink href="/projekte/shoqerore" label={d.nav.shoqerore} />
+          <NavMenuLink href="/projekte/ligjerata" label={d.nav.ligjerata} />
+          <NavMenuLink href="/projekte/te-tjera" label={d.nav.teTjera} />
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <NavLink href="/federata">FEDERATA</NavLink>
-      <NavLink href="/kontakt">KONTAKT</NavLink>
-      <NavLink href="/membership">REGJISTROHU</NavLink>
+      <NavLink href="/federata">{d.nav.federata}</NavLink>
+      <NavLink href="/kontakt">{d.nav.contact}</NavLink>
+      <NavLink href="/membership">{d.nav.register}</NavLink>
     </nav>
   );
 }

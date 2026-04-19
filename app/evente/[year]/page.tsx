@@ -6,6 +6,9 @@ import { Playfair_Display } from "next/font/google";
 
 import { textExcerpt } from "@/lib/excerpt";
 import { prisma } from "@/lib/db";
+import { dateLocaleFor, getDictionary } from "@/lib/i18n/get-dictionary";
+import { interpolate } from "@/lib/i18n/interpolate";
+import { getLocale } from "@/lib/i18n/server";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -23,6 +26,11 @@ export default async function EventeYearPage({ params }: Props) {
     notFound();
   }
 
+  const locale = await getLocale();
+  const dict = getDictionary(locale);
+  const ev = dict.evente;
+  const dateLocale = dateLocaleFor(locale);
+
   let posts: Awaited<ReturnType<typeof prisma.post.findMany>> = [];
   try {
     posts = await prisma.post.findMany({
@@ -37,21 +45,19 @@ export default async function EventeYearPage({ params }: Props) {
     <main className="min-h-screen bg-white text-black">
       <section className="mx-auto w-full max-w-[1440px] px-6 py-16 md:px-10 md:py-20">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#E11D48]">
-          Evente
+          {ev.badge}
         </p>
         <h1
           className={`${playfair.className} mt-3 text-3xl font-bold tracking-tight text-black md:text-4xl`}
         >
-          Evente {year}
+          {interpolate(ev.title, { year: String(year) })}
         </h1>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-black/65 md:text-base">
-          Poste dhe njoftime të lidhura me vitin {year}.
+          {interpolate(ev.intro, { year: String(year) })}
         </p>
 
         {posts.length === 0 ? (
-          <p className="mt-14 text-center text-sm text-black/55">
-            Nuk ka poste për këtë vit.
-          </p>
+          <p className="mt-14 text-center text-sm text-black/55">{ev.empty}</p>
         ) : (
           <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
@@ -68,7 +74,7 @@ export default async function EventeYearPage({ params }: Props) {
                   <div className="flex flex-1 flex-col p-5">
                     <p className="text-xs text-black/55">
                       <time dateTime={post.createdAt.toISOString()}>
-                        {post.createdAt.toLocaleDateString("sq-AL", {
+                        {post.createdAt.toLocaleDateString(dateLocale, {
                           year: "numeric",
                           month: "long",
                           day: "numeric",
@@ -86,7 +92,7 @@ export default async function EventeYearPage({ params }: Props) {
                         href={`/posts/${post.id}`}
                         className="inline-flex min-h-10 w-full items-center justify-center rounded-sm bg-[#E11D48] px-4 text-center text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-[#be123c]"
                       >
-                        Lexo më shumë
+                        {ev.readMore}
                       </Link>
                     </div>
                   </div>

@@ -1,0 +1,176 @@
+{
+  "language": {
+    "menuAria": "Sprache wählen",
+    "label": "Sprache",
+    "sq": "Albanisch",
+    "de": "Deutsch",
+    "en": "Englisch",
+    "shortSq": "SQ",
+    "shortDe": "DE",
+    "shortEn": "EN"
+  },
+  "nav": {
+    "home": "START",
+    "about": "ÜBER UNS",
+    "studies": "STUDIUM",
+    "events": "EVENTS",
+    "projects": "PROJEKTE",
+    "federata": "FÖDERATION",
+    "contact": "KONTAKT",
+    "register": "MITGLIED WERDEN",
+    "info": "Info",
+    "kryesia": "Vorstand",
+    "applicationsAbroad": "Bewerbungen ausserhalb der Schweiz",
+    "sport": "Sport",
+    "kultura": "Kultur",
+    "shoqerore": "Gesellschaftliches",
+    "ligjerata": "Vorträge",
+    "teTjera": "Weitere"
+  },
+  "layout": {
+    "logoAlt": "Shoqata Studenti Zürich",
+    "line1": "SHOQATA",
+    "line2": "STUDENTI",
+    "line3": "ZÜRICH"
+  },
+  "home": {
+    "aboutTitle": "Über den Verein",
+    "hero": {
+      "title": "Die beste Wahl",
+      "subtitle": "Werde Teil der Shoqata Studenti und informiere dich über das Studium in der Schweiz.",
+      "cta": "MITGLIED WERDEN",
+      "slideLabel": "Folie {{n}} anzeigen"
+    }
+  },
+  "latestNews": {
+    "heading": "Neueste Beiträge",
+    "emptyTitle": "Noch keine Beiträge.",
+    "emptyBody": "Als Admin anmelden und Beiträge hinzufügen.",
+    "adminCta": "Als Admin anmelden",
+    "readMore": "Weiterlesen"
+  },
+  "membership": {
+    "title": "Mitgliedschaft",
+    "intro": "Neue Mitgliedschaft: ein Jahr ab Antrag. Mit derselben E-Mail ist eine Verlängerung nur möglich, wenn weniger als sieben Tage Restlaufzeit bestehen; dann wird ein Jahr an das bisherige Ablaufdatum angehängt.",
+    "form": {
+      "name": "Name",
+      "email": "E-Mail",
+      "uni": "Universität",
+      "studium": "Studiengang",
+      "typeLegend": "Typ",
+      "student": "Student",
+      "alumni": "Alumni",
+      "submit": "Zur Zahlung weiter (Stripe)",
+      "pending": "Weiterleitung…",
+      "errorPayment": "Fehler beim Erstellen der Zahlung.",
+      "errorNetwork": "Verbindungsfehler."
+    },
+    "status": {
+      "title": "Status prüfen",
+      "hint": "Gib deine E-Mail ein, um den Status deiner Mitgliedschaft zu sehen.",
+      "emailPlaceholder": "name@beispiel.ch",
+      "check": "Prüfen",
+      "checking": "…"
+    }
+  },
+  "membershipSuccess": {
+    "title": "Zahlung erfolgreich!",
+    "body": "Vielen Dank für deine Zahlung. Deine Mitgliedschaft wurde registriert. Du bist nun aktives Mitglied!",
+    "homeCta": "Zurück zur Startseite"
+  },
+  "membershipActions": {
+    "fillAll": "Bitte alle Felder ausfüllen.",
+    "invalidEmail": "Ungültige E-Mail-Adresse.",
+    "createdNoEmail": "Mitgliedschaft wurde angelegt. Die Bestätigungs-E-Mail konnte nicht versendet werden.",
+    "createdOk": "Mitgliedschaft wurde angelegt. Du erhältst eine Bestätigung per E-Mail.",
+    "extendedNoEmail": "Mitgliedschaft wurde verlängert. Die Bestätigungs-E-Mail konnte nicht versendet werden.",
+    "extendedOk": "Mitgliedschaft wurde um ein Jahr verlängert.",
+    "renewBlocked": "Mit dieser E-Mail besteht bereits eine Mitgliedschaft. Verlängerung ist erst möglich, wenn weniger als 7 Tage Restlaufzeit bestehen (aktuell aktiv bis {{until}}).",
+    "checkEmailMissing": "Bitte eine E-Mail-Adresse eingeben.",
+    "none": "Keine aktive Mitgliedschaft.",
+    "activeUntil": "Aktiv bis {{date}}"
+  },
+  "kontakt": {
+    "badge": "Shoqata Studenti Zürich",
+    "title": "Kontakt",
+    "intro": "Schreibt uns bei allgemeinen Fragen. Antworten geben wir nach Möglichkeit — für Bewerbungen bitte zuerst die Studium-Seite lesen.",
+    "formTitle": "Kontaktformular",
+    "sentSim": "Nachricht wurde gespeichert (Simulation). In Produktion würde sie gesendet an",
+    "errorFields": "Bitte alle Felder ausfüllen, bevor du sendest.",
+    "labelName": "Name",
+    "labelEmail": "E-Mail",
+    "labelMessage": "Nachricht",
+    "placeholderName": "Vor- und Nachname",
+    "placeholderEmail": "email@beispiel.ch",
+    "placeholderMessage": "Deine Nachricht…",
+    "submit": "Senden",
+    "socialTitle": "Soziale Medien",
+    "socialHint": "Folgt uns in den sozialen Medien.",
+    "impressum": "Impressum",
+    "addressLine": "Adresse (Platzhalter)",
+    "addressSample": "Strasse und Nr., PLZ Zürich, Schweiz"
+  },
+  "kryesia": {
+    "heading": "Vorstand",
+    "intro": "Das Team des Vorstands leitet Aktivitäten, Projekte und Kooperationen des Vereins.",
+    "members": [
+      { "role": "Präsident", "bio": "Master ETH Architektur" },
+      { "role": "Finanzen", "bio": "Master ETH Bauingenieurwesen" },
+      { "role": "Soziale Medien", "bio": "Bachelor ETH Architektur" },
+      { "role": "Kommunikation", "bio": "Master ETH Vergleichende und internationale Studien" },
+      { "role": "Eventmanagement", "bio": "Bachelor ETH Architektur" },
+      { "role": "Eventmanagement", "bio": "Master ETH Umweltingenieurwissenschaften" },
+      { "role": "Marketing", "bio": "Master ETH Architektur" },
+      { "role": "IT", "bio": "Bachelor ETH Informatik" }
+    ]
+  },
+  "studimet": {
+    "badge": "Studium",
+    "title": "Bewerbungen ausserhalb der Schweiz",
+    "intro": "Unten findet ihr Informationen und Hinweise zu Studienbedingungen in Zürich (Universität Zürich – UZH und ETH Zürich):",
+    "generalTitle": "Allgemeine Informationen zur Bewerbung",
+    "documentsTitle": "Dokumente für die Bewerbung",
+    "techNote": "Beispiel ETH Zürich: Öffnet die Seite «Master electrical engineering and information technology» – dort stehen alle zusätzlichen Unterlagen (GRE, Englisch-Nachweis usw.). Unsere Erfahrung: Bewerberinnen und Bewerber mit Matura- oder Bachelor-Abschlüssen von staatlichen Hochschulen (z. B. Tirana oder Prishtina) haben oft realistischere Chancen.",
+    "deadlinesTitle": "Bewerbungsfristen",
+    "visaTitle": "Informationen zum Visum",
+    "financeTitle": "Finanzen und Kosten",
+    "financeIntro": "Ohne finanzielle Mittel geht wenig: Informationen zu Lebenshaltung, Bewerbung, Semesterbeiträgen, Stipendien usw. findet ihr hier:",
+    "closing": "Bitte informiert euch zuerst über alle oben genannten Links, bevor ihr eine Zusatzfrage sendet. Die Shoqata Studenti bietet keine finanzielle Unterstützung. Die Bewerbung ist aufwendig – wir hoffen, ihr habt Wille, Zeit und Motivation, alle Voraussetzungen zu erfüllen. Viel Erfolg!",
+    "linkUzhBachelor": "UZH Bachelor",
+    "linkUzhMaster": "UZH Master",
+    "linkEthBachelor": "ETH Bachelor",
+    "linkEthMaster": "ETH Master",
+    "linkUzhDocs": "UZH Bachelor / Master",
+    "linkEthDocs": "ETH Bachelor / Master",
+    "linkUzhDeadline": "UZH",
+    "linkEthDeadline": "ETH",
+    "linkVisa": "Visum",
+    "linkUzhFinance": "UZH",
+    "linkEthFinance": "ETH"
+  },
+  "infoPage": {
+    "badge": "Über uns",
+    "title": "Info",
+    "p1": "Ab etwa 2000 traf sich eine Gruppe albanischsprachiger Studierender informell. Nur ein Jahr nach dem Krieg im Kosovo und kurz vor dem Konflikt im albanischsprachigen Teil Nordmazedoniens gründeten sie den albanischen Studentenverein «Studenti».",
+    "p2": "Der Kontext war düster – tragisch, auch weil es damals Mitglieder gab, die wegen der Verteilung von Büchern ins Gefängnis mussten.",
+    "p3": "Heute ist die Lage anders. «Studenti» ist und bleibt von und für albanischsprachige Studierende in Zürich – als Informations-, Vernetzungs- und Stimmenplattform."
+  },
+  "history": {
+    "title": "Geschichte",
+    "body": "Diese Seite wird später mit Videos und Bildern zur Vereinsgeschichte gefüllt."
+  },
+  "status": {
+    "title": "Status",
+    "body": "Diese Seite wird später um den E-Mail-basierten Mitgliedschafts-Check erweitert."
+  },
+  "evente": {
+    "badge": "Events",
+    "title": "Events {{year}}",
+    "intro": "Beiträge und Hinweise zum Jahr {{year}}.",
+    "empty": "Keine Beiträge für dieses Jahr.",
+    "readMore": "Weiterlesen"
+  },
+  "post": {
+    "backHome": "← Zurück zur Startseite"
+  }
+}

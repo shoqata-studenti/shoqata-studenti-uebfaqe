@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 
+import { useDictionary } from "@/components/locale-provider";
 import {
   Carousel,
   CarouselContent,
@@ -12,6 +13,7 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import { interpolate } from "@/lib/i18n/interpolate";
 import { cn } from "@/lib/utils";
 
 const SLIDE_IMAGES = [
@@ -21,6 +23,7 @@ const SLIDE_IMAGES = [
 ];
 
 export function HeroCarousel({ headingFontClassName }: { headingFontClassName: string }) {
+  const dict = useDictionary();
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
 
@@ -63,17 +66,16 @@ export function HeroCarousel({ headingFontClassName }: { headingFontClassName: s
                     headingFontClassName
                   )}
                 >
-                  Zgjedhja me e mirë
+                  {dict.home.hero.title}
                 </h1>
                 <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/95 md:text-lg">
-                  Bëhu pjesë e Shoqata&apos;s Studenti për tu informuar me shumë rreth studimit ne
-                  Zvicërr.
+                  {dict.home.hero.subtitle}
                 </p>
                 <Link
                   href="/membership"
                   className="mt-10 inline-flex min-h-11 items-center justify-center rounded-sm bg-[#E11D48] px-8 py-2.5 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-[#be123c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
-                  REGJISTROHU
+                  {dict.home.hero.cta}
                 </Link>
               </div>
             </div>
@@ -100,7 +102,7 @@ export function HeroCarousel({ headingFontClassName }: { headingFontClassName: s
               "h-2 w-2 rounded-full bg-white/40 transition-[background,transform] hover:bg-white/70",
               i === current && "scale-110 bg-white"
             )}
-            aria-label={`Shfaq slide ${i + 1}`}
+            aria-label={interpolate(dict.home.hero.slideLabel, { n: String(i + 1) })}
           />
         ))}
       </div>

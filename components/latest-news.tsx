@@ -3,6 +3,7 @@ import "server-only";
 import Link from "next/link";
 
 import { textExcerpt } from "@/lib/excerpt";
+import type { Dictionary } from "@/lib/i18n/get-dictionary";
 
 export type LatestNewsPost = {
   id: number;
@@ -16,9 +17,11 @@ export type LatestNewsPost = {
 type Props = {
   headingClassName: string;
   posts: LatestNewsPost[];
+  labels: Dictionary["latestNews"];
+  dateLocale: string;
 };
 
-export function LatestNews({ headingClassName, posts }: Props) {
+export function LatestNews({ headingClassName, posts, labels, dateLocale }: Props) {
   if (posts.length === 0) {
     return (
       <section className="border-t border-black/10 bg-black/[0.02]">
@@ -26,16 +29,15 @@ export function LatestNews({ headingClassName, posts }: Props) {
           <h2
             className={`${headingClassName} text-2xl font-bold tracking-tight text-black md:text-3xl`}
           >
-            Lajmet e fundit
+            {labels.heading}
           </h2>
-          <p className="mt-4 max-w-xl text-sm text-black/60">
-            Ende nuk ka poste. Hyni si admin dhe shtoni poste.
-          </p>
+          <p className="mt-4 max-w-xl text-sm text-black/60">{labels.emptyTitle}</p>
+          <p className="mt-2 max-w-xl text-sm text-black/55">{labels.emptyBody}</p>
           <Link
             href="/admin/login?next=/admin/posts"
             className="mt-6 inline-flex min-h-10 items-center justify-center rounded-sm border border-black/20 bg-white px-5 text-sm font-semibold uppercase tracking-wide text-black transition-colors hover:border-[#E11D48] hover:text-[#E11D48]"
           >
-            Hyr si admin
+            {labels.adminCta}
           </Link>
         </div>
       </section>
@@ -48,7 +50,7 @@ export function LatestNews({ headingClassName, posts }: Props) {
         <h2
           className={`${headingClassName} text-2xl font-bold tracking-tight text-black md:text-3xl`}
         >
-          Lajmet e fundit
+          {labels.heading}
         </h2>
 
         <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -68,7 +70,7 @@ export function LatestNews({ headingClassName, posts }: Props) {
                     <span className="font-semibold text-[#E11D48]">{post.year}</span>
                     <span className="mx-1.5 text-black/30">·</span>
                     <time dateTime={post.createdAt.toISOString()}>
-                      {post.createdAt.toLocaleDateString("sq-AL", {
+                      {post.createdAt.toLocaleDateString(dateLocale, {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
@@ -86,7 +88,7 @@ export function LatestNews({ headingClassName, posts }: Props) {
                       href={`/posts/${post.id}`}
                       className="inline-flex min-h-10 w-full items-center justify-center rounded-sm bg-[#E11D48] px-4 text-center text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-[#be123c]"
                     >
-                      Lexo më shumë
+                      {labels.readMore}
                     </Link>
                   </div>
                 </div>

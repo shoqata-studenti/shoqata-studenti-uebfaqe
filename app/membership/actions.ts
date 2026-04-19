@@ -3,6 +3,9 @@
 import { MembershipType } from "@prisma/client";
 
 import { prisma } from "@/lib/db";
+import { dateLocaleFor, getDictionary } from "@/lib/i18n/get-dictionary";
+import { interpolate } from "@/lib/i18n/interpolate";
+import { getLocale } from "@/lib/i18n/server";
 import { addYears, canRenewMembership, daysUntil } from "@/lib/membership-logic";
 import { sendMembershipEmail } from "@/lib/send-membership-email";
 
@@ -31,6 +34,11 @@ export async function submitMembership(
   _prev: MembershipSubmitState,
   formData: FormData
 ): Promise<MembershipSubmitState> {
+  const locale = await getLocale();
+  const dict = getDictionary(locale);
+  const ma = dict.membershipActions;
+  const dl = dateLocaleFor(locale);
+
   const name = String(formData.get("name") ?? "").trim();
   const email = normalizeEmail(String(formData.get("email") ?? ""));
   const uni = String(formData.get("uni") ?? "").trim();
@@ -38,11 +46,11 @@ export async function submitMembership(
   const type = parseType(formData.get("type"));
 
   if (!name || !email || !uni || !studium || !type) {
-    return { ok: false, error: "Bitte alle Felder ausfüllen." };
+    return { ok: false, error: ma.fillAll };
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return { ok: false, error: "Ungültige E-Mail-Adresse." };
+    return { ok: false, error: ma.invalidEmail };
   }
 
   const existing = await prisma.member.findUnique({ where: { email } });
@@ -66,20 +74,19 @@ export async function submitMembership(
     if (!mail.sent && mail.error) {
       return {
         ok: true,
-        success:
-          "Mitgliedschaft wurde angelegt. Die Bestätigungs-E-Mail konnte nicht versendet werden.",
+        success: ma.createdNoEmail,
       };
     }
-    return { ok: true, success: "Mitgliedschaft wurde angelegt. Du erhältst eine Bestätigung per E-Mail." };
+    return { ok: true, success: ma.createdOk };
   }
 
   if (!canRenewMembership(existing.expiresAt)) {
-    const until = existing.expiresAt!.toLocaleDateString("de-DE", {
+    const until = existing.expiresAt!.toLocaleDateString(dl, {
       dateStyle: "long",
     });
     return {
       ok: false,
-      error: `Eine Mitgliedschaft mit dieser E-Mail besteht bereits. Verlängerung ist erst möglich, wenn weniger als 7 Tage Restlaufzeit bestehen (aktuell aktiv bis ${until}).`,
+      error: interpolate(ma.renewBlocked, { until }),
     };
   }
 
@@ -104,20 +111,24 @@ export async function submitMembership(
   if (!mail.sent && mail.error) {
     return {
       ok: true,
-      success:
-        "Mitgliedschaft wurde verlängert. Die Bestätigungs-E-Mail konnte nicht versendet werden.",
+      success: ma.extendedNoEmail,
     };
   }
-  return { ok: true, success: "Mitgliedschaft wurde um ein Jahr verlängert." };
+  return { ok: true, success: ma.extendedOk };
 }
 
 export async function checkMembershipStatus(
   _prev: MembershipCheckState,
   formData: FormData
 ): Promise<MembershipCheckState> {
+  const locale = await getLocale();
+  const dict = getDictionary(locale);
+  const ma = dict.membershipActions;
+  const dl = dateLocaleFor(locale);
+
   const email = normalizeEmail(String(formData.get("email") ?? ""));
   if (!email) {
-    return { ok: false, message: "Bitte eine E-Mail-Adresse eingeben." };
+    return { ok: false, message: ma.checkEmailMissing };
   }
 
   const member = await prisma.member.findUnique({
@@ -126,16 +137,18 @@ export async function checkMembershipStatus(
   });
 
   if (!member?.expiresAt) {
-    return { ok: true, message: "Keine Mitgliedschaft." };
+    return { ok: true, message: ma.none };
   }
 
   if (daysUntil(member.expiresAt) <= 0) {
-    return { ok: true, message: "Keine Mitgliedschaft." };
+    return { ok: true, message: ma.none };
   }
+
+  const dateStr = member.expiresAt.toLocaleDateString(dl, { dateStyle: "long" });
 
   return {
     ok: true,
-    message: `Aktiv bis ${member.expiresAt.toLocaleDateString("de-DE", { dateStyle: "long" })}`,
+    message: interpolate(ma.activeUntil, { date: dateStr }),
     expiresAtIso: member.expiresAt.toISOString(),
   };
 }

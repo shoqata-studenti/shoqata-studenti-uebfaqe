@@ -1,0 +1,176 @@
+{
+  "language": {
+    "menuAria": "Zgjidh gjuhën",
+    "label": "Gjuha",
+    "sq": "Shqip",
+    "de": "Gjermanisht",
+    "en": "Anglisht",
+    "shortSq": "SQ",
+    "shortDe": "DE",
+    "shortEn": "EN"
+  },
+  "nav": {
+    "home": "BALLINA",
+    "about": "RRETH NESH",
+    "studies": "STUDIMET",
+    "events": "EVENTE",
+    "projects": "PROJEKTE",
+    "federata": "FEDERATA",
+    "contact": "KONTAKT",
+    "register": "REGJISTROHU",
+    "info": "Info",
+    "kryesia": "Kryesia",
+    "applicationsAbroad": "Aplikime jasht Zvicrës",
+    "sport": "Sport",
+    "kultura": "Kultura",
+    "shoqerore": "Shoqërore",
+    "ligjerata": "Ligjërata",
+    "teTjera": "Të tjera"
+  },
+  "layout": {
+    "logoAlt": "Shoqata Studenti Zürich",
+    "line1": "SHOQATA",
+    "line2": "STUDENTI",
+    "line3": "ZÜRICH"
+  },
+  "home": {
+    "aboutTitle": "Rreth Shoqatës",
+    "hero": {
+      "title": "Zgjedhja më e mirë",
+      "subtitle": "Bëhu pjesë e Shoqatës Studenti për tu informuar më shumë rreth studimit në Zvicër.",
+      "cta": "REGJISTROHU",
+      "slideLabel": "Shfaq diapositivën {{n}}"
+    }
+  },
+  "latestNews": {
+    "heading": "Lajmet e fundit",
+    "emptyTitle": "Ende nuk ka poste.",
+    "emptyBody": "Hyni si admin dhe shtoni poste.",
+    "adminCta": "Hyr si admin",
+    "readMore": "Lexo më shumë"
+  },
+  "membership": {
+    "title": "Anëtarësim",
+    "intro": "Anëtarësim i ri: një vit nga aplikimi. Me të njëjtën email, vazhdimi është i mundur vetëm kur kanë mbetur më pak se shtatë ditë deri në skadencë; atëherë shtohet një vit nga data e vjetër e skadencës.",
+    "form": {
+      "name": "Emri",
+      "email": "Email",
+      "uni": "Universiteti",
+      "studium": "Studimi",
+      "typeLegend": "Lloji",
+      "student": "Student",
+      "alumni": "Alumni",
+      "submit": "Vazhdo në pagesë (Stripe)",
+      "pending": "Po ridrejtohet…",
+      "errorPayment": "Gabim gjatë krijimit të pagesës.",
+      "errorNetwork": "Gabim lidhjeje."
+    },
+    "status": {
+      "title": "Kontrollo statusin",
+      "hint": "Shkruaj email-in për të parë statusin e anëtarësimit.",
+      "emailPlaceholder": "emri@shembull.com",
+      "check": "Kontrollo",
+      "checking": "…"
+    }
+  },
+  "membershipSuccess": {
+    "title": "Pagesa u krye me sukses!",
+    "body": "Faleminderit për pagesën. Anëtarësimi yt u regjistrua. Tani je anëtar aktiv i shoqatës!",
+    "homeCta": "Kthehu në ballinë"
+  },
+  "membershipActions": {
+    "fillAll": "Plotëso të gjitha fushat.",
+    "invalidEmail": "Adresë email e pavlefshme.",
+    "createdNoEmail": "Anëtarësimi u krijua. Email-i i konfirmimit nuk u dërgua dot.",
+    "createdOk": "Anëtarësimi u krijua. Do të marrësh një email konfirmimi.",
+    "extendedNoEmail": "Anëtarësimi u zgjat. Email-i i konfirmimit nuk u dërgua dot.",
+    "extendedOk": "Anëtarësimi u zgjat me një vit.",
+    "renewBlocked": "Me këtë email ekziston tashmë anëtarësim. Vazhdimi është i mundur vetëm kur kanë mbetur më pak se 7 ditë (aktualisht aktiv deri më {{until}}).",
+    "checkEmailMissing": "Shkruaj një adresë email.",
+    "none": "Nuk ka anëtarësim aktiv.",
+    "activeUntil": "Aktiv deri më {{date}}"
+  },
+  "kontakt": {
+    "badge": "Shoqata Studenti Zürich",
+    "title": "Kontakt",
+    "intro": "Na shkruani për pyetje të përgjithshme. Përgjigjet i japim sipas mundësive — për aplikime, ju lutemi fillimisht të lexoni faqen e studimeve.",
+    "formTitle": "Formulari i kontaktit",
+    "sentSim": "Mesazhi u regjistrua (simulim). Në prodhim do të dërgohej te",
+    "errorFields": "Plotësoni të gjitha fushat para dërgimit.",
+    "labelName": "Emri",
+    "labelEmail": "Email",
+    "labelMessage": "Mesazhi",
+    "placeholderName": "Emri dhe mbiemri",
+    "placeholderEmail": "email@shembull.com",
+    "placeholderMessage": "Shkruani mesazhin tuaj…",
+    "submit": "Dërgo",
+    "socialTitle": "Rrjetet sociale",
+    "socialHint": "Na ndiqni në rrjetet sociale.",
+    "impressum": "Impressum",
+    "addressLine": "Adresa (placeholder)",
+    "addressSample": "Rruga dhe numri, ZIP Zürich, Zvicër"
+  },
+  "kryesia": {
+    "heading": "Kryesia",
+    "intro": "Ekipi i bordit që udhëheq aktivitetet, projektet dhe bashkëpunimet e shoqatës.",
+    "members": [
+      { "role": "Kryetar", "bio": "Master ETH arkitekturë" },
+      { "role": "Financa", "bio": "Master ETH inxhinieri ndërtimi" },
+      { "role": "Media sociale", "bio": "Bachelor ETH arkitekturë" },
+      { "role": "Komunikim", "bio": "Master ETH studime krahasuese dhe ndërkombëtare" },
+      { "role": "Menaxhim eventesh", "bio": "Bachelor ETH arkitekturë" },
+      { "role": "Menaxhim eventesh", "bio": "Master ETH shkenca inxhinieri mjedisore" },
+      { "role": "Marketing", "bio": "Master ETH arkitekturë" },
+      { "role": "IT", "bio": "Bachelor ETH shkenca kompjuterike" }
+    ]
+  },
+  "studimet": {
+    "badge": "Studimet",
+    "title": "Aplikime jashtë Zvicrës",
+    "intro": "Më poshtë gjeni disa informacione dhe njoftime për kushtet e studimeve në Cyrih (për Universitetin e Cyrihut – UZH dhe ETH Zürich):",
+    "generalTitle": "Informacionet e përgjithshme rreth aplikimit",
+    "documentsTitle": "Dokumentet që nevojiten për aplikim",
+    "techNote": "P.sh. për ETH Zürich klikoni te «Master electrical engineering and information technology», faqja që tregon të gjitha dokumentet shtesë të nevojshme për aplikim (GRE, certifikatë angleze etj.). Përvoja jonë ka treguar se studentët me diplomë të maturës ose bachelor nga një shkollë publike (p.sh. Universiteti i Tiranës ose Universiteti i Prishtinës) kanë shanse më reale për pranim.",
+    "deadlinesTitle": "Afatet për aplikim",
+    "visaTitle": "Informacion për vizë",
+    "financeTitle": "Financat dhe shpenzimet",
+    "financeIntro": "Së fundi: pa mjete financiare nuk bëhet sot asgjë; të gjitha informacionet rreth shpenzimeve për jetesë, aplikim, semestër, bursa etj. gjenden këtu:",
+    "closing": "Ju lutemi informohuni në të gjitha lidhjet e mësipërme, para se të na dërgoni një pyetje shtesë. Shoqata Studenti nuk ofron ndihmë financiare për studentët. Ka shumë punë për të aplikuar — por shpresojmë se keni vullnetin, kohën dhe dëshirën t’i plotësoni kushtet për studime në Cyrih. Ju dëshirojmë sukses në aplikim!",
+    "linkUzhBachelor": "UZH Bachelor",
+    "linkUzhMaster": "UZH Master",
+    "linkEthBachelor": "ETH Bachelor",
+    "linkEthMaster": "ETH Master",
+    "linkUzhDocs": "UZH Bachelor / Master",
+    "linkEthDocs": "ETH Bachelor / Master",
+    "linkUzhDeadline": "UZH",
+    "linkEthDeadline": "ETH",
+    "linkVisa": "Viza",
+    "linkUzhFinance": "UZH",
+    "linkEthFinance": "ETH"
+  },
+  "infoPage": {
+    "badge": "Rreth nesh",
+    "title": "Info",
+    "p1": "Një grup studentësh shqiptarë takoheshin vazhdimisht në mënyrë informale rreth vitit 2000. Vetëm një vit pas luftës në Kosovë dhe në prag të luftës në pjesën shqiptare të Maqedonisë së Veriut, vendosën të formonin Shoqatën Studentore Shqiptare «Studenti».",
+    "p2": "Konteksti në të cilin u formua «Studenti» ishte mjaft i trishtë, për të mos thënë tragjik, sidomos duke pasur parasysh që kishte anëtarë të asaj kohe që bënë burg për shpërndarjen e librave.",
+    "p3": "Sot, situata është ndryshe. Por «Studenti» është dhe ka qenë i formuar nga dhe për studentët shqiptarë në Cyrih, dhe përbën një platformë informative, ndërrjetëzuese dhe zëdhënëse për studentët."
+  },
+  "history": {
+    "title": "Historiku",
+    "body": "Kjo faqe do të plotësohet në fazën e ardhshme me video dhe foto nga historia e shoqatës."
+  },
+  "status": {
+    "title": "Statusi",
+    "body": "Kjo faqe do të zgjerohet në fazën e ardhshme për kontrollin e statusit të anëtarësimit përmes email-it."
+  },
+  "evente": {
+    "badge": "Evente",
+    "title": "Evente {{year}}",
+    "intro": "Poste dhe njoftime të lidhura me vitin {{year}}.",
+    "empty": "Nuk ka poste për këtë vit.",
+    "readMore": "Lexo më shumë"
+  },
+  "post": {
+    "backHome": "← Kthehu te ballina"
+  }
+}

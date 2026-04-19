@@ -3,6 +3,8 @@ import { Playfair_Display } from "next/font/google";
 import { HeroCarousel } from "@/components/hero-carousel";
 import { LatestNews } from "@/components/latest-news";
 import { prisma } from "@/lib/db";
+import { dateLocaleFor, getDictionary } from "@/lib/i18n/get-dictionary";
+import { getLocale } from "@/lib/i18n/server";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -14,6 +16,10 @@ const playfair = Playfair_Display({
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
+  const locale = await getLocale();
+  const dict = getDictionary(locale);
+  const dateLocale = dateLocaleFor(locale);
+
   let latestPosts: Awaited<ReturnType<typeof prisma.post.findMany>> = [];
   try {
     latestPosts = await prisma.post.findMany({
@@ -34,11 +40,16 @@ export default async function Home() {
         <h2
           className={`${playfair.className} text-3xl font-bold tracking-tight text-black md:text-4xl`}
         >
-          Rreth Shoqatës
+          {dict.home.aboutTitle}
         </h2>
       </section>
 
-      <LatestNews headingClassName={playfair.className} posts={latestPosts} />
+      <LatestNews
+        headingClassName={playfair.className}
+        posts={latestPosts}
+        labels={dict.latestNews}
+        dateLocale={dateLocale}
+      />
     </main>
   );
 }

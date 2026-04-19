@@ -1,39 +1,33 @@
 import { Playfair_Display } from "next/font/google";
 
+import { getDictionary } from "@/lib/i18n/get-dictionary";
+import { getLocale } from "@/lib/i18n/server";
+
 const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["600", "700"],
 });
 
-export default function InfoPage() {
+export default async function InfoPage() {
+  const dict = getDictionary(await getLocale());
+  const i = dict.infoPage;
+
   return (
     <main className="min-h-screen bg-white text-black">
       <section className="mx-auto max-w-3xl px-6 py-20 text-center md:py-28">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#E11D48]">
-          Rreth nesh
+          {i.badge}
         </p>
         <h1
           className={`${playfair.className} mt-4 text-3xl font-bold tracking-tight text-black md:text-4xl`}
         >
-          Info
+          {i.title}
         </h1>
 
         <div className="mt-14 space-y-8 text-center text-base leading-[1.85] text-black/80 md:text-lg">
-          <p>
-            Një grup studentësh shqiptarë takoheshin vazhdimisht në mënyrë informale rreth vitit
-            2000. Vetëm një vit pas luftës në Kosovë dhe në prag të luftës në pjesën shqiptare të
-            Maqedonisë së Veriut, vendosën të formonin Shoqatën Studentore Shqiptare “Studenti”.
-          </p>
-          <p>
-            Konteksti në të cilin u formua “Studenti” ishte mjaft i trishtë, për të mos thënë
-            tragjik, sidomos duke pasur parasysh që kishte anëtarë të asaj kohe që bënë burg për
-            shpërndarjen e librave.
-          </p>
-          <p>
-            Sot, situata është ndryshe. Por “Studenti” është dhe ka qenë i formuar nga dhe për
-            studentët shqiptarë në Cyrih, dhe përbën një platformë informative, ndërrjetëzuese dhe
-            zëdhënëse për studentët.
-          </p>
+          <p>{i.p1}</p>
+          <p>{i.p2}</p>
+          <p>{i.p3}</p>
         </div>
       </section>
     </main>
