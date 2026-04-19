@@ -8,7 +8,7 @@ export default async function Page() {
 
   return (
     <main className="min-h-screen bg-white text-black">
-      <SubpageHero title={dict.nav.kryesia} as="div" />
+      <SubpageHero title={dict.nav.kryesia} as="div" variant="compact" />
       <Kryesia showHeading={false} copy={dict.kryesia} />
     </main>
   );

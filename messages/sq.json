@@ -112,7 +112,7 @@
   },
   "kryesia": {
     "heading": "Kryesia",
-    "intro": "Ekipi i bordit që udhëheq aktivitetet, projektet dhe bashkëpunimet e shoqatës.",
+    "intro": "",
     "members": [
       { "role": "Kryetar", "bio": "Master ETH arkitekturë" },
       { "role": "Financa", "bio": "Master ETH inxhinieri ndërtimi" },
