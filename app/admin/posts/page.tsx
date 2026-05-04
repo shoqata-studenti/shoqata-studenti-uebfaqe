@@ -16,6 +16,11 @@ export default async function AdminPostsPage({ searchParams }: Props) {
           Admin
         </p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight">Krijo post të ri</h1>
+        <p className="mt-3 text-sm">
+          <Link href="/admin" className="text-black/70 underline-offset-2 hover:text-[#E11D48] hover:underline">
+            ← Kthehu te paneli i adminit
+          </Link>
+        </p>
         <p className="mt-2 text-sm text-black/65">
           Plotëso fushat më poshtë. Imazhi duhet të jetë një URL e vlefshme (http ose
           https).
@@ -107,7 +112,7 @@ export default async function AdminPostsPage({ searchParams }: Props) {
               Ruaj postin
             </button>
             <Link
-              href="/"
+              href="/admin"
               className="inline-flex min-h-10 items-center justify-center rounded-sm border border-black/25 bg-white px-6 text-sm font-semibold uppercase tracking-wide text-black transition-colors hover:border-black hover:bg-black/[0.04]"
             >
               Anulo

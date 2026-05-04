@@ -15,7 +15,7 @@ function safeRedirectTarget(nextParam: string | null | undefined): string {
       return nextParam;
     }
   }
-  return "/admin/posts";
+  return "/admin";
 }
 
 export async function adminLogin(formData: FormData) {

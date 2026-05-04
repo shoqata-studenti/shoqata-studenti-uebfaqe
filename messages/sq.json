@@ -23,6 +23,7 @@
     "applicationsAbroad": "Aplikime jasht Zvicrës",
     "sport": "Sport",
     "kultura": "Kultura",
+    "vargjetELira": "Vargjet e lira",
     "shoqerore": "Shoqërore",
     "ligjerata": "Ligjërata",
     "teTjera": "Të tjera"
@@ -172,5 +173,20 @@
   },
   "post": {
     "backHome": "← Kthehu te ballina"
+  },
+  "vargjet": {
+    "title": "Vargjet e lira",
+    "intro": "Tema me tekste për t’i hapur në shfletues ose për t’i shkarkuar (PDF, TXT, Word).",
+    "noThemes": "Ende nuk janë shtuar tema për këtë seksion.",
+    "themeBadge": "Tema",
+    "textSingular": "tekst",
+    "textPlural": "tekste",
+    "documentsHeading": "Tekste",
+    "noDocuments": "Për këtë temë ende nuk ka skedarë.",
+    "open": "Hape",
+    "download": "Shkarko",
+    "kulturaSectionKicker": "Projekt",
+    "kulturaTeaser": "Poezi dhe tekste të grupuara sipas temave — çdo skedar mund të hapet ose të shkarkohet.",
+    "kulturaTeaserCta": "Te Vargjet e lira"
   }
 }

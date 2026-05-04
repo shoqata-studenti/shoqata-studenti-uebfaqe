@@ -40,3 +40,25 @@ model Post {
   year      Int
   createdAt DateTime @default(now())
 }
+
+model VargjetTopic {
+  id        Int               @id @default(autoincrement())
+  title     String
+  slug      String            @unique
+  sortOrder Int               @default(0)
+  createdAt DateTime          @default(now())
+  documents VargjetDocument[]
+}
+
+model VargjetDocument {
+  id               Int          @id @default(autoincrement())
+  topicId          Int
+  topic            VargjetTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  title            String
+  originalFileName String
+  mimeType         String
+  fileData         Bytes
+  createdAt        DateTime     @default(now())
+
+  @@index([topicId])
+}

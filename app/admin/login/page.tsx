@@ -45,7 +45,7 @@ export default async function AdminLoginPage({ searchParams }: PageProps) {
           <input
             type="hidden"
             name="next"
-            value={q.next && q.next.startsWith("/") && !q.next.startsWith("//") ? q.next : "/admin/posts"}
+            value={q.next && q.next.startsWith("/") && !q.next.startsWith("//") ? q.next : "/admin"}
           />
           <div className="space-y-2 text-left">
             <label

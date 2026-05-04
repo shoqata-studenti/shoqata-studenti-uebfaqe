@@ -23,6 +23,7 @@
     "applicationsAbroad": "Bewerbungen ausserhalb der Schweiz",
     "sport": "Sport",
     "kultura": "Kultur",
+    "vargjetELira": "Vargjet e lira",
     "shoqerore": "Gesellschaftliches",
     "ligjerata": "Vorträge",
     "teTjera": "Weitere"
@@ -172,5 +173,20 @@
   },
   "post": {
     "backHome": "← Zurück zur Startseite"
+  },
+  "vargjet": {
+    "title": "Vargjet e lira",
+    "intro": "Themen mit Texten zum Lesen im Browser oder Herunterladen (PDF, TXT, Word).",
+    "noThemes": "Für diese Rubrik sind noch keine Themen eingetragen.",
+    "themeBadge": "Thema",
+    "textSingular": "Text",
+    "textPlural": "Texte",
+    "documentsHeading": "Texte",
+    "noDocuments": "Zu diesem Thema gibt es noch keine Dateien.",
+    "open": "Öffnen",
+    "download": "Herunterladen",
+    "kulturaSectionKicker": "Projekt",
+    "kulturaTeaser": "Gedichte und Texte nach Themen geordnet — jeweils als Datei zum Öffnen oder Download.",
+    "kulturaTeaserCta": "Zu Vargjet e lira"
   }
 }

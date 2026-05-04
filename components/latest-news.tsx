@@ -34,7 +34,7 @@ export function LatestNews({ headingClassName, posts, labels, dateLocale }: Prop
           <p className="mt-4 max-w-xl text-sm text-black/60">{labels.emptyTitle}</p>
           <p className="mt-2 max-w-xl text-sm text-black/55">{labels.emptyBody}</p>
           <Link
-            href="/admin/login?next=/admin/posts"
+            href="/admin/login?next=/admin"
             className="mt-6 inline-flex min-h-10 items-center justify-center rounded-sm border border-black/20 bg-white px-5 text-sm font-semibold uppercase tracking-wide text-black transition-colors hover:border-[#E11D48] hover:text-[#E11D48]"
           >
             {labels.adminCta}

@@ -106,6 +106,7 @@ export function HeaderNav({ navFontClassName }: HeaderNavProps) {
         <DropdownMenuContent align="end" className={menuContent}>
           <NavMenuLink href="/projekte/sport" label={d.nav.sport} />
           <NavMenuLink href="/projekte/kultura" label={d.nav.kultura} />
+          <NavMenuLink href="/projekte/kultura/vargjet-e-lira" label={d.nav.vargjetELira} />
           <NavMenuLink href="/projekte/shoqerore" label={d.nav.shoqerore} />
           <NavMenuLink href="/projekte/ligjerata" label={d.nav.ligjerata} />
           <NavMenuLink href="/projekte/te-tjera" label={d.nav.teTjera} />

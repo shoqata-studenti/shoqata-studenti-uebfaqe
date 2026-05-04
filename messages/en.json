@@ -23,6 +23,7 @@
     "applicationsAbroad": "Applications outside Switzerland",
     "sport": "Sport",
     "kultura": "Culture",
+    "vargjetELira": "Vargjet e lira",
     "shoqerore": "Community",
     "ligjerata": "Lectures",
     "teTjera": "Other"
@@ -172,5 +173,20 @@
   },
   "post": {
     "backHome": "← Back to home"
+  },
+  "vargjet": {
+    "title": "Vargjet e lira",
+    "intro": "Topics with texts to open in the browser or download (PDF, TXT, Word).",
+    "noThemes": "No topics have been added for this section yet.",
+    "themeBadge": "Topic",
+    "textSingular": "text",
+    "textPlural": "texts",
+    "documentsHeading": "Texts",
+    "noDocuments": "There are no files for this topic yet.",
+    "open": "Open",
+    "download": "Download",
+    "kulturaSectionKicker": "Project",
+    "kulturaTeaser": "Poetry and texts organised by topic — each file can be opened or downloaded.",
+    "kulturaTeaserCta": "Go to Vargjet e lira"
   }
 }
