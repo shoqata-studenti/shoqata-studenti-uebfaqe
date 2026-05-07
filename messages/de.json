@@ -52,9 +52,9 @@
   },
   "membership": {
     "title": "Mitgliedschaft",
-    "intro": "Neue Mitgliedschaft: ein Jahr ab Antrag. Mit derselben E-Mail ist eine Verlängerung nur möglich, wenn weniger als sieben Tage Restlaufzeit bestehen; dann wird ein Jahr an das bisherige Ablaufdatum angehängt.",
     "form": {
-      "name": "Name",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
       "email": "E-Mail",
       "uni": "Universität",
       "studium": "Studiengang",
@@ -64,7 +64,10 @@
       "submit": "Zur Zahlung weiter (Stripe)",
       "pending": "Weiterleitung…",
       "errorPayment": "Fehler beim Erstellen der Zahlung.",
-      "errorNetwork": "Verbindungsfehler."
+      "errorNetwork": "Verbindungsfehler.",
+      "renewalDialogTitle": "Kujdes",
+      "renewalCancel": "Anulo",
+      "renewalContinue": "Vazhdo"
     },
     "status": {
       "title": "Status prüfen",
@@ -86,7 +89,7 @@
     "createdOk": "Mitgliedschaft wurde angelegt. Du erhältst eine Bestätigung per E-Mail.",
     "extendedNoEmail": "Mitgliedschaft wurde verlängert. Die Bestätigungs-E-Mail konnte nicht versendet werden.",
     "extendedOk": "Mitgliedschaft wurde um ein Jahr verlängert.",
-    "renewBlocked": "Mit dieser E-Mail besteht bereits eine Mitgliedschaft. Verlängerung ist erst möglich, wenn weniger als 7 Tage Restlaufzeit bestehen (aktuell aktiv bis {{until}}).",
+    "renewBlocked": "Mit dieser E-Mail besteht bereits eine Mitgliedschaft. Verlängerung ist erst möglich, wenn weniger als ein Monat Restlaufzeit besteht (aktuell aktiv bis {{until}}).",
     "checkEmailMissing": "Bitte eine E-Mail-Adresse eingeben.",
     "none": "Keine aktive Mitgliedschaft.",
     "activeUntil": "Aktiv bis {{date}}"

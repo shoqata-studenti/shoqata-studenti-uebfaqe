@@ -21,11 +21,20 @@ export function daysUntil(target: Date, from = new Date()): number {
   return (target.getTime() - from.getTime()) / 86_400_000;
 }
 
+/** Rinovim nëpërmjet pagesës: më pak se 1 muaj deri në skadencë (ose tashmë i skaduar). */
+export const RENEWAL_WINDOW_DAYS = 30;
+
 /**
- * Verlängerung nur wenn weniger als 7 volle Tage Restlaufzeit
- * (eingeschlossen: bereits abgelaufen).
+ * Pagesë / rinovim i lejuar kur ka më pak se RENEWAL_WINDOW_DAYS ditë deri në skadencë,
+ * ose kur anëtarësimi është skaduar / pa datë.
  */
 export function canRenewMembership(expiresAt: Date | null): boolean {
   if (expiresAt == null) return true;
-  return daysUntil(expiresAt) < 7;
+  return daysUntil(expiresAt) < RENEWAL_WINDOW_DAYS;
+}
+
+/** Ende aktiv (Skadenca në të ardhmen). */
+export function isMembershipStillActive(expiresAt: Date | null): boolean {
+  if (expiresAt == null) return false;
+  return daysUntil(expiresAt) > 0;
 }

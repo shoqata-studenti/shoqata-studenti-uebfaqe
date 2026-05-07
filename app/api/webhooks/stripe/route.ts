@@ -3,7 +3,9 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { MembershipType } from "@prisma/client";
 import { prisma } from "@/lib/db";
-import { Resend } from "resend";
+import { subscribeInfomaniakNewsletter } from "@/lib/infomaniak-newsletter";
+import { addYears } from "@/lib/membership-logic";
+import { sendStripeWelcomeEmailSq } from "@/lib/membership-email-albanian";
 
 type MembershipMetadata = {
   email: string;
@@ -69,9 +71,16 @@ export async function POST(req: Request) {
     if (!metadata) {
       return NextResponse.json({ error: "Missing membership metadata in checkout session." }, { status: 400 });
     }
-    const nextExpiry = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000);
-
     try {
+      const prior = await prisma.member.findUnique({
+        where: { email: metadata.email },
+        select: { expiresAt: true },
+      });
+
+      const nextExpiry = prior?.expiresAt
+        ? addYears(prior.expiresAt, 1)
+        : addYears(new Date(), 1);
+
       const member = await prisma.member.upsert({
         where: { email: metadata.email },
         update: {
@@ -99,19 +108,22 @@ export async function POST(req: Request) {
 
       console.log("Mitglied erfolgreich gespeichert:", member.email);
 
+      try {
+        await subscribeInfomaniakNewsletter(metadata.email);
+      } catch (newsletterError) {
+        console.error("Infomaniak Newsletter (Stripe-Webhook):", newsletterError);
+      }
+
       if (process.env.RESEND_API_KEY) {
-        const resend = new Resend(process.env.RESEND_API_KEY);
-        await resend.emails.send({
-          from: "Mitgliedschaft <onboarding@resend.dev>",
-          to: metadata.email,
-          subject: "Willkommen bei der Shoqata!",
-          html: `
-            <h1>Hallo ${metadata.name}!</h1>
-            <p>Vielen Dank für deine Zahlung. Deine Mitgliedschaft (${metadata.type}) ist nun aktiv.</p>
-            <p>Deine Daten wurden erfolgreich für die Uni ${metadata.uni} hinterlegt.</p>
-            <p>Viel Erfolg im Studium!</p>
-          `,
-        });
+        const mail = await sendStripeWelcomeEmailSq(
+          metadata.email,
+          metadata.name,
+          metadata.uni,
+          metadata.type
+        );
+        if (!mail.sent && mail.error) {
+          console.error("Resend Willkommens-Mail:", mail.error);
+        }
       }
 
     } catch (dbError) {

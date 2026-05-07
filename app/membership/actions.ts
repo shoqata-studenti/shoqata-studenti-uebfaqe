@@ -39,13 +39,15 @@ export async function submitMembership(
   const ma = dict.membershipActions;
   const dl = dateLocaleFor(locale);
 
-  const name = String(formData.get("name") ?? "").trim();
+  const firstName = String(formData.get("firstName") ?? "").trim();
+  const lastName = String(formData.get("lastName") ?? "").trim();
+  const name = `${firstName} ${lastName}`.trim();
   const email = normalizeEmail(String(formData.get("email") ?? ""));
   const uni = String(formData.get("uni") ?? "").trim();
   const studium = String(formData.get("studium") ?? "").trim();
   const type = parseType(formData.get("type"));
 
-  if (!name || !email || !uni || !studium || !type) {
+  if (!firstName || !lastName || !email || !uni || !studium || !type) {
     return { ok: false, error: ma.fillAll };
   }
 
@@ -70,7 +72,7 @@ export async function submitMembership(
         lastRenewalAt: now,
       },
     });
-    const mail = await sendMembershipEmail(email, type);
+    const mail = await sendMembershipEmail(email, type, name);
     if (!mail.sent && mail.error) {
       return {
         ok: true,
@@ -107,7 +109,7 @@ export async function submitMembership(
     },
   });
 
-  const mail = await sendMembershipEmail(email, type);
+  const mail = await sendMembershipEmail(email, type, name);
   if (!mail.sent && mail.error) {
     return {
       ok: true,

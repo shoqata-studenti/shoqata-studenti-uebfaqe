@@ -52,9 +52,9 @@
   },
   "membership": {
     "title": "Membership",
-    "intro": "New membership: one year from application. With the same email, renewal is only possible when fewer than seven days remain; then one year is added to the previous expiry date.",
     "form": {
-      "name": "Name",
+      "firstName": "First name",
+      "lastName": "Last name",
       "email": "Email",
       "uni": "University",
       "studium": "Field of study",
@@ -64,7 +64,10 @@
       "submit": "Continue to payment (Stripe)",
       "pending": "Redirecting…",
       "errorPayment": "Could not create payment.",
-      "errorNetwork": "Connection error."
+      "errorNetwork": "Connection error.",
+      "renewalDialogTitle": "Kujdes",
+      "renewalCancel": "Anulo",
+      "renewalContinue": "Vazhdo"
     },
     "status": {
       "title": "Check status",
@@ -86,7 +89,7 @@
     "createdOk": "Membership created. You will receive a confirmation email.",
     "extendedNoEmail": "Membership extended. The confirmation email could not be sent.",
     "extendedOk": "Membership extended by one year.",
-    "renewBlocked": "A membership with this email already exists. Renewal is only possible when fewer than 7 days remain (currently active until {{until}}).",
+    "renewBlocked": "A membership with this email already exists. Renewal is only possible when less than one month remains (currently active until {{until}}).",
     "checkEmailMissing": "Please enter an email address.",
     "none": "No active membership.",
     "activeUntil": "Active until {{date}}"

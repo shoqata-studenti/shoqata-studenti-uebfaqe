@@ -52,9 +52,9 @@
   },
   "membership": {
     "title": "Anëtarësim",
-    "intro": "Anëtarësim i ri: një vit nga aplikimi. Me të njëjtën email, vazhdimi është i mundur vetëm kur kanë mbetur më pak se shtatë ditë deri në skadencë; atëherë shtohet një vit nga data e vjetër e skadencës.",
     "form": {
-      "name": "Emri",
+      "firstName": "Emri",
+      "lastName": "Mbiemri",
       "email": "Email",
       "uni": "Universiteti",
       "studium": "Studimi",
@@ -64,7 +64,10 @@
       "submit": "Vazhdo në pagesë (Stripe)",
       "pending": "Po ridrejtohet…",
       "errorPayment": "Gabim gjatë krijimit të pagesës.",
-      "errorNetwork": "Gabim lidhjeje."
+      "errorNetwork": "Gabim lidhjeje.",
+      "renewalDialogTitle": "Kujdes",
+      "renewalCancel": "Anulo",
+      "renewalContinue": "Vazhdo"
     },
     "status": {
       "title": "Kontrollo statusin",
@@ -86,7 +89,7 @@
     "createdOk": "Anëtarësimi u krijua. Do të marrësh një email konfirmimi.",
     "extendedNoEmail": "Anëtarësimi u zgjat. Email-i i konfirmimit nuk u dërgua dot.",
     "extendedOk": "Anëtarësimi u zgjat me një vit.",
-    "renewBlocked": "Me këtë email ekziston tashmë anëtarësim. Vazhdimi është i mundur vetëm kur kanë mbetur më pak se 7 ditë (aktualisht aktiv deri më {{until}}).",
+    "renewBlocked": "Me këtë email ekziston tashmë anëtarësim. Vazhdimi është i mundur vetëm kur kanë mbetur më pak se një muaj deri në skadencë (aktualisht aktiv deri më {{until}}).",
     "checkEmailMissing": "Shkruaj një adresë email.",
     "none": "Nuk ka anëtarësim aktiv.",
     "activeUntil": "Aktiv deri më {{date}}"
