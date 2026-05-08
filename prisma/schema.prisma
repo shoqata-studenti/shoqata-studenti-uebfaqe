@@ -38,7 +38,11 @@ model Post {
   content   String
   imageUrl  String
   year      Int
+  /// e.g. kafe-llafe — ties post to /evente/[slug]; null = homepage/news only
+  eventSlug String?
   createdAt DateTime @default(now())
+
+  @@index([eventSlug])
 }
 
 model VargjetTopic {
@@ -61,4 +65,15 @@ model VargjetDocument {
   createdAt        DateTime     @default(now())
 
   @@index([topicId])
+}
+
+model EventGalleryImage {
+  id        Int      @id @default(autoincrement())
+  eventSlug String
+  sortOrder Int      @default(0)
+  mimeType  String
+  fileData  Bytes
+  createdAt DateTime @default(now())
+
+  @@index([eventSlug])
 }

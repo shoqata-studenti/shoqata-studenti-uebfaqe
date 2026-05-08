@@ -8,6 +8,7 @@ import { interpolate } from "@/lib/i18n/interpolate";
 import { getLocale } from "@/lib/i18n/server";
 import { addYears, canRenewMembership, daysUntil } from "@/lib/membership-logic";
 import { sendMembershipEmail } from "@/lib/send-membership-email";
+import { subscribeInfomaniakNewsletter } from "@/lib/infomaniak-newsletter";
 
 export type MembershipSubmitState = {
   ok: boolean;
@@ -19,6 +20,11 @@ export type MembershipCheckState = {
   ok: boolean;
   message: string;
   expiresAtIso?: string;
+};
+
+export type NewsletterSubscribeState = {
+  ok: boolean;
+  message: string;
 };
 
 function normalizeEmail(raw: string): string {
@@ -153,4 +159,28 @@ export async function checkMembershipStatus(
     message: interpolate(ma.activeUntil, { date: dateStr }),
     expiresAtIso: member.expiresAt.toISOString(),
   };
+}
+
+export async function subscribeNewsletter(
+  _prev: NewsletterSubscribeState,
+  formData: FormData
+): Promise<NewsletterSubscribeState> {
+  const locale = await getLocale();
+  const dict = getDictionary(locale);
+  const n = dict.membership.newsletter;
+
+  const email = normalizeEmail(String(formData.get("email") ?? ""));
+  if (!email) {
+    return { ok: false, message: n.errorMissingEmail };
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return { ok: false, message: n.errorInvalidEmail };
+  }
+
+  try {
+    await subscribeInfomaniakNewsletter(email);
+    return { ok: true, message: n.success };
+  } catch {
+    return { ok: false, message: n.errorGeneric };
+  }
 }

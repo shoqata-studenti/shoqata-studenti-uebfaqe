@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { prisma } from "@/lib/db";
+import { isEventSlug } from "@/lib/event-slugs";
 
 function isValidHttpUrl(value: string): boolean {
   try {
@@ -20,6 +21,8 @@ export async function createPost(formData: FormData) {
   const imageUrl = formData.get("imageUrl")?.toString().trim() ?? "";
   const yearRaw = formData.get("year")?.toString().trim() ?? "";
   const year = Number.parseInt(yearRaw, 10);
+  const eventSlugRaw = formData.get("eventSlug")?.toString().trim() ?? "";
+  const eventSlug = eventSlugRaw && isEventSlug(eventSlugRaw) ? eventSlugRaw : null;
 
   const allowedYears = new Set([2023, 2024, 2025, 2026]);
 
@@ -40,12 +43,15 @@ export async function createPost(formData: FormData) {
       content: content.trim(),
       imageUrl,
       year,
+      eventSlug,
     },
   });
 
   revalidatePath("/");
-  revalidatePath(`/evente/${post.year}`);
   revalidatePath(`/posts/${post.id}`);
+  if (post.eventSlug) {
+    revalidatePath(`/evente/${post.eventSlug}`);
+  }
 
   redirect("/admin/posts?success=1");
 }

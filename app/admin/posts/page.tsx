@@ -22,8 +22,8 @@ export default async function AdminPostsPage({ searchParams }: Props) {
           </Link>
         </p>
         <p className="mt-2 text-sm text-black/65">
-          Plotëso fushat më poshtë. Imazhi duhet të jetë një URL e vlefshme (http ose
-          https).
+          Teksti dhe një URL publik për kopertinën (http/https) — nuk ka ngarkim skedari për
+          poste; për foto të eventit përdor «Foto eventesh».
         </p>
 
         <div className="mt-8 space-y-4">
@@ -88,6 +88,29 @@ export default async function AdminPostsPage({ searchParams }: Props) {
                 </option>
               ))}
             </select>
+          </div>
+
+          <div className="space-y-2">
+            <label htmlFor="eventSlug" className="text-sm font-semibold uppercase tracking-wide">
+              Event (opsionale)
+            </label>
+            <select
+              id="eventSlug"
+              name="eventSlug"
+              defaultValue=""
+              className="w-full max-w-md rounded-sm border border-black/20 bg-white px-3 py-2.5 text-sm outline-none transition-[border-color,box-shadow] focus:border-[#E11D48] focus:ring-2 focus:ring-[#E11D48]/25"
+            >
+              <option value="">— Pa event (vetëm në ballinë)</option>
+              <option value="kafe-llafe">Kafe Llafe</option>
+              <option value="festa-e-flamurit">Festa e Flamurit</option>
+              <option value="udhetime">Udhetime</option>
+              <option value="ligjerata">Ligjërata</option>
+              <option value="sofra">Sofra</option>
+            </select>
+            <p className="text-xs text-black/55">
+              Nëse zgjedh një event, posti shfaqet edhe në faqen e atij eventi (galeri zig-zag +
+              kartë).
+            </p>
           </div>
 
           <div className="space-y-2">

@@ -27,15 +27,11 @@ export default async function VargjetELiraPage() {
     <>
       <SubpageHero title={dict.vargjet.title} variant="compact" />
       <div className="border-t border-black/10 bg-white pb-20 text-black">
-        <div className="mx-auto w-full max-w-[1440px] px-6 pt-4 md:px-10">
-          <nav className="text-sm text-black/55">
-            <Link href="/projekte/kultura" className="hover:text-[#E11D48] hover:underline">
-              {dict.nav.kultura}
-            </Link>
-            <span className="mx-2 text-black/30">/</span>
-            <span className="text-black">{dict.vargjet.title}</span>
-          </nav>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-black/75">{dict.vargjet.intro}</p>
+        <div className="mx-auto w-full max-w-[1440px] px-6 py-12 md:px-10 md:py-16">
+          <p className="max-w-3xl text-base leading-relaxed text-black/80">{dict.vargjet.clubIntro}</p>
+          <p className="mt-5 max-w-3xl text-base leading-relaxed text-black/80">
+            {dict.vargjet.clubGoal}
+          </p>
 
           {topics.length === 0 ? (
             <p className="mt-12 text-sm text-black/55">{dict.vargjet.noThemes}</p>

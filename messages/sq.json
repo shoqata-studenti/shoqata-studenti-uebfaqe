@@ -35,7 +35,8 @@
     "sporti": "Sporti",
     "vargjetELira": "Vargjet e lira",
     "ligjerata": "Ligjërata",
-    "bashkpunimet": "Bashkpunimet"
+    "bashkpunimet": "Bashkpunimet",
+    "kultura": "Kultura"
   },
   "layout": {
     "logoAlt": "Shoqata Studenti Zürich",
@@ -45,6 +46,8 @@
   },
   "home": {
     "aboutTitle": "Rreth Shoqatës",
+    "eventsHeading": "Eventet",
+    "eventsSubheading": "Zgjidh një event për të parë përshkrimin dhe foto nga aktiviteti.",
     "hero": {
       "title": "Zgjedhja më e mirë",
       "subtitle": "Bëhu pjesë e Shoqatës Studenti për tu informuar më shumë rreth studimit në Zvicër.",
@@ -61,6 +64,17 @@
   },
   "membership": {
     "title": "Anëtarësim",
+    "newsletter": {
+      "title": "Newsletter",
+      "hint": "Jep email-in tënd për t’u abonuar në newsletter.",
+      "emailPlaceholder": "email@shembull.com",
+      "submit": "Abonohu",
+      "pending": "Duke u regjistruar…",
+      "success": "U abonove me sukses në newsletter.",
+      "errorMissingEmail": "Shkruaj një adresë email.",
+      "errorInvalidEmail": "Adresë email e pavlefshme.",
+      "errorGeneric": "Ndodhi një gabim gjatë abonimit. Provo përsëri."
+    },
     "form": {
       "firstName": "Emri",
       "lastName": "Mbiemri",
@@ -188,7 +202,10 @@
     "title": "{{name}}",
     "intro": "{{description}}",
     "empty": "Nuk ka postime për këtë event.",
+    "emptyGallery": "Ende nuk janë shtuar foto për këtë event. Ato ngarkohen nga paneli i adminit (Foto eventesh).",
     "galleryTitle": "Foto nga eventi",
+    "momentsTitle": "Momentet",
+    "postsTitle": "Postime",
     "readMore": "Lexo më shumë"
   },
   "post": {
@@ -197,6 +214,8 @@
   "vargjet": {
     "title": "Vargjet e lira",
     "intro": "Tema me tekste për t’i hapur në shfletues ose për t’i shkarkuar (PDF, TXT, Word).",
+    "clubIntro": "\"Vargjet e Lira\" është klubi letrar i Shoqatës Studenti. Në kuadër të tij organizohen lexime, diskutime dhe reflektime mbi letërsinë shqiptare dhe tema kulturore, historike dhe shoqërore.",
+    "clubGoal": "Projekti synon të krijojë një hapësirë të hapur për mendim kritik, kulturë dhe diskutim mes studentëve.",
     "noThemes": "Ende nuk janë shtuar tema për këtë seksion.",
     "themeBadge": "Tema",
     "textSingular": "tekst",
@@ -208,5 +227,27 @@
     "kulturaSectionKicker": "Projekt",
     "kulturaTeaser": "Poezi dhe tekste të grupuara sipas temave — çdo skedar mund të hapet ose të shkarkohet.",
     "kulturaTeaserCta": "Te Vargjet e lira"
+  },
+  "projectPages": {
+    "alumni": {
+      "intro": "Programi ynë Alumni synon të mbajë lidhjet mes ish-studentëve dhe komunitetit aktual të Shoqatës Studenti. Përmes këtij rrjeti krijohen mundësi për shkëmbim përvojash, networking dhe mbështetje ndërgjeneracionale mes studentëve dhe alumnive.",
+      "dinner": "Çdo vit organizohet edhe një darkë tradicionale e alumnive, si hapësirë takimi dhe rikthimi për komunitetin tonë.",
+      "cta": "Anëtarësohu - 100.-"
+    },
+    "sport": {
+      "intro": "Shoqata Studenti organizon aktivitete sportive javore për studentët dhe anëtarët e saj. Takimet zhvillohen një herë në javë në Oerlikon, Halle 8, ku alternohen aktivitetet në volejboll dhe futboll.",
+      "goal": "Projekti synon të forcojë aspektin social dhe komunitar të shoqatës përmes sportit dhe aktivitetit fizik."
+    },
+    "collaborations": {
+      "intro": "Shoqata Studenti bashkëpunon rregullisht me organizata dhe rrjete profesionale shqiptare në Zvicër, me qëllim krijimin e urave mes studentëve dhe profesionistëve shqiptarë në fusha të ndryshme.",
+      "listTitle": "Ndër bashkëpunimet kryesore janë:",
+      "summary": "Këto bashkëpunime përfshijnë organizimin e eventeve, diskutimeve, networking-ut dhe aktiviteteve të përbashkëta akademike e profesionale."
+    },
+    "federata": {
+      "heading": "Federata e Shoqatave Studentore Shqiptare në Zvicër",
+      "intro": "Shoqata Studenti është pjesë e Federatës së Shoqatave Studentore Shqiptare në Zvicër, një rrjet që bashkon tetë shoqata studentore shqiptare nga qytete të ndryshme të Zvicrës. Federata shërben si platformë koordinimi dhe bashkëpunimi ndërmjet studentëve shqiptarë në nivel nacional zviceran.",
+      "representation": "Shoqata Studenti përfaqësohet në federatë përmes delegatëve të saj dhe merr pjesë në mbledhjet vjetore, projektet e përbashkëta dhe iniciativat studentore në nivel kombëtar.",
+      "activities": "Në kuadër të federatës organizohen gjithashtu udhëtime, evente dhe bashkëpunime të ndryshme mes shoqatave pjesëmarrëse."
+    }
   }
 }

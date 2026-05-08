@@ -35,7 +35,8 @@
     "sporti": "Sport",
     "vargjetELira": "Vargjet e lira",
     "ligjerata": "Vorträge",
-    "bashkpunimet": "Kooperationen"
+    "bashkpunimet": "Kooperationen",
+    "kultura": "Kultur"
   },
   "layout": {
     "logoAlt": "Shoqata Studenti Zürich",
@@ -45,6 +46,8 @@
   },
   "home": {
     "aboutTitle": "Über den Verein",
+    "eventsHeading": "Events",
+    "eventsSubheading": "Wähle ein Event für Texte und Fotos vom Anlass.",
     "hero": {
       "title": "Die beste Wahl",
       "subtitle": "Werde Teil der Shoqata Studenti und informiere dich über das Studium in der Schweiz.",
@@ -61,6 +64,17 @@
   },
   "membership": {
     "title": "Mitgliedschaft",
+    "newsletter": {
+      "title": "Newsletter",
+      "hint": "Gib deine E-Mail ein, um den Newsletter zu abonnieren.",
+      "emailPlaceholder": "email@beispiel.ch",
+      "submit": "Abonnieren",
+      "pending": "Wird angemeldet…",
+      "success": "Du hast dich erfolgreich angemeldet.",
+      "errorMissingEmail": "Bitte eine E-Mail-Adresse eingeben.",
+      "errorInvalidEmail": "Ungültige E-Mail-Adresse.",
+      "errorGeneric": "Beim Abonnieren ist ein Fehler aufgetreten. Bitte erneut versuchen."
+    },
     "form": {
       "firstName": "Vorname",
       "lastName": "Nachname",
@@ -188,7 +202,10 @@
     "title": "{{name}}",
     "intro": "{{description}}",
     "empty": "Keine Beiträge für dieses Event.",
+    "emptyGallery": "Für dieses Event sind noch keine Fotos hochgeladen. Upload im Admin unter «Foto eventesh».",
     "galleryTitle": "Bilder vom Event",
+    "momentsTitle": "Impressionen",
+    "postsTitle": "Beiträge",
     "readMore": "Weiterlesen"
   },
   "post": {
@@ -197,6 +214,8 @@
   "vargjet": {
     "title": "Vargjet e lira",
     "intro": "Themen mit Texten zum Lesen im Browser oder Herunterladen (PDF, TXT, Word).",
+    "clubIntro": "\"Vargjet e Lira\" ist der Literaturklub der Shoqata Studenti. Im Rahmen des Projekts werden Lesungen, Diskussionen und Reflexionen über albanische Literatur sowie kulturelle, historische und gesellschaftliche Themen organisiert.",
+    "clubGoal": "Das Projekt soll einen offenen Raum für kritisches Denken, Kultur und Austausch unter Studierenden schaffen.",
     "noThemes": "Für diese Rubrik sind noch keine Themen eingetragen.",
     "themeBadge": "Thema",
     "textSingular": "Text",
@@ -208,5 +227,27 @@
     "kulturaSectionKicker": "Projekt",
     "kulturaTeaser": "Gedichte und Texte nach Themen geordnet — jeweils als Datei zum Öffnen oder Download.",
     "kulturaTeaserCta": "Zu Vargjet e lira"
+  },
+  "projectPages": {
+    "alumni": {
+      "intro": "Unser Alumni-Programm soll die Verbindung zwischen ehemaligen Studierenden und der aktuellen Community der Shoqata Studenti stärken. Durch dieses Netzwerk entstehen Möglichkeiten zum Erfahrungsaustausch, Networking und generationenübergreifender Unterstützung.",
+      "dinner": "Jedes Jahr findet zudem ein traditionelles Alumni-Dinner statt – als Treffpunkt und Rückkehrmoment für unsere Community.",
+      "cta": "Mitglied werden - 100.-"
+    },
+    "sport": {
+      "intro": "Die Shoqata Studenti organisiert wöchentliche Sportaktivitäten für Studierende und ihre Mitglieder. Die Treffen finden einmal pro Woche in Oerlikon, Halle 8, statt und wechseln zwischen Volleyball und Fussball.",
+      "goal": "Das Projekt soll den sozialen und gemeinschaftlichen Aspekt des Vereins durch Sport und Bewegung stärken."
+    },
+    "collaborations": {
+      "intro": "Die Shoqata Studenti arbeitet regelmässig mit albanischen Organisationen und beruflichen Netzwerken in der Schweiz zusammen, um Brücken zwischen Studierenden und albanischen Fachpersonen aus verschiedenen Bereichen zu bauen.",
+      "listTitle": "Zu den wichtigsten Kooperationen gehören:",
+      "summary": "Diese Kooperationen umfassen Events, Diskussionen, Networking sowie gemeinsame akademische und berufliche Aktivitäten."
+    },
+    "federata": {
+      "heading": "Föderation der albanischen Studentenvereine in der Schweiz",
+      "intro": "Die Shoqata Studenti ist Teil der Föderation der albanischen Studentenvereine in der Schweiz, einem Netzwerk, das acht albanische Studentenvereine aus verschiedenen Schweizer Städten zusammenbringt. Die Föderation dient als Plattform für Koordination und Zusammenarbeit unter albanischen Studierenden auf nationaler Ebene.",
+      "representation": "Die Shoqata Studenti ist in der Föderation durch ihre Delegierten vertreten und nimmt an den jährlichen Sitzungen, gemeinsamen Projekten und studentischen Initiativen auf nationaler Ebene teil.",
+      "activities": "Im Rahmen der Föderation werden zudem Reisen, Events und verschiedene Kooperationen zwischen den teilnehmenden Vereinen organisiert."
+    }
   }
 }

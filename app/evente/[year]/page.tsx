@@ -78,25 +78,26 @@ export default async function EventeYearPage({ params }: Props) {
   const selectedEvent = eventMap[slug as keyof typeof eventMap];
   if (!selectedEvent) notFound();
 
-  let posts: Awaited<ReturnType<typeof prisma.post.findMany>> = [];
+  let galleryImages: { id: number }[] = [];
+  let eventPosts: Awaited<ReturnType<typeof prisma.post.findMany>> = [];
   try {
-    posts = await prisma.post.findMany({
-      orderBy: { createdAt: "desc" },
-      take: 9,
+    galleryImages = await prisma.eventGalleryImage.findMany({
+      where: { eventSlug: slug },
+      orderBy: [{ sortOrder: "asc" }, { id: "asc" }],
+      select: { id: true },
     });
   } catch {
-    posts = [];
+    galleryImages = [];
   }
 
-  let galleryPosts: Awaited<ReturnType<typeof prisma.post.findMany>> = [];
   try {
-    galleryPosts = await prisma.post.findMany({
-      distinct: ["imageUrl"],
+    eventPosts = await prisma.post.findMany({
+      where: { eventSlug: slug },
       orderBy: { createdAt: "desc" },
-      take: 8,
+      take: 12,
     });
   } catch {
-    galleryPosts = [];
+    eventPosts = [];
   }
 
   return (
@@ -114,67 +115,79 @@ export default async function EventeYearPage({ params }: Props) {
           {interpolate(ev.intro, { description: selectedEvent.description })}
         </p>
 
-        {galleryPosts.length === 0 ? (
-          <p className="mt-12 text-center text-sm text-black/55">{ev.empty}</p>
+        {galleryImages.length === 0 ? (
+          <p className="mt-14 max-w-2xl text-sm text-black/55">{ev.emptyGallery}</p>
         ) : (
-          <div className="mt-10">
-            <h2 className="text-sm font-bold uppercase tracking-[0.12em] text-black/70">{ev.galleryTitle}</h2>
-            <ul className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {galleryPosts.map((post) => (
-                <li key={`gallery-${post.id}`} className="overflow-hidden rounded-sm border border-black/10">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={post.imageUrl} alt={post.title} className="aspect-[4/3] w-full object-cover" />
+          <div className="mt-14 w-full">
+            <h2 className="text-sm font-bold uppercase tracking-[0.12em] text-black/70">
+              {ev.momentsTitle}
+            </h2>
+            <div className="mt-10 space-y-16 md:space-y-20">
+              {galleryImages.map((img, i) => (
+                <div
+                  key={img.id}
+                  className={`flex w-full ${i % 2 === 0 ? "md:justify-start" : "md:justify-end"}`}
+                >
+                  <figure className="m-0 w-full md:w-[min(100%,52rem)] lg:w-[min(100%,60rem)]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`/api/event-gallery/${img.id}`}
+                      alt=""
+                      decoding="async"
+                      className="block h-auto w-full max-w-full"
+                    />
+                  </figure>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {eventPosts.length > 0 ? (
+          <div className="mt-16 border-t border-black/10 pt-16">
+            <h2 className="text-sm font-bold uppercase tracking-[0.12em] text-black/70">
+              {ev.postsTitle}
+            </h2>
+            <ul className="mt-8 space-y-6">
+              {eventPosts.map((post) => (
+                <li key={post.id}>
+                  <Link
+                    href={`/posts/${post.id}`}
+                    className="group flex flex-col overflow-visible rounded-sm border border-black/10 bg-white transition-[border-color,box-shadow] hover:border-[#E11D48]/35 hover:shadow-sm"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={post.imageUrl}
+                      alt=""
+                      decoding="async"
+                      className="w-full h-auto block rounded-t-sm bg-black/5"
+                    />
+                    <div className="min-w-0 flex-1 p-5">
+                      <p className="text-xs text-black/55">
+                        <span className="font-semibold text-[#E11D48]">{post.year}</span>
+                        <span className="mx-1.5 text-black/30">·</span>
+                        <time dateTime={post.createdAt.toISOString()}>
+                          {post.createdAt.toLocaleDateString(dateLocale, {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })}
+                        </time>
+                      </p>
+                      <h3 className={`${playfair.className} mt-1 text-lg font-bold text-black group-hover:text-[#E11D48]`}>
+                        {post.title}
+                      </h3>
+                      <p className="mt-1 line-clamp-2 text-sm text-black/65">{textExcerpt(post.content)}</p>
+                      <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-[#E11D48]">
+                        {ev.readMore} →
+                      </p>
+                    </div>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
-        )}
-
-        {posts.length === 0 ? (
-          <p className="mt-14 text-center text-sm text-black/55">{ev.empty}</p>
-        ) : (
-          <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post) => (
-              <li key={post.id}>
-                <article className="flex h-full flex-col overflow-hidden rounded-sm border border-black/12 bg-white shadow-sm transition-shadow hover:shadow-md">
-                  <div className="relative aspect-[16/10] w-full bg-black/5">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={post.imageUrl}
-                      alt={post.title}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-5">
-                    <p className="text-xs text-black/55">
-                      <time dateTime={post.createdAt.toISOString()}>
-                        {post.createdAt.toLocaleDateString(dateLocale, {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
-                      </time>
-                    </p>
-                    <h2 className="mt-2 line-clamp-2 text-lg font-bold leading-snug text-black">
-                      {post.title}
-                    </h2>
-                    <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-black/70">
-                      {textExcerpt(post.content)}
-                    </p>
-                    <div className="mt-auto pt-5">
-                      <Link
-                        href={`/posts/${post.id}`}
-                        className="inline-flex min-h-10 w-full items-center justify-center rounded-sm bg-[#E11D48] px-4 text-center text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-[#be123c]"
-                      >
-                        {ev.readMore}
-                      </Link>
-                    </div>
-                  </div>
-                </article>
-              </li>
-            ))}
-          </ul>
-        )}
+        ) : null}
       </section>
     </main>
   );

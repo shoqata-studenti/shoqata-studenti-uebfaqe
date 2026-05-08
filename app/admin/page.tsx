@@ -15,10 +15,19 @@ export default function AdminHomePage() {
 
         <ul className="mt-10 space-y-4">
           <li>
-            <Link href="/admin/posts" className={cardClass}>
-              <h2 className="text-lg font-semibold tracking-tight">Poste në ballinë / evente</h2>
+            <Link href="/admin/evente" className={cardClass}>
+              <h2 className="text-lg font-semibold tracking-tight">Foto eventesh</h2>
               <p className="mt-2 text-sm leading-relaxed text-black/65">
-                Krijo post me tekst, vit dhe URL imazhi — shfaqet në faqen kryesore dhe në evente sipas vitit.
+                Ngarko foto për çdo event — shfaqen në faqen e eventit dhe si kopertinë në ballinë.
+              </p>
+              <p className="mt-4 text-sm font-semibold text-[#E11D48]">Vazhdo →</p>
+            </Link>
+          </li>
+          <li>
+            <Link href="/admin/posts" className={cardClass}>
+              <h2 className="text-lg font-semibold tracking-tight">Poste (lajme)</h2>
+              <p className="mt-2 text-sm leading-relaxed text-black/65">
+                Krijo post të veçantë me URL imazhi (opsionale: lidhje me një event).
               </p>
               <p className="mt-4 text-sm font-semibold text-[#E11D48]">Vazhdo →</p>
             </Link>

@@ -35,7 +35,8 @@
     "sporti": "Sport",
     "vargjetELira": "Vargjet e lira",
     "ligjerata": "Lectures",
-    "bashkpunimet": "Collaborations"
+    "bashkpunimet": "Collaborations",
+    "kultura": "Culture"
   },
   "layout": {
     "logoAlt": "Shoqata Studenti Zürich",
@@ -45,6 +46,8 @@
   },
   "home": {
     "aboutTitle": "About the association",
+    "eventsHeading": "Events",
+    "eventsSubheading": "Choose an event to read the description and see photos.",
     "hero": {
       "title": "The best choice",
       "subtitle": "Join Shoqata Studenti to learn more about studying in Switzerland.",
@@ -61,6 +64,17 @@
   },
   "membership": {
     "title": "Membership",
+    "newsletter": {
+      "title": "Newsletter",
+      "hint": "Enter your email to subscribe to the newsletter.",
+      "emailPlaceholder": "email@example.com",
+      "submit": "Subscribe",
+      "pending": "Subscribing…",
+      "success": "You have successfully subscribed.",
+      "errorMissingEmail": "Please enter an email address.",
+      "errorInvalidEmail": "Invalid email address.",
+      "errorGeneric": "An error occurred while subscribing. Please try again."
+    },
     "form": {
       "firstName": "First name",
       "lastName": "Last name",
@@ -188,7 +202,10 @@
     "title": "{{name}}",
     "intro": "{{description}}",
     "empty": "No posts for this event.",
+    "emptyGallery": "No photos for this event yet. Upload them in the admin panel (Event photos).",
     "galleryTitle": "Event photos",
+    "momentsTitle": "Moments",
+    "postsTitle": "Posts",
     "readMore": "Read more"
   },
   "post": {
@@ -197,6 +214,8 @@
   "vargjet": {
     "title": "Vargjet e lira",
     "intro": "Topics with texts to open in the browser or download (PDF, TXT, Word).",
+    "clubIntro": "\"Vargjet e Lira\" is the literary club of Shoqata Studenti. It hosts readings, discussions, and reflections on Albanian literature as well as cultural, historical, and social themes.",
+    "clubGoal": "The project aims to create an open space for critical thinking, culture, and discussion among students.",
     "noThemes": "No topics have been added for this section yet.",
     "themeBadge": "Topic",
     "textSingular": "text",
@@ -208,5 +227,27 @@
     "kulturaSectionKicker": "Project",
     "kulturaTeaser": "Poetry and texts organised by topic — each file can be opened or downloaded.",
     "kulturaTeaserCta": "Go to Vargjet e lira"
+  },
+  "projectPages": {
+    "alumni": {
+      "intro": "Our Alumni program aims to keep strong ties between former students and the current Shoqata Studenti community. Through this network, members gain opportunities to exchange experiences, build connections, and support each other across generations.",
+      "dinner": "Every year, a traditional alumni dinner is also organized as a meeting point and a way to reconnect with our community.",
+      "cta": "Join - 100.-"
+    },
+    "sport": {
+      "intro": "Shoqata Studenti organizes weekly sports activities for students and its members. Meetings take place once a week in Oerlikon, Halle 8, alternating between volleyball and football.",
+      "goal": "The project aims to strengthen the social and community side of the association through sport and physical activity."
+    },
+    "collaborations": {
+      "intro": "Shoqata Studenti regularly collaborates with Albanian professional organizations and networks in Switzerland, with the goal of building bridges between students and Albanian professionals from different fields.",
+      "listTitle": "Main collaborations include:",
+      "summary": "These collaborations include events, discussions, networking, and joint academic and professional activities."
+    },
+    "federata": {
+      "heading": "Federation of Albanian Student Associations in Switzerland",
+      "intro": "Shoqata Studenti is part of the Federation of Albanian Student Associations in Switzerland, a network that brings together eight Albanian student associations from different Swiss cities. The federation serves as a platform for coordination and collaboration among Albanian students at the national Swiss level.",
+      "representation": "Shoqata Studenti is represented in the federation through its delegates and participates in annual meetings, joint projects, and national-level student initiatives.",
+      "activities": "Within the federation, trips, events, and various collaborations are also organized among the participating associations."
+    }
   }
 }
