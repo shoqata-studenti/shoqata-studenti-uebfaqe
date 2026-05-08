@@ -17,16 +17,25 @@
     "projects": "PROJEKTE",
     "federata": "FEDERATA",
     "contact": "KONTAKT",
-    "register": "REGJISTROHU",
+    "register": "ANETARESOHU!",
     "info": "Info",
     "kryesia": "Kryesia",
+    "historiku": "Historiku",
+    "statutet": "Statutet",
+    "struktura": "Struktura",
+    "questionsAboutStudies": "Pyetje rreth studimeve",
+    "studiesAtEth": "Studimet në ETH Zürich",
+    "studiesAtUzh": "Studimet në Universität Zürich",
     "applicationsAbroad": "Aplikime jasht Zvicrës",
-    "sport": "Sport",
-    "kultura": "Kultura",
+    "kafeLlafe": "Kafe Llafe",
+    "festaEFlamurit": "Festa e Flamurit",
+    "udhetime": "Udhetime",
+    "sofra": "Sofra",
+    "alumni": "Alumni",
+    "sporti": "Sporti",
     "vargjetELira": "Vargjet e lira",
-    "shoqerore": "Shoqërore",
     "ligjerata": "Ligjërata",
-    "teTjera": "Të tjera"
+    "bashkpunimet": "Bashkpunimet"
   },
   "layout": {
     "logoAlt": "Shoqata Studenti Zürich",
@@ -155,9 +164,16 @@
   "infoPage": {
     "badge": "Rreth nesh",
     "title": "Info",
-    "p1": "Një grup studentësh shqiptarë takoheshin vazhdimisht në mënyrë informale rreth vitit 2000. Vetëm një vit pas luftës në Kosovë dhe në prag të luftës në pjesën shqiptare të Maqedonisë së Veriut, vendosën të formonin Shoqatën Studentore Shqiptare «Studenti».",
-    "p2": "Konteksti në të cilin u formua «Studenti» ishte mjaft i trishtë, për të mos thënë tragjik, sidomos duke pasur parasysh që kishte anëtarë të asaj kohe që bënë burg për shpërndarjen e librave.",
-    "p3": "Sot, situata është ndryshe. Por «Studenti» është dhe ka qenë i formuar nga dhe për studentët shqiptarë në Cyrih, dhe përbën një platformë informative, ndërrjetëzuese dhe zëdhënëse për studentët."
+    "p1": "Shoqata Studenti është një organizatë aktive dhe zyrtarisht e njohur në ETH Zürich dhe Universität Zürich. Ajo bashkon studentë shqiptarë nga fusha dhe prejardhje të ndryshme, duke krijuar një platformë akademike, sociale dhe kulturore për komunitetin studentor shqiptar në Cyrih. Përmes ligjëratave, paneleve, udhëtimeve, aktiviteteve sportive, si dhe ngjarjeve kulturore e shoqërore, shoqata synon të forcojë lidhjet mes studentëve dhe të promovojë identitetin, gjuhën, kulturën dhe angazhimin akademik shqiptar.",
+    "p2": "Vetëm një vit pas luftës në Kosovë dhe në prag të luftës në pjesën shqiptare të Maqedonisë së Veriut (të sotshme) vendosën të formonin Shoqatën Studentore Shqiptare “Studenti”. Që nga fillimi, shoqata u krijua si një hapësirë për studentët shqiptarë në universitetet e Cyrihut.",
+    "p3": "Një vend ku mund të takoheshin, të shkëmbenin ide, të ndërtonin komunitet dhe të përfaqësonin zërin e tyre në jetën akademike dhe shoqërore.",
+    "p4": "Shoqata është pjesë e VSETH, VSUZH dhe Federatës së Shoqatave Studentore Shqiptare në Zvicër. Veprimtaria e saj mbështetet mbi parime të transparencës, barazisë, pavarësisë politike dhe angazhimit kombëtar. Mbi të gjitha, Studenti mbetet një hapësirë ku studentët shqiptarë mund të ndihen pjesë e një komuniteti të përbashkët - gjatë studimeve, por edhe përtej tyre.",
+    "vsuzhTitle": "VSUZH",
+    "vsuzhBody": "Shoqata Studenti është organizatë e njohur zyrtarisht në Universität Zürich dhe e miratuar nga VSUZH (Verband der Studierenden der Universität Zürich). Përmes këtij bashkëpunimi, shoqata mbështetet në aspektin administrativ dhe financiar për realizimin e projekteve, eventeve dhe aktiviteteve studentore.",
+    "vsuzhLink": "https://impulsfabrik.vsuzh.ch/en/studorgs",
+    "vsethTitle": "VSETH",
+    "vsethBody": "Shoqata Studenti është po ashtu organizatë e njohur në ETH Zürich dhe e miratuar nga VSETH (Verband der Studierenden an der ETH). VSETH mbështet shoqatën në çështje administrative, infrastrukturore dhe financiare, duke mundësuar organizimin dhe zhvillimin e aktiviteteve të ndryshme akademike, kulturore dhe sociale.",
+    "vsethLink": "https://vseth.ethz.ch/organisation/shoqata-studenti/"
   },
   "history": {
     "title": "Historiku",
@@ -169,9 +185,10 @@
   },
   "evente": {
     "badge": "Evente",
-    "title": "Evente {{year}}",
-    "intro": "Poste dhe njoftime të lidhura me vitin {{year}}.",
-    "empty": "Nuk ka poste për këtë vit.",
+    "title": "{{name}}",
+    "intro": "{{description}}",
+    "empty": "Nuk ka postime për këtë event.",
+    "galleryTitle": "Foto nga eventi",
     "readMore": "Lexo më shumë"
   },
   "post": {

@@ -55,6 +55,13 @@ type HeaderNavProps = {
 
 export function HeaderNav({ navFontClassName }: HeaderNavProps) {
   const d = useDictionary();
+  const eventItems = [
+    { href: "/evente/kafe-llafe", label: d.nav.kafeLlafe },
+    { href: "/evente/festa-e-flamurit", label: d.nav.festaEFlamurit },
+    { href: "/evente/udhetime", label: d.nav.udhetime },
+    { href: "/evente/ligjerata", label: d.nav.ligjerata },
+    { href: "/evente/sofra", label: d.nav.sofra },
+  ];
 
   return (
     <nav
@@ -73,16 +80,9 @@ export function HeaderNav({ navFontClassName }: HeaderNavProps) {
         <DropdownMenuContent align="end" className={menuContent}>
           <NavMenuLink href="/rreth-nesh/info" label={d.nav.info} />
           <NavMenuLink href="/rreth-nesh/kryesia" label={d.nav.kryesia} />
-        </DropdownMenuContent>
-      </DropdownMenu>
-
-      <DropdownMenu>
-        <DropdownMenuTrigger className={triggerBtn}>
-          {d.nav.studies}
-          <ChevronDownIcon className="size-3.5 opacity-70" aria-hidden />
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className={cn(menuContent, "min-w-[14rem]")}>
-          <NavMenuLink href="/studimet/aplikime-jasht-zvicres" label={d.nav.applicationsAbroad} />
+          <NavMenuLink href="/rreth-nesh/historiku" label={d.nav.historiku} />
+          <NavMenuLink href="/rreth-nesh/statutet" label={d.nav.statutet} />
+          <NavMenuLink href="/rreth-nesh/struktura" label={d.nav.struktura} />
         </DropdownMenuContent>
       </DropdownMenu>
 
@@ -92,9 +92,22 @@ export function HeaderNav({ navFontClassName }: HeaderNavProps) {
           <ChevronDownIcon className="size-3.5 opacity-70" aria-hidden />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className={menuContent}>
-          {["2026", "2025", "2024", "2023", "2022", "2021", "2020"].map((y) => (
-            <NavMenuLink key={y} href={`/evente/${y}`} label={y} />
+          {eventItems.map((item) => (
+            <NavMenuLink key={item.href} href={item.href} label={item.label} />
           ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <DropdownMenu>
+        <DropdownMenuTrigger className={triggerBtn}>
+          {d.nav.studies}
+          <ChevronDownIcon className="size-3.5 opacity-70" aria-hidden />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className={cn(menuContent, "min-w-[14rem]")}>
+          <NavMenuLink href="/studimet/pyetje-rreth-studimeve" label={d.nav.questionsAboutStudies} />
+          <NavMenuLink href="/studimet/studimet-ne-eth-zurich" label={d.nav.studiesAtEth} />
+          <NavMenuLink href="/studimet/studimet-ne-universitat-zurich" label={d.nav.studiesAtUzh} />
+          <NavMenuLink href="/studimet/aplikime-jasht-zvicres" label={d.nav.applicationsAbroad} />
         </DropdownMenuContent>
       </DropdownMenu>
 
@@ -104,12 +117,10 @@ export function HeaderNav({ navFontClassName }: HeaderNavProps) {
           <ChevronDownIcon className="size-3.5 opacity-70" aria-hidden />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className={menuContent}>
-          <NavMenuLink href="/projekte/sport" label={d.nav.sport} />
-          <NavMenuLink href="/projekte/kultura" label={d.nav.kultura} />
           <NavMenuLink href="/projekte/kultura/vargjet-e-lira" label={d.nav.vargjetELira} />
-          <NavMenuLink href="/projekte/shoqerore" label={d.nav.shoqerore} />
-          <NavMenuLink href="/projekte/ligjerata" label={d.nav.ligjerata} />
-          <NavMenuLink href="/projekte/te-tjera" label={d.nav.teTjera} />
+          <NavMenuLink href="/projekte/alumni" label={d.nav.alumni} />
+          <NavMenuLink href="/projekte/sporti" label={d.nav.sporti} />
+          <NavMenuLink href="/projekte/bashkpunimet" label={d.nav.bashkpunimet} />
         </DropdownMenuContent>
       </DropdownMenu>
 

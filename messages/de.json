@@ -20,13 +20,22 @@
     "register": "MITGLIED WERDEN",
     "info": "Info",
     "kryesia": "Vorstand",
+    "historiku": "Geschichte",
+    "statutet": "Statuten",
+    "struktura": "Struktur",
+    "questionsAboutStudies": "Fragen zum Studium",
+    "studiesAtEth": "Studium an der ETH Zürich",
+    "studiesAtUzh": "Studium an der Universität Zürich",
     "applicationsAbroad": "Bewerbungen ausserhalb der Schweiz",
-    "sport": "Sport",
-    "kultura": "Kultur",
+    "kafeLlafe": "Kafe Llafe",
+    "festaEFlamurit": "Flaggenfest",
+    "udhetime": "Reisen",
+    "sofra": "Sofra",
+    "alumni": "Alumni",
+    "sporti": "Sport",
     "vargjetELira": "Vargjet e lira",
-    "shoqerore": "Gesellschaftliches",
     "ligjerata": "Vorträge",
-    "teTjera": "Weitere"
+    "bashkpunimet": "Kooperationen"
   },
   "layout": {
     "logoAlt": "Shoqata Studenti Zürich",
@@ -157,7 +166,14 @@
     "title": "Info",
     "p1": "Ab etwa 2000 traf sich eine Gruppe albanischsprachiger Studierender informell. Nur ein Jahr nach dem Krieg im Kosovo und kurz vor dem Konflikt im albanischsprachigen Teil Nordmazedoniens gründeten sie den albanischen Studentenverein «Studenti».",
     "p2": "Der Kontext war düster – tragisch, auch weil es damals Mitglieder gab, die wegen der Verteilung von Büchern ins Gefängnis mussten.",
-    "p3": "Heute ist die Lage anders. «Studenti» ist und bleibt von und für albanischsprachige Studierende in Zürich – als Informations-, Vernetzungs- und Stimmenplattform."
+    "p3": "Heute ist die Lage anders. «Studenti» ist und bleibt von und für albanischsprachige Studierende in Zürich – als Informations-, Vernetzungs- und Stimmenplattform.",
+    "p4": "",
+    "vsuzhTitle": "VSUZH",
+    "vsuzhBody": "",
+    "vsuzhLink": "https://impulsfabrik.vsuzh.ch/en/studorgs",
+    "vsethTitle": "VSETH",
+    "vsethBody": "",
+    "vsethLink": "https://vseth.ethz.ch/organisation/shoqata-studenti/"
   },
   "history": {
     "title": "Geschichte",
@@ -169,9 +185,10 @@
   },
   "evente": {
     "badge": "Events",
-    "title": "Events {{year}}",
-    "intro": "Beiträge und Hinweise zum Jahr {{year}}.",
-    "empty": "Keine Beiträge für dieses Jahr.",
+    "title": "{{name}}",
+    "intro": "{{description}}",
+    "empty": "Keine Beiträge für dieses Event.",
+    "galleryTitle": "Bilder vom Event",
     "readMore": "Weiterlesen"
   },
   "post": {

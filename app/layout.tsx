@@ -70,7 +70,7 @@ export default async function RootLayout({
                 </div>
               </Link>
 
-              <div className="flex min-w-0 flex-1 flex-wrap items-center justify-end gap-2 md:gap-3">
+              <div className="flex min-w-0 flex-1 flex-wrap items-center justify-start gap-2 md:gap-3">
                 <HeaderNav navFontClassName={playfairNav.className} />
                 <LanguageSwitcher />
               </div>
