@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Playfair_Display } from "next/font/google";
 
+import { PostCoverMedia } from "@/components/post-cover-media";
 import { prisma } from "@/lib/db";
 import { dateLocaleFor, getDictionary } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
@@ -66,21 +67,17 @@ export default async function PostDetailPage({ params }: Props) {
           </time>
         </p>
 
-        <div className="mt-12 overflow-hidden rounded-sm border border-black/10 bg-black/[0.02]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={`/api/post-image/${post.id}`}
-            alt={post.title}
-            className="w-full object-cover md:max-h-[min(60vh,520px)]"
+        <div className="mt-12 rounded-sm border border-black/10 bg-black/[0.02]">
+          <PostCoverMedia
+            postId={post.id}
+            title={post.title}
+            mimeType={post.imageMimeType}
+            layout="article"
           />
         </div>
 
-        <div className="mx-auto mt-14 max-w-2xl text-base leading-[1.85] text-black/90">
-          {post.content.split("\n\n").map((block, i) => (
-            <p key={i} className="whitespace-pre-wrap [&:not(:first-child)]:mt-6">
-              {block}
-            </p>
-          ))}
+        <div className="mx-auto mt-14 max-w-2xl text-base leading-[1.85] text-black/90 whitespace-pre-wrap">
+          {post.content}
         </div>
       </article>
     </main>

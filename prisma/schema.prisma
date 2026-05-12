@@ -40,9 +40,14 @@ model Post {
   imageData     Bytes
   /// optional: allowlisted /evente/… or /projekte/… — CTA target; /evente/… also lists post on that event page
   cardLinkPath  String?
+  /// data e aktivitetit (për seksionin «Në vijim» në ballinë); null = nuk shfaqet atje
+  eventAt       DateTime?
+  /// vendi (p.sh. Zürich)
+  venue         String?
   createdAt     DateTime @default(now())
 
   @@index([cardLinkPath])
+  @@index([eventAt])
 }
 
 model VargjetTopic {

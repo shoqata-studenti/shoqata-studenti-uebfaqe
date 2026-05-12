@@ -44,6 +44,10 @@
     "line2": "STUDENTI",
     "line3": "ZÜRICH"
   },
+  "media": {
+    "videoUnmute": "Ton einschalten",
+    "videoMute": "Stumm schalten"
+  },
   "home": {
     "aboutTitle": "Über den Verein",
     "eventsHeading": "Events",
@@ -55,12 +59,11 @@
       "slideLabel": "Folie {{n}} anzeigen"
     }
   },
-  "latestNews": {
-    "heading": "Neueste Beiträge",
-    "emptyTitle": "Noch keine Beiträge.",
-    "emptyBody": "Als Admin anmelden und Beiträge hinzufügen.",
-    "adminCta": "Als Admin anmelden",
-    "readMore": "Weiterlesen"
+  "upcoming": {
+    "heading": "Demnächst",
+    "emptyTitle": "Zurzeit sind keine Termine eingetragen.",
+    "emptyBody": "Schauen Sie später wieder vorbei.",
+    "venueMissing": "—"
   },
   "membership": {
     "title": "Mitgliedschaft",

@@ -50,3 +50,8 @@ export function postCardHref(input: { id: number; cardLinkPath: string | null })
   }
   return `/posts/${input.id}`;
 }
+
+/** Faqja e plotë e postit (tekst + video/imazh) — për lista ku «Lexo më shumë» duhet të hapë artikullin. */
+export function postArticleHref(id: number): string {
+  return `/posts/${id}`;
+}

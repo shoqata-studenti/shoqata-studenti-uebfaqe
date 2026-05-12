@@ -1,11 +1,10 @@
 import { Playfair_Display } from "next/font/google";
 
-import { EventCards } from "@/components/event-cards";
 import { HeroCarousel } from "@/components/hero-carousel";
+import { UpcomingSection } from "@/components/upcoming-section";
 import { prisma } from "@/lib/db";
-import { getDictionary } from "@/lib/i18n/get-dictionary";
+import { dateLocaleFor, getDictionary } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
-import { EVENT_SLUGS } from "@/lib/event-slugs";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -13,43 +12,74 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
 });
 
-/** Lajmet lexohen nga DB në kërkesë, jo gjatë build-it statik. */
+const EXCLUDED_UPCOMING_CARD_PATHS = ["/projekte/alumni", "/projekte/bashkpunimet"] as const;
+
+function startOfLocalDay(d: Date): Date {
+  const x = new Date(d);
+  x.setHours(0, 0, 0, 0);
+  return x;
+}
+
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const locale = await getLocale();
   const dict = getDictionary(locale);
+  const dateLocale = dateLocaleFor(locale);
+  const start = startOfLocalDay(new Date());
 
-  const eventItems = [
-    { slug: "kafe-llafe" as const, name: dict.nav.kafeLlafe },
-    { slug: "festa-e-flamurit" as const, name: dict.nav.festaEFlamurit },
-    { slug: "udhetime" as const, name: dict.nav.udhetime },
-    { slug: "ligjerata" as const, name: dict.nav.ligjerata },
-    { slug: "sofra" as const, name: dict.nav.sofra },
-  ];
+  let upcomingRows: {
+    id: number;
+    title: string;
+    imageMimeType: string;
+    eventAt: Date | null;
+    venue: string | null;
+    cardLinkPath: string | null;
+  }[] = [];
 
-  let coverBySlug: Record<string, number | null> = {};
   try {
-    const covers = await Promise.all(
-      EVENT_SLUGS.map(async (slug) => {
-        const first = await prisma.eventGalleryImage.findFirst({
-          where: { eventSlug: slug },
-          orderBy: [{ sortOrder: "asc" }, { id: "asc" }],
-          select: { id: true },
-        });
-        return [slug, first?.id ?? null] as const;
-      })
-    );
-    coverBySlug = Object.fromEntries(covers);
+    upcomingRows = await prisma.post.findMany({
+      where: {
+        AND: [
+          { eventAt: { not: null } },
+          { eventAt: { gte: start } },
+          {
+            OR: [
+              { cardLinkPath: null },
+              { cardLinkPath: { notIn: [...EXCLUDED_UPCOMING_CARD_PATHS] } },
+            ],
+          },
+        ],
+      },
+      orderBy: { eventAt: "asc" },
+      take: 24,
+      select: {
+        id: true,
+        title: true,
+        imageMimeType: true,
+        eventAt: true,
+        venue: true,
+        cardLinkPath: true,
+      },
+    });
   } catch {
-    coverBySlug = Object.fromEntries(EVENT_SLUGS.map((s) => [s, null]));
+    upcomingRows = [];
   }
 
-  const events = eventItems.map((e) => ({
-    slug: e.slug,
-    name: e.name,
-    coverImageId: coverBySlug[e.slug] ?? null,
-  }));
+  const upcomingPosts = upcomingRows.flatMap((p) =>
+    p.eventAt
+      ? [
+          {
+            id: p.id,
+            title: p.title,
+            imageMimeType: p.imageMimeType,
+            eventAt: p.eventAt,
+            venue: p.venue,
+            cardLinkPath: p.cardLinkPath,
+          },
+        ]
+      : []
+  );
 
   return (
     <main className="w-full bg-white text-black">
@@ -65,11 +95,11 @@ export default async function Home() {
         </h2>
       </section>
 
-      <EventCards
+      <UpcomingSection
         headingClassName={playfair.className}
-        heading={dict.home.eventsHeading}
-        subheading={dict.home.eventsSubheading}
-        events={events}
+        posts={upcomingPosts}
+        dict={dict}
+        dateLocale={dateLocale}
       />
     </main>
   );

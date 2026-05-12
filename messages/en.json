@@ -44,6 +44,10 @@
     "line2": "STUDENTI",
     "line3": "ZÜRICH"
   },
+  "media": {
+    "videoUnmute": "Turn sound on",
+    "videoMute": "Mute"
+  },
   "home": {
     "aboutTitle": "About the association",
     "eventsHeading": "Events",
@@ -55,12 +59,11 @@
       "slideLabel": "Show slide {{n}}"
     }
   },
-  "latestNews": {
-    "heading": "Latest news",
-    "emptyTitle": "No posts yet.",
-    "emptyBody": "Sign in as admin and add posts.",
-    "adminCta": "Admin login",
-    "readMore": "Read more"
+  "upcoming": {
+    "heading": "Upcoming",
+    "emptyTitle": "There are no scheduled activities at the moment.",
+    "emptyBody": "Please check back later for updates.",
+    "venueMissing": "—"
   },
   "membership": {
     "title": "Membership",

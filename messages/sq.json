@@ -44,6 +44,10 @@
     "line2": "STUDENTI",
     "line3": "ZÜRICH"
   },
+  "media": {
+    "videoUnmute": "Ndiz tingujt",
+    "videoMute": "Heshto"
+  },
   "home": {
     "aboutTitle": "Rreth Shoqatës",
     "eventsHeading": "Eventet",
@@ -55,12 +59,11 @@
       "slideLabel": "Shfaq diapositivën {{n}}"
     }
   },
-  "latestNews": {
-    "heading": "Lajmet e fundit",
-    "emptyTitle": "Ende nuk ka poste.",
-    "emptyBody": "Hyni si admin dhe shtoni poste.",
-    "adminCta": "Hyr si admin",
-    "readMore": "Lexo më shumë"
+  "upcoming": {
+    "heading": "Në vijim",
+    "emptyTitle": "Aktualisht nuk ka aktivitete të planifikuara.",
+    "emptyBody": "Ju ftojmë të riktheheni më vonë për njoftime të reja.",
+    "venueMissing": "—"
   },
   "membership": {
     "title": "Anëtarësim",

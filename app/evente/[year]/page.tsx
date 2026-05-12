@@ -4,12 +4,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Playfair_Display } from "next/font/google";
 
-import { textExcerpt } from "@/lib/excerpt";
+import { PostCoverMedia } from "@/components/post-cover-media";
+import { cardLinkCategoryLabel } from "@/lib/card-link-category";
 import { prisma } from "@/lib/db";
 import { dateLocaleFor, getDictionary } from "@/lib/i18n/get-dictionary";
 import { interpolate } from "@/lib/i18n/interpolate";
 import { getLocale } from "@/lib/i18n/server";
-import { postCardHref } from "@/lib/post-card-links";
+import { postArticleHref } from "@/lib/post-card-links";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -26,6 +27,7 @@ export default async function EventeYearPage({ params }: Props) {
   const locale = await getLocale();
   const dict = getDictionary(locale);
   const ev = dict.evente;
+  const u = dict.upcoming;
   const dateLocale = dateLocaleFor(locale);
 
   const eventMap = {
@@ -83,9 +85,10 @@ export default async function EventeYearPage({ params }: Props) {
   let eventPosts: {
     id: number;
     title: string;
-    content: string;
+    imageMimeType: string;
     createdAt: Date;
     cardLinkPath: string | null;
+    venue: string | null;
   }[] = [];
   try {
     galleryImages = await prisma.eventGalleryImage.findMany({
@@ -105,9 +108,10 @@ export default async function EventeYearPage({ params }: Props) {
       select: {
         id: true,
         title: true,
-        content: true,
+        imageMimeType: true,
         createdAt: true,
         cardLinkPath: true,
+        venue: true,
       },
     });
   } catch {
@@ -158,44 +162,56 @@ export default async function EventeYearPage({ params }: Props) {
 
         {eventPosts.length > 0 ? (
           <div className="mt-16 border-t border-black/10 pt-16">
-            <h2 className="text-sm font-bold uppercase tracking-[0.12em] text-black/70">
+            <h2
+              className={`${playfair.className} text-2xl font-bold tracking-tight text-black md:text-3xl`}
+            >
               {ev.postsTitle}
             </h2>
-            <ul className="mt-8 space-y-6">
-              {eventPosts.map((post) => (
-                <li key={post.id}>
-                  <Link
-                    href={postCardHref({ id: post.id, cardLinkPath: post.cardLinkPath })}
-                    className="group flex flex-col overflow-visible rounded-sm border border-black/10 bg-white transition-[border-color,box-shadow] hover:border-[#E11D48]/35 hover:shadow-sm"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={`/api/post-image/${post.id}`}
-                      alt=""
-                      decoding="async"
-                      className="w-full h-auto block rounded-t-sm bg-black/5"
-                    />
-                    <div className="min-w-0 flex-1 p-5">
-                      <p className="text-xs text-black/55">
-                        <time dateTime={post.createdAt.toISOString()}>
-                          {post.createdAt.toLocaleDateString(dateLocale, {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                          })}
-                        </time>
-                      </p>
-                      <h3 className={`${playfair.className} mt-1 text-lg font-bold text-black group-hover:text-[#E11D48]`}>
-                        {post.title}
-                      </h3>
-                      <p className="mt-1 line-clamp-2 text-sm text-black/65">{textExcerpt(post.content)}</p>
-                      <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-[#E11D48]">
-                        {ev.readMore} →
-                      </p>
-                    </div>
-                  </Link>
-                </li>
-              ))}
+
+            <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {eventPosts.map((post) => {
+                const category = cardLinkCategoryLabel(dict, post.cardLinkPath);
+                const href = postArticleHref(post.id);
+                const dateStr = post.createdAt.toLocaleString(dateLocale, {
+                  weekday: "short",
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                });
+                const place = post.venue?.trim() || u.venueMissing;
+
+                return (
+                  <li key={post.id}>
+                    <article className="flex h-full flex-col rounded-sm border border-black/12 bg-white shadow-sm transition-[border-color,box-shadow] hover:border-[#E11D48]/35 hover:shadow-md">
+                      <div className="w-full shrink-0">
+                        <PostCoverMedia
+                          postId={post.id}
+                          title={post.title}
+                          mimeType={post.imageMimeType}
+                          layout="upcoming"
+                        />
+                      </div>
+                      <Link
+                        href={href}
+                        className="group flex flex-1 flex-col p-5 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#E11D48]/40"
+                      >
+                        {category ? (
+                          <p className="text-xs font-semibold uppercase tracking-wide text-[#E11D48]">
+                            {category}
+                          </p>
+                        ) : null}
+                        <h3 className="mt-2 text-lg font-bold leading-snug text-black group-hover:underline">
+                          {post.title}
+                        </h3>
+                        <p className="mt-2 text-sm text-black/65">{dateStr}</p>
+                        <p className="mt-1 text-sm text-black/55">{place}</p>
+                      </Link>
+                    </article>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ) : null}
