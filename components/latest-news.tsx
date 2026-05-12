@@ -4,13 +4,13 @@ import Link from "next/link";
 
 import { textExcerpt } from "@/lib/excerpt";
 import type { Dictionary } from "@/lib/i18n/get-dictionary";
+import { postCardHref } from "@/lib/post-card-links";
 
 export type LatestNewsPost = {
   id: number;
   title: string;
   content: string;
-  imageUrl: string;
-  year: number;
+  cardLinkPath: string | null;
   createdAt: Date;
 };
 
@@ -60,15 +60,13 @@ export function LatestNews({ headingClassName, posts, labels, dateLocale }: Prop
                 <div className="relative aspect-[16/10] w-full bg-black/5">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={post.imageUrl}
+                    src={`/api/post-image/${post.id}`}
                     alt={post.title}
                     className="h-full w-full object-cover"
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-5">
                   <p className="text-xs text-black/55">
-                    <span className="font-semibold text-[#E11D48]">{post.year}</span>
-                    <span className="mx-1.5 text-black/30">·</span>
                     <time dateTime={post.createdAt.toISOString()}>
                       {post.createdAt.toLocaleDateString(dateLocale, {
                         year: "numeric",
@@ -85,7 +83,7 @@ export function LatestNews({ headingClassName, posts, labels, dateLocale }: Prop
                   </p>
                   <div className="mt-auto pt-5">
                     <Link
-                      href={`/posts/${post.id}`}
+                      href={postCardHref({ id: post.id, cardLinkPath: post.cardLinkPath })}
                       className="inline-flex min-h-10 w-full items-center justify-center rounded-sm bg-[#E11D48] px-4 text-center text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-[#be123c]"
                     >
                       {labels.readMore}

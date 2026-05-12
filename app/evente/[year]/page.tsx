@@ -9,6 +9,7 @@ import { prisma } from "@/lib/db";
 import { dateLocaleFor, getDictionary } from "@/lib/i18n/get-dictionary";
 import { interpolate } from "@/lib/i18n/interpolate";
 import { getLocale } from "@/lib/i18n/server";
+import { postCardHref } from "@/lib/post-card-links";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -79,7 +80,13 @@ export default async function EventeYearPage({ params }: Props) {
   if (!selectedEvent) notFound();
 
   let galleryImages: { id: number }[] = [];
-  let eventPosts: Awaited<ReturnType<typeof prisma.post.findMany>> = [];
+  let eventPosts: {
+    id: number;
+    title: string;
+    content: string;
+    createdAt: Date;
+    cardLinkPath: string | null;
+  }[] = [];
   try {
     galleryImages = await prisma.eventGalleryImage.findMany({
       where: { eventSlug: slug },
@@ -92,9 +99,16 @@ export default async function EventeYearPage({ params }: Props) {
 
   try {
     eventPosts = await prisma.post.findMany({
-      where: { eventSlug: slug },
+      where: { cardLinkPath: `/evente/${slug}` },
       orderBy: { createdAt: "desc" },
       take: 12,
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        createdAt: true,
+        cardLinkPath: true,
+      },
     });
   } catch {
     eventPosts = [];
@@ -122,19 +136,18 @@ export default async function EventeYearPage({ params }: Props) {
             <h2 className="text-sm font-bold uppercase tracking-[0.12em] text-black/70">
               {ev.momentsTitle}
             </h2>
-            <div className="mt-10 flex w-full flex-col gap-16 border-4 border-red-500">
+            <div className="mt-10 flex w-full flex-col gap-12 md:gap-16">
               {galleryImages.map((img, i) => (
                 <div
                   key={img.id}
-                  className={`max-w-[55%] ${i % 2 === 0 ? "self-start" : "self-end"}`}
+                  className={`w-full max-w-md border-0 p-0 shadow-none ring-0 outline-none md:max-w-none md:w-2/5 ${i % 2 === 0 ? "mr-auto" : "ml-auto"}`}
                 >
-                  <figure className="m-0 w-full">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <figure className="m-0 w-full border-0 p-0 shadow-none ring-0 outline-none">
                     <img
                       src={`/api/event-gallery/${img.id}`}
-                      alt=""
+                      alt="Event Moment"
                       decoding="async"
-                      className="block h-auto w-full object-contain"
+                      className="block h-auto w-full max-h-[60vh] border-0 object-contain shadow-none ring-0 outline-none"
                     />
                   </figure>
                 </div>
@@ -152,20 +165,18 @@ export default async function EventeYearPage({ params }: Props) {
               {eventPosts.map((post) => (
                 <li key={post.id}>
                   <Link
-                    href={`/posts/${post.id}`}
+                    href={postCardHref({ id: post.id, cardLinkPath: post.cardLinkPath })}
                     className="group flex flex-col overflow-visible rounded-sm border border-black/10 bg-white transition-[border-color,box-shadow] hover:border-[#E11D48]/35 hover:shadow-sm"
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={post.imageUrl}
+                      src={`/api/post-image/${post.id}`}
                       alt=""
                       decoding="async"
                       className="w-full h-auto block rounded-t-sm bg-black/5"
                     />
                     <div className="min-w-0 flex-1 p-5">
                       <p className="text-xs text-black/55">
-                        <span className="font-semibold text-[#E11D48]">{post.year}</span>
-                        <span className="mx-1.5 text-black/30">·</span>
                         <time dateTime={post.createdAt.toISOString()}>
                           {post.createdAt.toLocaleDateString(dateLocale, {
                             year: "numeric",

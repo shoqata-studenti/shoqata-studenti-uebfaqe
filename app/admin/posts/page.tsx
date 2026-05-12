@@ -1,5 +1,8 @@
 import Link from "next/link";
 
+import { POST_IMAGE_MAX_BYTES } from "@/lib/post-image-upload";
+import { POST_CARD_LINK_OPTIONS } from "@/lib/post-card-links";
+
 import { createPost } from "./actions";
 
 type Props = {
@@ -8,6 +11,7 @@ type Props = {
 
 export default async function AdminPostsPage({ searchParams }: Props) {
   const q = await searchParams;
+  const maxMb = Math.round(POST_IMAGE_MAX_BYTES / (1024 * 1024));
 
   return (
     <main className="min-h-screen bg-white text-black">
@@ -22,8 +26,9 @@ export default async function AdminPostsPage({ searchParams }: Props) {
           </Link>
         </p>
         <p className="mt-2 text-sm text-black/65">
-          Teksti dhe një URL publik për kopertinën (http/https) — nuk ka ngarkim skedari për
-          poste; për foto të eventit përdor «Foto eventesh».
+          Ngarko foto kopertine. Opsionale: zgjidh një nga 5 eventet ose 4 projektet në listën më poshtë
+          — është vetëm një fushë. Për foto të veçanta të eventit përdor «Foto eventesh». Maks. ~{maxMb}{" "}
+          MB.
         </p>
 
         <div className="mt-8 space-y-4">
@@ -37,12 +42,27 @@ export default async function AdminPostsPage({ searchParams }: Props) {
           ) : null}
           {q.error === "1" ? (
             <p className="rounded-sm border border-[#E11D48]/40 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
-              Të dhënat nuk janë të plota ose URL e imazhit / viti nuk është i vlefshëm.
+              Të dhënat nuk janë të plota.
+            </p>
+          ) : null}
+          {q.error === "file" ? (
+            <p className="rounded-sm border border-[#E11D48]/40 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
+              Zgjidh një skedar foto.
+            </p>
+          ) : null}
+          {q.error === "size" ? (
+            <p className="rounded-sm border border-[#E11D48]/40 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
+              Skedari është shumë i madh.
+            </p>
+          ) : null}
+          {q.error === "mime" ? (
+            <p className="rounded-sm border border-[#E11D48]/40 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
+              Lejohen vetëm JPEG, PNG, WebP ose GIF.
             </p>
           ) : null}
         </div>
 
-        <form action={createPost} className="mt-8 space-y-6">
+        <form action={createPost} encType="multipart/form-data" className="mt-8 space-y-6">
           <div className="space-y-2">
             <label htmlFor="title" className="text-sm font-semibold uppercase tracking-wide">
               Titulli
@@ -72,59 +92,40 @@ export default async function AdminPostsPage({ searchParams }: Props) {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="year" className="text-sm font-semibold uppercase tracking-wide">
-              Viti
+            <label htmlFor="cover" className="text-sm font-semibold uppercase tracking-wide">
+              Foto kopertine
             </label>
-            <select
-              id="year"
-              name="year"
+            <input
+              id="cover"
+              name="file"
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/gif"
               required
-              defaultValue={2026}
-              className="w-full max-w-xs rounded-sm border border-black/20 bg-white px-3 py-2.5 text-sm outline-none transition-[border-color,box-shadow] focus:border-[#E11D48] focus:ring-2 focus:ring-[#E11D48]/25"
-            >
-              {[2026, 2025, 2024, 2023].map((y) => (
-                <option key={y} value={y}>
-                  {y}
-                </option>
-              ))}
-            </select>
+              className="w-full rounded-sm border border-black/20 bg-white px-3 py-2.5 text-sm outline-none transition-[border-color,box-shadow] focus:border-[#E11D48] focus:ring-2 focus:ring-[#E11D48]/25"
+            />
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="eventSlug" className="text-sm font-semibold uppercase tracking-wide">
-              Event (opsionale)
+            <label htmlFor="cardLinkPath" className="text-sm font-semibold uppercase tracking-wide">
+              Evente + projekte (opsionale — një listë)
             </label>
             <select
-              id="eventSlug"
-              name="eventSlug"
+              id="cardLinkPath"
+              name="cardLinkPath"
               defaultValue=""
               className="w-full max-w-md rounded-sm border border-black/20 bg-white px-3 py-2.5 text-sm outline-none transition-[border-color,box-shadow] focus:border-[#E11D48] focus:ring-2 focus:ring-[#E11D48]/25"
             >
-              <option value="">— Pa event (vetëm në ballinë)</option>
-              <option value="kafe-llafe">Kafe Llafe</option>
-              <option value="festa-e-flamurit">Festa e Flamurit</option>
-              <option value="udhetime">Udhetime</option>
-              <option value="ligjerata">Ligjërata</option>
-              <option value="sofra">Sofra</option>
+              <option value="">— Asnjë (vetëm /posts/…)</option>
+              {POST_CARD_LINK_OPTIONS.map((o) => (
+                <option key={o.path} value={o.path}>
+                  {o.label}
+                </option>
+              ))}
             </select>
             <p className="text-xs text-black/55">
-              Nëse zgjedh një event, posti shfaqet edhe në faqen e atij eventi (galeri zig-zag +
-              kartë).
+              Vetëm kjo listë: 5 evente, pastaj 4 projekte. Nëse zgjedh një event, posti shfaqet edhe
+              në faqen e atij eventi.
             </p>
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="imageUrl" className="text-sm font-semibold uppercase tracking-wide">
-              URL e imazhit
-            </label>
-            <input
-              id="imageUrl"
-              name="imageUrl"
-              type="url"
-              required
-              className="w-full rounded-sm border border-black/20 bg-white px-3 py-2.5 text-sm outline-none transition-[border-color,box-shadow] focus:border-[#E11D48] focus:ring-2 focus:ring-[#E11D48]/25"
-              placeholder="https://…"
-            />
           </div>
 
           <div className="flex flex-wrap gap-3 pt-2">

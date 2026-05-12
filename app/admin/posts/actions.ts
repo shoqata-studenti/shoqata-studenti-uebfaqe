@@ -4,53 +4,50 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { prisma } from "@/lib/db";
-import { isEventSlug } from "@/lib/event-slugs";
-
-function isValidHttpUrl(value: string): boolean {
-  try {
-    const u = new URL(value);
-    return u.protocol === "http:" || u.protocol === "https:";
-  } catch {
-    return false;
-  }
-}
+import { isAllowedPostImageMime, POST_IMAGE_MAX_BYTES } from "@/lib/post-image-upload";
+import { isAllowedCardLinkPath } from "@/lib/post-card-links";
 
 export async function createPost(formData: FormData) {
   const title = formData.get("title")?.toString().trim() ?? "";
   const content = formData.get("content")?.toString() ?? "";
-  const imageUrl = formData.get("imageUrl")?.toString().trim() ?? "";
-  const yearRaw = formData.get("year")?.toString().trim() ?? "";
-  const year = Number.parseInt(yearRaw, 10);
-  const eventSlugRaw = formData.get("eventSlug")?.toString().trim() ?? "";
-  const eventSlug = eventSlugRaw && isEventSlug(eventSlugRaw) ? eventSlugRaw : null;
+  const file = formData.get("file");
+  const cardLinkPathRaw = formData.get("cardLinkPath")?.toString().trim() ?? "";
+  const cardLinkPath =
+    cardLinkPathRaw && isAllowedCardLinkPath(cardLinkPathRaw) ? cardLinkPathRaw : null;
 
-  const allowedYears = new Set([2023, 2024, 2025, 2026]);
-
-  if (
-    !title ||
-    !content.trim() ||
-    !imageUrl ||
-    Number.isNaN(year) ||
-    !allowedYears.has(year) ||
-    !isValidHttpUrl(imageUrl)
-  ) {
+  if (!title || !content.trim()) {
     redirect("/admin/posts?error=1");
   }
+
+  if (!(file instanceof File) || file.size === 0) {
+    redirect("/admin/posts?error=file");
+  }
+
+  if (file.size > POST_IMAGE_MAX_BYTES) {
+    redirect("/admin/posts?error=size");
+  }
+
+  const mimeType = file.type || "application/octet-stream";
+  if (!isAllowedPostImageMime(mimeType)) {
+    redirect("/admin/posts?error=mime");
+  }
+
+  const buf = Buffer.from(await file.arrayBuffer());
 
   const post = await prisma.post.create({
     data: {
       title,
       content: content.trim(),
-      imageUrl,
-      year,
-      eventSlug,
+      imageMimeType: mimeType,
+      imageData: buf,
+      cardLinkPath,
     },
   });
 
   revalidatePath("/");
   revalidatePath(`/posts/${post.id}`);
-  if (post.eventSlug) {
-    revalidatePath(`/evente/${post.eventSlug}`);
+  if (post.cardLinkPath) {
+    revalidatePath(post.cardLinkPath);
   }
 
   redirect("/admin/posts?success=1");

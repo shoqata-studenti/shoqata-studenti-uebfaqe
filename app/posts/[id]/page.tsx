@@ -51,11 +51,8 @@ export default async function PostDetailPage({ params }: Props) {
           {dict.post.backHome}
         </Link>
 
-        <p className="mt-10 text-center text-xs font-semibold uppercase tracking-[0.14em] text-[#E11D48]">
-          {post.year}
-        </p>
         <h1
-          className={`${playfair.className} mt-3 text-center text-3xl font-bold leading-tight tracking-tight text-black md:text-4xl lg:text-[2.5rem]`}
+          className={`${playfair.className} mt-10 text-center text-3xl font-bold leading-tight tracking-tight text-black md:text-4xl lg:text-[2.5rem]`}
         >
           {post.title}
         </h1>
@@ -72,11 +69,9 @@ export default async function PostDetailPage({ params }: Props) {
         <div className="mt-12 overflow-hidden rounded-sm border border-black/10 bg-black/[0.02]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={post.imageUrl}
+            src={`/api/post-image/${post.id}`}
             alt={post.title}
             className="w-full object-cover md:max-h-[min(60vh,520px)]"
-            width={1200}
-            height={675}
           />
         </div>
 

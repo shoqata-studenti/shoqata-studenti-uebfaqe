@@ -27,7 +27,8 @@ export default function AdminHomePage() {
             <Link href="/admin/posts" className={cardClass}>
               <h2 className="text-lg font-semibold tracking-tight">Poste (lajme)</h2>
               <p className="mt-2 text-sm leading-relaxed text-black/65">
-                Krijo post të veçantë me URL imazhi (opsionale: lidhje me një event).
+                Krijo post me foto të ngarkuar dhe opsionalisht një faqe të lidhur (9 zgjedhje: evente
+                + projekte).
               </p>
               <p className="mt-4 text-sm font-semibold text-[#E11D48]">Vazhdo →</p>
             </Link>

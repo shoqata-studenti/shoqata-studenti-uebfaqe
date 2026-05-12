@@ -33,16 +33,16 @@ model Member {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String
-  imageUrl  String
-  year      Int
-  /// e.g. kafe-llafe — ties post to /evente/[slug]; null = homepage/news only
-  eventSlug String?
-  createdAt DateTime @default(now())
+  id            Int      @id @default(autoincrement())
+  title         String
+  content       String
+  imageMimeType String
+  imageData     Bytes
+  /// optional: allowlisted /evente/… or /projekte/… — CTA target; /evente/… also lists post on that event page
+  cardLinkPath  String?
+  createdAt     DateTime @default(now())
 
-  @@index([eventSlug])
+  @@index([cardLinkPath])
 }
 
 model VargjetTopic {
