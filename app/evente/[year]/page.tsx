@@ -122,19 +122,19 @@ export default async function EventeYearPage({ params }: Props) {
             <h2 className="text-sm font-bold uppercase tracking-[0.12em] text-black/70">
               {ev.momentsTitle}
             </h2>
-            <div className="mt-10 space-y-16 md:space-y-20">
+            <div className="mt-10 flex w-full flex-col gap-16 border-4 border-red-500">
               {galleryImages.map((img, i) => (
                 <div
                   key={img.id}
-                  className={`flex w-full ${i % 2 === 0 ? "md:justify-start" : "md:justify-end"}`}
+                  className={`max-w-[55%] ${i % 2 === 0 ? "self-start" : "self-end"}`}
                 >
-                  <figure className="m-0 w-full md:w-[min(100%,52rem)] lg:w-[min(100%,60rem)]">
+                  <figure className="m-0 w-full">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={`/api/event-gallery/${img.id}`}
                       alt=""
                       decoding="async"
-                      className="block h-auto w-full max-w-full"
+                      className="block h-auto w-full object-contain"
                     />
                   </figure>
                 </div>
