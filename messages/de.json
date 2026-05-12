@@ -49,7 +49,6 @@
     "videoMute": "Stumm schalten"
   },
   "home": {
-    "aboutTitle": "Über den Verein",
     "eventsHeading": "Events",
     "eventsSubheading": "Wähle ein Event für Texte und Fotos vom Anlass.",
     "hero": {
@@ -209,7 +208,15 @@
     "galleryTitle": "Bilder vom Event",
     "momentsTitle": "Impressionen",
     "postsTitle": "Beiträge",
-    "readMore": "Weiterlesen"
+    "readMore": "Weiterlesen",
+    "editionYearsHeading": "Editionen",
+    "editionTitle": "{{name}} {{year}}",
+    "editionIntro": "{{year}} — {{description}}",
+    "backToEventHub": "← {{name}}",
+    "emptyEditionGallery": "Für diese Edition gibt es noch keine Fotos. Bitte im Admin unter «Foto eventesh» mit gewähltem Jahr hochladen.",
+    "udhetimeEditionSubtitle2026": "Berlin",
+    "udhetimeEditionSubtitle2025": "Sizilien",
+    "udhetimeEditionSubtitle2024": ""
   },
   "post": {
     "backHome": "← Zurück zur Startseite"

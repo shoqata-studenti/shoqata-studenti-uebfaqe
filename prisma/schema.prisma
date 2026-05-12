@@ -73,12 +73,15 @@ model VargjetDocument {
 }
 
 model EventGalleryImage {
-  id        Int      @id @default(autoincrement())
-  eventSlug String
-  sortOrder Int      @default(0)
-  mimeType  String
-  fileData  Bytes
-  createdAt DateTime @default(now())
+  id          Int      @id @default(autoincrement())
+  eventSlug   String
+  /// viti i edicionit (p.sh. 2025) — faqja /evente/{slug}/{vit}
+  editionYear Int      @default(2024)
+  sortOrder   Int      @default(0)
+  mimeType    String
+  fileData    Bytes
+  createdAt   DateTime @default(now())
 
+  @@index([eventSlug, editionYear])
   @@index([eventSlug])
 }

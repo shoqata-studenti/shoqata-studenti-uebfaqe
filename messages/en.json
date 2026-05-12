@@ -49,7 +49,6 @@
     "videoMute": "Mute"
   },
   "home": {
-    "aboutTitle": "About the association",
     "eventsHeading": "Events",
     "eventsSubheading": "Choose an event to read the description and see photos.",
     "hero": {
@@ -209,7 +208,15 @@
     "galleryTitle": "Event photos",
     "momentsTitle": "Moments",
     "postsTitle": "Posts",
-    "readMore": "Read more"
+    "readMore": "Read more",
+    "editionYearsHeading": "Editions",
+    "editionTitle": "{{name}} {{year}}",
+    "editionIntro": "{{year}} — {{description}}",
+    "backToEventHub": "← {{name}}",
+    "emptyEditionGallery": "No photos for this edition yet. Upload them in the admin panel (Event photos), selecting the correct year.",
+    "udhetimeEditionSubtitle2026": "Berlin",
+    "udhetimeEditionSubtitle2025": "Sicily",
+    "udhetimeEditionSubtitle2024": ""
   },
   "post": {
     "backHome": "← Back to home"

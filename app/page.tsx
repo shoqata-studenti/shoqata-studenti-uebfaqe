@@ -87,14 +87,6 @@ export default async function Home() {
         <HeroCarousel headingFontClassName={`${playfair.className} font-semibold`} />
       </section>
 
-      <section className="mx-auto w-full max-w-[1440px] px-6 py-16 md:px-10 md:py-20">
-        <h2
-          className={`${playfair.className} text-3xl font-bold tracking-tight text-black md:text-4xl`}
-        >
-          {dict.home.aboutTitle}
-        </h2>
-      </section>
-
       <UpcomingSection
         headingClassName={playfair.className}
         posts={upcomingPosts}

@@ -49,7 +49,6 @@
     "videoMute": "Heshto"
   },
   "home": {
-    "aboutTitle": "Rreth Shoqatës",
     "eventsHeading": "Eventet",
     "eventsSubheading": "Zgjidh një event për të parë përshkrimin dhe foto nga aktiviteti.",
     "hero": {
@@ -209,7 +208,15 @@
     "galleryTitle": "Foto nga eventi",
     "momentsTitle": "Momentet",
     "postsTitle": "Postime",
-    "readMore": "Lexo më shumë"
+    "readMore": "Lexo më shumë",
+    "editionYearsHeading": "Edicionet",
+    "editionTitle": "{{name}} {{year}}",
+    "editionIntro": "{{year}} — {{description}}",
+    "backToEventHub": "← {{name}}",
+    "emptyEditionGallery": "Ende nuk ka foto për këtë edicion. Ngarkoji nga paneli i adminit (Foto eventesh), duke zgjedhur vitin e duhur.",
+    "udhetimeEditionSubtitle2026": "Berlin",
+    "udhetimeEditionSubtitle2025": "Siçili",
+    "udhetimeEditionSubtitle2024": ""
   },
   "post": {
     "backHome": "← Kthehu te ballina"

@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+import { isEventEditionYear } from "@/lib/event-editions";
 import { prisma } from "@/lib/db";
 import {
   EVENT_GALLERY_MAX_BYTES,
@@ -12,10 +13,16 @@ import { isEventSlug } from "@/lib/event-slugs";
 
 export async function uploadEventGalleryImage(formData: FormData) {
   const eventSlug = formData.get("eventSlug")?.toString().trim() ?? "";
+  const editionYearRaw = formData.get("editionYear")?.toString().trim() ?? "";
+  const editionYear = Number.parseInt(editionYearRaw, 10);
   const file = formData.get("file");
 
   if (!isEventSlug(eventSlug)) {
     redirect("/admin/evente?error=slug");
+  }
+
+  if (!isEventEditionYear(editionYear)) {
+    redirect("/admin/evente?error=year");
   }
 
   if (!(file instanceof File) || file.size === 0) {
@@ -32,7 +39,7 @@ export async function uploadEventGalleryImage(formData: FormData) {
   }
 
   const maxOrder = await prisma.eventGalleryImage.aggregate({
-    where: { eventSlug },
+    where: { eventSlug, editionYear },
     _max: { sortOrder: true },
   });
   const sortOrder = (maxOrder._max.sortOrder ?? 0) + 1;
@@ -42,6 +49,7 @@ export async function uploadEventGalleryImage(formData: FormData) {
   await prisma.eventGalleryImage.create({
     data: {
       eventSlug,
+      editionYear,
       sortOrder,
       mimeType,
       fileData: buf,
@@ -50,7 +58,8 @@ export async function uploadEventGalleryImage(formData: FormData) {
 
   revalidatePath("/");
   revalidatePath(`/evente/${eventSlug}`);
-  redirect(`/admin/evente?ok=1&event=${encodeURIComponent(eventSlug)}`);
+  revalidatePath(`/evente/${eventSlug}/${editionYear}`);
+  redirect(`/admin/evente?ok=1&event=${encodeURIComponent(eventSlug)}&year=${editionYear}`);
 }
 
 export async function deleteEventGalleryImage(formData: FormData) {
@@ -62,7 +71,7 @@ export async function deleteEventGalleryImage(formData: FormData) {
 
   const row = await prisma.eventGalleryImage.findUnique({
     where: { id },
-    select: { eventSlug: true },
+    select: { eventSlug: true, editionYear: true },
   });
   if (!row) {
     redirect("/admin/evente?error=del");
@@ -72,5 +81,6 @@ export async function deleteEventGalleryImage(formData: FormData) {
 
   revalidatePath("/");
   revalidatePath(`/evente/${row.eventSlug}`);
-  redirect(`/admin/evente?delOk=1&event=${encodeURIComponent(row.eventSlug)}`);
+  revalidatePath(`/evente/${row.eventSlug}/${row.editionYear}`);
+  redirect(`/admin/evente?delOk=1&event=${encodeURIComponent(row.eventSlug)}&year=${row.editionYear}`);
 }
