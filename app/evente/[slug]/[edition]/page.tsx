@@ -5,6 +5,7 @@ import { notFound, redirect } from "next/navigation";
 import { Playfair_Display } from "next/font/google";
 
 import { EventGalleryZigzag } from "@/components/event-gallery-zigzag";
+import { rowsToGalleryBlocks } from "@/lib/event-gallery-blocks";
 import { parseEventEditionYear } from "@/lib/event-editions";
 import { getEventPageMeta } from "@/lib/evente-page-meta";
 import { prisma } from "@/lib/db";
@@ -37,16 +38,22 @@ export default async function EventeEditionPage({ params }: Props) {
     redirect(`/evente/${meta.slug}`);
   }
 
-  let galleryImageIds: number[] = [];
+  let galleryBlocks = rowsToGalleryBlocks([]);
   try {
     const rows = await prisma.eventGalleryImage.findMany({
       where: { eventSlug: meta.slug, editionYear },
-      orderBy: [{ sortOrder: "asc" }, { id: "asc" }],
-      select: { id: true },
+      orderBy: [{ sortOrder: "asc" }, { slideshowIndex: "asc" }, { id: "asc" }],
+      select: {
+        id: true,
+        mimeType: true,
+        sortOrder: true,
+        slideshowGroupId: true,
+        slideshowIndex: true,
+      },
     });
-    galleryImageIds = rows.map((r) => r.id);
+    galleryBlocks = rowsToGalleryBlocks(rows);
   } catch {
-    galleryImageIds = [];
+    galleryBlocks = rowsToGalleryBlocks([]);
   }
 
   const editionTitle = interpolate(ev.editionTitle, { name: meta.name, year: String(editionYear) });
@@ -73,7 +80,7 @@ export default async function EventeEditionPage({ params }: Props) {
         </p>
 
         <EventGalleryZigzag
-          imageIds={galleryImageIds}
+          blocks={galleryBlocks}
           momentsTitle={ev.momentsTitle}
           emptyMessage={ev.emptyEditionGallery}
         />

@@ -78,10 +78,14 @@ model EventGalleryImage {
   /// viti i edicionit (p.sh. 2025) — faqja /evente/{slug}/{vit}
   editionYear Int      @default(2024)
   sortOrder   Int      @default(0)
+  /// të njëjtin UUID për të gjitha slide-t e një slideshow; null = një media e vetme
+  slideshowGroupId String?
+  slideshowIndex   Int      @default(0)
   mimeType    String
   fileData    Bytes
   createdAt   DateTime @default(now())
 
   @@index([eventSlug, editionYear])
   @@index([eventSlug])
+  @@index([eventSlug, editionYear, sortOrder])
 }

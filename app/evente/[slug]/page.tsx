@@ -6,6 +6,7 @@ import { Playfair_Display } from "next/font/google";
 
 import { EventGalleryZigzag } from "@/components/event-gallery-zigzag";
 import { EVENT_EDITION_YEARS, type EventEditionYear } from "@/lib/event-editions";
+import { rowsToGalleryBlocks } from "@/lib/event-gallery-blocks";
 import { getEventPageMeta } from "@/lib/evente-page-meta";
 import { prisma } from "@/lib/db";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
@@ -46,17 +47,29 @@ export default async function EventeHubPage({ params }: Props) {
   const meta = getEventPageMeta(dict, locale, slug);
   if (!meta) notFound();
 
-  let kafeGalleryImageIds: number[] = [];
+  let kafeGalleryBlocks = rowsToGalleryBlocks([]);
   if (meta.slug === SINGLE_PAGE_EVENT_SLUG) {
     try {
       const rows = await prisma.eventGalleryImage.findMany({
         where: { eventSlug: meta.slug },
-        orderBy: [{ editionYear: "desc" }, { sortOrder: "asc" }, { id: "asc" }],
-        select: { id: true },
+        orderBy: [
+          { editionYear: "desc" },
+          { sortOrder: "asc" },
+          { slideshowIndex: "asc" },
+          { id: "asc" },
+        ],
+        select: {
+          id: true,
+          mimeType: true,
+          editionYear: true,
+          sortOrder: true,
+          slideshowGroupId: true,
+          slideshowIndex: true,
+        },
       });
-      kafeGalleryImageIds = rows.map((r) => r.id);
+      kafeGalleryBlocks = rowsToGalleryBlocks(rows);
     } catch {
-      kafeGalleryImageIds = [];
+      kafeGalleryBlocks = rowsToGalleryBlocks([]);
     }
   }
 
@@ -75,7 +88,7 @@ export default async function EventeHubPage({ params }: Props) {
 
         {meta.slug === SINGLE_PAGE_EVENT_SLUG ? (
           <EventGalleryZigzag
-            imageIds={kafeGalleryImageIds}
+            blocks={kafeGalleryBlocks}
             momentsTitle={ev.momentsTitle}
             emptyMessage={ev.emptyGallery}
           />

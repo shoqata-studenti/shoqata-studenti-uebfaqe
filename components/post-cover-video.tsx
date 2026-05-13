@@ -8,6 +8,10 @@ type Props = {
   src: string;
   className: string;
   title: string;
+  /** Kurousel: ndalo/riprodho sipas slide-it aktiv (pa ndryshuar logjikën Safari/muted). */
+  paused?: boolean;
+  /** Klasa e wrapper-it (p.sh. absolute inset-0 për kornizë aspect). */
+  rootClassName?: string;
 };
 
 function IconMuted() {
@@ -39,7 +43,7 @@ function IconUnmuted() {
 }
 
 /** Safari: inline `muted` is sometimes ignored — enforce via DOM on mount. Instagram-style mute toggle. */
-export function PostCoverVideo({ src, className, title }: Props) {
+export function PostCoverVideo({ src, className, title, paused, rootClassName }: Props) {
   const dict = useDictionary();
   const unmuteLabel = dict.media?.videoUnmute ?? "Turn sound on";
   const muteLabel = dict.media?.videoMute ?? "Mute";
@@ -53,6 +57,17 @@ export function PostCoverVideo({ src, className, title }: Props) {
       v.muted = true;
     }
   }, []);
+
+  useEffect(() => {
+    if (paused === undefined) return;
+    const v = videoRef.current;
+    if (!v) return;
+    if (paused) {
+      v.pause();
+    } else {
+      void v.play().catch(() => {});
+    }
+  }, [paused]);
 
   function toggleSound(e: React.MouseEvent) {
     e.preventDefault();
@@ -68,7 +83,7 @@ export function PostCoverVideo({ src, className, title }: Props) {
   }
 
   return (
-    <div className="relative w-full">
+    <div className={rootClassName ? rootClassName : "relative w-full"}>
       <video
         ref={videoRef}
         src={src}
@@ -86,7 +101,7 @@ export function PostCoverVideo({ src, className, title }: Props) {
       <button
         type="button"
         onClick={toggleSound}
-        className="absolute bottom-2 right-2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/55 text-white shadow-sm ring-1 ring-white/20 backdrop-blur-sm transition-colors hover:bg-black/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:bottom-3 md:right-3"
+        className="absolute bottom-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-black/55 text-white shadow-sm ring-1 ring-white/20 backdrop-blur-sm transition-colors hover:bg-black/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         aria-label={isMuted ? unmuteLabel : muteLabel}
         aria-pressed={!isMuted}
       >

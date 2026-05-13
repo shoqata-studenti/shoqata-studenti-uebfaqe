@@ -1,11 +1,17 @@
 import Link from "next/link";
 
+import { EventGallerySlide } from "@/components/event-gallery-slide";
 import { EVENT_EDITION_YEARS } from "@/lib/event-editions";
+import { rowsToGalleryBlocks } from "@/lib/event-gallery-blocks";
 import { prisma } from "@/lib/db";
-import { EVENT_GALLERY_MAX_BYTES } from "@/lib/event-gallery-upload";
+import {
+  EVENT_GALLERY_MAX_IMAGE_BYTES,
+  EVENT_GALLERY_MAX_VIDEO_BYTES,
+} from "@/lib/event-gallery-upload";
 import { EVENT_SLUGS, type EventSlug } from "@/lib/event-slugs";
 
-import { deleteEventGalleryImage, uploadEventGalleryImage } from "./actions";
+import { deleteEventGalleryImage } from "./actions";
+import { EventeUploadForm } from "./upload-form";
 
 const inputClass =
   "w-full rounded-sm border border-black/20 bg-white px-3 py-2.5 text-sm outline-none transition-[border-color,box-shadow] focus:border-[#E11D48] focus:ring-2 focus:ring-[#E11D48]/25";
@@ -30,26 +36,35 @@ const EVENT_LABELS_SQ: Record<EventSlug, string> = {
 
 export default async function AdminEventePage({ searchParams }: Props) {
   const q = await searchParams;
-  const maxMb = Math.round(EVENT_GALLERY_MAX_BYTES / (1024 * 1024));
+  const maxImgMb = Math.round(EVENT_GALLERY_MAX_IMAGE_BYTES / (1024 * 1024));
+  const maxVidMb = Math.round(EVENT_GALLERY_MAX_VIDEO_BYTES / (1024 * 1024));
 
-  const imageRows = await Promise.all(
-    EVENT_SLUGS.flatMap((slug) =>
-      EVENT_EDITION_YEARS.map(async (editionYear) => {
-        const rows = await prisma.eventGalleryImage.findMany({
-          where: { eventSlug: slug, editionYear },
-          orderBy: [{ sortOrder: "asc" }, { id: "asc" }],
-          select: { id: true },
-        });
-        return { slug, editionYear, ids: rows.map((r) => r.id) };
-      })
-    )
-  );
-
+  let blocksBySlugYear: Record<string, ReturnType<typeof rowsToGalleryBlocks>> = {};
+  let galleryLoadError: string | null = null;
   const key = (slug: EventSlug, year: number) => `${slug}:${year}`;
-  const bySlugYear = Object.fromEntries(imageRows.map((r) => [key(r.slug, r.editionYear), r.ids])) as Record<
-    string,
-    number[]
-  >;
+  try {
+    const imageRows = await Promise.all(
+      EVENT_SLUGS.flatMap((slug) =>
+        EVENT_EDITION_YEARS.map(async (editionYear) => {
+          const rows = await prisma.eventGalleryImage.findMany({
+            where: { eventSlug: slug, editionYear },
+            orderBy: [{ sortOrder: "asc" }, { slideshowIndex: "asc" }, { id: "asc" }],
+            select: {
+              id: true,
+              mimeType: true,
+              sortOrder: true,
+              slideshowGroupId: true,
+              slideshowIndex: true,
+            },
+          });
+          return { slug, editionYear, blocks: rowsToGalleryBlocks(rows) };
+        })
+      )
+    );
+    blocksBySlugYear = Object.fromEntries(imageRows.map((r) => [key(r.slug, r.editionYear), r.blocks]));
+  } catch (e) {
+    galleryLoadError = e instanceof Error ? e.message : String(e);
+  }
 
   return (
     <main className="min-h-screen bg-white text-black">
@@ -62,20 +77,31 @@ export default async function AdminEventePage({ searchParams }: Props) {
           </Link>
         </p>
         <p className="mt-2 text-sm text-black/65">
-          Ngarko foto për çdo event dhe vit (2026, 2025, 2024). Shfaqen në faqen e edicionit{" "}
-          <code className="rounded bg-black/[0.06] px-1 text-xs">/evente/slug/vit</code> me dizajn zig-zag. Maks. ~{maxMb}{" "}
-          MB për foto.
+          Ngarko foto ose video për çdo event dhe vit. Mund të krijosh edhe <strong>slideshow</strong> (shumë skedarë në
+          një kartë, si Instagram). Publik:{" "}
+          <code className="rounded bg-black/[0.06] px-1 text-xs">/evente/slug/vit</code>. Maks. ~{maxImgMb} MB për
+          foto, ~{maxVidMb} MB për video (MP4, WebM).
         </p>
 
         <div className="mt-8 space-y-4">
+          {galleryLoadError ? (
+            <div className="rounded-sm border border-[#E11D48]/50 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
+              <p className="font-semibold">Galeria nuk u lexua (Prisma / databaza)</p>
+              <p className="mt-2 text-black/80">
+                Në terminal: <code className="rounded bg-white px-1 text-xs">npm run db:sync</code> pastaj ndalo dhe
+                nis përsëri <code className="rounded bg-white px-1 text-xs">npm run dev</code>.
+              </p>
+              <p className="mt-2 font-mono text-xs text-black/60">{galleryLoadError}</p>
+            </div>
+          ) : null}
           {q.ok === "1" ? (
             <p className="rounded-sm border border-black/10 bg-black/[0.03] px-4 py-3 text-sm text-black">
-              Foto u ngarkua.
+              Ngarkimi u ruajt.
             </p>
           ) : null}
           {q.delOk === "1" ? (
             <p className="rounded-sm border border-black/10 bg-black/[0.03] px-4 py-3 text-sm text-black">
-              Foto u fshi.
+              Skedari u fshi.
             </p>
           ) : null}
           {q.error === "slug" ? (
@@ -90,17 +116,32 @@ export default async function AdminEventePage({ searchParams }: Props) {
           ) : null}
           {q.error === "file" ? (
             <p className="rounded-sm border border-[#E11D48]/40 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
-              Zgjidh një skedar foto.
+              Zgjidh të paktën një skedar.
+            </p>
+          ) : null}
+          {q.error === "slideshow" ? (
+            <p className="rounded-sm border border-[#E11D48]/40 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
+              Slideshow kërkon të paktën dy skedarë (ose hiq shenjën dhe ngarko një të vetëm).
+            </p>
+          ) : null}
+          {q.error === "single" ? (
+            <p className="rounded-sm border border-[#E11D48]/40 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
+              Pa slideshow, zgjidh vetëm një skedar (ose aktivizo slideshow për disa skedarë).
+            </p>
+          ) : null}
+          {q.error === "count" ? (
+            <p className="rounded-sm border border-[#E11D48]/40 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
+              Maksimumi është 20 skedarë për një slideshow.
             </p>
           ) : null}
           {q.error === "size" ? (
             <p className="rounded-sm border border-[#E11D48]/40 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
-              Skedari është shumë i madh.
+              Një skedar është shumë i madh (foto ~{maxImgMb} MB, video ~{maxVidMb} MB).
             </p>
           ) : null}
           {q.error === "mime" ? (
             <p className="rounded-sm border border-[#E11D48]/40 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
-              Lejohen vetëm JPEG, PNG, WebP ose GIF.
+              Lejohen JPEG, PNG, WebP, GIF, MP4 ose WebM.
             </p>
           ) : null}
           {q.error === "del" ? (
@@ -120,7 +161,8 @@ export default async function AdminEventePage({ searchParams }: Props) {
 
               <ul className="mt-8 space-y-10">
                 {EVENT_EDITION_YEARS.map((editionYear) => {
-                  const ids = bySlugYear[key(slug, editionYear)] ?? [];
+                  const blocks = blocksBySlugYear[key(slug, editionYear)] ?? [];
+                  const totalItems = blocks.reduce((n, b) => n + b.items.length, 0);
                   return (
                     <li key={editionYear} className="rounded-sm border border-black/10 bg-black/[0.02] p-4 md:p-5">
                       <h3 className="text-base font-semibold text-black">{editionYear}</h3>
@@ -128,59 +170,48 @@ export default async function AdminEventePage({ searchParams }: Props) {
                         Publik: <code className="rounded bg-white px-1">/evente/{slug}/{editionYear}</code>
                       </p>
 
-                      <form
-                        action={uploadEventGalleryImage}
-                        encType="multipart/form-data"
-                        className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end"
-                      >
-                        <input type="hidden" name="eventSlug" value={slug} />
-                        <input type="hidden" name="editionYear" value={String(editionYear)} />
-                        <div className="min-w-0 flex-1 space-y-2">
-                          <label className="text-xs font-semibold uppercase tracking-wide" htmlFor={`file-${slug}-${editionYear}`}>
-                            Ngarko foto
-                          </label>
-                          <input
-                            id={`file-${slug}-${editionYear}`}
-                            name="file"
-                            type="file"
-                            accept="image/jpeg,image/png,image/webp,image/gif"
-                            required
-                            className={inputClass}
-                          />
-                        </div>
-                        <button
-                          type="submit"
-                          className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-sm bg-[#E11D48] px-5 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-[#be123c]"
-                        >
-                          Ruaj
-                        </button>
-                      </form>
+                      <EventeUploadForm slug={slug} editionYear={editionYear} inputClass={inputClass} />
 
-                      {ids.length > 0 ? (
-                        <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                          {ids.map((imgId) => (
-                            <li key={imgId} className="relative rounded-sm border border-black/12 bg-black/[0.04]">
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img
-                                src={`/api/event-gallery/${imgId}`}
-                                alt=""
-                                decoding="async"
-                                className="block h-auto w-full rounded-t-sm"
-                              />
-                              <form action={deleteEventGalleryImage} className="absolute right-1 top-1">
-                                <input type="hidden" name="id" value={String(imgId)} />
-                                <button
-                                  type="submit"
-                                  className="rounded-sm bg-black/70 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-white hover:bg-[#E11D48]"
-                                >
-                                  Fshi
-                                </button>
-                              </form>
+                      {totalItems > 0 ? (
+                        <ul className="mt-6 space-y-6">
+                          {blocks.map((block) => (
+                            <li
+                              key={
+                                block.kind === "single"
+                                  ? `s-${block.items[0].id}`
+                                  : `c-${block.items.map((x) => x.id).join("-")}`
+                              }
+                              className="rounded-sm border border-black/12 bg-white p-3"
+                            >
+                              {block.kind === "carousel" ? (
+                                <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/45">
+                                  Slideshow ({block.items.length})
+                                </p>
+                              ) : null}
+                              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                                {block.items.map((item) => (
+                                  <li
+                                    key={item.id}
+                                    className="relative overflow-hidden rounded-sm border border-black/10 bg-black/[0.04]"
+                                  >
+                                    <EventGallerySlide id={item.id} mimeType={item.mimeType} />
+                                    <form action={deleteEventGalleryImage} className="absolute right-1 top-1">
+                                      <input type="hidden" name="id" value={String(item.id)} />
+                                      <button
+                                        type="submit"
+                                        className="rounded-sm bg-black/70 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-white hover:bg-[#E11D48]"
+                                      >
+                                        Fshi
+                                      </button>
+                                    </form>
+                                  </li>
+                                ))}
+                              </ul>
                             </li>
                           ))}
                         </ul>
                       ) : (
-                        <p className="mt-4 text-sm text-black/50">Nuk ka foto për këtë vit.</p>
+                        <p className="mt-4 text-sm text-black/50">Nuk ka media për këtë vit.</p>
                       )}
                     </li>
                   );
