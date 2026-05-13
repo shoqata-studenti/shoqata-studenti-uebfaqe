@@ -73,9 +73,9 @@ export function HeroCarousel({ headingFontClassName }: { headingFontClassName: s
                 </p>
                 <Link
                   href="/membership"
-                  className="mt-10 inline-flex min-h-11 items-center justify-center rounded-sm bg-[#E11D48] px-8 py-2.5 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-[#be123c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  className="mt-10 inline-flex min-h-11 items-center justify-center rounded-sm bg-[#E11D48] px-8 py-2.5 text-sm font-bold uppercase tracking-[0.07em] text-white shadow-md ring-1 ring-black/15 transition-[background,box-shadow,transform] hover:bg-[#be123c] hover:shadow-lg hover:ring-black/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-[0.98]"
                 >
-                  {dict.home.hero.cta}
+                  {dict.nav.register}
                 </Link>
               </div>
             </div>

@@ -82,31 +82,38 @@ export function PostCoverVideo({ src, className, title, paused, rootClassName }:
     }
   }
 
+  const outerClass = rootClassName ?? "relative w-full";
+  const innerFullHeight = Boolean(rootClassName?.includes("inset-0"));
+
   return (
-    <div className={rootClassName ? rootClassName : "relative w-full"}>
-      <video
-        ref={videoRef}
-        src={src}
-        className={className}
-        autoPlay
-        muted={isMuted}
-        loop
-        playsInline
-        aria-label={title}
-        onVolumeChange={() => {
-          const v = videoRef.current;
-          if (v) setIsMuted(v.muted);
-        }}
-      />
-      <button
-        type="button"
-        onClick={toggleSound}
-        className="absolute bottom-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-black/55 text-white shadow-sm ring-1 ring-white/20 backdrop-blur-sm transition-colors hover:bg-black/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-        aria-label={isMuted ? unmuteLabel : muteLabel}
-        aria-pressed={!isMuted}
-      >
-        {isMuted ? <IconMuted /> : <IconUnmuted />}
-      </button>
+    <div className={outerClass}>
+      <div className={innerFullHeight ? "relative h-full min-h-0 w-full" : "relative w-full min-h-0"}>
+        <video
+          ref={videoRef}
+          src={src}
+          className={className}
+          autoPlay
+          loop
+          muted={isMuted}
+          playsInline
+          preload="auto"
+          aria-label={title}
+          {...({ defaultMuted: true } as Record<string, unknown>)}
+          onVolumeChange={() => {
+            const v = videoRef.current;
+            if (v) setIsMuted(v.muted);
+          }}
+        />
+        <button
+          type="button"
+          onClick={toggleSound}
+          className="absolute bottom-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-black/55 text-white"
+          aria-label={isMuted ? unmuteLabel : muteLabel}
+          aria-pressed={!isMuted}
+        >
+          {isMuted ? <IconMuted /> : <IconUnmuted />}
+        </button>
+      </div>
     </div>
   );
 }

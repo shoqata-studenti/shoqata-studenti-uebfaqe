@@ -1,6 +1,6 @@
 import "server-only";
 
-export type GalleryMediaItem = { id: number; mimeType: string };
+export type GalleryMediaItem = { id: number; mimeType: string; src?: string };
 
 export type GalleryBlock =
   | { kind: "single"; items: [GalleryMediaItem] }

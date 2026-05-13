@@ -47,8 +47,8 @@ export default async function RootLayout({
       <body className={`${geistSans.className} flex min-h-full flex-col`}>
         <LocaleProvider locale={locale} dict={dict}>
           <header className="w-full border-t border-black/15 border-b border-black/10 bg-white">
-            <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-4 px-6 py-4 md:px-10">
-              <Link href="/" className="flex min-h-14 shrink-0 items-center gap-4">
+            <div className="mx-auto flex w-full max-w-[1440px] items-center gap-2 px-6 py-3 md:gap-3 md:px-10 md:py-4">
+              <Link href="/" className="flex min-h-14 shrink-0 items-center gap-3 md:gap-4">
                 <Image
                   src="/logo-shoqata.png"
                   alt={dict.layout.logoAlt}
@@ -70,8 +70,9 @@ export default async function RootLayout({
                 </div>
               </Link>
 
-              <div className="flex min-w-0 flex-1 flex-wrap items-center justify-start gap-2 md:gap-3">
-                <HeaderNav navFontClassName={playfairNav.className} />
+              <HeaderNav navFontClassName={playfairNav.className} />
+
+              <div className="ml-2 shrink-0 md:ml-3">
                 <LanguageSwitcher />
               </div>
             </div>

@@ -14,6 +14,10 @@ export type UpcomingPost = {
   eventAt: Date;
   venue: string | null;
   cardLinkPath: string | null;
+  /** Kopertinë statike nga /public (p.sh. `/media/events/berlin.jpg`). */
+  coverSrc?: string;
+  /** Linku i kartës kur nuk ka artikull në DB (p.sh. `/evente/udhetime/2026`). */
+  detailHref?: string;
 };
 
 type Props = {
@@ -54,7 +58,7 @@ export function UpcomingSection({ headingClassName, posts, dict, dateLocale }: P
         <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => {
             const category = cardLinkCategoryLabel(dict, post.cardLinkPath);
-            const href = postArticleHref(post.id);
+            const href = post.detailHref ?? postArticleHref(post.id);
             const dateStr = post.eventAt.toLocaleString(dateLocale, {
               weekday: "short",
               year: "numeric",
@@ -74,6 +78,7 @@ export function UpcomingSection({ headingClassName, posts, dict, dateLocale }: P
                       title={post.title}
                       mimeType={post.imageMimeType}
                       layout="upcoming"
+                      coverSrc={post.coverSrc}
                     />
                   </div>
                   <Link

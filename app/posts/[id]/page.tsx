@@ -44,16 +44,16 @@ export default async function PostDetailPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-white text-black">
-      <article className="mx-auto w-full max-w-4xl px-6 py-14 md:px-10 md:py-20">
+      <article className="mx-auto w-full max-w-3xl px-4 py-14 md:px-6 md:py-20">
         <Link
           href="/"
-          className="text-sm font-semibold uppercase tracking-wide text-[#E11D48] underline-offset-2 hover:underline"
+          className="mb-6 mt-8 inline-block text-sm font-semibold uppercase tracking-wide text-[#E11D48] underline-offset-2 hover:underline"
         >
           {dict.post.backHome}
         </Link>
 
         <h1
-          className={`${playfair.className} mt-10 text-center text-3xl font-bold leading-tight tracking-tight text-black md:text-4xl lg:text-[2.5rem]`}
+          className={`${playfair.className} text-center text-3xl font-bold leading-tight tracking-tight text-black md:text-4xl lg:text-[2.5rem]`}
         >
           {post.title}
         </h1>
@@ -67,7 +67,7 @@ export default async function PostDetailPage({ params }: Props) {
           </time>
         </p>
 
-        <div className="mt-12 rounded-sm border border-black/10 bg-black/[0.02]">
+        <div className="mt-12 w-full">
           <PostCoverMedia
             postId={post.id}
             title={post.title}

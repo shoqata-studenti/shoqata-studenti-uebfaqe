@@ -31,7 +31,11 @@ export function EventGalleryZigzag({ blocks, momentsTitle, emptyMessage }: Props
             className="mx-auto w-full max-w-md border-0 p-0 shadow-none ring-0 outline-none"
           >
             {block.kind === "single" ? (
-              <EventGallerySlide id={block.items[0].id} mimeType={block.items[0].mimeType} />
+              <EventGallerySlide
+                id={block.items[0].id}
+                mimeType={block.items[0].mimeType}
+                src={block.items[0].src}
+              />
             ) : (
               <EventGalleryCarouselBlock items={block.items} />
             )}

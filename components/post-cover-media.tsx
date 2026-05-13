@@ -15,7 +15,7 @@ function classForLayout(layout: Layout): string {
     case "list":
       return "block w-full max-w-full bg-black/5 rounded-t-sm";
     case "article":
-      return "block w-full max-w-full bg-black/[0.02]";
+      return "block w-full max-w-full";
     default:
       return "block w-full max-w-full";
   }
@@ -26,13 +26,16 @@ export function PostCoverMedia({
   title,
   mimeType,
   layout,
+  coverSrc,
 }: {
   postId: number;
   title: string;
   mimeType: string;
   layout: Layout;
+  /** Opsionale: URL statike nga /public. */
+  coverSrc?: string | null;
 }) {
-  const src = SRC(postId);
+  const src = coverSrc?.trim() ? coverSrc.trim() : SRC(postId);
   const cls = `${classForLayout(layout)} h-auto`;
 
   if (isPostCoverVideo(mimeType)) {

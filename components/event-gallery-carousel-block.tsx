@@ -13,16 +13,20 @@ import {
 
 import { EventGallerySlide } from "@/components/event-gallery-slide";
 
-type Item = { id: number; mimeType: string };
+type Item = { id: number; mimeType: string; src?: string };
 
-const navBtnBaseClass =
-  "pointer-events-auto absolute top-1/2 -translate-y-1/2 z-50 bg-black/50 text-white p-2 rounded-full flex items-center justify-center outline-none [&_svg]:pointer-events-none";
+const navBtnVisual =
+  "pointer-events-auto flex size-10 shrink-0 items-center justify-center rounded-full bg-black/50 text-white outline-none [&_svg]:pointer-events-none disabled:opacity-35";
 
 function GalleryCarouselNav({ side }: { side: "prev" | "next" }) {
   const { scrollPrev, scrollNext, canScrollPrev, canScrollNext } = useCarousel();
   const isPrev = side === "prev";
   const scroll = isPrev ? scrollPrev : scrollNext;
   const can = isPrev ? canScrollPrev : canScrollNext;
+
+  const positionClass = isPrev
+    ? "absolute left-4 top-1/2 -translate-y-1/2 z-50"
+    : "absolute right-4 top-1/2 -translate-y-1/2 z-50";
 
   return (
     <button
@@ -34,7 +38,7 @@ function GalleryCarouselNav({ side }: { side: "prev" | "next" }) {
         e.stopPropagation();
         scroll();
       }}
-      className={`${navBtnBaseClass} ${isPrev ? "left-4" : "right-4"}`}
+      className={`${positionClass} ${navBtnVisual}`}
     >
       {isPrev ? (
         <ChevronLeft className="size-5 shrink-0" strokeWidth={2} aria-hidden />
@@ -61,10 +65,10 @@ export function EventGalleryCarouselBlock({ items }: { items: Item[] }) {
   if (items.length === 0) return null;
 
   return (
-    <div className="relative mx-auto w-full max-w-md">
+    <div dir="ltr" className="relative mx-auto w-full max-w-md">
       <Carousel
         className="relative w-full"
-        opts={{ loop: false, align: "center" }}
+        opts={{ loop: false, align: "center", direction: "ltr" }}
         setApi={setApi}
       >
         <CarouselContent className="-ml-0">
@@ -73,8 +77,10 @@ export function EventGalleryCarouselBlock({ items }: { items: Item[] }) {
               <EventGallerySlide
                 id={item.id}
                 mimeType={item.mimeType}
+                src={item.src}
                 isActive={items.length === 1 ? true : slideIndex === current}
                 slideshowVideo={item.mimeType.startsWith("video/")}
+                inCarousel
               />
             </CarouselItem>
           ))}

@@ -67,7 +67,7 @@ export function HeaderNav({ navFontClassName }: HeaderNavProps) {
     <nav
       className={cn(
         navFontClassName,
-        "flex min-w-0 max-w-[calc(100%-5rem)] flex-wrap items-center justify-end gap-x-2 gap-y-2 md:max-w-none md:gap-x-3"
+        "flex min-w-0 min-h-9 flex-1 flex-wrap items-center justify-start gap-x-2 gap-y-2 md:gap-x-3"
       )}
     >
       <NavLink href="/">{d.nav.home}</NavLink>
@@ -126,7 +126,12 @@ export function HeaderNav({ navFontClassName }: HeaderNavProps) {
 
       <NavLink href="/federata">{d.nav.federata}</NavLink>
       <NavLink href="/kontakt">{d.nav.contact}</NavLink>
-      <NavLink href="/membership">{d.nav.register}</NavLink>
+      <Link
+        href="/membership"
+        className="inline-flex h-9 shrink-0 items-center rounded-sm bg-[#E11D48] px-2.5 text-[0.65rem] font-bold uppercase tracking-[0.07em] text-white shadow-md ring-1 ring-black/10 transition-[background,box-shadow,transform] hover:bg-[#be123c] hover:shadow-lg hover:ring-black/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E11D48] active:scale-[0.98] md:px-3 md:text-xs lg:text-sm"
+      >
+        {d.nav.register}
+      </Link>
     </nav>
   );
 }
