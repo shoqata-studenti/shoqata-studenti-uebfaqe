@@ -1,5 +1,4 @@
 import { Playfair_Display } from "next/font/google";
-import Link from "next/link";
 
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
@@ -9,9 +8,15 @@ const playfair = Playfair_Display({
   weight: ["600", "700"],
 });
 
+const linkClass =
+  "mt-3 inline-block text-sm font-semibold text-[#E11D48] underline decoration-[#E11D48]/35 underline-offset-4 hover:decoration-[#E11D48]";
+
 export default async function InfoPage() {
   const dict = getDictionary(await getLocale());
   const i = dict.infoPage;
+
+  const showAssociationSection =
+    Boolean(i.vsuzhBody || i.vsethBody || i.vsuzhLink || i.vsethLink);
 
   return (
     <main className="min-h-screen bg-white text-black">
@@ -32,35 +37,29 @@ export default async function InfoPage() {
           {i.p4 ? <p>{i.p4}</p> : null}
         </div>
 
-        {i.vsuzhBody || i.vsethBody ? (
+        {showAssociationSection ? (
           <div className="mt-14 space-y-10 border-t border-black/10 pt-10 text-left">
-            {i.vsuzhBody ? (
+            {i.vsuzhTitle && i.vsuzhLink ? (
               <article>
                 <h2 className="text-lg font-bold text-black md:text-xl">{i.vsuzhTitle}</h2>
-                <p className="mt-3 text-base leading-relaxed text-black/80">{i.vsuzhBody}</p>
-                <Link
-                  href={i.vsuzhLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-3 inline-block text-sm font-semibold text-[#E11D48] underline decoration-[#E11D48]/35 underline-offset-4 hover:decoration-[#E11D48]"
-                >
-                  {i.vsuzhLink}
-                </Link>
+                {i.vsuzhBody ? (
+                  <p className="mt-3 text-base leading-relaxed text-black/80">{i.vsuzhBody}</p>
+                ) : null}
+                <a href={i.vsuzhLink} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                  {i.vsuzhLinkLabel}
+                </a>
               </article>
             ) : null}
 
-            {i.vsethBody ? (
+            {i.vsethTitle && i.vsethLink ? (
               <article>
                 <h2 className="text-lg font-bold text-black md:text-xl">{i.vsethTitle}</h2>
-                <p className="mt-3 text-base leading-relaxed text-black/80">{i.vsethBody}</p>
-                <Link
-                  href={i.vsethLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-3 inline-block text-sm font-semibold text-[#E11D48] underline decoration-[#E11D48]/35 underline-offset-4 hover:decoration-[#E11D48]"
-                >
-                  {i.vsethLink}
-                </Link>
+                {i.vsethBody ? (
+                  <p className="mt-3 text-base leading-relaxed text-black/80">{i.vsethBody}</p>
+                ) : null}
+                <a href={i.vsethLink} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                  {i.vsethLinkLabel}
+                </a>
               </article>
             ) : null}
           </div>

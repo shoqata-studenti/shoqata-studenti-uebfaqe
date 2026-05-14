@@ -5,6 +5,7 @@
   "scripts": {
     "postinstall": "prisma generate",
     "db:sync": "prisma generate && prisma db push",
+    "db:seed:vargjet": "node scripts/seed-vargjet.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

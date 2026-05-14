@@ -19,6 +19,34 @@ export function NewsletterForm() {
       <h2 className="font-serif text-2xl text-foreground">{n.title}</h2>
       <p className="mt-2 text-sm text-muted-foreground">{n.hint}</p>
       <form action={formAction} className="mt-5 space-y-4">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="space-y-2">
+            <label htmlFor="newsletter-firstName" className="text-sm font-medium text-foreground">
+              {dict.membership.form.firstName}
+            </label>
+            <input
+              id="newsletter-firstName"
+              name="firstName"
+              type="text"
+              required
+              autoComplete="given-name"
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring"
+            />
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="newsletter-lastName" className="text-sm font-medium text-foreground">
+              {dict.membership.form.lastName}
+            </label>
+            <input
+              id="newsletter-lastName"
+              name="lastName"
+              type="text"
+              required
+              autoComplete="family-name"
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring"
+            />
+          </div>
+        </div>
         <div className="space-y-2">
           <label htmlFor="newsletter-email" className="text-sm font-medium text-foreground">
             {dict.membership.form.email}

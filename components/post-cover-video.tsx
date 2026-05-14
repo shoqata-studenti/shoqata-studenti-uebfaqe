@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { useDictionary } from "@/components/locale-provider";
+import { VIDEO_MUTE_CONTROL_BUTTON_CLASSNAME } from "@/lib/video-mute-control";
 
 type Props = {
   src: string;
@@ -107,7 +108,7 @@ export function PostCoverVideo({ src, className, title, paused, rootClassName }:
         <button
           type="button"
           onClick={toggleSound}
-          className="absolute bottom-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-black/55 text-white"
+          className={VIDEO_MUTE_CONTROL_BUTTON_CLASSNAME}
           aria-label={isMuted ? unmuteLabel : muteLabel}
           aria-pressed={!isMuted}
         >

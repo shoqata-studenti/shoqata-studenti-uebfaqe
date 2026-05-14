@@ -31,20 +31,10 @@ export function getEventPageMeta(
   let description: string;
   switch (slug) {
     case "kafe-llafe":
-      description =
-        locale === "de"
-          ? "Treffen und offener Austausch für Studierende in entspannter Atmosphäre."
-          : locale === "en"
-            ? "Meetups and open conversations for students in a relaxed atmosphere."
-            : "Takime dhe biseda të hapura për studentë në një atmosferë të lirshme.";
+      description = dict.evente.kafeLlafeBody;
       break;
     case "festa-e-flamurit":
-      description =
-        locale === "de"
-          ? "Gemeinsame Feier mit Musik, Programm und Gemeinschaft rund um den 28. November."
-          : locale === "en"
-            ? "Community celebration with music, program, and activities around November 28."
-            : "Festë e përbashkët me muzikë, program dhe aktivitete rreth 28 Nëntorit.";
+      description = dict.evente.festaFlamuritShort;
       break;
     case "udhetime":
       description =

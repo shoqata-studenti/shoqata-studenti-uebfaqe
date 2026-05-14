@@ -19,7 +19,7 @@ export default async function VargjetELiraPage() {
   const dict = getDictionary(locale);
 
   const topics = await prisma.vargjetTopic.findMany({
-    orderBy: [{ sortOrder: "asc" }, { id: "asc" }],
+    orderBy: [{ sortOrder: "desc" }, { id: "desc" }],
     include: { _count: { select: { documents: true } } },
   });
 
@@ -44,7 +44,7 @@ export default async function VargjetELiraPage() {
                       {dict.vargjet.themeBadge}
                     </span>
                     <h2 className="mt-2 text-xl font-semibold tracking-tight group-hover:text-[#E11D48]">
-                      {t.title}
+                      {t.sortOrder}. {t.title}
                     </h2>
                     <p className="mt-3 text-sm text-black/55">
                       {t._count.documents}{" "}

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { SubpageHero } from "@/components/subpage-hero";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
@@ -17,8 +19,13 @@ export default async function AlumniPage() {
           <p className="mt-5 max-w-3xl text-base leading-relaxed text-black/80">
             {dict.projectPages.alumni.dinner}
           </p>
-          <p className="mt-8 text-sm font-semibold uppercase tracking-[0.14em] text-[#E11D48]">
-            {dict.projectPages.alumni.cta}
+          <p className="mt-8">
+            <Link
+              href="/membership?type=ALUMNI"
+              className="text-sm font-semibold uppercase tracking-[0.14em] text-[#E11D48] underline decoration-[#E11D48]/40 underline-offset-4 transition hover:decoration-[#E11D48]"
+            >
+              {dict.projectPages.alumni.cta}
+            </Link>
           </p>
         </div>
       </div>

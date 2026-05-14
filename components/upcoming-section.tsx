@@ -55,7 +55,7 @@ export function UpcomingSection({ headingClassName, posts, dict, dateLocale }: P
           {u.heading}
         </h2>
 
-        <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-10 grid auto-rows-fr items-stretch gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => {
             const category = cardLinkCategoryLabel(dict, post.cardLinkPath);
             const href = post.detailHref ?? postArticleHref(post.id);
@@ -70,8 +70,8 @@ export function UpcomingSection({ headingClassName, posts, dict, dateLocale }: P
             const place = post.venue?.trim() || u.venueMissing;
 
             return (
-              <li key={post.id}>
-                <article className="flex h-full flex-col rounded-sm border border-black/12 bg-white shadow-sm transition-[border-color,box-shadow] hover:border-[#E11D48]/35 hover:shadow-md">
+              <li key={post.id} className="flex h-full min-h-0">
+                <article className="flex h-full min-h-0 w-full flex-col rounded-sm border border-black/12 bg-white shadow-sm transition-[border-color,box-shadow] hover:border-[#E11D48]/35 hover:shadow-md">
                   <div className="w-full shrink-0">
                     <PostCoverMedia
                       postId={post.id}
@@ -83,7 +83,7 @@ export function UpcomingSection({ headingClassName, posts, dict, dateLocale }: P
                   </div>
                   <Link
                     href={href}
-                    className="group flex flex-1 flex-col p-5 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#E11D48]/40"
+                    className="group mt-auto flex shrink-0 flex-col p-5 pt-4 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#E11D48]/40"
                   >
                     {category ? (
                       <p className="text-xs font-semibold uppercase tracking-wide text-[#E11D48]">

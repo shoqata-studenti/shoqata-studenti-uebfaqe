@@ -169,16 +169,20 @@ export async function subscribeNewsletter(
   const dict = getDictionary(locale);
   const n = dict.membership.newsletter;
 
+  const ma = dict.membershipActions;
+  const firstName = String(formData.get("firstName") ?? "").trim();
+  const lastName = String(formData.get("lastName") ?? "").trim();
   const email = normalizeEmail(String(formData.get("email") ?? ""));
-  if (!email) {
-    return { ok: false, message: n.errorMissingEmail };
+
+  if (!firstName || !lastName || !email) {
+    return { ok: false, message: ma.fillAll };
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { ok: false, message: n.errorInvalidEmail };
   }
 
   try {
-    await subscribeInfomaniakNewsletter(email);
+    await subscribeInfomaniakNewsletter(email, { firstName, lastName });
     return { ok: true, message: n.success };
   } catch {
     return { ok: false, message: n.errorGeneric };

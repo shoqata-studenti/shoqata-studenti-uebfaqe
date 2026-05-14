@@ -16,26 +16,24 @@ export default function AplikimePage() {
           </p>
 
           <p>
-            ETH Zürich - Exchange & Mobility:{" "}
             <Link
               href="https://ethz.ch/en/studies/international-immigration-housing/outgoing-exchange.html"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-[#E11D48] underline decoration-[#E11D48]/35 underline-offset-4 hover:decoration-[#E11D48]"
             >
-              https://ethz.ch/en/studies/international-immigration-housing/outgoing-exchange.html
+              ETH Zürich - Exchange & Mobility
             </Link>
           </p>
 
           <p>
-            Universität Zürich - International Mobility:{" "}
             <Link
               href="https://www.int.uzh.ch/en/outgoing.html"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-[#E11D48] underline decoration-[#E11D48]/35 underline-offset-4 hover:decoration-[#E11D48]"
             >
-              https://www.int.uzh.ch/en/outgoing.html
+              Universität Zürich - International Mobility
             </Link>
           </p>
         </div>

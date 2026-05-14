@@ -2,6 +2,7 @@ import { Playfair_Display } from "next/font/google";
 
 import { HeroCarousel } from "@/components/hero-carousel";
 import { UpcomingSection } from "@/components/upcoming-section";
+import { mergeKafeLlafeIntoUpcoming, buildKafeLlafeUpcomingCard } from "@/lib/kafe-llafe-upcoming";
 import { prisma } from "@/lib/db";
 import { dateLocaleFor, getDictionary } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
@@ -81,6 +82,8 @@ export default async function Home() {
       : []
   );
 
+  const upcomingWithKafe = mergeKafeLlafeIntoUpcoming(upcomingPosts, buildKafeLlafeUpcomingCard(dict));
+
   return (
     <main className="w-full bg-white text-black">
       <section className="w-full">
@@ -89,7 +92,7 @@ export default async function Home() {
 
       <UpcomingSection
         headingClassName={playfair.className}
-        posts={upcomingPosts}
+        posts={upcomingWithKafe}
         dict={dict}
         dateLocale={dateLocale}
       />

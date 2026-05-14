@@ -42,7 +42,13 @@
     "logoAlt": "Shoqata Studenti Zürich",
     "line1": "SHOQATA",
     "line2": "STUDENTI",
-    "line3": "ZÜRICH"
+    "line3": "ZÜRICH",
+    "footer": {
+      "approvedVseth": "E miratuar nga VSETH",
+      "approvedVsuzh": "E miratuar nga VSUZH",
+      "vsethLogoAlt": "VSETH — Verband der Studierenden an der ETH",
+      "vsuzhLogoAlt": "VSUZH — Verband der Studierenden der Universität Zürich"
+    }
   },
   "media": {
     "videoUnmute": "Ndiz tingujt",
@@ -68,7 +74,7 @@
     "title": "Anëtarësim",
     "newsletter": {
       "title": "Newsletter",
-      "hint": "Jep email-in tënd për t’u abonuar në newsletter.",
+      "hint": "Jep emrin, mbiemrin dhe email-in tënd për t’u abonuar në newsletter.",
       "emailPlaceholder": "email@shembull.com",
       "submit": "Abonohu",
       "pending": "Duke u regjistruar…",
@@ -187,9 +193,11 @@
     "vsuzhTitle": "VSUZH",
     "vsuzhBody": "Shoqata Studenti është organizatë e njohur zyrtarisht në Universität Zürich dhe e miratuar nga VSUZH (Verband der Studierenden der Universität Zürich). Përmes këtij bashkëpunimi, shoqata mbështetet në aspektin administrativ dhe financiar për realizimin e projekteve, eventeve dhe aktiviteteve studentore.",
     "vsuzhLink": "https://impulsfabrik.vsuzh.ch/en/studorgs",
+    "vsuzhLinkLabel": "Shiko këtu",
     "vsethTitle": "VSETH",
     "vsethBody": "Shoqata Studenti është po ashtu organizatë e njohur në ETH Zürich dhe e miratuar nga VSETH (Verband der Studierenden an der ETH). VSETH mbështet shoqatën në çështje administrative, infrastrukturore dhe financiare, duke mundësuar organizimin dhe zhvillimin e aktiviteteve të ndryshme akademike, kulturore dhe sociale.",
-    "vsethLink": "https://vseth.ethz.ch/organisation/shoqata-studenti/"
+    "vsethLink": "https://vseth.ethz.ch/organisation/shoqata-studenti/",
+    "vsethLinkLabel": "Shiko këtu"
   },
   "history": {
     "title": "Historiku",
@@ -203,8 +211,11 @@
     "badge": "Evente",
     "title": "{{name}}",
     "intro": "{{description}}",
+    "kafeLlafeBody": "Semestri i ri ka filluar dhe ne po e nisim përsëri së bashku!\nLe të vazhdojmë traditën tonë të takimeve me kafe, biseda të këndshme dhe një atmosferë të ngrohtë. Çdo dy javë të mërkurën, bashkohemi për të kaluar një mbrëmje të këndshme dhe për të shijuar kohën së bashku.\n\n🗓 Kur: Çdo të dytën mërkurë, nga ora 18:30\n📍 Ku: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nTakimi i parë: e mërkura, 18.02.2026\n\nMerr shoqërinë me vete dhe ejani të fillojmë semestrin së bashku!\n\nShoqata Studenti",
+    "festaFlamuritShort": "Mbrëmje festive me muzikë, traditë dhe shoqëri.",
+    "festaFlamuritBody": "Festa e Flamurit është një mbrëmje e veçantë festive ku mblidhemi për të festuar së bashku.\n\nËshtë një natë e mbushur me muzikë të mirë, traditë dhe një atmosferë të ngrohtë. Sigurisht, nuk do të mungojnë vallet tradicionale, bisedat e mira dhe koha e bukur në shoqërinë e njëri-tjetrit.\n\nNjë mundësi e shkëlqyer për të kërcyer, për t'u argëtuar dhe për të mbajtur gjallë kulturën tonë.",
+    "festaFlamuritEdition2025Body": "EJA TË FESTOJMË SË BASHKU!\n\nFestojmë së bashku Ditën e Flamurit të shtunën, me 29 nëntor 2025, në orën 19:00, në ETH Zürich, CAB F21, Universitätstrasse 6, 8092 Zürich.\n\nNa ndiq në një mbrëmje të veçantë me muzikë dhe atmosferë festive për të nderuar Ditën e Flamurit të 28 nëntorit! Vendndodhja është e kufizuar për 300 persona, prandaj sigurohu që të rezervosh biletën tënde sa më shpejt!\n\nKushtet e hyrjes: +18 vjeç, rekomandohet të vish me transport publik.",
     "empty": "Nuk ka postime për këtë event.",
-    "emptyGallery": "Ende nuk janë shtuar foto për këtë event. Ato ngarkohen nga paneli i adminit (Foto eventesh).",
     "galleryTitle": "Foto nga eventi",
     "momentsTitle": "Momentet",
     "postsTitle": "Postime",
@@ -213,7 +224,6 @@
     "editionTitle": "{{name}} {{year}}",
     "editionIntro": "{{year}} — {{description}}",
     "backToEventHub": "← {{name}}",
-    "emptyEditionGallery": "Ende nuk ka foto për këtë edicion. Ngarkoji nga paneli i adminit (Foto eventesh), duke zgjedhur vitin e duhur.",
     "udhetimeEditionSubtitle2026": "Berlin",
     "udhetimeEditionSubtitle2025": "Siçili",
     "udhetimeEditionSubtitle2024": ""

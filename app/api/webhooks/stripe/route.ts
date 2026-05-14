@@ -3,7 +3,10 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { MembershipType } from "@prisma/client";
 import { prisma } from "@/lib/db";
-import { subscribeInfomaniakNewsletter } from "@/lib/infomaniak-newsletter";
+import {
+  splitDisplayNameForNewsletter,
+  subscribeInfomaniakNewsletter,
+} from "@/lib/infomaniak-newsletter";
 import { addYears } from "@/lib/membership-logic";
 import { sendStripeWelcomeEmailSq } from "@/lib/membership-email-albanian";
 
@@ -109,7 +112,10 @@ export async function POST(req: Request) {
       console.log("Mitglied erfolgreich gespeichert:", member.email);
 
       try {
-        await subscribeInfomaniakNewsletter(metadata.email);
+        await subscribeInfomaniakNewsletter(
+          metadata.email,
+          splitDisplayNameForNewsletter(metadata.name)
+        );
       } catch (newsletterError) {
         console.error("Infomaniak Newsletter (Stripe-Webhook):", newsletterError);
       }

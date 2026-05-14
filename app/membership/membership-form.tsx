@@ -14,7 +14,11 @@ type CheckoutBody = {
   confirmEarlyRenewal?: boolean;
 };
 
-export function MembershipForm() {
+export type MembershipFormProps = {
+  defaultMembershipType?: "STUDENT" | "ALUMNI";
+};
+
+export function MembershipForm({ defaultMembershipType = "STUDENT" }: MembershipFormProps) {
   const dict = useDictionary();
   const f = dict.membership.form;
 
@@ -186,11 +190,23 @@ export function MembershipForm() {
           <legend className="text-sm font-medium text-foreground">{f.typeLegend}</legend>
           <div className="flex flex-wrap gap-4">
             <label className="flex items-center gap-2 text-sm">
-              <input type="radio" name="type" value="STUDENT" required defaultChecked />
+              <input
+                type="radio"
+                name="type"
+                value="STUDENT"
+                required
+                defaultChecked={defaultMembershipType === "STUDENT"}
+              />
               {f.student}
             </label>
             <label className="flex items-center gap-2 text-sm">
-              <input type="radio" name="type" value="ALUMNI" required />
+              <input
+                type="radio"
+                name="type"
+                value="ALUMNI"
+                required
+                defaultChecked={defaultMembershipType === "ALUMNI"}
+              />
               {f.alumni}
             </label>
           </div>

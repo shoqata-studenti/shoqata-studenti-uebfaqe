@@ -14,14 +14,13 @@ export default function StudimetNeEthPage() {
             ofrojë informata bazë dhe orientim.
           </p>
           <p>
-            Link:{" "}
             <Link
               href="https://ethz.ch/en/studies.html"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-[#E11D48] underline decoration-[#E11D48]/35 underline-offset-4 hover:decoration-[#E11D48]"
             >
-              https://ethz.ch/en/studies.html
+              Kliko këtu
             </Link>
           </p>
         </div>

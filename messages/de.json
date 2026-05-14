@@ -42,7 +42,13 @@
     "logoAlt": "Shoqata Studenti Zürich",
     "line1": "SHOQATA",
     "line2": "STUDENTI",
-    "line3": "ZÜRICH"
+    "line3": "ZÜRICH",
+    "footer": {
+      "approvedVseth": "E miratuar nga VSETH",
+      "approvedVsuzh": "E miratuar nga VSUZH",
+      "vsethLogoAlt": "VSETH — Verband der Studierenden an der ETH",
+      "vsuzhLogoAlt": "VSUZH — Verband der Studierenden der Universität Zürich"
+    }
   },
   "media": {
     "videoUnmute": "Ton einschalten",
@@ -68,7 +74,7 @@
     "title": "Mitgliedschaft",
     "newsletter": {
       "title": "Newsletter",
-      "hint": "Gib deine E-Mail ein, um den Newsletter zu abonnieren.",
+      "hint": "Gib Vorname, Nachname und E-Mail-Adresse ein, um den Newsletter zu abonnieren.",
       "emailPlaceholder": "email@beispiel.ch",
       "submit": "Abonnieren",
       "pending": "Wird angemeldet…",
@@ -187,9 +193,11 @@
     "vsuzhTitle": "VSUZH",
     "vsuzhBody": "",
     "vsuzhLink": "https://impulsfabrik.vsuzh.ch/en/studorgs",
+    "vsuzhLinkLabel": "Hier ansehen",
     "vsethTitle": "VSETH",
     "vsethBody": "",
-    "vsethLink": "https://vseth.ethz.ch/organisation/shoqata-studenti/"
+    "vsethLink": "https://vseth.ethz.ch/organisation/shoqata-studenti/",
+    "vsethLinkLabel": "Hier ansehen"
   },
   "history": {
     "title": "Geschichte",
@@ -203,8 +211,11 @@
     "badge": "Events",
     "title": "{{name}}",
     "intro": "{{description}}",
+    "kafeLlafeBody": "Das neue Semester hat begonnen — und wir starten wieder gemeinsam!\nLasst uns unsere Tradition der Café-Treffen, angenehmer Gespräche und warmer Atmosphäre fortsetzen. Alle zwei Wochen am Mittwochabend treffen wir uns, um eine schöne Zeit miteinander zu verbringen.\n\n🗓 Wann: jeden zweiten Mittwoch, ab 18.30 Uhr\n📍 Wo: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nErster Termin: Mittwoch, 18.02.2026\n\nBringt Freund*innen mit — lasst uns das Semester gemeinsam beginnen!\n\nShoqata Studenti",
+    "festaFlamuritShort": "Ein festlicher Abend mit Musik, Tradition und Gemeinschaft.",
+    "festaFlamuritBody": "Die Festa e Flamurit ist ein besonderer Feierabend, an dem wir zusammenkommen und gemeinsam feiern.\n\nEs ist eine Nacht voller guter Musik, Tradition und warmer Atmosphäre. Natürlich fehlen auch die traditionellen Tänze, gute Gespräche und die schöne Zeit miteinander nicht.\n\nEine hervorragende Gelegenheit zum Tanzen, zum Feiern und um unsere Kultur lebendig zu halten.",
+    "festaFlamuritEdition2025Body": "KOMM, LASS UNS GEMEINSAM FEIERN!\n\nWir feiern gemeinsam den Flaggentag am Samstag, 29. November 2025, um 19.00 Uhr an der ETH Zürich, CAB F21, Universitätstrasse 6, 8092 Zürich.\n\nKomm zu einem besonderen Abend mit Musik und festlicher Atmosphäre, um den Flaggentag vom 28. November zu ehren! Die Kapazität ist auf 300 Personen begrenzt — sichere dir dein Ticket deshalb möglichst früh!\n\nEintritt: ab 18 Jahren; die Anreise mit öffentlichen Verkehrsmitteln wird empfohlen.",
     "empty": "Keine Beiträge für dieses Event.",
-    "emptyGallery": "Für dieses Event sind noch keine Fotos hochgeladen. Upload im Admin unter «Foto eventesh».",
     "galleryTitle": "Bilder vom Event",
     "momentsTitle": "Impressionen",
     "postsTitle": "Beiträge",
@@ -213,7 +224,6 @@
     "editionTitle": "{{name}} {{year}}",
     "editionIntro": "{{year}} — {{description}}",
     "backToEventHub": "← {{name}}",
-    "emptyEditionGallery": "Für diese Edition gibt es noch keine Fotos. Bitte im Admin unter «Foto eventesh» mit gewähltem Jahr hochladen.",
     "udhetimeEditionSubtitle2026": "Berlin",
     "udhetimeEditionSubtitle2025": "Sizilien",
     "udhetimeEditionSubtitle2024": ""

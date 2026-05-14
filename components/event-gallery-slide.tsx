@@ -3,26 +3,27 @@
 import * as React from "react";
 
 import { useDictionary } from "@/components/locale-provider";
+import { VIDEO_MUTE_CONTROL_BUTTON_CLASSNAME } from "@/lib/video-mute-control";
 
 const MEDIA_WRAP =
-  "relative w-full max-w-2xl mx-auto overflow-hidden rounded-xl bg-black shadow-md mt-6";
+  "relative w-full max-w-2xl overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-black/10";
 
-const MEDIA_INNER = "w-full h-auto max-h-[75vh] object-contain";
+/** Pa letterbox të zi: përmasat natyrore të imazhit (jo object-contain në bg të zi). */
+const MEDIA_INNER = "block h-auto w-full max-h-[75vh]";
 
-/** Vetëm brenda karuselit — 4:5 si Instagram. */
-const CAROUSEL_WRAP =
-  "relative w-full max-w-md mx-auto aspect-[4/5] overflow-hidden rounded-xl bg-black shadow-md mt-6";
+/** Të gjitha videot në galeri: 4:5, mbushje, autoplay, vetëm mute (pa controls). */
+const VIDEO_WRAP =
+  "relative w-full max-w-md aspect-[4/5] overflow-hidden rounded-xl bg-black shadow-md";
 
-const CAROUSEL_FILL = "absolute inset-0 w-full h-full object-cover";
+const VIDEO_FILL = "absolute inset-0 w-full h-full object-cover";
 
 type Props = {
   id: number;
   mimeType: string;
   /** Opsionale: URL statik nga /public; përndryshe media nga DB përmes `/api/event-gallery/[id]`. */
   src?: string | null;
+  /** Brenda karuselit: ndalo kur slide-i nuk është aktiv. */
   isActive?: boolean;
-  slideshowVideo?: boolean;
-  /** Slideshow / karusel: kuti 4:5 + object-cover; jashtë saj mbeten klasat e mëparshme. */
   inCarousel?: boolean;
 };
 
@@ -60,7 +61,6 @@ export function EventGallerySlide({
   mimeType,
   src: srcProp,
   isActive = true,
-  slideshowVideo = false,
   inCarousel = false,
 }: Props) {
   const resolvedSrc = srcProp?.trim() ? srcProp.trim() : `/api/event-gallery/${_id}`;
@@ -71,51 +71,27 @@ export function EventGallerySlide({
   const muteLabel = dict.media?.videoMute ?? "Mute";
   const [isMuted, setIsMuted] = React.useState(true);
 
-  const wrap = inCarousel ? CAROUSEL_WRAP : MEDIA_WRAP;
-  const mediaClass = inCarousel ? CAROUSEL_FILL : MEDIA_INNER;
-
   React.useEffect(() => {
     if (!mimeType.startsWith("video/")) return;
     const el = videoRef.current;
     if (!el) return;
     el.defaultMuted = true;
-    if (!slideshowVideo) {
-      el.muted = true;
-    }
-  }, [mimeType, slideshowVideo]);
-
-  React.useEffect(() => {
-    if (slideshowVideo || !mimeType.startsWith("video/")) return;
-    const el = videoRef.current;
-    if (!el) return;
-    if (isActive) {
-      void el.play().catch(() => {});
-    } else {
-      el.pause();
-    }
-  }, [isActive, mimeType, slideshowVideo]);
-
-  React.useEffect(() => {
-    if (!slideshowVideo || !mimeType.startsWith("video/")) return;
-    const el = videoRef.current;
-    if (!el) return;
-    el.defaultMuted = true;
     el.muted = true;
     setIsMuted(true);
-  }, [slideshowVideo, mimeType]);
+  }, [mimeType]);
 
   React.useEffect(() => {
-    if (!slideshowVideo || !mimeType.startsWith("video/")) return;
+    if (!mimeType.startsWith("video/")) return;
     const el = videoRef.current;
     if (!el) return;
-    if (isActive) {
-      void el.play().catch(() => {});
-    } else {
+    if (inCarousel && !isActive) {
       el.pause();
+      return;
     }
-  }, [isActive, mimeType, slideshowVideo]);
+    void el.play().catch(() => {});
+  }, [isActive, mimeType, inCarousel]);
 
-  function toggleSlideshowSound(e: React.MouseEvent) {
+  function toggleSound(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
     const v = videoRef.current;
@@ -129,60 +105,45 @@ export function EventGallerySlide({
   }
 
   if (mimeType.startsWith("video/")) {
-    if (slideshowVideo) {
-      return (
-        <div className={wrap}>
-          <video
-            ref={videoRef}
-            src={resolvedSrc}
-            className={mediaClass}
-            autoPlay
-            loop
-            muted={isMuted}
-            playsInline
-            preload="auto"
-            aria-label={videoTitle}
-            {...({ defaultMuted: true } as Record<string, unknown>)}
-            onVolumeChange={() => {
-              const v = videoRef.current;
-              if (v) setIsMuted(v.muted);
-            }}
-          />
-          <button
-            type="button"
-            onClick={toggleSlideshowSound}
-            className="absolute bottom-4 right-4 z-50"
-            aria-label={isMuted ? unmuteLabel : muteLabel}
-            aria-pressed={!isMuted}
-          >
-            {isMuted ? <IconMuted /> : <IconUnmuted />}
-          </button>
-        </div>
-      );
-    }
     return (
-      <div className={wrap}>
+      <div className={VIDEO_WRAP}>
         <video
           ref={videoRef}
           src={resolvedSrc}
-          className={mediaClass}
+          className={VIDEO_FILL}
           autoPlay
           loop
-          muted
+          muted={isMuted}
           playsInline
           preload="auto"
-          controls
           aria-label={videoTitle}
-          {...({ defaultMuted: true } as Record<string, unknown>)}
+          onVolumeChange={() => {
+            const v = videoRef.current;
+            if (v) setIsMuted(v.muted);
+          }}
         />
+        <button
+          type="button"
+          onClick={toggleSound}
+          className={VIDEO_MUTE_CONTROL_BUTTON_CLASSNAME}
+          aria-label={isMuted ? unmuteLabel : muteLabel}
+          aria-pressed={!isMuted}
+        >
+          {isMuted ? <IconMuted /> : <IconUnmuted />}
+        </button>
       </div>
     );
   }
 
+  const wrap = inCarousel
+    ? "relative w-full max-w-md aspect-[4/5] overflow-hidden rounded-xl bg-black shadow-md"
+    : MEDIA_WRAP;
+  const imgClass = inCarousel ? VIDEO_FILL : MEDIA_INNER;
+
   return (
     <div className={wrap}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={resolvedSrc} alt="" decoding="async" className={mediaClass} />
+      <img src={resolvedSrc} alt="" decoding="async" className={imgClass} />
     </div>
   );
 }

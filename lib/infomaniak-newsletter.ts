@@ -30,14 +30,36 @@ function extractApiErrorMessage(data: unknown): string {
   }
 }
 
+export type InfomaniakNewsletterSubscriberName = {
+  firstName: string;
+  lastName: string;
+};
+
+/** Teilt einen vollen Anzeigenamen für Infomaniak (firstname / lastname) auf. */
+export function splitDisplayNameForNewsletter(fullName: string): InfomaniakNewsletterSubscriberName {
+  const t = fullName.trim();
+  if (!t) return { firstName: "", lastName: "" };
+  const i = t.indexOf(" ");
+  if (i === -1) return { firstName: t, lastName: "" };
+  return { firstName: t.slice(0, i).trim(), lastName: t.slice(i + 1).trim() };
+}
+
 /**
  * Trägt eine E-Mail in die Infomaniak-Mailingliste ein und ordnet sie der Gruppe 157650 zu.
+ * Optional Vor- und Nachname (Infomaniak-Felder `firstname` / `lastname`).
  */
-export async function subscribeInfomaniakNewsletter(email: string): Promise<void> {
+export async function subscribeInfomaniakNewsletter(
+  email: string,
+  name?: InfomaniakNewsletterSubscriberName
+): Promise<void> {
   const apiKey = process.env.INFOMANIAK_NEWSLETTER_API_KEY;
+
+  const firstName = name?.firstName?.trim() ?? "";
+  const lastName = name?.lastName?.trim() ?? "";
 
   console.log("[Infomaniak Newsletter] Start subscribe", {
     email,
+    hasName: Boolean(firstName || lastName),
     url: INFOMANIAK_SUBSCRIBER_URL,
     hasApiKey: Boolean(apiKey),
     keyLength: apiKey?.length ?? 0,
@@ -50,17 +72,20 @@ export async function subscribeInfomaniakNewsletter(email: string): Promise<void
 
   console.log("[Infomaniak Newsletter] Sende POST an Gruppe 157650 ...");
 
+  const body: Record<string, unknown> = {
+    email,
+    groups: [157650],
+  };
+  if (firstName) body.firstname = firstName;
+  if (lastName) body.lastname = lastName;
+
   const response = await fetch(INFOMANIAK_SUBSCRIBER_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${apiKey}`,
     },
-    body: JSON.stringify({ 
-      email: email,
-      // Die ID deiner Gruppe aus der URL
-      groups: [157650]
-    }),
+    body: JSON.stringify(body),
   });
 
   console.log("[Infomaniak Newsletter] Fetch abgeschlossen", {

@@ -6,12 +6,16 @@ import { Playfair_Display } from "next/font/google";
 
 import { EventGalleryZigzag } from "@/components/event-gallery-zigzag";
 import { rowsToGalleryBlocks } from "@/lib/event-gallery-blocks";
-import { parseEventEditionYear } from "@/lib/event-editions";
+import { festaFlamuritStaticGalleryBlocks } from "@/lib/festa-flamurit-static-gallery";
+import { FESTA_E_FLAMURIT_SLUG, parseEventEditionYear } from "@/lib/event-editions";
+import { sofraEdition2026GalleryLeadBlocks } from "@/lib/sofra-2026-home-post-video";
+import { udhetimeEditionGalleryLeadBlocks } from "@/lib/udhetime-hub-card-poster";
 import { getEventPageMeta } from "@/lib/evente-page-meta";
 import { prisma } from "@/lib/db";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { interpolate } from "@/lib/i18n/interpolate";
 import { getLocale } from "@/lib/i18n/server";
+import { cn } from "@/lib/utils";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -33,6 +37,10 @@ export default async function EventeEditionPage({ params }: Props) {
 
   const meta = getEventPageMeta(dict, locale, slug);
   if (!meta) notFound();
+
+  if (meta.slug === FESTA_E_FLAMURIT_SLUG && editionYear === 2026) {
+    notFound();
+  }
 
   if (meta.slug === "kafe-llafe") {
     redirect(`/evente/${meta.slug}`);
@@ -56,6 +64,11 @@ export default async function EventeEditionPage({ params }: Props) {
     galleryBlocks = rowsToGalleryBlocks([]);
   }
 
+  const staticFesta = festaFlamuritStaticGalleryBlocks(meta.slug, editionYear);
+  const udhetimeLead = udhetimeEditionGalleryLeadBlocks(meta.slug, editionYear);
+  const sofraLead = await sofraEdition2026GalleryLeadBlocks(meta.slug, editionYear);
+  const galleryBlocksMerged = [...sofraLead, ...udhetimeLead, ...staticFesta, ...galleryBlocks];
+
   const editionTitle = interpolate(ev.editionTitle, { name: meta.name, year: String(editionYear) });
 
   return (
@@ -71,7 +84,13 @@ export default async function EventeEditionPage({ params }: Props) {
           </Link>
         </p>
         <h1
-          className={`${playfair.className} mt-6 text-3xl font-bold tracking-tight text-black md:text-4xl`}
+          className={cn(
+            playfair.className,
+            "mt-6 tracking-tight text-black",
+            meta.slug === "festa-e-flamurit"
+              ? "text-3xl font-medium md:text-[2.125rem]"
+              : "text-3xl font-bold md:text-4xl"
+          )}
         >
           {editionTitle}
         </h1>
@@ -79,11 +98,13 @@ export default async function EventeEditionPage({ params }: Props) {
           {interpolate(ev.editionIntro, { description: meta.description, year: String(editionYear) })}
         </p>
 
-        <EventGalleryZigzag
-          blocks={galleryBlocks}
-          momentsTitle={ev.momentsTitle}
-          emptyMessage={ev.emptyEditionGallery}
-        />
+        {meta.slug === "festa-e-flamurit" ? (
+          <p className="mt-8 max-w-prose text-[15px] leading-[1.75] text-black/70 whitespace-pre-line md:text-base md:leading-[1.7]">
+            {editionYear === 2025 ? ev.festaFlamuritEdition2025Body : ev.festaFlamuritBody}
+          </p>
+        ) : null}
+
+        <EventGalleryZigzag blocks={galleryBlocksMerged} />
       </section>
     </main>
   );

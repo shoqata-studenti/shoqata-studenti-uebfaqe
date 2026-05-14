@@ -65,7 +65,7 @@ export function EventGalleryCarouselBlock({ items }: { items: Item[] }) {
   if (items.length === 0) return null;
 
   return (
-    <div dir="ltr" className="relative mx-auto w-full max-w-md">
+    <div dir="ltr" className="relative w-full max-w-md">
       <Carousel
         className="relative w-full"
         opts={{ loop: false, align: "center", direction: "ltr" }}
@@ -79,7 +79,6 @@ export function EventGalleryCarouselBlock({ items }: { items: Item[] }) {
                 mimeType={item.mimeType}
                 src={item.src}
                 isActive={items.length === 1 ? true : slideIndex === current}
-                slideshowVideo={item.mimeType.startsWith("video/")}
                 inCarousel
               />
             </CarouselItem>

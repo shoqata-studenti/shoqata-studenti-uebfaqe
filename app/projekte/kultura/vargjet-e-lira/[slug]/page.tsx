@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Vargjet e lira | Shoqata Studenti Zürich" };
   }
   return {
-    title: `${topic.title} | Vargjet e lira`,
+    title: `${topic.sortOrder}. ${topic.title}`,
     description: topic.title,
   };
 }
@@ -28,7 +28,7 @@ export default async function VargjetTopicPage({ params }: Props) {
 
   const topic = await prisma.vargjetTopic.findUnique({
     where: { slug },
-    include: { documents: { orderBy: { createdAt: "desc" } } },
+    include: { documents: { orderBy: { id: "asc" } } },
   });
 
   if (!topic) {
@@ -40,7 +40,7 @@ export default async function VargjetTopicPage({ params }: Props) {
 
   return (
     <>
-      <SubpageHero title={topic.title} variant="compact" />
+      <SubpageHero title={`${topic.sortOrder}. ${topic.title}`} variant="compact" />
       <div className="border-t border-black/10 bg-white pb-20 text-black">
         <div className="mx-auto w-full max-w-[1440px] px-6 pt-4 md:px-10">
           <nav className="text-sm text-black/55">
@@ -55,7 +55,7 @@ export default async function VargjetTopicPage({ params }: Props) {
               {dict.vargjet.title}
             </Link>
             <span className="mx-2 text-black/30">/</span>
-            <span className="text-black">{topic.title}</span>
+            <span className="text-black">{topic.sortOrder}. {topic.title}</span>
           </nav>
 
           <h2 className="mt-10 text-lg font-semibold tracking-tight text-black">
