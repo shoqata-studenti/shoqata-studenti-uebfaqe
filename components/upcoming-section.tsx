@@ -66,6 +66,7 @@ export function UpcomingSection({ headingClassName, posts, dict, dateLocale }: P
               day: "numeric",
               hour: "2-digit",
               minute: "2-digit",
+              hour12: false,
             });
             const place = post.venue?.trim() || u.venueMissing;
 
