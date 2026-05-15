@@ -37,13 +37,19 @@ export async function POST(req: Request) {
     const body = await req.json();
     const {
       email: emailRaw,
-      name,
+      firstName,
+      surname,
+      lastName,
+      name: legacyName,
       university,
       studyField,
       type,
       confirmEarlyRenewal: confirmRaw,
     } = body as {
       email?: string;
+      firstName?: string;
+      surname?: string;
+      lastName?: string;
       name?: string;
       university?: string;
       studyField?: string;
@@ -51,15 +57,26 @@ export async function POST(req: Request) {
       confirmEarlyRenewal?: boolean;
     };
 
-    const fullName = String(name ?? "").trim();
+    const givenName = String(firstName ?? "").trim();
+    const familyName = String(surname ?? lastName ?? "").trim();
     const email = String(emailRaw ?? "").trim().toLowerCase();
     const uni = String(university ?? "").trim();
     const studium = String(studyField ?? "").trim();
     const confirmEarlyRenewal = confirmRaw === true;
 
-    if (!fullName) {
-      return NextResponse.json({ error: "Name fehlt." }, { status: 400 });
+    let memberName = givenName;
+    let memberSurname = familyName;
+    if (!memberName && !memberSurname && legacyName) {
+      const parts = String(legacyName).trim().split(/\s+/);
+      memberName = parts[0] ?? "";
+      memberSurname = parts.slice(1).join(" ");
     }
+
+    if (!memberName || !memberSurname) {
+      return NextResponse.json({ error: "Vor- und Nachname sind erforderlich." }, { status: 400 });
+    }
+
+    const fullName = `${memberName} ${memberSurname}`.trim();
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json({ error: "E-Mail fehlt oder ist ungültig." }, { status: 400 });
@@ -128,8 +145,13 @@ export async function POST(req: Request) {
       cancel_url: `${process.env.NEXT_PUBLIC_URL}/membership`,
       metadata: {
         email,
+        firstName: memberName,
+        surname: memberSurname,
+        lastName: memberSurname,
         name: fullName,
+        uni,
         university: uni,
+        studium,
         studyField: studium,
         type,
       },

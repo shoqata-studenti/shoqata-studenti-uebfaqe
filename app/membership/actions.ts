@@ -6,7 +6,7 @@ import { prisma } from "@/lib/db";
 import { dateLocaleFor, getDictionary } from "@/lib/i18n/get-dictionary";
 import { interpolate } from "@/lib/i18n/interpolate";
 import { getLocale } from "@/lib/i18n/server";
-import { addYears, canRenewMembership, daysUntil } from "@/lib/membership-logic";
+import { addYears, canRenewMembership, daysUntil, memberFullName } from "@/lib/membership-logic";
 import { sendMembershipEmail } from "@/lib/send-membership-email";
 import { subscribeInfomaniakNewsletter } from "@/lib/infomaniak-newsletter";
 
@@ -45,15 +45,14 @@ export async function submitMembership(
   const ma = dict.membershipActions;
   const dl = dateLocaleFor(locale);
 
-  const firstName = String(formData.get("firstName") ?? "").trim();
-  const lastName = String(formData.get("lastName") ?? "").trim();
-  const name = `${firstName} ${lastName}`.trim();
+  const name = String(formData.get("firstName") ?? "").trim();
+  const surname = String(formData.get("lastName") ?? "").trim();
   const email = normalizeEmail(String(formData.get("email") ?? ""));
   const uni = String(formData.get("uni") ?? "").trim();
   const studium = String(formData.get("studium") ?? "").trim();
   const type = parseType(formData.get("type"));
 
-  if (!firstName || !lastName || !email || !uni || !studium || !type) {
+  if (!name || !surname || !email || !uni || !studium || !type) {
     return { ok: false, error: ma.fillAll };
   }
 
@@ -70,6 +69,7 @@ export async function submitMembership(
       data: {
         email,
         name,
+        surname,
         uni,
         studium,
         type,
@@ -78,7 +78,7 @@ export async function submitMembership(
         lastRenewalAt: now,
       },
     });
-    const mail = await sendMembershipEmail(email, type, name);
+    const mail = await sendMembershipEmail(email, type, memberFullName(name, surname));
     if (!mail.sent && mail.error) {
       return {
         ok: true,
@@ -106,6 +106,7 @@ export async function submitMembership(
     where: { id: existing.id },
     data: {
       name,
+      surname,
       uni,
       studium,
       type,
@@ -115,7 +116,7 @@ export async function submitMembership(
     },
   });
 
-  const mail = await sendMembershipEmail(email, type, name);
+  const mail = await sendMembershipEmail(email, type, memberFullName(name, surname));
   if (!mail.sent && mail.error) {
     return {
       ok: true,

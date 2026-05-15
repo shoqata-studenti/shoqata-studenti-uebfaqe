@@ -3,16 +3,14 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { MembershipType } from "@prisma/client";
 import { prisma } from "@/lib/db";
-import {
-  splitDisplayNameForNewsletter,
-  subscribeInfomaniakNewsletter,
-} from "@/lib/infomaniak-newsletter";
-import { addYears } from "@/lib/membership-logic";
+import { subscribeInfomaniakNewsletter } from "@/lib/infomaniak-newsletter";
+import { addYears, memberFullName, splitMemberName } from "@/lib/membership-logic";
 import { sendStripeWelcomeEmailSq } from "@/lib/membership-email-albanian";
 
 type MembershipMetadata = {
   email: string;
   name: string;
+  surname: string;
   uni: string;
   studium: string;
   type: MembershipType;
@@ -27,18 +25,30 @@ function extractMembershipMetadata(
 ): MembershipMetadata | null {
   const metadata = session.metadata ?? {};
   const email = metadata.email ?? session.customer_details?.email ?? undefined;
-  const name = metadata.name ?? session.customer_details?.name ?? undefined;
   const uni = metadata.uni ?? metadata.university ?? undefined;
   const studium = metadata.studium ?? metadata.studyField ?? undefined;
   const type = parseMembershipType(metadata.type ?? undefined);
 
-  if (!email || !name || !uni || !studium) {
+  const firstName = (metadata.firstName ?? "").trim();
+  const surname = (metadata.surname ?? metadata.lastName ?? "").trim();
+  const legacyFull = (metadata.name ?? session.customer_details?.name ?? "").trim();
+
+  let name = firstName;
+  let memberSurname = surname;
+  if (!name && !memberSurname && legacyFull) {
+    const split = splitMemberName(legacyFull);
+    name = split.name;
+    memberSurname = split.surname;
+  }
+
+  if (!email || !name || !memberSurname || !uni || !studium) {
     return null;
   }
 
   return {
     email: email.trim().toLowerCase(),
-    name: name.trim(),
+    name,
+    surname: memberSurname,
     uni: uni.trim(),
     studium: studium.trim(),
     type,
@@ -88,6 +98,7 @@ export async function POST(req: Request) {
         where: { email: metadata.email },
         update: {
           name: metadata.name,
+          surname: metadata.surname,
           uni: metadata.uni,
           studium: metadata.studium,
           type: metadata.type,
@@ -99,6 +110,7 @@ export async function POST(req: Request) {
         create: {
           email: metadata.email,
           name: metadata.name,
+          surname: metadata.surname,
           uni: metadata.uni,
           studium: metadata.studium,
           type: metadata.type,
@@ -112,10 +124,10 @@ export async function POST(req: Request) {
       console.log("Mitglied erfolgreich gespeichert:", member.email);
 
       try {
-        await subscribeInfomaniakNewsletter(
-          metadata.email,
-          splitDisplayNameForNewsletter(metadata.name)
-        );
+        await subscribeInfomaniakNewsletter(metadata.email, {
+          firstName: metadata.name,
+          lastName: metadata.surname,
+        });
       } catch (newsletterError) {
         console.error("Infomaniak Newsletter (Stripe-Webhook):", newsletterError);
       }
@@ -123,7 +135,7 @@ export async function POST(req: Request) {
       if (process.env.RESEND_API_KEY) {
         const mail = await sendStripeWelcomeEmailSq(
           metadata.email,
-          metadata.name,
+          memberFullName(metadata.name, metadata.surname),
           metadata.uni,
           metadata.type
         );

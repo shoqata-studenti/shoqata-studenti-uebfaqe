@@ -6,7 +6,8 @@ import { useDictionary } from "@/components/locale-provider";
 import { Button } from "@/components/ui/button";
 
 type CheckoutBody = {
-  name: string;
+  firstName: string;
+  surname: string;
   email: string;
   university: string;
   studyField: string;
@@ -75,10 +76,15 @@ export function MembershipForm({ defaultMembershipType = "STUDENT" }: Membership
 
     const formData = new FormData(e.currentTarget);
     const firstName = String(formData.get("firstName") ?? "").trim();
-    const lastName = String(formData.get("lastName") ?? "").trim();
-    const name = `${firstName} ${lastName}`.trim();
+    const surname = String(formData.get("lastName") ?? "").trim();
+    if (!firstName || !surname) {
+      setError(dict.membershipActions.fillAll);
+      setPending(false);
+      return;
+    }
     const payload: CheckoutBody = {
-      name,
+      firstName,
+      surname,
       email: String(formData.get("email") ?? "").trim(),
       university: String(formData.get("uni") ?? "").trim(),
       studyField: String(formData.get("studium") ?? "").trim(),

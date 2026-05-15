@@ -3,6 +3,7 @@ CREATE TABLE `Member` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `email` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
+    `surname` VARCHAR(191) NOT NULL DEFAULT '',
     `uni` VARCHAR(191) NOT NULL,
     `studium` VARCHAR(191) NOT NULL,
     `type` ENUM('STUDENT', 'ALUMNI') NOT NULL,

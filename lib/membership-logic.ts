@@ -38,3 +38,17 @@ export function isMembershipStillActive(expiresAt: Date | null): boolean {
   if (expiresAt == null) return false;
   return daysUntil(expiresAt) > 0;
 }
+
+/** Vollständiger Anzeigename aus getrenntem Vor- und Nachnamen. */
+export function memberFullName(name: string, surname: string): string {
+  return `${name.trim()} ${surname.trim()}`.trim();
+}
+
+/** Fallback: ein gespeicherter `name`-String in Vor- und Nachname aufteilen. */
+export function splitMemberName(fullName: string): { name: string; surname: string } {
+  const t = fullName.trim();
+  if (!t) return { name: "", surname: "" };
+  const i = t.indexOf(" ");
+  if (i === -1) return { name: t, surname: "" };
+  return { name: t.slice(0, i).trim(), surname: t.slice(i + 1).trim() };
+}

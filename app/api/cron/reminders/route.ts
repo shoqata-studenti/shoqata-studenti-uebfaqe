@@ -5,7 +5,7 @@ import {
   sendMembershipExpiredEmailSq,
   sendMembershipReminderEmailSq,
 } from "@/lib/membership-email-albanian";
-import { utcDayRange } from "@/lib/membership-logic";
+import { memberFullName, utcDayRange } from "@/lib/membership-logic";
 
 function authorize(request: Request): boolean {
   const secret = process.env.CRON_SECRET;
@@ -44,6 +44,7 @@ export async function GET(request: Request) {
       id: true,
       email: true,
       name: true,
+      surname: true,
       expiresAt: true,
       type: true,
     },
@@ -57,7 +58,7 @@ export async function GET(request: Request) {
     if (!m.expiresAt) continue;
 
     if (isInUtcDayRange(m.expiresAt, today)) {
-      const r = await sendMembershipExpiredEmailSq(m.email, m.name);
+      const r = await sendMembershipExpiredEmailSq(m.email, memberFullName(m.name, m.surname));
       results.push({
         id: m.id,
         email: m.email,
@@ -69,7 +70,11 @@ export async function GET(request: Request) {
     }
 
     if (isInUtcDayRange(m.expiresAt, inSeven)) {
-      const r = await sendMembershipReminderEmailSq(m.email, m.name, m.expiresAt);
+      const r = await sendMembershipReminderEmailSq(
+        m.email,
+        memberFullName(m.name, m.surname),
+        m.expiresAt
+      );
       results.push({
         id: m.id,
         email: m.email,

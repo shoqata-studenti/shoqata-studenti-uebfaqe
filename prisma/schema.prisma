@@ -7,33 +7,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum MemberStatus {
-  ACTIVE
-  EXPIRED
-  PENDING
-}
-
-enum MembershipType {
-  STUDENT
-  ALUMNI
-}
-
 model Member {
-  id            Int              @id @default(autoincrement())
-  email         String           @unique
+  id            Int            @id @default(autoincrement())
+  email         String         @unique
   name          String
   uni           String
   studium       String
   type          MembershipType
-  status        MemberStatus     @default(ACTIVE)
-  stripeId      String?          @unique
-  joinedAt      DateTime         @default(now())
+  status        MemberStatus   @default(ACTIVE)
+  stripeId      String?        @unique
+  joinedAt      DateTime       @default(now())
   expiresAt     DateTime?
-  lastRenewalAt DateTime        @default(now())
+  lastRenewalAt DateTime       @default(now())
+  surname       String         @default("")
 }
 
 model Post {
-  id            Int      @id @default(autoincrement())
+  id            Int       @id @default(autoincrement())
   title         String
   content       String
   imageMimeType String
@@ -44,7 +34,7 @@ model Post {
   eventAt       DateTime?
   /// vendi (p.sh. Zürich)
   venue         String?
-  createdAt     DateTime @default(now())
+  createdAt     DateTime  @default(now())
 
   @@index([cardLinkPath])
   @@index([eventAt])
@@ -62,30 +52,41 @@ model VargjetTopic {
 model VargjetDocument {
   id               Int          @id @default(autoincrement())
   topicId          Int
-  topic            VargjetTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
   title            String
   originalFileName String
   mimeType         String
   fileData         Bytes
   createdAt        DateTime     @default(now())
+  topic            VargjetTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
 
   @@index([topicId])
 }
 
 model EventGalleryImage {
-  id          Int      @id @default(autoincrement())
-  eventSlug   String
+  id               Int      @id @default(autoincrement())
+  eventSlug        String
   /// viti i edicionit (p.sh. 2025) — faqja /evente/{slug}/{vit}
-  editionYear Int      @default(2024)
-  sortOrder   Int      @default(0)
+  editionYear      Int      @default(2024)
+  sortOrder        Int      @default(0)
   /// të njëjtin UUID për të gjitha slide-t e një slideshow; null = një media e vetme
   slideshowGroupId String?
   slideshowIndex   Int      @default(0)
-  mimeType    String
-  fileData    Bytes
-  createdAt   DateTime @default(now())
+  mimeType         String
+  fileData         Bytes
+  createdAt        DateTime @default(now())
 
   @@index([eventSlug, editionYear])
   @@index([eventSlug])
   @@index([eventSlug, editionYear, sortOrder])
+}
+
+enum MemberStatus {
+  ACTIVE
+  EXPIRED
+  PENDING
+}
+
+enum MembershipType {
+  STUDENT
+  ALUMNI
 }
