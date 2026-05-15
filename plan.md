@@ -24,4 +24,4 @@
 
 ## Design Rules
 - Palette: Red (#E11D48), White (#FFFFFF), Black (#000000).
-- Style: Professional, clean, high contrast, serif-titles for a "traditional yet modern club" look.
+- Style: Professional, clean, high contrast, serif-titles for a "traditional yet modern club" look..
