@@ -36,7 +36,10 @@
     "vargjetELira": "Vargjet e lira",
     "ligjerata": "Lectures",
     "bashkpunimet": "Collaborations",
-    "kultura": "Culture"
+    "kultura": "Culture",
+    "openMainMenu": "Open menu",
+    "closeMainMenu": "Close menu",
+    "panelMenuTitle": "Menu"
   },
   "layout": {
     "logoAlt": "Shoqata Studenti Zürich",
