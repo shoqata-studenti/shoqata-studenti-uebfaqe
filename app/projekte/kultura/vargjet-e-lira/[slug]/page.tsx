@@ -6,7 +6,6 @@ import { SubpageHero } from "@/components/subpage-hero";
 import { prisma } from "@/lib/db";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
-
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -37,7 +36,6 @@ export default async function VargjetTopicPage({ params }: Props) {
 
   const locale = await getLocale();
   const dict = getDictionary(locale);
-
   return (
     <>
       <SubpageHero title={`${topic.sortOrder}. ${topic.title}`} variant="compact" />

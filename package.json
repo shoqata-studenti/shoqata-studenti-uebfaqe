@@ -6,6 +6,7 @@
     "postinstall": "prisma generate",
     "db:sync": "prisma generate && prisma db push",
     "db:seed:vargjet": "node scripts/seed-vargjet.mjs",
+    "db:revert-vargjet-titles": "node scripts/revert-vargjet-topic-titles.mjs",
     "db:neon-import": "node scripts/mysql-dump-to-neon-import.mjs",
     "db:neon-import:sqlite": "python3 scripts/sqlite-to-neon-import.py",
     "db:backfill-surname": "node scripts/backfill-member-surname.mjs",

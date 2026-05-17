@@ -5,6 +5,7 @@ import { SubpageHero } from "@/components/subpage-hero";
 import { prisma } from "@/lib/db";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
+import { vargjetTopicDateLabel } from "@/lib/vargjet-topic-display";
 
 export const metadata: Metadata = {
   title: "Vargjet e lira | Shoqata Studenti Zürich",
@@ -37,11 +38,21 @@ export default async function VargjetELiraPage() {
             <p className="mt-12 text-sm text-black/55">{dict.vargjet.noThemes}</p>
           ) : (
             <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {topics.map((t) => (
+              {topics.map((t) => {
+                const dateLabel = vargjetTopicDateLabel(t.sortOrder);
+                const cardKicker = dateLabel ?? dict.vargjet.themeBadge;
+
+                return (
                 <li key={t.id}>
                   <Link href={`/projekte/kultura/vargjet-e-lira/${t.slug}`} className={cardClass}>
-                    <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#E11D48]">
-                      {dict.vargjet.themeBadge}
+                    <span
+                      className={
+                        dateLabel
+                          ? "text-xs font-semibold tracking-[0.14em] text-[#E11D48]"
+                          : "text-xs font-semibold uppercase tracking-[0.14em] text-[#E11D48]"
+                      }
+                    >
+                      {cardKicker}
                     </span>
                     <h2 className="mt-2 text-xl font-semibold tracking-tight group-hover:text-[#E11D48]">
                       {t.sortOrder}. {t.title}
@@ -52,7 +63,8 @@ export default async function VargjetELiraPage() {
                     </p>
                   </Link>
                 </li>
-              ))}
+              );
+              })}
             </ul>
           )}
         </div>
