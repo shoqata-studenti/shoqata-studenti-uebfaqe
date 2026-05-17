@@ -1,5 +1,7 @@
 import "server-only";
 
+import { isOutboundEmailDisabled } from "@/lib/outbound-email";
+
 const INFOMANIAK_SUBSCRIBER_URL = "https://api.infomaniak.com/1/newsletters/39426/subscribers";
 
 function dataIndicatesAlreadyExists(data: unknown): boolean {
@@ -52,6 +54,11 @@ export async function subscribeInfomaniakNewsletter(
   email: string,
   name?: InfomaniakNewsletterSubscriberName
 ): Promise<void> {
+  if (isOutboundEmailDisabled()) {
+    console.log("[Infomaniak Newsletter] Übersprungen (DISABLE_OUTBOUND_EMAILS).", { email });
+    return;
+  }
+
   const apiKey = process.env.INFOMANIAK_NEWSLETTER_API_KEY;
 
   const firstName = name?.firstName?.trim() ?? "";

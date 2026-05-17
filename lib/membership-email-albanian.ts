@@ -3,6 +3,8 @@ import "server-only";
 import { Resend } from "resend";
 import type { MembershipType } from "@prisma/client";
 
+import { isOutboundEmailDisabled, OUTBOUND_EMAIL_DISABLED_REASON } from "@/lib/outbound-email";
+
 const RENEWAL_URL = "https://shoqata-studenti.ch/regjistrohu";
 
 const typeLabelSq: Record<MembershipType, string> = {
@@ -20,6 +22,10 @@ export async function sendMembershipConfirmationEmailSq(
   type: MembershipType,
   fullName?: string
 ): Promise<{ sent: boolean; skipped?: string; error?: string }> {
+  if (isOutboundEmailDisabled()) {
+    return { sent: false, skipped: OUTBOUND_EMAIL_DISABLED_REASON };
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     return { sent: false, skipped: "RESEND_API_KEY ist nicht gesetzt." };
@@ -52,7 +58,11 @@ export async function sendStripeWelcomeEmailSq(
   fullName: string,
   uni: string,
   type: MembershipType
-): Promise<{ sent: boolean; error?: string }> {
+): Promise<{ sent: boolean; error?: string; skipped?: string }> {
+  if (isOutboundEmailDisabled()) {
+    return { sent: false, skipped: OUTBOUND_EMAIL_DISABLED_REASON };
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     return { sent: false, error: "RESEND_API_KEY fehlt" };
@@ -95,7 +105,11 @@ export async function sendMembershipReminderEmailSq(
   email: string,
   fullName: string,
   expiresAt: Date
-): Promise<{ ok: boolean; error?: string }> {
+): Promise<{ ok: boolean; error?: string; skipped?: string }> {
+  if (isOutboundEmailDisabled()) {
+    return { ok: false, skipped: OUTBOUND_EMAIL_DISABLED_REASON };
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     return { ok: false, error: "RESEND_API_KEY fehlt" };
@@ -136,7 +150,11 @@ export async function sendMembershipReminderEmailSq(
 export async function sendMembershipExpiredEmailSq(
   email: string,
   fullName: string
-): Promise<{ ok: boolean; error?: string }> {
+): Promise<{ ok: boolean; error?: string; skipped?: string }> {
+  if (isOutboundEmailDisabled()) {
+    return { ok: false, skipped: OUTBOUND_EMAIL_DISABLED_REASON };
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     return { ok: false, error: "RESEND_API_KEY fehlt" };
