@@ -9,7 +9,7 @@ export default function StrukturaPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/organigram-shoqata.png"
-            alt="Organigrami i Shoqates Studenti"
+            alt="Organigrami i Shoqatës Studenti"
             className="h-auto w-full"
           />
         </div>

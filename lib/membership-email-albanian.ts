@@ -77,7 +77,7 @@ export async function sendStripeWelcomeEmailSq(
     html: `
       <p>Përshëndetje ${escapeHtml(fullName)},</p>
       <p>Faleminderit për pagesën tuaj. Anëtarësimi juaj (<strong>${typeLabelSq[type]}</strong>) është tani aktiv.</p>
-      <p>Të dhënat tuaja janë regjistruar për <strong>${escapeHtml(uni)}</strong>.</p>
+      <p>Të dhënat tuaja janë regjistruar në <strong>${escapeHtml(uni)}</strong>.</p>
       <p>Shumë suksese në studime!</p>
       <p>Përzemërsisht,<br/>Shoqata Studenti</p>
     `,
@@ -93,7 +93,7 @@ function benefitsBlockHtml(): string {
   return `
     <p>Si anëtar/e, ju përfitoni gjithashtu:</p>
     <ul>
-      <li>të drejtën për të marrë pjesë në Asamblenë Gjenerale;</li>
+      <li>të drejtën për të marrë pjesë në Kuvendin e Përgjithshëm;</li>
       <li>përparësi në pjesëmarrje në evente me vende të limituara;</li>
       <li>çmime të reduktuara ose hyrje falas në shumë aktivitete.</li>
     </ul>
@@ -130,7 +130,7 @@ export async function sendMembershipReminderEmailSq(
     html: `
       <p>Të nderuar ${escapeHtml(fullName)},</p>
       <p>Ju njoftojmë se anëtarësimi juaj në Shoqatën Studenti do të skadojë më <strong>${escapeHtml(dateStr)}</strong>.</p>
-      <p>Jemi të lumtur që jeni pjesë e jona dhe do të na gëzonte shumë nëse e rinovoni anëtarësimin tuaj në kohë.</p>
+      <p>Jemi të lumtur që jeni pjesë e jonë dhe do të na gëzonte shumë nëse e rinovoni anëtarësimin tuaj në kohë.</p>
       <p>Shoqata Studenti financohet kryesisht nga pagesat e anëtarësisë së anëtarëve të saj aktivë. Duke qenë se anëtarët tanë janë studentë, ky kontribut është simbolik, por na ndihmon shumë që të vazhdojmë të funksionojmë dhe të organizojmë aktivitete për ju. Prandaj, anëtarësimi juaj kontribuon drejtpërdrejt në mirëqenien dhe vazhdimësinë e shoqatës.</p>
       ${benefitsBlockHtml()}
       <p>Për ta rinovuar anëtarësimin, ju lutemi klikoni këtu:<br/>
@@ -169,7 +169,7 @@ export async function sendMembershipExpiredEmailSq(
     html: `
       <p>Të nderuar ${escapeHtml(fullName)},</p>
       <p>Ju njoftojmë se anëtarësimi juaj në Shoqatën Studenti ka skaduar.</p>
-      <p>Jemi të lumtur që keni qenë pjesë e jona deri tani dhe do të na gëzonte shumë nëse vendosni ta rinovoni anëtarësimin tuaj.</p>
+      <p>Jemi të lumtur që keni qenë pjesë e jonë deri tani dhe do të na gëzonte shumë nëse vendosni ta rinovoni anëtarësimin tuaj.</p>
       <p>Shoqata Studenti financohet kryesisht nga pagesat e anëtarësisë së anëtarëve të saj aktivë. Duke qenë se anëtarët tanë janë studentë, ky kontribut është simbolik, por na ndihmon shumë që të vazhdojmë të funksionojmë dhe të organizojmë aktivitete për ju. Prandaj, anëtarësimi juaj kontribuon drejtpërdrejt në mirëqenien dhe vazhdimësinë e shoqatës.</p>
       ${benefitsBlockHtml()}
       <p>Për ta rinovuar anëtarësimin, ju lutemi klikoni këtu:<br/>

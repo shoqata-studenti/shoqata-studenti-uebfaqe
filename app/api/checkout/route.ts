@@ -101,7 +101,7 @@ export async function POST(req: Request) {
         {
           code: "RENEW_TOO_EARLY",
           activeUntil: existing.expiresAt.toISOString(),
-          message: `Anëtarësimi me këtë email është ende aktiv deri më ${until}. Rinovimi nëpërmjet pagesës online është i mundur vetëm kur kanë mbetur më pak se një muaj deri në skadencë (pak se ${RENEWAL_WINDOW_DAYS} ditë).`,
+          message: `Anëtarësimi me këtë email është ende aktiv deri më ${until}. Rinovimi nëpërmjet pagesës online është i mundur vetëm kur kanë mbetur më pak se një muaj deri në skadencë (më pak se ${RENEWAL_WINDOW_DAYS} ditë).`,
         },
         { status: 403 }
       );
@@ -119,7 +119,7 @@ export async function POST(req: Request) {
         {
           code: "CONFIRM_RENEWAL_REQUIRED",
           activeUntil: existing.expiresAt.toISOString(),
-          message: `Anëtarësimi juaj është ende aktiv deri më ${until}. Kanë mbetur afërsisht ${roughlyDaysLeft} ditë deri në skadencë. Nëse vazhdon me pagesë një vit i ri do të shtohet datës aktuale të skadencës jo nga dita e sotme. Mund të anulosh ose të vazhdosh me pagesë.`,
+          message: `Anëtarësimi juaj është ende aktiv deri më ${until}. Kanë mbetur afërsisht ${roughlyDaysLeft} ditë deri në skadencë. Nëse vazhdoni me pagesë, viti i ri do të shtohet datës aktuale të skadencës, jo nga dita e sotme. Mund të anuloni ose të vazhdoni me pagesë.`,
         },
         { status: 409 }
       );

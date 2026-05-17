@@ -8,18 +8,18 @@ datasource db {
 }
 
 model Member {
-  id            Int            @id @default(autoincrement())
-  email         String         @unique
+  id            Int              @id @default(autoincrement())
+  email         String           @unique
   name          String
+  surname       String           @default("")
   uni           String
   studium       String
   type          MembershipType
-  status        MemberStatus   @default(ACTIVE)
-  stripeId      String?        @unique
-  joinedAt      DateTime       @default(now())
+  status        MemberStatus     @default(ACTIVE)
+  stripeId      String?          @unique
+  joinedAt      DateTime         @default(now())
   expiresAt     DateTime?
-  lastRenewalAt DateTime       @default(now())
-  surname       String         @default("")
+  lastRenewalAt DateTime         @default(now())
 }
 
 model Post {

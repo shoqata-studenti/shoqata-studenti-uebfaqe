@@ -17,7 +17,7 @@
     "projects": "PROJEKTE",
     "federata": "FEDERATA",
     "contact": "KONTAKT",
-    "register": "ANETARESOHU!",
+    "register": "ANËTARËSOHU!",
     "info": "Info",
     "kryesia": "Kryesia",
     "historiku": "Historiku",
@@ -26,20 +26,20 @@
     "questionsAboutStudies": "Pyetje rreth studimeve",
     "studiesAtEth": "Studimet në ETH Zürich",
     "studiesAtUzh": "Studimet në Universität Zürich",
-    "applicationsAbroad": "Aplikime jasht Zvicrës",
+    "applicationsAbroad": "Aplikime jashtë Zvicrës",
     "kafeLlafe": "Kafe Llafe",
     "festaEFlamurit": "Festa e Flamurit",
-    "udhetime": "Udhetime",
+    "udhetime": "Udhëtime",
     "sofra": "Sofra",
     "alumni": "Alumni",
     "sporti": "Sporti",
     "vargjetELira": "Vargjet e lira",
     "ligjerata": "Ligjërata",
-    "bashkpunimet": "Bashkpunimet",
+    "bashkpunimet": "Bashkëpunimet",
     "kultura": "Kultura",
     "openMainMenu": "Hap menunë",
     "closeMainMenu": "Mbyll menunë",
-    "panelMenuTitle": "Menyja"
+    "panelMenuTitle": "Meny"
   },
   "layout": {
     "logoAlt": "Shoqata Studenti Zürich",
@@ -62,8 +62,8 @@
     "eventsSubheading": "Zgjidh një event për të parë përshkrimin dhe foto nga aktiviteti.",
     "hero": {
       "title": "Zgjedhja më e mirë",
-      "subtitle": "Bëhu pjesë e Shoqatës Studenti për tu informuar më shumë rreth studimit në Zvicër.",
-      "cta": "ANETARESOHU!",
+      "subtitle": "Bëhu pjesë e Shoqatës Studenti për t'u informuar më shumë rreth studimit në Zvicër.",
+      "cta": "ANËTARËSOHU!",
       "slideLabel": "Shfaq diapositivën {{n}}"
     }
   },
@@ -114,16 +114,16 @@
   "membershipSuccess": {
     "title": "Pagesa u krye me sukses!",
     "body": "Faleminderit për pagesën. Anëtarësimi yt u regjistrua. Tani je anëtar aktiv i shoqatës!",
-    "homeCta": "Kthehu në ballinë"
+    "homeCta": "Kthehu te ballina"
   },
   "membershipActions": {
     "fillAll": "Plotëso të gjitha fushat.",
     "invalidEmail": "Adresë email e pavlefshme.",
-    "createdNoEmail": "Anëtarësimi u krijua. Email-i i konfirmimit nuk u dërgua dot.",
+    "createdNoEmail": "Anëtarësimi u krijua. Email-i i konfirmimit nuk u dërgoi dot.",
     "createdOk": "Anëtarësimi u krijua. Do të marrësh një email konfirmimi.",
-    "extendedNoEmail": "Anëtarësimi u zgjat. Email-i i konfirmimit nuk u dërgua dot.",
+    "extendedNoEmail": "Anëtarësimi u zgjat. Email-i i konfirmimit nuk u dërgoi dot.",
     "extendedOk": "Anëtarësimi u zgjat me një vit.",
-    "renewBlocked": "Me këtë email ekziston tashmë anëtarësim. Vazhdimi është i mundur vetëm kur kanë mbetur më pak se një muaj deri në skadencë (aktualisht aktiv deri më {{until}}).",
+    "renewBlocked": "Me këtë email ekziston tashmë një anëtarësim aktiv. Vazhdimi është i mundur vetëm kur kanë mbetur më pak se një muaj deri në skadencë (aktualisht aktiv deri më {{until}}).",
     "checkEmailMissing": "Shkruaj një adresë email.",
     "none": "Nuk ka anëtarësim aktiv.",
     "activeUntil": "Aktiv deri më {{date}}"
@@ -134,7 +134,7 @@
     "intro": "Na shkruani për pyetje të përgjithshme. Përgjigjet i japim sipas mundësive — për aplikime, ju lutemi fillimisht të lexoni faqen e studimeve.",
     "formTitle": "Formulari i kontaktit",
     "sentSim": "Mesazhi u regjistrua (simulim). Në prodhim do të dërgohej te",
-    "errorFields": "Plotësoni të gjitha fushat para dërgimit.",
+    "errorFields": "Plotëso të gjitha fushat para dërgimit.",
     "labelName": "Emri",
     "labelEmail": "Email",
     "labelMessage": "Mesazhi",
@@ -153,11 +153,11 @@
     "intro": "",
     "members": [
       { "role": "Kryetar", "bio": "Master ETH arkitekturë" },
-      { "role": "Financa", "bio": "Master ETH inxhinieri ndërtimi" },
+      { "role": "Financa", "bio": "Master ETH inxhinieri civile" },
       { "role": "Media sociale", "bio": "Bachelor ETH arkitekturë" },
       { "role": "Komunikim", "bio": "Master ETH studime krahasuese dhe ndërkombëtare" },
       { "role": "Menaxhim eventesh", "bio": "Bachelor ETH arkitekturë" },
-      { "role": "Menaxhim eventesh", "bio": "Master ETH shkenca inxhinieri mjedisore" },
+      { "role": "Menaxhim eventesh", "bio": "Master ETH shkenca të inxhinierisë mjedisore" },
       { "role": "Marketing", "bio": "Master ETH arkitekturë" },
       { "role": "IT", "bio": "Bachelor ETH shkenca kompjuterike" }
     ]
@@ -214,10 +214,10 @@
     "badge": "Evente",
     "title": "{{name}}",
     "intro": "{{description}}",
-    "kafeLlafeBody": "Semestri i ri ka filluar dhe ne po e nisim përsëri së bashku!\nLe të vazhdojmë traditën tonë të takimeve me kafe, biseda të këndshme dhe një atmosferë të ngrohtë. Çdo dy javë të mërkurën, bashkohemi për të kaluar një mbrëmje të këndshme dhe për të shijuar kohën së bashku.\n\n🗓 Kur: Çdo të dytën mërkurë, nga ora 18:30\n📍 Ku: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nTakimi i parë: e mërkura, 27 maj 2026\n\nMerr shoqërinë me vete dhe ejani të fillojmë semestrin së bashku!\n\nShoqata Studenti",
+    "kafeLlafeBody": "Semestri i ri ka filluar dhe ne po e nisim përsëri së bashku!\nLe të vazhdojmë traditën tonë të takimeve me kafe, biseda të këndshme dhe një atmosferë të ngrohtë. Çdo dy javë të mërkurën, bashkohemi për të kaluar një mbrëmje të këndshme dhe për të shijuar kohën së bashku.\n\n🗓 Kur: Çdo të mërkurën e dytë, nga ora 18:30\n📍 Ku: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nTakimi i parë: e mërkura, 27 maj 2026\n\nMerr shoqërinë me vete dhe vini të fillojmë semestrin së bashku!\n\nShoqata Studenti",
     "festaFlamuritShort": "Mbrëmje festive me muzikë, traditë dhe shoqëri.",
     "festaFlamuritBody": "Festa e Flamurit është një mbrëmje e veçantë festive ku mblidhemi për të festuar së bashku.\n\nËshtë një natë e mbushur me muzikë të mirë, traditë dhe një atmosferë të ngrohtë. Sigurisht, nuk do të mungojnë vallet tradicionale, bisedat e mira dhe koha e bukur në shoqërinë e njëri-tjetrit.\n\nNjë mundësi e shkëlqyer për të kërcyer, për t'u argëtuar dhe për të mbajtur gjallë kulturën tonë.",
-    "festaFlamuritEdition2025Body": "EJA TË FESTOJMË SË BASHKU!\n\nFestojmë së bashku Ditën e Flamurit të shtunën, me 29 nëntor 2025, në orën 19:00, në ETH Zürich, CAB F21, Universitätstrasse 6, 8092 Zürich.\n\nNa ndiq në një mbrëmje të veçantë me muzikë dhe atmosferë festive për të nderuar Ditën e Flamurit të 28 nëntorit! Vendndodhja është e kufizuar për 300 persona, prandaj sigurohu që të rezervosh biletën tënde sa më shpejt!\n\nKushtet e hyrjes: +18 vjeç, rekomandohet të vish me transport publik.",
+    "festaFlamuritEdition2025Body": "Eja të festojmë së bashku!\n\nFestojmë së bashku Ditën e Flamurit të shtunën, më 29 nëntor 2025, në orën 19:00, në ETH Zürich, CAB F21, Universitätstrasse 6, 8092 Zürich.\n\nNa bashkohu në një mbrëmje të veçantë me muzikë dhe atmosferë festive për të nderuar Ditën e Flamurit të 28 nëntorit! Vendndodhja është e kufizuar për 300 persona, prandaj sigurohu që të rezervosh biletën tënde sa më shpejt!\n\nKushtet e hyrjes: +18 vjeç; rekomandohet të përdorësh transportin publik.",
     "empty": "Nuk ka postime për këtë event.",
     "galleryTitle": "Foto nga eventi",
     "momentsTitle": "Momentet",
@@ -228,7 +228,7 @@
     "editionIntro": "{{year}} — {{description}}",
     "backToEventHub": "← {{name}}",
     "udhetimeEditionSubtitle2026": "Berlin",
-    "udhetimeEditionSubtitle2025": "Siçili",
+    "udhetimeEditionSubtitle2025": "Sicilia",
     "udhetimeEditionSubtitle2024": ""
   },
   "post": {
@@ -249,13 +249,13 @@
     "download": "Shkarko",
     "kulturaSectionKicker": "Projekt",
     "kulturaTeaser": "Poezi dhe tekste të grupuara sipas temave — çdo skedar mund të hapet ose të shkarkohet.",
-    "kulturaTeaserCta": "Te Vargjet e lira"
+    "kulturaTeaserCta": "Tek Vargjet e lira"
   },
   "projectPages": {
     "alumni": {
       "intro": "Programi ynë Alumni synon të mbajë lidhjet mes ish-studentëve dhe komunitetit aktual të Shoqatës Studenti. Përmes këtij rrjeti krijohen mundësi për shkëmbim përvojash, networking dhe mbështetje ndërgjeneracionale mes studentëve dhe alumnive.",
       "dinner": "Çdo vit organizohet edhe një darkë tradicionale e alumnive, si hapësirë takimi dhe rikthimi për komunitetin tonë.",
-      "cta": "Anëtarësohu - 100.-"
+      "cta": "Anëtarësohu — 100.-"
     },
     "sport": {
       "intro": "Shoqata Studenti organizon aktivitete sportive javore për studentët dhe anëtarët e saj. Takimet zhvillohen një herë në javë në Oerlikon, Halle 8, ku alternohen aktivitetet në volejboll dhe futboll.",
@@ -263,7 +263,7 @@
     },
     "collaborations": {
       "intro": "Shoqata Studenti bashkëpunon rregullisht me organizata dhe rrjete profesionale shqiptare në Zvicër, me qëllim krijimin e urave mes studentëve dhe profesionistëve shqiptarë në fusha të ndryshme.",
-      "listTitle": "Ndër bashkëpunimet kryesore janë:",
+      "listTitle": "Bashkëpunimet kryesore janë:",
       "summary": "Këto bashkëpunime përfshijnë organizimin e eventeve, diskutimeve, networking-ut dhe aktiviteteve të përbashkëta akademike e profesionale."
     },
     "federata": {

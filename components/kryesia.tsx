@@ -16,7 +16,7 @@ const KRYESIA_BOARD = [
   {
     name: "Anton Krasniqi",
     role: "Financa",
-    bio: "Master ETH inxhinieri ndërtimi",
+    bio: "Master ETH inxhinieri civile",
     imageSrc: "/kryesia/Anton-Krasniqi.png",
   },
   {
@@ -40,7 +40,7 @@ const KRYESIA_BOARD = [
   {
     name: "Zana Krasniqi",
     role: "Menaxhim eventesh",
-    bio: "Master ETH shkenca inxhinieri mjedisore",
+    bio: "Master ETH shkenca të inxhinierisë mjedisore",
     imageSrc: "/kryesia/Zana-Krasniqi01.png",
   },
   {

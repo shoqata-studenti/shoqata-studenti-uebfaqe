@@ -47,8 +47,8 @@
     "line2": "STUDENTI",
     "line3": "ZÜRICH",
     "footer": {
-      "approvedVseth": "E miratuar nga VSETH",
-      "approvedVsuzh": "E miratuar nga VSUZH",
+      "approvedVseth": "Anerkannt von VSETH",
+      "approvedVsuzh": "Anerkannt von VSUZH",
       "vsethLogoAlt": "VSETH — Verband der Studierenden an der ETH",
       "vsuzhLogoAlt": "VSUZH — Verband der Studierenden der Universität Zürich"
     }
@@ -99,9 +99,9 @@
       "pending": "Weiterleitung…",
       "errorPayment": "Fehler beim Erstellen der Zahlung.",
       "errorNetwork": "Verbindungsfehler.",
-      "renewalDialogTitle": "Kujdes",
-      "renewalCancel": "Anulo",
-      "renewalContinue": "Vazhdo"
+      "renewalDialogTitle": "Achtung",
+      "renewalCancel": "Abbrechen",
+      "renewalContinue": "Fortfahren"
     },
     "status": {
       "title": "Status prüfen",
@@ -214,10 +214,10 @@
     "badge": "Events",
     "title": "{{name}}",
     "intro": "{{description}}",
-    "kafeLlafeBody": "Das neue Semester hat begonnen — und wir starten wieder gemeinsam!\nLasst uns unsere Tradition der Café-Treffen, angenehmer Gespräche und warmer Atmosphäre fortsetzen. Alle zwei Wochen am Mittwochabend treffen wir uns, um eine schöne Zeit miteinander zu verbringen.\n\n🗓 Wann: jeden zweiten Mittwoch, ab 18.30 Uhr\n📍 Wo: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nErster Termin: Mittwoch, 27.05.2026\n\nBringt Freund*innen mit — lasst uns das Semester gemeinsam beginnen!\n\nShoqata Studenti",
+    "kafeLlafeBody": "Das neue Semester hat begonnen — und wir starten wieder gemeinsam!\nLasst uns unsere Tradition der Café-Treffen, angenehmer Gespräche und warmer Atmosphäre fortsetzen. Alle zwei Wochen am Mittwochabend treffen wir uns, um eine schöne Zeit miteinander zu verbringen.\n\n🗓 Wann: jeden zweiten Mittwoch, ab 18:30 Uhr\n📍 Wo: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nErster Termin: Mittwoch, 27.05.2026\n\nBringt Freund*innen mit — lasst uns das Semester gemeinsam beginnen!\n\nShoqata Studenti",
     "festaFlamuritShort": "Ein festlicher Abend mit Musik, Tradition und Gemeinschaft.",
     "festaFlamuritBody": "Die Festa e Flamurit ist ein besonderer Feierabend, an dem wir zusammenkommen und gemeinsam feiern.\n\nEs ist eine Nacht voller guter Musik, Tradition und warmer Atmosphäre. Natürlich fehlen auch die traditionellen Tänze, gute Gespräche und die schöne Zeit miteinander nicht.\n\nEine hervorragende Gelegenheit zum Tanzen, zum Feiern und um unsere Kultur lebendig zu halten.",
-    "festaFlamuritEdition2025Body": "KOMM, LASS UNS GEMEINSAM FEIERN!\n\nWir feiern gemeinsam den Flaggentag am Samstag, 29. November 2025, um 19.00 Uhr an der ETH Zürich, CAB F21, Universitätstrasse 6, 8092 Zürich.\n\nKomm zu einem besonderen Abend mit Musik und festlicher Atmosphäre, um den Flaggentag vom 28. November zu ehren! Die Kapazität ist auf 300 Personen begrenzt — sichere dir dein Ticket deshalb möglichst früh!\n\nEintritt: ab 18 Jahren; die Anreise mit öffentlichen Verkehrsmitteln wird empfohlen.",
+    "festaFlamuritEdition2025Body": "Komm, lass uns gemeinsam feiern!\n\nWir feiern gemeinsam den Flaggentag am Samstag, 29. November 2025, um 19:00 Uhr an der ETH Zürich, CAB F21, Universitätstrasse 6, 8092 Zürich.\n\nKomm zu einem besonderen Abend mit Musik und festlicher Atmosphäre, um den Flaggentag vom 28. November zu ehren! Die Kapazität ist auf 300 Personen begrenzt — sichere dir dein Ticket deshalb möglichst früh!\n\nEintritt: ab 18 Jahren; die Anreise mit öffentlichen Verkehrsmitteln wird empfohlen.",
     "empty": "Keine Beiträge für dieses Event.",
     "galleryTitle": "Bilder vom Event",
     "momentsTitle": "Impressionen",
@@ -255,7 +255,7 @@
     "alumni": {
       "intro": "Unser Alumni-Programm soll die Verbindung zwischen ehemaligen Studierenden und der aktuellen Community der Shoqata Studenti stärken. Durch dieses Netzwerk entstehen Möglichkeiten zum Erfahrungsaustausch, Networking und generationenübergreifender Unterstützung.",
       "dinner": "Jedes Jahr findet zudem ein traditionelles Alumni-Dinner statt – als Treffpunkt und Rückkehrmoment für unsere Community.",
-      "cta": "Mitglied werden - 100.-"
+      "cta": "Mitglied werden — 100.-"
     },
     "sport": {
       "intro": "Die Shoqata Studenti organisiert wöchentliche Sportaktivitäten für Studierende und ihre Mitglieder. Die Treffen finden einmal pro Woche in Oerlikon, Halle 8, statt und wechseln zwischen Volleyball und Fussball.",

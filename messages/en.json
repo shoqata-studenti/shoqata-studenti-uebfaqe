@@ -47,8 +47,8 @@
     "line2": "STUDENTI",
     "line3": "ZÜRICH",
     "footer": {
-      "approvedVseth": "E miratuar nga VSETH",
-      "approvedVsuzh": "E miratuar nga VSUZH",
+      "approvedVseth": "Recognised by VSETH",
+      "approvedVsuzh": "Recognised by VSUZH",
       "vsethLogoAlt": "VSETH — Association of Students at ETH Zurich",
       "vsuzhLogoAlt": "VSUZH — Association of Students at the University of Zurich"
     }
@@ -99,9 +99,9 @@
       "pending": "Redirecting…",
       "errorPayment": "Could not create payment.",
       "errorNetwork": "Connection error.",
-      "renewalDialogTitle": "Kujdes",
-      "renewalCancel": "Anulo",
-      "renewalContinue": "Vazhdo"
+      "renewalDialogTitle": "Please note",
+      "renewalCancel": "Cancel",
+      "renewalContinue": "Continue"
     },
     "status": {
       "title": "Check status",
@@ -217,7 +217,7 @@
     "kafeLlafeBody": "The new semester has begun — and we’re starting again together!\nLet’s continue our tradition of café meetups, friendly chats, and a warm atmosphere. Every other Wednesday evening we meet to spend a pleasant night together and enjoy each other’s company.\n\n🗓 When: every second Wednesday, from 18:30\n📍 Where: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nFirst meetup: Wednesday, 27 May 2026\n\nBring your friends — let’s kick off the semester together!\n\nShoqata Studenti",
     "festaFlamuritShort": "A festive evening with music, tradition, and community.",
     "festaFlamuritBody": "Festa e Flamurit is a special festive evening when we gather to celebrate together.\n\nIt is a night filled with good music, tradition, and a warm atmosphere. You can count on traditional dancing, good conversation, and time well spent together.\n\nA wonderful opportunity to dance, have fun, and keep our culture alive.",
-    "festaFlamuritEdition2025Body": "COME AND CELEBRATE WITH US!\n\nWe will celebrate Flag Day together on Saturday, 29 November 2025, at 7 p.m. at ETH Zürich, CAB F21, Universitätstrasse 6, 8092 Zürich.\n\nJoin us for a special evening with music and a festive atmosphere to honour Flag Day on 28 November! Capacity is limited to 300 people — book your ticket as soon as you can!\n\nAdmission: 18+; we recommend using public transport.",
+    "festaFlamuritEdition2025Body": "Come and celebrate with us!\n\nWe will celebrate Flag Day together on Saturday, 29 November 2025, at 7 p.m. at ETH Zürich, CAB F21, Universitätstrasse 6, 8092 Zürich.\n\nJoin us for a special evening with music and a festive atmosphere to honour Flag Day on 28 November! Capacity is limited to 300 people — book your ticket as soon as you can!\n\nAdmission: 18+; we recommend using public transport.",
     "empty": "No posts for this event.",
     "galleryTitle": "Event photos",
     "momentsTitle": "Moments",
@@ -254,11 +254,11 @@
   "projectPages": {
     "alumni": {
       "intro": "Our Alumni program aims to keep strong ties between former students and the current Shoqata Studenti community. Through this network, members gain opportunities to exchange experiences, build connections, and support each other across generations.",
-      "dinner": "Every year, a traditional alumni dinner is also organized as a meeting point and a way to reconnect with our community.",
-      "cta": "Join - 100.-"
+      "dinner": "Every year, a traditional alumni dinner is also organised as a meeting point and a way to reconnect with our community.",
+      "cta": "Join — 100.-"
     },
     "sport": {
-      "intro": "Shoqata Studenti organizes weekly sports activities for students and its members. Meetings take place once a week in Oerlikon, Halle 8, alternating between volleyball and football.",
+      "intro": "Shoqata Studenti organises weekly sports activities for students and its members. Meetings take place once a week in Oerlikon, Halle 8, alternating between volleyball and football.",
       "goal": "The project aims to strengthen the social and community side of the association through sport and physical activity."
     },
     "collaborations": {
@@ -270,7 +270,7 @@
       "heading": "Federation of Albanian Student Associations in Switzerland",
       "intro": "Shoqata Studenti is part of the Federation of Albanian Student Associations in Switzerland, a network that brings together eight Albanian student associations from different Swiss cities. The federation serves as a platform for coordination and collaboration among Albanian students at the national Swiss level.",
       "representation": "Shoqata Studenti is represented in the federation through its delegates and participates in annual meetings, joint projects, and national-level student initiatives.",
-      "activities": "Within the federation, trips, events, and various collaborations are also organized among the participating associations."
+      "activities": "Within the federation, trips, events, and various collaborations are also organised among the participating associations."
     }
   }
 }
