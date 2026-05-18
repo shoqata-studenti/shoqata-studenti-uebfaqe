@@ -5,7 +5,7 @@ export type MembershipStripeType = "STUDENT" | "ALUMNI";
 /** Stripe-Produkt-IDs (Standardpreis wird beim Checkout aufgelöst). */
 const DEFAULT_PRODUCT_IDS: Record<MembershipStripeType, string> = {
   STUDENT: "prod_UXXWbMKtTHbovG",
-  ALUMNI: "prod_UXXXszYuxOfr4i",
+  ALUMNI: "prod_UXXXszYuxOfr4i", // 100 CHF
 };
 
 /** `price_…` direkt, sonst `prod_…` (Default-Preis des Produkts). */

@@ -71,6 +71,9 @@ export default async function EventeEditionPage({ params }: Props) {
 
   const editionTitle = interpolate(ev.editionTitle, { name: meta.name, year: String(editionYear) });
 
+  /** Vetëm `udhetime` mban tekstin përshkrues; te edicionet e tjera shfaqim vetëm galerinë. */
+  const showDescriptiveText = meta.slug === "udhetime";
+
   return (
     <main className="min-h-screen bg-white text-black">
       <section className="mx-auto w-full max-w-[1440px] px-6 py-16 md:px-10 md:py-20">
@@ -94,14 +97,19 @@ export default async function EventeEditionPage({ params }: Props) {
         >
           {editionTitle}
         </h1>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-black/65 md:text-base">
-          {interpolate(ev.editionIntro, { description: meta.description, year: String(editionYear) })}
-        </p>
 
-        {meta.slug === "festa-e-flamurit" ? (
-          <p className="mt-8 max-w-prose text-[15px] leading-[1.75] text-black/70 whitespace-pre-line md:text-base md:leading-[1.7]">
-            {editionYear === 2025 ? ev.festaFlamuritEdition2025Body : ev.festaFlamuritBody}
-          </p>
+        {showDescriptiveText ? (
+          <>
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-black/65 md:text-base">
+              {interpolate(ev.editionIntro, { description: meta.description, year: String(editionYear) })}
+            </p>
+
+            {meta.slug === "festa-e-flamurit" ? (
+              <p className="mt-8 max-w-prose text-[15px] leading-[1.75] text-black/70 whitespace-pre-line md:text-base md:leading-[1.7]">
+                {editionYear === 2025 ? ev.festaFlamuritEdition2025Body : ev.festaFlamuritBody}
+              </p>
+            ) : null}
+          </>
         ) : null}
 
         <EventGalleryZigzag blocks={galleryBlocksMerged} />

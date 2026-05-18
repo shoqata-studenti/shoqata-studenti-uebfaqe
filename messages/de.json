@@ -131,7 +131,7 @@
   "kontakt": {
     "badge": "Shoqata Studenti Zürich",
     "title": "Kontakt",
-    "intro": "Schreibt uns bei allgemeinen Fragen. Antworten geben wir nach Möglichkeit — für Bewerbungen bitte zuerst die Studium-Seite lesen.",
+    "intro": "Bei Fragen rund um die Shoqata Studenti könnt ihr das Kontaktformular ausfüllen oder uns über unsere anderen Kanäle erreichen.",
     "formTitle": "Kontaktformular",
     "sentSim": "Nachricht wurde gespeichert (Simulation). In Produktion würde sie gesendet an",
     "errorFields": "Bitte alle Felder ausfüllen, bevor du sendest.",
@@ -145,8 +145,8 @@
     "socialTitle": "Soziale Medien",
     "socialHint": "Folgt uns in den sozialen Medien.",
     "impressum": "Impressum",
-    "addressLine": "Adresse (Platzhalter)",
-    "addressSample": "Strasse und Nr., PLZ Zürich, Schweiz"
+    "addressLine": "Universitätstrasse 6, CAB E 27",
+    "addressSample": "8006 Zürich, Schweiz"
   },
   "kryesia": {
     "heading": "Vorstand",
@@ -261,7 +261,7 @@
     "alumni": {
       "intro": "Unser Alumni-Programm soll die Verbindung zwischen ehemaligen Studierenden und der aktuellen Community der Shoqata Studenti stärken. Durch dieses Netzwerk entstehen Möglichkeiten zum Erfahrungsaustausch, Networking und generationenübergreifender Unterstützung.",
       "dinner": "Jedes Jahr findet zudem ein traditionelles Alumni-Dinner statt – als Treffpunkt und Rückkehrmoment für unsere Community.",
-      "cta": "Mitglied werden — 50 Fr."
+      "cta": "Mitglied werden — 100 Fr."
     },
     "sport": {
       "intro": "Die Shoqata Studenti organisiert wöchentliche Sportaktivitäten für Studierende und ihre Mitglieder. Die Treffen finden einmal pro Woche in Oerlikon, Halle 8, statt und wechseln zwischen Volleyball und Fussball.",
@@ -276,7 +276,8 @@
       "heading": "Föderation der albanischen Studentenvereine in der Schweiz",
       "intro": "Die Shoqata Studenti ist Teil der Föderation der albanischen Studentenvereine in der Schweiz, einem Netzwerk, das acht albanische Studentenvereine aus verschiedenen Schweizer Städten zusammenbringt. Die Föderation dient als Plattform für Koordination und Zusammenarbeit unter albanischen Studierenden auf nationaler Ebene.",
       "representation": "Die Shoqata Studenti ist in der Föderation durch ihre Delegierten vertreten und nimmt an den jährlichen Sitzungen, gemeinsamen Projekten und studentischen Initiativen auf nationaler Ebene teil.",
-      "activities": "Im Rahmen der Föderation werden zudem Reisen, Events und verschiedene Kooperationen zwischen den teilnehmenden Vereinen organisiert."
+      "activities": "Im Rahmen der Föderation werden zudem Reisen, Events und verschiedene Kooperationen zwischen den teilnehmenden Vereinen organisiert.",
+      "instagramLabel": "Instagram der Föderation"
     }
   }
 }

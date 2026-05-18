@@ -5,17 +5,19 @@ import * as React from "react";
 import { useDictionary } from "@/components/locale-provider";
 import { VIDEO_MUTE_CONTROL_BUTTON_CLASSNAME } from "@/lib/video-mute-control";
 
-const MEDIA_WRAP =
-  "relative w-full max-w-2xl overflow-hidden rounded-xl bg-white shadow-md ring-1 ring-black/10";
+/** Imazh standalone: karta = imazhi, pa sfond. */
+const MEDIA_WRAP = "w-full overflow-hidden rounded-xl shadow-md";
+const MEDIA_INNER = "block h-auto w-full";
 
-/** Pa letterbox të zi: përmasat natyrore të imazhit (jo object-contain në bg të zi). */
-const MEDIA_INNER = "block h-auto w-full max-h-[75vh]";
+/** Karuseli: slot me proporcion 4:5, imazhi/video mbush plotësisht (object-cover). */
+const VIDEO_CAROUSEL_WRAP =
+  "relative w-full aspect-[4/5] overflow-hidden rounded-xl shadow-md";
+const VIDEO_CAROUSEL_FILL = "absolute inset-0 w-full h-full object-cover";
+const VIDEO_FILL = VIDEO_CAROUSEL_FILL;
 
-/** Të gjitha videot në galeri: 4:5, mbushje, autoplay, vetëm mute (pa controls). */
-const VIDEO_WRAP =
-  "relative w-full max-w-md aspect-[4/5] overflow-hidden rounded-xl bg-black shadow-md";
-
-const VIDEO_FILL = "absolute inset-0 w-full h-full object-cover";
+/** Video standalone: karta = video, pa sfond. */
+const VIDEO_STANDALONE_WRAP = "w-full overflow-hidden rounded-xl shadow-md";
+const VIDEO_STANDALONE_INNER = "block h-auto w-full";
 
 type Props = {
   id: number;
@@ -105,12 +107,14 @@ export function EventGallerySlide({
   }
 
   if (mimeType.startsWith("video/")) {
+    const wrapClass = inCarousel ? VIDEO_CAROUSEL_WRAP : VIDEO_STANDALONE_WRAP;
+    const videoClass = inCarousel ? VIDEO_CAROUSEL_FILL : VIDEO_STANDALONE_INNER;
     return (
-      <div className={VIDEO_WRAP}>
+      <div className={wrapClass}>
         <video
           ref={videoRef}
           src={resolvedSrc}
-          className={VIDEO_FILL}
+          className={videoClass}
           autoPlay
           loop
           muted={isMuted}

@@ -17,7 +17,7 @@ export default function AplikimePage() {
 
           <p>
             <Link
-              href="https://ethz.ch/en/studies/international-immigration-housing/outgoing-exchange.html"
+              href="https://ethz.ch/en/studies/bachelor/application/non-swiss-matriculation-certificate/how-to-apply.html"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-[#E11D48] underline decoration-[#E11D48]/35 underline-offset-4 hover:decoration-[#E11D48]"
@@ -28,7 +28,7 @@ export default function AplikimePage() {
 
           <p>
             <Link
-              href="https://www.int.uzh.ch/en/outgoing.html"
+              href="https://www.uzh.ch/en/studies/application/apply.html"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-[#E11D48] underline decoration-[#E11D48]/35 underline-offset-4 hover:decoration-[#E11D48]"

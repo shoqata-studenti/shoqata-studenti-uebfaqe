@@ -46,17 +46,27 @@ export function splitDisplayNameForNewsletter(fullName: string): InfomaniakNewsl
   return { firstName: t.slice(0, i).trim(), lastName: t.slice(i + 1).trim() };
 }
 
+export type InfomaniakSubscribeResult =
+  | { status: "created" }
+  | { status: "already-subscribed" }
+  | { status: "skipped"; reason: string };
+
 /**
  * Trägt eine E-Mail in die Infomaniak-Mailingliste ein und ordnet sie der Gruppe 157650 zu.
  * Optional Vor- und Nachname (Infomaniak-Felder `firstname` / `lastname`).
+ *
+ * Rückgabe:
+ * - `created`: Neue Anmeldung
+ * - `already-subscribed`: Adresse war bereits in der Liste
+ * - `skipped`: Wegen Konfiguration nicht gesendet (z. B. `DISABLE_OUTBOUND_EMAILS`)
  */
 export async function subscribeInfomaniakNewsletter(
   email: string,
   name?: InfomaniakNewsletterSubscriberName
-): Promise<void> {
+): Promise<InfomaniakSubscribeResult> {
   if (isOutboundEmailDisabled()) {
     console.log("[Infomaniak Newsletter] Übersprungen (DISABLE_OUTBOUND_EMAILS).", { email });
-    return;
+    return { status: "skipped", reason: "DISABLE_OUTBOUND_EMAILS" };
   }
 
   const apiKey = process.env.INFOMANIAK_NEWSLETTER_API_KEY;
@@ -74,7 +84,7 @@ export async function subscribeInfomaniakNewsletter(
 
   if (!apiKey) {
     console.warn("[Infomaniak Newsletter] Abbruch: INFOMANIAK_NEWSLETTER_API_KEY ist nicht gesetzt.");
-    return;
+    return { status: "skipped", reason: "INFOMANIAK_NEWSLETTER_API_KEY missing" };
   }
 
   console.log("[Infomaniak Newsletter] Sende POST an Gruppe 157650 ...");
@@ -112,12 +122,12 @@ export async function subscribeInfomaniakNewsletter(
 
   if (response.ok) {
     console.log("✅ Erfolgreich in Gruppe 157650 eingetragen.");
-    return;
+    return { status: "created" };
   }
 
   if (response.status === 409 || dataIndicatesAlreadyExists(data)) {
     console.log("ℹ️ User existiert bereits in dieser Liste.");
-    return;
+    return { status: "already-subscribed" };
   }
 
   const detail = extractApiErrorMessage(data);

@@ -71,7 +71,6 @@ export default async function VargjetTopicPage({ params }: Props) {
                 >
                   <div className="min-w-0">
                     <p className="font-medium text-black">{doc.title}</p>
-                    <p className="mt-0.5 truncate text-xs text-black/45">{doc.originalFileName}</p>
                   </div>
                   <div className="flex shrink-0 flex-wrap gap-2">
                     <a

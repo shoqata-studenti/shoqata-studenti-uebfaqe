@@ -181,6 +181,42 @@ export async function sendMembershipExpiredEmailSq(
   return { ok: true };
 }
 
+/** Begrüssung an neue Newsletter-Abonnent:innen (albanisch). Nur beim ersten Eintrag. */
+export async function sendNewsletterWelcomeEmailSq(
+  email: string,
+  fullName?: string
+): Promise<{ ok: boolean; error?: string; skipped?: string }> {
+  if (isOutboundEmailDisabled()) {
+    return { ok: false, skipped: OUTBOUND_EMAIL_DISABLED_REASON };
+  }
+
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    return { ok: false, skipped: "RESEND_API_KEY ist nicht gesetzt." };
+  }
+
+  const resend = new Resend(apiKey);
+  const greeting = fullName ? `Përshëndetje ${escapeHtml(fullName)},` : "Përshëndetje,";
+
+  const { error } = await resend.emails.send({
+    from: defaultFrom(),
+    to: email,
+    subject: "Mirë se vini në newsletter-in e Shoqatës Studenti!",
+    html: `
+      <p>${greeting}</p>
+      <p>Faleminderit që u abonove në newsletter-in tonë. Që tani do të marrësh në email lajme, ftesa për evente dhe risi nga Shoqata Studenti.</p>
+      <p>Nëse dëshiron të bëhesh anëtar/e i Shoqatës, mund ta bësh këtu:<br/>
+      <a href="${RENEWAL_URL}">${RENEWAL_URL}</a></p>
+      <p>Përzemërsisht,<br/>Shoqata Studenti</p>
+    `,
+  });
+
+  if (error) {
+    return { ok: false, error: error.message };
+  }
+  return { ok: true };
+}
+
 function escapeHtml(s: string): string {
   return s
     .replace(/&/g, "&amp;")

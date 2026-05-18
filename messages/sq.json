@@ -131,7 +131,7 @@
   "kontakt": {
     "badge": "Shoqata Studenti Zürich",
     "title": "Kontakt",
-    "intro": "Na shkruani për pyetje të përgjithshme. Përgjigjet i japim sipas mundësive — për aplikime, ju lutemi fillimisht të lexoni faqen e studimeve.",
+    "intro": "Nëse keni pyetje rreth Shoqatës Studenti, mund të plotësoni formularin e kontaktit ose të na gjeni nëpërmjet kanaleve tona.",
     "formTitle": "Formulari i kontaktit",
     "sentSim": "Mesazhi u regjistrua (simulim). Në prodhim do të dërgohej te",
     "errorFields": "Plotëso të gjitha fushat para dërgimit.",
@@ -144,9 +144,9 @@
     "submit": "Dërgo",
     "socialTitle": "Rrjetet sociale",
     "socialHint": "Na ndiqni në rrjetet sociale.",
-    "impressum": "Impressum",
-    "addressLine": "Adresa (placeholder)",
-    "addressSample": "Rruga dhe numri, ZIP Zürich, Zvicër"
+    "impressum": "Të dhënat ligjore",
+    "addressLine": "Universitätstrasse 6, CAB E 27",
+    "addressSample": "8006 Zürich, Zvicër"
   },
   "kryesia": {
     "heading": "Kryesia",
@@ -261,7 +261,7 @@
     "alumni": {
       "intro": "Programi ynë Alumni synon të mbajë lidhjet mes ish-studentëve dhe komunitetit aktual të Shoqatës Studenti. Përmes këtij rrjeti krijohen mundësi për shkëmbim përvojash, networking dhe mbështetje ndërgjeneracionale mes studentëve dhe alumnive.",
       "dinner": "Çdo vit organizohet edhe një darkë tradicionale e alumnive, si hapësirë takimi dhe rikthimi për komunitetin tonë.",
-      "cta": "Anëtarësohu — 50 Fr."
+      "cta": "Anëtarësohu — 100 Fr."
     },
     "sport": {
       "intro": "Shoqata Studenti organizon aktivitete sportive javore për studentët dhe anëtarët e saj. Takimet zhvillohen një herë në javë në Oerlikon, Halle 8, ku alternohen aktivitetet në volejboll dhe futboll.",
@@ -276,7 +276,8 @@
       "heading": "Federata e Shoqatave Studentore Shqiptare në Zvicër",
       "intro": "Shoqata Studenti është pjesë e Federatës së Shoqatave Studentore Shqiptare në Zvicër, një rrjet që bashkon tetë shoqata studentore shqiptare nga qytete të ndryshme të Zvicrës. Federata shërben si platformë koordinimi dhe bashkëpunimi ndërmjet studentëve shqiptarë në nivel nacional zviceran.",
       "representation": "Shoqata Studenti përfaqësohet në federatë përmes delegatëve të saj dhe merr pjesë në mbledhjet vjetore, projektet e përbashkëta dhe iniciativat studentore në nivel kombëtar.",
-      "activities": "Në kuadër të federatës organizohen gjithashtu udhëtime, evente dhe bashkëpunime të ndryshme mes shoqatave pjesëmarrëse."
+      "activities": "Në kuadër të federatës organizohen gjithashtu udhëtime, evente dhe bashkëpunime të ndryshme mes shoqatave pjesëmarrëse.",
+      "instagramLabel": "Instagrami i Federatës"
     }
   }
 }

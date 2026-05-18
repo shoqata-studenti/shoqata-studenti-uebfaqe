@@ -3,6 +3,7 @@ import "server-only";
 import { prisma } from "@/lib/db";
 import type { GalleryBlock } from "@/lib/event-gallery-blocks";
 import { isPostCoverVideo } from "@/lib/post-image-upload";
+import { sofraEdition2026StaticGalleryBlocks } from "@/lib/sofra-static-gallery";
 
 const SOFRA_SLUG = "sofra" as const;
 const SOFRA_HUB_CARD_PATH = "/evente/sofra" as const;
@@ -34,16 +35,17 @@ export async function fetchSofra2026HomepagePostVideo(): Promise<SofraHomePostCo
   }
 }
 
-/** Blloku i parë në zig-zag për `/evente/sofra/2026` — i njëjti video si karta në ballinë. */
+/** Zig-zag për `/evente/sofra/2026`: video nga post (nëse ka) + video statik (autoplay, loop). */
 export async function sofraEdition2026GalleryLeadBlocks(
   slug: string,
   editionYear: number,
 ): Promise<GalleryBlock[]> {
   if (slug !== SOFRA_SLUG || editionYear !== 2026) return [];
+
+  const blocks: GalleryBlock[] = [];
   const cover = await fetchSofra2026HomepagePostVideo();
-  if (!cover) return [];
-  return [
-    {
+  if (cover) {
+    blocks.push({
       kind: "single",
       items: [
         {
@@ -52,6 +54,9 @@ export async function sofraEdition2026GalleryLeadBlocks(
           src: `/api/post-image/${cover.postId}`,
         },
       ],
-    },
-  ];
+    });
+  }
+
+  blocks.push(...sofraEdition2026StaticGalleryBlocks(slug, editionYear));
+  return blocks;
 }

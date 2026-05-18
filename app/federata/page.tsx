@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SubpageHero } from "@/components/subpage-hero";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
@@ -22,6 +23,16 @@ export default async function Page() {
           </p>
           <p className="mt-5 max-w-3xl text-base leading-relaxed text-black/80">
             {dict.projectPages.federata.activities}
+          </p>
+          <p className="mt-8">
+            <Link
+              href="https://www.instagram.com/albstudent.ch/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-[#E11D48] underline decoration-[#E11D48]/35 underline-offset-4 hover:decoration-[#E11D48]"
+            >
+              {dict.projectPages.federata.instagramLabel}
+            </Link>
           </p>
         </div>
       </div>

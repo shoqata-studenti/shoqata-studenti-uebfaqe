@@ -131,7 +131,7 @@
   "kontakt": {
     "badge": "Shoqata Studenti Zürich",
     "title": "Contact",
-    "intro": "Write to us for general questions. We reply when we can — for applications, please read the studies page first.",
+    "intro": "If you have any questions about Shoqata Studenti, you can fill in the contact form or reach us through our other channels.",
     "formTitle": "Contact form",
     "sentSim": "Message recorded (simulation). In production it would be sent to",
     "errorFields": "Please fill in all fields before sending.",
@@ -145,8 +145,8 @@
     "socialTitle": "Social media",
     "socialHint": "Follow us on social media.",
     "impressum": "Legal notice",
-    "addressLine": "Address (placeholder)",
-    "addressSample": "Street and number, ZIP Zurich, Switzerland"
+    "addressLine": "Universitätstrasse 6, CAB E 27",
+    "addressSample": "8006 Zürich, Switzerland"
   },
   "kryesia": {
     "heading": "Board",
@@ -261,7 +261,7 @@
     "alumni": {
       "intro": "Our Alumni program aims to keep strong ties between former students and the current Shoqata Studenti community. Through this network, members gain opportunities to exchange experiences, build connections, and support each other across generations.",
       "dinner": "Every year, a traditional alumni dinner is also organised as a meeting point and a way to reconnect with our community.",
-      "cta": "Join — 50 Fr."
+      "cta": "Join — 100 Fr."
     },
     "sport": {
       "intro": "Shoqata Studenti organises weekly sports activities for students and its members. Meetings take place once a week in Oerlikon, Halle 8, alternating between volleyball and football.",
@@ -276,7 +276,8 @@
       "heading": "Federation of Albanian Student Associations in Switzerland",
       "intro": "Shoqata Studenti is part of the Federation of Albanian Student Associations in Switzerland, a network that brings together eight Albanian student associations from different Swiss cities. The federation serves as a platform for coordination and collaboration among Albanian students at the national Swiss level.",
       "representation": "Shoqata Studenti is represented in the federation through its delegates and participates in annual meetings, joint projects, and national-level student initiatives.",
-      "activities": "Within the federation, trips, events, and various collaborations are also organised among the participating associations."
+      "activities": "Within the federation, trips, events, and various collaborations are also organised among the participating associations.",
+      "instagramLabel": "Instagram of the Federation"
     }
   }
 }
