@@ -135,7 +135,7 @@ export async function POST(req: Request) {
               name: `Mitgliedschaft: ${type}`,
               description: `${fullName} - ${uni}`,
             },
-            unit_amount: type === "STUDENT" ? 2000 : 10000,
+            unit_amount: type === "STUDENT" ? 2000 : 5000,
           },
           quantity: 1,
         },
