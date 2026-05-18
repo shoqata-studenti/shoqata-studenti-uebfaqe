@@ -178,6 +178,19 @@
     }
   }
 
+  .site-footer-logo {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .site-footer-logo {
+      min-height: 150px;
+    }
+  }
+
   .site-footer-brand img {
     display: block;
     height: auto;
