@@ -8,13 +8,11 @@ import {
   isMembershipStillActive,
   RENEWAL_WINDOW_DAYS,
 } from "@/lib/membership-logic";
-
-function formatExpirySq(date: Date): string {
-  return date.toLocaleDateString("sq-AL", {
-    dateStyle: "long",
-    timeZone: "Europe/Zurich",
-  });
-}
+import { formatDateWithWeekdaySq } from "@/lib/format-datetime";
+import {
+  membershipStripeCatalogRef,
+  resolveStripeCheckoutPriceId,
+} from "@/lib/stripe-membership-catalog";
 
 export async function POST(req: Request) {
   console.log("SUCHE KEY:", process.env.STRIPE_SECRET_KEY ? "GEFUNDEN" : "NICHT GEFUNDEN");
@@ -96,7 +94,7 @@ export async function POST(req: Request) {
     });
 
     if (existing?.expiresAt && !canRenewMembership(existing.expiresAt)) {
-      const until = formatExpirySq(existing.expiresAt);
+      const until = formatDateWithWeekdaySq(existing.expiresAt);
       return NextResponse.json(
         {
           code: "RENEW_TOO_EARLY",
@@ -113,7 +111,7 @@ export async function POST(req: Request) {
       isMembershipStillActive(existing.expiresAt) &&
       !confirmEarlyRenewal
     ) {
-      const until = formatExpirySq(existing.expiresAt);
+      const until = formatDateWithWeekdaySq(existing.expiresAt);
       const roughlyDaysLeft = Math.max(1, Math.ceil(daysUntil(existing.expiresAt)));
       return NextResponse.json(
         {
@@ -125,18 +123,16 @@ export async function POST(req: Request) {
       );
     }
 
+    const priceId = await resolveStripeCheckoutPriceId(
+      stripe,
+      membershipStripeCatalogRef(type)
+    );
+
+    // Ohne `payment_method_types`: Dynamic Payment Methods aus dem Stripe-Dashboard (kein TWINT erzwingen).
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card", "twint"],
       line_items: [
         {
-          price_data: {
-            currency: "chf",
-            product_data: {
-              name: `Mitgliedschaft: ${type}`,
-              description: `${fullName} - ${uni}`,
-            },
-            unit_amount: type === "STUDENT" ? 2000 : 5000,
-          },
+          price: priceId,
           quantity: 1,
         },
       ],
@@ -160,6 +156,13 @@ export async function POST(req: Request) {
     return NextResponse.json({ url: session.url });
   } catch (error) {
     console.error("Fehler beim Checkout:", error);
-    return NextResponse.json({ error: "Fehler beim Erstellen der Stripe Session" }, { status: 500 });
+    const detail = error instanceof Stripe.errors.StripeError ? error.message : undefined;
+    return NextResponse.json(
+      {
+        error: "Fehler beim Erstellen der Stripe Session",
+        ...(detail ? { detail } : {}),
+      },
+      { status: 500 }
+    );
   }
 }

@@ -3,6 +3,7 @@ import "server-only";
 import { Resend } from "resend";
 import type { MembershipType } from "@prisma/client";
 
+import { formatDateWithWeekdaySq } from "@/lib/format-datetime";
 import { isOutboundEmailDisabled, OUTBOUND_EMAIL_DISABLED_REASON } from "@/lib/outbound-email";
 
 const RENEWAL_URL = "https://shoqata-studenti.ch/regjistrohu";
@@ -116,12 +117,7 @@ export async function sendMembershipReminderEmailSq(
   }
 
   const resend = new Resend(apiKey);
-  const dateStr = expiresAt.toLocaleDateString("sq-AL", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const dateStr = formatDateWithWeekdaySq(expiresAt);
 
   const { error } = await resend.emails.send({
     from: defaultFrom(),

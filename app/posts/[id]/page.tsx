@@ -6,8 +6,10 @@ import { Playfair_Display } from "next/font/google";
 
 import { PostCoverMedia } from "@/components/post-cover-media";
 import { prisma } from "@/lib/db";
-import { dateLocaleFor, getDictionary } from "@/lib/i18n/get-dictionary";
+import { formatDateWithWeekday } from "@/lib/format-datetime";
+import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
+import { getLocalizedPostFields } from "@/lib/post-i18n";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -18,6 +20,8 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function PostDetailPage({ params }: Props) {
   const { id } = await params;
   const numericId = Number.parseInt(id, 10);
@@ -27,7 +31,6 @@ export default async function PostDetailPage({ params }: Props) {
 
   const locale = await getLocale();
   const dict = getDictionary(locale);
-  const dateLocale = dateLocaleFor(locale);
 
   let post: Awaited<ReturnType<typeof prisma.post.findUnique>> = null;
   try {
@@ -42,6 +45,8 @@ export default async function PostDetailPage({ params }: Props) {
     notFound();
   }
 
+  const { title, content } = getLocalizedPostFields(dict, post);
+
   return (
     <main className="min-h-screen bg-white text-black">
       <article className="mx-auto w-full max-w-3xl px-4 py-14 md:px-6 md:py-20">
@@ -55,29 +60,25 @@ export default async function PostDetailPage({ params }: Props) {
         <h1
           className={`${playfair.className} text-center text-3xl font-bold leading-tight tracking-tight text-black md:text-4xl lg:text-[2.5rem]`}
         >
-          {post.title}
+          {title}
         </h1>
         <p className="mt-3 text-center text-sm text-black/50">
-          <time dateTime={post.createdAt.toISOString()}>
-            {post.createdAt.toLocaleDateString(dateLocale, {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
+          <time dateTime={(post.eventAt ?? post.createdAt).toISOString()}>
+            {formatDateWithWeekday(locale, post.eventAt ?? post.createdAt)}
           </time>
         </p>
 
         <div className="mt-12 w-full">
           <PostCoverMedia
             postId={post.id}
-            title={post.title}
+            title={title}
             mimeType={post.imageMimeType}
             layout="article"
           />
         </div>
 
         <div className="mx-auto mt-14 max-w-2xl text-base leading-[1.85] text-black/90 whitespace-pre-wrap">
-          {post.content}
+          {content}
         </div>
       </article>
     </main>

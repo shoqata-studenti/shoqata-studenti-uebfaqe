@@ -4,8 +4,9 @@ import { HeroCarousel } from "@/components/hero-carousel";
 import { UpcomingSection } from "@/components/upcoming-section";
 import { mergeKafeLlafeIntoUpcoming, buildKafeLlafeUpcomingCard } from "@/lib/kafe-llafe-upcoming";
 import { prisma } from "@/lib/db";
-import { dateLocaleFor, getDictionary } from "@/lib/i18n/get-dictionary";
+import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
+import { getLocalizedPostFields } from "@/lib/post-i18n";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -26,12 +27,13 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   const locale = await getLocale();
   const dict = getDictionary(locale);
-  const dateLocale = dateLocaleFor(locale);
   const start = startOfLocalDay(new Date());
 
   let upcomingRows: {
     id: number;
     title: string;
+    content: string;
+    i18nKey: string | null;
     imageMimeType: string;
     eventAt: Date | null;
     venue: string | null;
@@ -57,6 +59,8 @@ export default async function Home() {
       select: {
         id: true,
         title: true,
+        content: true,
+        i18nKey: true,
         imageMimeType: true,
         eventAt: true,
         venue: true,
@@ -72,7 +76,7 @@ export default async function Home() {
       ? [
           {
             id: p.id,
-            title: p.title,
+            title: getLocalizedPostFields(dict, p).title,
             imageMimeType: p.imageMimeType,
             eventAt: p.eventAt,
             venue: p.venue,
@@ -94,7 +98,7 @@ export default async function Home() {
         headingClassName={playfair.className}
         posts={upcomingWithKafe}
         dict={dict}
-        dateLocale={dateLocale}
+        locale={locale}
       />
     </main>
   );

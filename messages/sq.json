@@ -214,7 +214,7 @@
     "badge": "Evente",
     "title": "{{name}}",
     "intro": "{{description}}",
-    "kafeLlafeBody": "Semestri i ri ka filluar dhe ne po e nisim përsëri së bashku!\nLe të vazhdojmë traditën tonë të takimeve me kafe, biseda të këndshme dhe një atmosferë të ngrohtë. Çdo dy javë të mërkurën, bashkohemi për të kaluar një mbrëmje të këndshme dhe për të shijuar kohën së bashku.\n\n🗓 Kur: Çdo të mërkurën e dytë, nga ora 18:30\n📍 Ku: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nTakimi i parë: e mërkura, 27 maj 2026\n\nMerr shoqërinë me vete dhe vini të fillojmë semestrin së bashku!\n\nShoqata Studenti",
+    "kafeLlafeBody": "Semestri i ri ka filluar dhe ne po e nisim përsëri së bashku!\nLe të vazhdojmë traditën tonë të takimeve me kafe, biseda të këndshme dhe një atmosferë të ngrohtë. Çdo dy javë të mërkurën, bashkohemi për të kaluar një mbrëmje të këndshme dhe për të shijuar kohën së bashku.\n\n🗓 Kur: Çdo të mërkurën e dytë, nga ora 18:30\n📍 Ku: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nTakimi i parë: e mërkurë, 27 maj 2026\n\nMerr shoqërinë me vete dhe vini të fillojmë semestrin së bashku!\n\nShoqata Studenti",
     "festaFlamuritShort": "Mbrëmje festive me muzikë, traditë dhe shoqëri.",
     "festaFlamuritBody": "Festa e Flamurit është një mbrëmje e veçantë festive ku mblidhemi për të festuar së bashku.\n\nËshtë një natë e mbushur me muzikë të mirë, traditë dhe një atmosferë të ngrohtë. Sigurisht, nuk do të mungojnë vallet tradicionale, bisedat e mira dhe koha e bukur në shoqërinë e njëri-tjetrit.\n\nNjë mundësi e shkëlqyer për të kërcyer, për t'u argëtuar dhe për të mbajtur gjallë kulturën tonë.",
     "festaFlamuritEdition2025Body": "Eja të festojmë së bashku!\n\nFestojmë së bashku Ditën e Flamurit të shtunën, më 29 nëntor 2025, në orën 19:00, në ETH Zürich, CAB F21, Universitätstrasse 6, 8092 Zürich.\n\nNa bashkohu në një mbrëmje të veçantë me muzikë dhe atmosferë festive për të nderuar Ditën e Flamurit të 28 nëntorit! Vendndodhja është e kufizuar për 300 persona, prandaj sigurohu që të rezervosh biletën tënde sa më shpejt!\n\nKushtet e hyrjes: +18 vjeç; rekomandohet të përdorësh transportin publik.",
@@ -232,7 +232,13 @@
     "udhetimeEditionSubtitle2024": ""
   },
   "post": {
-    "backHome": "← Kthehu te ballina"
+    "backHome": "← Kthehu te ballina",
+    "entries": {
+      "gv2026": {
+        "title": "Kuvendi i Përgjithshëm",
+        "content": "Ju ftojmë në Kuvendin e Përgjithshëm të Shoqatës Studenti. Në këtë takim do t'i përmbledhim eventet dhe projektet e HS25 dhe FS26. Do të bisedojmë mbi financat dhe federatën, si dhe do ta zgjedhim kryesinë e re.\n\nData: të mërkurën, më 20.05.2026\n\nOra: 18:30–20:00\n\nVendi: KOL-F-121, Rämistrasse 71, 8006 Zürich\n\nAta që nuk janë të sigurtë nëse janë anëtarë aktiv apo jo, mund të vijnë në orën 18:15 për ta verifikuar statusin e anëtarësisë së tyre; me këtë rast mund ta bëjnë pagesën në vend.\n\nPas mbledhjes ju ftojmë që të vazhdojmë së bashku në BQM-Bar për një pije.\n\nSinqerisht,\nKryesia e Shoqatës Studenti"
+      }
+    }
   },
   "vargjet": {
     "title": "Vargjet e lira",

@@ -24,6 +24,8 @@ model Member {
 
 model Post {
   id            Int       @id @default(autoincrement())
+  /// opsionale: çelës në `messages.*.post.entries` (p.sh. `gv2026`)
+  i18nKey       String?
   title         String
   content       String
   imageMimeType String

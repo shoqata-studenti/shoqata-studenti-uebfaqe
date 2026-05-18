@@ -232,7 +232,13 @@
     "udhetimeEditionSubtitle2024": ""
   },
   "post": {
-    "backHome": "← Back to home"
+    "backHome": "← Back to home",
+    "entries": {
+      "gv2026": {
+        "title": "General Assembly",
+        "content": "We invite you to the General Assembly of Shoqata Studenti. At this meeting we will review the events and projects of HS25 and FS26. We will discuss finances and the federation, and we will also elect the new board.\n\nDate: Wednesday, 20 May 2026\n\nTime: 18:30–20:00\n\nVenue: KOL-F-121, Rämistrasse 71, 8006 Zürich\n\nIf you are unsure whether you are an active member, you may come at 18:15 to verify your membership status; in that case you can also pay on site.\n\nAfter the meeting we invite you to continue together at BQM-Bar for a drink.\n\nSincerely,\nThe Board of Shoqata Studenti"
+      }
+    }
   },
   "vargjet": {
     "title": "Vargjet e lira",

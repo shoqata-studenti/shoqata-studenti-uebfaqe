@@ -4,7 +4,9 @@ import Link from "next/link";
 
 import { PostCoverMedia } from "@/components/post-cover-media";
 import { cardLinkCategoryLabel } from "@/lib/card-link-category";
+import { formatEventDateTime } from "@/lib/format-datetime";
 import type { Dictionary } from "@/lib/i18n/get-dictionary";
+import type { Locale } from "@/lib/i18n/config";
 import { postArticleHref } from "@/lib/post-card-links";
 
 export type UpcomingPost = {
@@ -24,10 +26,10 @@ type Props = {
   headingClassName: string;
   posts: UpcomingPost[];
   dict: Dictionary;
-  dateLocale: string;
+  locale: Locale;
 };
 
-export function UpcomingSection({ headingClassName, posts, dict, dateLocale }: Props) {
+export function UpcomingSection({ headingClassName, posts, dict, locale }: Props) {
   const u = dict.upcoming;
 
   if (posts.length === 0) {
@@ -59,15 +61,7 @@ export function UpcomingSection({ headingClassName, posts, dict, dateLocale }: P
           {posts.map((post) => {
             const category = cardLinkCategoryLabel(dict, post.cardLinkPath);
             const href = post.detailHref ?? postArticleHref(post.id);
-            const dateStr = post.eventAt.toLocaleString(dateLocale, {
-              weekday: "short",
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-              hour: "2-digit",
-              minute: "2-digit",
-              hour12: false,
-            });
+            const dateStr = formatEventDateTime(locale, post.eventAt);
             const place = post.venue?.trim() || u.venueMissing;
 
             return (

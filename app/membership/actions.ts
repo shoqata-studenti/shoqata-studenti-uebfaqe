@@ -3,7 +3,8 @@
 import { MembershipType } from "@prisma/client";
 
 import { prisma } from "@/lib/db";
-import { dateLocaleFor, getDictionary } from "@/lib/i18n/get-dictionary";
+import { formatDateWithWeekday } from "@/lib/format-datetime";
+import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { interpolate } from "@/lib/i18n/interpolate";
 import { getLocale } from "@/lib/i18n/server";
 import { addYears, canRenewMembership, daysUntil, memberFullName } from "@/lib/membership-logic";
@@ -43,7 +44,6 @@ export async function submitMembership(
   const locale = await getLocale();
   const dict = getDictionary(locale);
   const ma = dict.membershipActions;
-  const dl = dateLocaleFor(locale);
 
   const name = String(formData.get("firstName") ?? "").trim();
   const surname = String(formData.get("lastName") ?? "").trim();
@@ -89,9 +89,7 @@ export async function submitMembership(
   }
 
   if (!canRenewMembership(existing.expiresAt)) {
-    const until = existing.expiresAt!.toLocaleDateString(dl, {
-      dateStyle: "long",
-    });
+    const until = formatDateWithWeekday(locale, existing.expiresAt!);
     return {
       ok: false,
       error: interpolate(ma.renewBlocked, { until }),
@@ -133,7 +131,6 @@ export async function checkMembershipStatus(
   const locale = await getLocale();
   const dict = getDictionary(locale);
   const ma = dict.membershipActions;
-  const dl = dateLocaleFor(locale);
 
   const email = normalizeEmail(String(formData.get("email") ?? ""));
   if (!email) {
@@ -153,7 +150,7 @@ export async function checkMembershipStatus(
     return { ok: true, message: ma.none };
   }
 
-  const dateStr = member.expiresAt.toLocaleDateString(dl, { dateStyle: "long" });
+  const dateStr = formatDateWithWeekday(locale, member.expiresAt);
 
   return {
     ok: true,
