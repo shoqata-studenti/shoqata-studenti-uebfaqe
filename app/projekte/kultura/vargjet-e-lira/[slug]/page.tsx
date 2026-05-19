@@ -42,10 +42,6 @@ export default async function VargjetTopicPage({ params }: Props) {
       <div className="border-t border-black/10 bg-white pb-20 text-black">
         <div className="mx-auto w-full max-w-[1440px] px-6 pt-4 md:px-10">
           <nav className="text-sm text-black/55">
-            <Link href="/projekte/kultura" className="hover:text-[#E11D48] hover:underline">
-              {dict.nav.kultura}
-            </Link>
-            <span className="mx-2 text-black/30">/</span>
             <Link
               href="/projekte/kultura/vargjet-e-lira"
               className="hover:text-[#E11D48] hover:underline"

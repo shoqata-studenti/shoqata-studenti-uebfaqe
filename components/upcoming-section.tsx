@@ -3,7 +3,6 @@ import "server-only";
 import Link from "next/link";
 
 import { PostCoverMedia } from "@/components/post-cover-media";
-import { cardLinkCategoryLabel } from "@/lib/card-link-category";
 import { formatEventDateTime } from "@/lib/format-datetime";
 import type { Dictionary } from "@/lib/i18n/get-dictionary";
 import type { Locale } from "@/lib/i18n/config";
@@ -59,7 +58,6 @@ export function UpcomingSection({ headingClassName, posts, dict, locale }: Props
 
         <ul className="mt-10 grid auto-rows-fr items-stretch gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => {
-            const category = cardLinkCategoryLabel(dict, post.cardLinkPath);
             const href = post.detailHref ?? postArticleHref(post.id);
             const dateStr = formatEventDateTime(locale, post.eventAt);
             const place = post.venue?.trim() || u.venueMissing;
@@ -80,12 +78,7 @@ export function UpcomingSection({ headingClassName, posts, dict, locale }: Props
                     href={href}
                     className="group mt-auto flex shrink-0 flex-col p-5 pt-4 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#E11D48]/40"
                   >
-                    {category ? (
-                      <p className="text-xs font-semibold uppercase tracking-wide text-[#E11D48]">
-                        {category}
-                      </p>
-                    ) : null}
-                    <h3 className="mt-2 text-lg font-bold leading-snug text-black group-hover:underline">
+                    <h3 className="text-lg font-bold leading-snug text-black group-hover:underline">
                       {post.title}
                     </h3>
                     <p className="mt-2 text-sm text-black/65">{dateStr}</p>
