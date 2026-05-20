@@ -4,6 +4,8 @@ import type { GalleryBlock } from "@/lib/event-gallery-blocks";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
 
+export const dynamic = "force-dynamic";
+
 const SPORTI_GALLERY_BLOCKS: GalleryBlock[] = [
   {
     kind: "single",

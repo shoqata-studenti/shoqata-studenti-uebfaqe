@@ -10,6 +10,8 @@ import { getDictionary, htmlLangFor } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
 import "./globals.css";
 
+export const dynamic = "force-dynamic";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

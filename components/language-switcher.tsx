@@ -1,10 +1,11 @@
 "use client";
 
+import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronDownIcon } from "lucide-react";
 
 import { useDictionary, useLocale } from "@/components/locale-provider";
-import { LOCALE_COOKIE } from "@/lib/i18n/config";
+import { setLocale } from "@/lib/i18n/actions";
 import type { Locale } from "@/lib/i18n/config";
 
 import {
@@ -23,23 +24,21 @@ const menuContent =
 const menuItem =
   "cursor-pointer rounded-sm px-4 py-2.5 text-left text-sm font-medium text-black whitespace-nowrap focus:bg-[#E11D48]/10 focus:text-black";
 
-function setLocaleCookie(locale: Locale) {
-  const maxAge = 60 * 60 * 24 * 365;
-  document.cookie = `${LOCALE_COOKIE}=${locale};path=/;max-age=${maxAge};SameSite=Lax`;
-}
-
 export function LanguageSwitcher() {
   const router = useRouter();
   const locale = useLocale();
   const dict = useDictionary();
+  const [pending, startTransition] = useTransition();
 
   const label =
     locale === "sq" ? dict.language.shortSq : locale === "de" ? dict.language.shortDe : dict.language.shortEn;
 
   const pick = (next: Locale) => {
-    if (next === locale) return;
-    setLocaleCookie(next);
-    router.refresh();
+    if (next === locale || pending) return;
+    startTransition(async () => {
+      await setLocale(next);
+      router.refresh();
+    });
   };
 
   return (

@@ -2,6 +2,8 @@ import { SubpageHero } from "@/components/subpage-hero";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
 
+export const dynamic = "force-dynamic";
+
 export default async function HistorikuPage() {
   const dict = getDictionary(await getLocale());
 

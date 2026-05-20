@@ -21,6 +21,7 @@ import { prisma } from "@/lib/db";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { interpolate } from "@/lib/i18n/interpolate";
 import { getLocale } from "@/lib/i18n/server";
+export const dynamic = "force-dynamic";
 import { cn } from "@/lib/utils";
 
 const playfair = Playfair_Display({
