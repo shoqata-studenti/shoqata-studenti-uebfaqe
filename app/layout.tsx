@@ -30,8 +30,11 @@ export const metadata: Metadata = {
   title: "Shoqata Studenti Zürich",
   description: "Platforma zyrtare e Shoqata Studenti Zürich.",
   icons: {
-    icon: [{ url: "/logo-shoqata.png", type: "image/png" }],
-    apple: [{ url: "/logo-shoqata.png", type: "image/png" }],
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "32x32" },
+    ],
+    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
   },
 };
 
