@@ -81,9 +81,23 @@ export async function subscribeNewsletter(
 
   try {
     const result = await subscribeInfomaniakNewsletter(email, { firstName, lastName });
-    if (result.status === "created") {
-      await sendNewsletterWelcomeEmailSq(email, memberFullName(firstName, lastName));
+
+    if (result.status === "skipped") {
+      return { ok: false, message: n.errorNotConfigured };
     }
+
+    if (result.status === "already-subscribed") {
+      return { ok: true, message: n.alreadySubscribed };
+    }
+
+    const welcome = await sendNewsletterWelcomeEmailSq(
+      email,
+      memberFullName(firstName, lastName)
+    );
+    if (!welcome.ok) {
+      console.error("[Newsletter] Willkommens-Mail:", welcome.error ?? welcome.skipped);
+    }
+
     return { ok: true, message: n.success };
   } catch {
     return { ok: false, message: n.errorGeneric };

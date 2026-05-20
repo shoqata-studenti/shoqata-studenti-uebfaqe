@@ -4,7 +4,7 @@ import { Resend } from "resend";
 import type { MembershipType } from "@prisma/client";
 
 import { formatDateWithWeekdaySq } from "@/lib/format-datetime";
-import { isOutboundEmailDisabled, OUTBOUND_EMAIL_DISABLED_REASON } from "@/lib/outbound-email";
+import { getResendApiKey, resendFromAddress } from "@/lib/resend-config";
 
 const RENEWAL_URL = "https://shoqata-studenti.ch/membership";
 const SITE_URL = "https://shoqata-studenti.ch/";
@@ -16,10 +16,6 @@ const typeLabelSq: Record<MembershipType, string> = {
   STUDENT: "Student",
   ALUMNI: "Alumni",
 };
-
-function defaultFrom(): string {
-  return process.env.RESEND_FROM ?? "Mitgliedschaft <onboarding@resend.dev>";
-}
 
 /**
  * "I/E nderuar <Emër Mbiemër>," kur emri është i njohur,
@@ -76,11 +72,7 @@ export async function sendMembershipConfirmationEmailSq(
   _type: MembershipType,
   fullName?: string
 ): Promise<{ sent: boolean; skipped?: string; error?: string }> {
-  if (isOutboundEmailDisabled()) {
-    return { sent: false, skipped: OUTBOUND_EMAIL_DISABLED_REASON };
-  }
-
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = getResendApiKey();
   if (!apiKey) {
     return { sent: false, skipped: "RESEND_API_KEY ist nicht gesetzt." };
   }
@@ -88,7 +80,7 @@ export async function sendMembershipConfirmationEmailSq(
   const resend = new Resend(apiKey);
 
   const { error } = await resend.emails.send({
-    from: defaultFrom(),
+    from: resendFromAddress(),
     to: email,
     subject: "Shoqata Studenti — Konfirmim i anëtarësimit",
     html: membershipConfirmationHtml(fullName),
@@ -107,11 +99,7 @@ export async function sendStripeWelcomeEmailSq(
   _uni: string,
   _type: MembershipType
 ): Promise<{ sent: boolean; error?: string; skipped?: string }> {
-  if (isOutboundEmailDisabled()) {
-    return { sent: false, skipped: OUTBOUND_EMAIL_DISABLED_REASON };
-  }
-
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = getResendApiKey();
   if (!apiKey) {
     return { sent: false, error: "RESEND_API_KEY fehlt" };
   }
@@ -119,7 +107,7 @@ export async function sendStripeWelcomeEmailSq(
   const resend = new Resend(apiKey);
 
   const { error } = await resend.emails.send({
-    from: defaultFrom(),
+    from: resendFromAddress(),
     to: email,
     subject: "Shoqata Studenti — Konfirmim i anëtarësimit",
     html: membershipConfirmationHtml(fullName),
@@ -148,11 +136,7 @@ export async function sendMembershipReminderEmailSq(
   fullName: string,
   expiresAt: Date
 ): Promise<{ ok: boolean; error?: string; skipped?: string }> {
-  if (isOutboundEmailDisabled()) {
-    return { ok: false, skipped: OUTBOUND_EMAIL_DISABLED_REASON };
-  }
-
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = getResendApiKey();
   if (!apiKey) {
     return { ok: false, error: "RESEND_API_KEY fehlt" };
   }
@@ -161,7 +145,7 @@ export async function sendMembershipReminderEmailSq(
   const dateStr = formatDateWithWeekdaySq(expiresAt);
 
   const { error } = await resend.emails.send({
-    from: defaultFrom(),
+    from: resendFromAddress(),
     to: email,
     subject: "Shoqata Studenti — Anëtarësimi juaj po afrohet në skadencë",
     html: `
@@ -188,11 +172,7 @@ export async function sendMembershipExpiredEmailSq(
   email: string,
   fullName: string
 ): Promise<{ ok: boolean; error?: string; skipped?: string }> {
-  if (isOutboundEmailDisabled()) {
-    return { ok: false, skipped: OUTBOUND_EMAIL_DISABLED_REASON };
-  }
-
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = getResendApiKey();
   if (!apiKey) {
     return { ok: false, error: "RESEND_API_KEY fehlt" };
   }
@@ -200,7 +180,7 @@ export async function sendMembershipExpiredEmailSq(
   const resend = new Resend(apiKey);
 
   const { error } = await resend.emails.send({
-    from: defaultFrom(),
+    from: resendFromAddress(),
     to: email,
     subject: "Shoqata Studenti — Anëtarësimi juaj ka skaduar",
     html: `
@@ -227,11 +207,7 @@ export async function sendNewsletterWelcomeEmailSq(
   email: string,
   fullName?: string
 ): Promise<{ ok: boolean; error?: string; skipped?: string }> {
-  if (isOutboundEmailDisabled()) {
-    return { ok: false, skipped: OUTBOUND_EMAIL_DISABLED_REASON };
-  }
-
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = getResendApiKey();
   if (!apiKey) {
     return { ok: false, skipped: "RESEND_API_KEY ist nicht gesetzt." };
   }
@@ -239,7 +215,7 @@ export async function sendNewsletterWelcomeEmailSq(
   const resend = new Resend(apiKey);
 
   const { error } = await resend.emails.send({
-    from: defaultFrom(),
+    from: resendFromAddress(),
     to: email,
     subject: "Shoqata Studenti — Konfirmim i abonimit në newsletter",
     html: newsletterWelcomeHtml(fullName),

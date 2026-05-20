@@ -6,8 +6,6 @@ import {
   sendMembershipReminderEmailSq,
 } from "@/lib/membership-email-albanian";
 import { memberFullName, utcDayRange } from "@/lib/membership-logic";
-import { isOutboundEmailDisabled, OUTBOUND_EMAIL_DISABLED_REASON } from "@/lib/outbound-email";
-
 function authorize(request: Request): boolean {
   const secret = process.env.CRON_SECRET;
   if (!secret) return false;
@@ -28,14 +26,6 @@ function isInUtcDayRange(iso: Date, range: { start: Date; end: Date }): boolean 
 export async function GET(request: Request) {
   if (!authorize(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  if (isOutboundEmailDisabled()) {
-    return NextResponse.json({
-      disabled: true,
-      message: OUTBOUND_EMAIL_DISABLED_REASON,
-      results: [],
-    });
   }
 
   const now = new Date();

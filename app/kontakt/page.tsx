@@ -48,7 +48,17 @@ export default async function KontaktPage({ searchParams }: Props) {
 
             {q.sent === "1" ? (
               <p className="mt-4 rounded-sm border border-black/10 bg-black/[0.03] px-4 py-3 text-sm text-black/80">
-                {k.sentSim}{" "}
+                {k.sentOk}
+              </p>
+            ) : null}
+            {q.error === "1" ? (
+              <p className="mt-4 rounded-sm border border-[#E11D48]/35 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
+                {k.errorFields}
+              </p>
+            ) : null}
+            {q.error === "2" ? (
+              <p className="mt-4 rounded-sm border border-[#E11D48]/35 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
+                {k.errorSend}{" "}
                 <a
                   href="mailto:info@shoqata-studenti.ch"
                   className="font-medium text-[#E11D48] underline-offset-2 hover:underline"
@@ -56,11 +66,6 @@ export default async function KontaktPage({ searchParams }: Props) {
                   info@shoqata-studenti.ch
                 </a>
                 .
-              </p>
-            ) : null}
-            {q.error === "1" ? (
-              <p className="mt-4 rounded-sm border border-[#E11D48]/35 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
-                {k.errorFields}
               </p>
             ) : null}
 
