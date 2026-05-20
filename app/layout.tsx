@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import Link from "next/link";
 
@@ -87,6 +88,7 @@ export default async function RootLayout({
             <SiteFooter footer={dict.layout.footer} />
           </div>
         </LocaleProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
