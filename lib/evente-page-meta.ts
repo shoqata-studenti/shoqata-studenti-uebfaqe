@@ -37,12 +37,7 @@ export function getEventPageMeta(
       description = dict.evente.festaFlamuritShort;
       break;
     case "udhetime":
-      description =
-        locale === "de"
-          ? "Ausflüge in der Schweiz für Vernetzung, Freizeit und neue Erlebnisse."
-          : locale === "en"
-            ? "Trips around Switzerland for networking, leisure, and new experiences."
-            : "Udhëtime nëpër Zvicër për njohje, kohë të lirë dhe përvoja të reja.";
+      description = dict.evente.udhetimeBody;
       break;
     case "ligjerata":
       description =
@@ -53,12 +48,7 @@ export function getEventPageMeta(
             : "Ligjërata dhe diskutime rreth studimeve, karrierës dhe jetës studentore.";
       break;
     case "sofra":
-      description =
-        locale === "de"
-          ? "Kulturelle Abende mit Essen, Musik und Begegnungen in albanischer Gemeinschaft."
-          : locale === "en"
-            ? "Cultural evenings with food, music, and gatherings in the Albanian community."
-            : "Mbrëmje kulturore me ushqim, muzikë dhe shoqërim në komunitet shqiptar.";
+      description = dict.evente.sofraBody;
       break;
     default:
       description = "";
