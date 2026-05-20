@@ -42,6 +42,10 @@ export default async function LigjerataHubPage() {
           {ligjerataLabel}
         </h1>
 
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-black/70 md:text-base">
+          {ev.ligjerataBody}
+        </p>
+
         <h2 className="mt-14 text-sm font-bold uppercase tracking-[0.12em] text-black/70">
           {ev.ligjerataTopicsHeading}
         </h2>

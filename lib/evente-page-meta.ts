@@ -40,12 +40,7 @@ export function getEventPageMeta(
       description = dict.evente.udhetimeBody;
       break;
     case "ligjerata":
-      description =
-        locale === "de"
-          ? "Vorträge und Diskussionsrunden zu Studium, Karriere und studentischem Leben."
-          : locale === "en"
-            ? "Lectures and discussions about studies, career, and student life."
-            : "Ligjërata dhe diskutime rreth studimeve, karrierës dhe jetës studentore.";
+      description = dict.evente.ligjerataBody;
       break;
     case "sofra":
       description = dict.evente.sofraBody;
