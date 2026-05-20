@@ -229,7 +229,20 @@
     "backToEventHub": "← {{name}}",
     "udhetimeEditionSubtitle2026": "Berlin",
     "udhetimeEditionSubtitle2025": "Sizilien",
-    "udhetimeEditionSubtitle2024": ""
+    "udhetimeEditionSubtitle2024": "",
+    "ligjerataTopicsHeading": "Themen",
+    "ligjerataBackToHub": "← Vorträge",
+    "ligjerataNoMedia": "Bilder folgen in Kürze."
+  },
+  "ligjerataTopics": {
+    "transnationale-demokratie": {
+      "title": "Transnationale Demokratie",
+      "body": "Vortrag über das Konzept der transnationalen Demokratie und die Herausforderungen demokratischer Governance jenseits nationaler Grenzen. Wir diskutieren internationale Institutionen, Bürgerbeteiligung und die Rolle der Zivilgesellschaft in einer zunehmend vernetzten Welt."
+    },
+    "kongresi-i-berlinit": {
+      "title": "Kongresi i Berlinit",
+      "body": "Vortrag über den Berliner Kongress von 1878, seinen politischen Kontext und die langfristigen Folgen für die albanischen Gebiete. Behandelt werden die wichtigsten Beschlüsse des Kongresses, die neuen Grenzen auf dem Balkan und die darauf folgende nationale Bewegung."
+    }
   },
   "post": {
     "backHome": "← Zurück zur Startseite",

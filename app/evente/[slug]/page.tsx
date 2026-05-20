@@ -1,6 +1,5 @@
 import "server-only";
 
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Playfair_Display } from "next/font/google";
@@ -10,6 +9,7 @@ import { PostCoverMedia } from "@/components/post-cover-media";
 import { editionYearsForEventHub, type EventEditionYear } from "@/lib/event-editions";
 import { rowsToGalleryBlocks } from "@/lib/event-gallery-blocks";
 import { festaFlamuritHubCardFirstVideoSrc } from "@/lib/festa-flamurit-static-gallery";
+import { kafeLlafeStaticGalleryBlocks } from "@/lib/kafe-llafe-static-gallery";
 import { getEventPageMeta } from "@/lib/evente-page-meta";
 import { fetchSofra2026HomepagePostVideo, type SofraHomePostCover } from "@/lib/sofra-2026-home-post-video";
 import { udhetimeHubCardPosterSrc } from "@/lib/udhetime-hub-card-poster";
@@ -78,6 +78,7 @@ export default async function EventeHubPage({ params }: Props) {
     } catch {
       kafeGalleryBlocks = rowsToGalleryBlocks([]);
     }
+    kafeGalleryBlocks = [...kafeLlafeStaticGalleryBlocks(meta.slug), ...kafeGalleryBlocks];
   }
 
   let sofra2026VideoPost: SofraHomePostCover | null = null;
@@ -122,20 +123,7 @@ export default async function EventeHubPage({ params }: Props) {
         })()}
 
         {meta.slug === SINGLE_PAGE_EVENT_SLUG ? (
-          <>
-            <div className="mx-auto mt-10 flex w-full justify-center px-2">
-              <Image
-                src="/evente/kafe-llafe-poster.png"
-                alt={meta.name}
-                width={960}
-                height={960}
-                sizes="(max-width: 768px) 100vw, 42rem"
-                className="h-auto w-full max-w-2xl object-contain"
-                priority
-              />
-            </div>
-            <EventGalleryZigzag blocks={kafeGalleryBlocks} />
-          </>
+          <EventGalleryZigzag blocks={kafeGalleryBlocks} />
         ) : (
           <>
             <h2 className="mt-14 text-sm font-bold uppercase tracking-[0.12em] text-black/70">

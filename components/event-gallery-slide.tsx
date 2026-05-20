@@ -5,9 +5,9 @@ import * as React from "react";
 import { useDictionary } from "@/components/locale-provider";
 import { VIDEO_MUTE_CONTROL_BUTTON_CLASSNAME } from "@/lib/video-mute-control";
 
-/** Imazh standalone: karta = imazhi, pa sfond. */
-const MEDIA_WRAP = "w-full overflow-hidden rounded-xl shadow-md";
-const MEDIA_INNER = "block h-auto w-full";
+/** Imazh standalone: karta = imazhi, pa sfond. Kufizo lartësinë që të rrijë brenda viewport-it. */
+const MEDIA_WRAP = "mx-auto w-fit max-w-full overflow-hidden rounded-xl shadow-md";
+const MEDIA_INNER = "block h-auto w-auto max-w-full max-h-[70vh]";
 
 /** Karuseli: slot me proporcion 4:5, imazhi/video mbush plotësisht (object-cover). */
 const VIDEO_CAROUSEL_WRAP =
@@ -15,9 +15,11 @@ const VIDEO_CAROUSEL_WRAP =
 const VIDEO_CAROUSEL_FILL = "absolute inset-0 w-full h-full object-cover";
 const VIDEO_FILL = VIDEO_CAROUSEL_FILL;
 
-/** Video standalone: karta = video, pa sfond. */
-const VIDEO_STANDALONE_WRAP = "w-full overflow-hidden rounded-xl shadow-md";
-const VIDEO_STANDALONE_INNER = "block h-auto w-full";
+/** Video standalone: karta = video, pa sfond. `w-fit` + `mx-auto` për simetri majtas/djathtas në zig-zag. */
+const VIDEO_STANDALONE_WRAP =
+  "relative mx-auto w-fit max-w-full overflow-hidden rounded-xl shadow-md";
+const VIDEO_STANDALONE_INNER =
+  "block h-auto w-auto max-w-full max-h-[65vh]";
 
 type Props = {
   id: number;

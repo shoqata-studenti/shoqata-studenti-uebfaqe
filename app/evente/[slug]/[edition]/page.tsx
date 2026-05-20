@@ -7,7 +7,10 @@ import { Playfair_Display } from "next/font/google";
 import { EventGalleryZigzag } from "@/components/event-gallery-zigzag";
 import { rowsToGalleryBlocks } from "@/lib/event-gallery-blocks";
 import { festaFlamuritStaticGalleryBlocks } from "@/lib/festa-flamurit-static-gallery";
-import { FESTA_E_FLAMURIT_SLUG, parseEventEditionYear } from "@/lib/event-editions";
+import {
+  isEditionAvailableForEvent,
+  parseEventEditionYear,
+} from "@/lib/event-editions";
 import { sofraEdition2026GalleryLeadBlocks } from "@/lib/sofra-2026-home-post-video";
 import { udhetimeEditionGalleryLeadBlocks } from "@/lib/udhetime-hub-card-poster";
 import { getEventPageMeta } from "@/lib/evente-page-meta";
@@ -38,12 +41,12 @@ export default async function EventeEditionPage({ params }: Props) {
   const meta = getEventPageMeta(dict, locale, slug);
   if (!meta) notFound();
 
-  if (meta.slug === FESTA_E_FLAMURIT_SLUG && editionYear === 2026) {
-    notFound();
-  }
-
   if (meta.slug === "kafe-llafe") {
     redirect(`/evente/${meta.slug}`);
+  }
+
+  if (!isEditionAvailableForEvent(meta.slug, editionYear)) {
+    notFound();
   }
 
   let galleryBlocks = rowsToGalleryBlocks([]);

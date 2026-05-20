@@ -229,7 +229,20 @@
     "backToEventHub": "← {{name}}",
     "udhetimeEditionSubtitle2026": "Berlin",
     "udhetimeEditionSubtitle2025": "Sicily",
-    "udhetimeEditionSubtitle2024": ""
+    "udhetimeEditionSubtitle2024": "",
+    "ligjerataTopicsHeading": "Topics",
+    "ligjerataBackToHub": "← Lectures",
+    "ligjerataNoMedia": "Images coming soon."
+  },
+  "ligjerataTopics": {
+    "transnationale-demokratie": {
+      "title": "Transnationale Demokratie",
+      "body": "Lecture on the concept of transnational democracy and the challenges of democratic governance beyond national borders. We discuss international institutions, civic participation, and the role of civil society in an increasingly interconnected world."
+    },
+    "kongresi-i-berlinit": {
+      "title": "Kongresi i Berlinit",
+      "body": "Lecture on the Congress of Berlin of 1878, its political context, and the long-term consequences for the Albanian territories. The session covers the congress's main decisions, the new borders in the Balkans, and the national movement that followed."
+    }
   },
   "post": {
     "backHome": "← Back to home",

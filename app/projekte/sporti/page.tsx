@@ -1,6 +1,19 @@
+import { EventGalleryZigzag } from "@/components/event-gallery-zigzag";
 import { SubpageHero } from "@/components/subpage-hero";
+import type { GalleryBlock } from "@/lib/event-gallery-blocks";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
+
+const SPORTI_GALLERY_BLOCKS: GalleryBlock[] = [
+  {
+    kind: "single",
+    items: [{ id: 86_001, mimeType: "video/mp4", src: "/projekte/sporti/futboll.mp4" }],
+  },
+  {
+    kind: "single",
+    items: [{ id: 86_002, mimeType: "video/mp4", src: "/projekte/sporti/volleyball.mp4" }],
+  },
+];
 
 export default async function SportiPage() {
   const locale = await getLocale();
@@ -17,6 +30,8 @@ export default async function SportiPage() {
           <p className="mt-5 max-w-3xl text-base leading-relaxed text-black/80">
             {dict.projectPages.sport.goal}
           </p>
+
+          <EventGalleryZigzag blocks={SPORTI_GALLERY_BLOCKS} />
         </div>
       </div>
     </>

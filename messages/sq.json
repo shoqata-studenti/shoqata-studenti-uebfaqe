@@ -229,7 +229,20 @@
     "backToEventHub": "← {{name}}",
     "udhetimeEditionSubtitle2026": "Berlin",
     "udhetimeEditionSubtitle2025": "Sicilia",
-    "udhetimeEditionSubtitle2024": ""
+    "udhetimeEditionSubtitle2024": "",
+    "ligjerataTopicsHeading": "Temat",
+    "ligjerataBackToHub": "← Ligjërata",
+    "ligjerataNoMedia": "Imazhet do të shtohen së shpejti."
+  },
+  "ligjerataTopics": {
+    "transnationale-demokratie": {
+      "title": "Transnationale Demokratie",
+      "body": "Ligjëratë mbi konceptin e demokracisë transnacionale dhe sfidat e qeverisjes demokratike përtej kufijve kombëtarë. Diskutojmë institucionet ndërkombëtare, pjesëmarrjen qytetare dhe rolin e shoqërisë civile në një botë gjithnjë e më të ndërlidhur."
+    },
+    "kongresi-i-berlinit": {
+      "title": "Kongresi i Berlinit",
+      "body": "Ligjëratë mbi Kongresin e Berlinit të vitit 1878, kontekstin e tij politik dhe pasojat afatgjata për trojet shqiptare. Trajtohen vendimet kryesore të kongresit, kufijtë e rinj në Ballkan dhe lëvizja kombëtare që pasoi."
+    }
   },
   "post": {
     "backHome": "← Kthehu te ballina",

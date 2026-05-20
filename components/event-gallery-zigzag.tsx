@@ -8,13 +8,18 @@ import { EventGallerySlide } from "@/components/event-gallery-slide";
 
 type Props = {
   blocks: GalleryBlock[];
+  /**
+   * Tailwind klasë e gjerësisë në desktop (md:). Default `md:w-2/5` (40%).
+   * P.sh. `md:w-1/2` për imazhe horizontale që duan më shumë hapësirë.
+   */
+  tileWidthClassName?: string;
 };
 
 /**
  * Zig-zag si versioni i hershëm (commit e361eb3): `flex-col` + `mr-auto`/`ml-auto`
  * dhe `md:w-2/5 md:max-w-none` — funksionon në Safari.
  */
-export function EventGalleryZigzag({ blocks }: Props) {
+export function EventGalleryZigzag({ blocks, tileWidthClassName = "md:w-2/5" }: Props) {
   if (blocks.length === 0) {
     return null;
   }
@@ -30,7 +35,8 @@ export function EventGalleryZigzag({ blocks }: Props) {
                 : `c-${block.items.map((x) => x.id).join("-")}`
             }
             className={cn(
-              "w-full max-w-md border-0 p-0 shadow-none ring-0 outline-none md:max-w-none md:w-2/5",
+              "w-full max-w-md border-0 p-0 shadow-none ring-0 outline-none md:max-w-none",
+              tileWidthClassName,
               index % 2 === 0 ? "mr-auto" : "ml-auto",
             )}
           >
