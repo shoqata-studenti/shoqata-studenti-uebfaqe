@@ -12,7 +12,7 @@ import { festaFlamuritHubCardFirstVideoSrc } from "@/lib/festa-flamurit-static-g
 import { kafeLlafeStaticGalleryBlocks } from "@/lib/kafe-llafe-static-gallery";
 import { getEventPageMeta } from "@/lib/evente-page-meta";
 import { fetchSofra2026HomepagePostVideo, type SofraHomePostCover } from "@/lib/sofra-2026-home-post-video";
-import { udhetimeHubCardPosterSrc } from "@/lib/udhetime-hub-card-poster";
+import { udhetimeHubCardPosterSrc } from "@/lib/udhetime-static-gallery";
 import { prisma } from "@/lib/db";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import type { Dictionary } from "@/lib/i18n/get-dictionary";

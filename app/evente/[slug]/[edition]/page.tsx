@@ -12,7 +12,10 @@ import {
   parseEventEditionYear,
 } from "@/lib/event-editions";
 import { sofraEdition2026GalleryLeadBlocks } from "@/lib/sofra-2026-home-post-video";
-import { udhetimeEditionGalleryLeadBlocks } from "@/lib/udhetime-hub-card-poster";
+import {
+  stripUdhetimeHubPosterFromGalleryBlocks,
+  udhetimeEdition2025GalleryBlocks,
+} from "@/lib/udhetime-static-gallery";
 import { getEventPageMeta } from "@/lib/evente-page-meta";
 import { prisma } from "@/lib/db";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
@@ -68,9 +71,13 @@ export default async function EventeEditionPage({ params }: Props) {
   }
 
   const staticFesta = festaFlamuritStaticGalleryBlocks(meta.slug, editionYear);
-  const udhetimeLead = udhetimeEditionGalleryLeadBlocks(meta.slug, editionYear);
+  const udhetime2025 = udhetimeEdition2025GalleryBlocks(meta.slug, editionYear);
   const sofraLead = await sofraEdition2026GalleryLeadBlocks(meta.slug, editionYear);
-  const galleryBlocksMerged = [...sofraLead, ...udhetimeLead, ...staticFesta, ...galleryBlocks];
+  const galleryBlocksMerged = stripUdhetimeHubPosterFromGalleryBlocks(
+    meta.slug,
+    editionYear,
+    [...sofraLead, ...udhetime2025, ...staticFesta, ...galleryBlocks]
+  );
 
   const editionTitle = interpolate(ev.editionTitle, { name: meta.name, year: String(editionYear) });
 
@@ -115,7 +122,12 @@ export default async function EventeEditionPage({ params }: Props) {
           </>
         ) : null}
 
-        <EventGalleryZigzag blocks={galleryBlocksMerged} />
+        <EventGalleryZigzag
+          blocks={galleryBlocksMerged}
+          tileWidthClassName={
+            meta.slug === "udhetime" && editionYear === 2025 ? "md:w-1/2" : undefined
+          }
+        />
       </section>
     </main>
   );

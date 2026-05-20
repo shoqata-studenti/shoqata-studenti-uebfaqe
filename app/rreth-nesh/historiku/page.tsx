@@ -8,8 +8,10 @@ export default async function HistorikuPage() {
   return (
     <main className="min-h-screen bg-white text-black">
       <SubpageHero title={dict.nav.historiku} as="div" variant="compact" />
-      <section className="mx-auto max-w-3xl px-6 pb-20 md:pb-24">
-        <p className="text-base leading-relaxed text-black/80">{dict.history.body}</p>
+      <section className="mx-auto max-w-3xl px-6 pb-20 md:px-10 md:pb-24">
+        <div className="mt-2 whitespace-pre-line text-[17px] leading-[1.85] text-black/80 md:mt-4 md:text-lg md:leading-[1.9]">
+          {dict.history.body}
+        </div>
       </section>
     </main>
   );
