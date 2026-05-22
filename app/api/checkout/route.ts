@@ -13,11 +13,9 @@ import {
   membershipStripeCatalogRef,
   resolveStripeCheckoutPriceId,
 } from "@/lib/stripe-membership-catalog";
+import { getSiteOrigin } from "@/lib/site-url";
 
 export async function POST(req: Request) {
-  console.log("SUCHE KEY:", process.env.STRIPE_SECRET_KEY ? "GEFUNDEN" : "NICHT GEFUNDEN");
-  console.log("SUCHE URL:", process.env.NEXT_PUBLIC_URL ? "GEFUNDEN" : "NICHT GEFUNDEN");
-
   if (!process.env.STRIPE_SECRET_KEY) {
     console.error("KRITISCHER FEHLER: STRIPE_SECRET_KEY wird nicht gefunden!");
     return NextResponse.json(
@@ -128,6 +126,8 @@ export async function POST(req: Request) {
       membershipStripeCatalogRef(type)
     );
 
+    const siteOrigin = getSiteOrigin();
+
     // Ohne `payment_method_types`: Dynamic Payment Methods aus dem Stripe-Dashboard (kein TWINT erzwingen).
     const session = await stripe.checkout.sessions.create({
       line_items: [
@@ -137,8 +137,8 @@ export async function POST(req: Request) {
         },
       ],
       mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_URL}/membership/success`,
-      cancel_url: `${process.env.NEXT_PUBLIC_URL}/membership`,
+      success_url: `${siteOrigin}/membership/success`,
+      cancel_url: `${siteOrigin}/membership`,
       metadata: {
         email,
         firstName: memberName,

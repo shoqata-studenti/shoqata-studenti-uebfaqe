@@ -63,6 +63,15 @@ export async function subscribeNewsletter(
   _prev: NewsletterSubscribeState,
   formData: FormData
 ): Promise<NewsletterSubscribeState> {
+  // Honeypot — Bots füllen dieses versteckte Feld aus, echte Nutzer nicht
+  const botField = formData.get("website_url")?.toString() ?? "";
+  if (botField) {
+    // Bot erkannt: Erfolg vortäuschen, nichts tun
+    const locale = await getLocale();
+    const dict = getDictionary(locale);
+    return { ok: true, message: dict.membership.newsletter.success };
+  }
+
   const locale = await getLocale();
   const dict = getDictionary(locale);
   const n = dict.membership.newsletter;

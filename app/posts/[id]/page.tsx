@@ -77,9 +77,18 @@ export default async function PostDetailPage({ params }: Props) {
           />
         </div>
 
-        <div className="mx-auto mt-14 max-w-2xl text-base leading-[1.85] text-black/90 whitespace-pre-wrap">
-          {content}
-        </div>
+        {/* HTML-Inhalt wenn <a>/<br> vorhanden, sonst plain text mit Zeilenumbrüchen */}
+        {content.includes("<") ? (
+          <div
+            className="mx-auto mt-14 max-w-2xl text-base leading-[1.85] text-black/90 [&_a]:font-semibold [&_a]:text-[#E11D48] [&_a]:underline-offset-2 [&_a:hover]:underline [&_br]:block [&_p]:mb-4 [&_p:last-child]:mb-0"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
+        ) : (
+          <div className="mx-auto mt-14 max-w-2xl text-base leading-[1.85] text-black/90 whitespace-pre-wrap">
+            {content}
+          </div>
+        )}
       </article>
     </main>
   );

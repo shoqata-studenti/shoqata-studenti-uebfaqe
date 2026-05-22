@@ -70,6 +70,15 @@ export default async function KontaktPage({ searchParams }: Props) {
             ) : null}
 
             <form id="kontakt-formular" action={sendContactMessage} className="mt-8 space-y-6">
+              {/* Honeypot — versteckt für echte Nutzer, Bots füllen es aus */}
+              <input
+                type="text"
+                name="website_url"
+                tabIndex={-1}
+                aria-hidden="true"
+                autoComplete="off"
+                className="hidden"
+              />
               <div className="space-y-2">
                 <label
                   htmlFor="emri"

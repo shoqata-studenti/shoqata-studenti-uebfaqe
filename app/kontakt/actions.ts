@@ -5,6 +5,13 @@ import { redirect } from "next/navigation";
 import { sendContactEmailToInfo } from "@/lib/send-contact-email";
 
 export async function sendContactMessage(formData: FormData) {
+  // Honeypot — Bots füllen dieses versteckte Feld aus, echte Nutzer nicht
+  const botField = formData.get("website_url")?.toString() ?? "";
+  if (botField) {
+    // Bot erkannt: Erfolg vortäuschen, nichts tun
+    redirect("/kontakt?sent=1");
+  }
+
   const emri = formData.get("emri")?.toString().trim() ?? "";
   const email = formData.get("email")?.toString().trim() ?? "";
   const mesazhi = formData.get("mesazhi")?.toString().trim() ?? "";

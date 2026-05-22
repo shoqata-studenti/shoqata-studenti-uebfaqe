@@ -5,9 +5,10 @@ import type { MembershipType } from "@prisma/client";
 
 import { formatDateWithWeekdaySq } from "@/lib/format-datetime";
 import { getResendApiKey, resendFromAddress } from "@/lib/resend-config";
+import { membershipPageUrl, siteHomeUrl } from "@/lib/site-url";
 
-const RENEWAL_URL = "https://shoqata-studenti.ch/membership";
-const SITE_URL = "https://shoqata-studenti.ch/";
+const RENEWAL_URL = membershipPageUrl();
+const SITE_URL = siteHomeUrl();
 const INSTAGRAM_URL = "https://www.instagram.com/shoqatastudenti_zh";
 const FACEBOOK_URL = "https://www.facebook.com/shoqata.studentizh";
 const TIKTOK_URL = "https://www.tiktok.com/@shoqata.studenti";

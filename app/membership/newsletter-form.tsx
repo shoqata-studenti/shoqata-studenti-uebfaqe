@@ -19,6 +19,15 @@ export function NewsletterForm() {
       <h2 className="font-serif text-2xl text-foreground">{n.title}</h2>
       <p className="mt-2 text-sm text-muted-foreground">{n.hint}</p>
       <form action={formAction} className="mt-5 space-y-4">
+        {/* Honeypot — versteckt für echte Nutzer, Bots füllen es aus */}
+        <input
+          type="text"
+          name="website_url"
+          tabIndex={-1}
+          aria-hidden="true"
+          autoComplete="off"
+          className="hidden"
+        />
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <label htmlFor="newsletter-firstName" className="text-sm font-medium text-foreground">
