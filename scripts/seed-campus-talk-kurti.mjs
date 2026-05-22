@@ -39,6 +39,7 @@ async function main() {
   });
 
   const data = {
+    i18nKey: "campusTalkKurti2026",
     title: TITLE,
     content: CONTENT,
     imageMimeType,

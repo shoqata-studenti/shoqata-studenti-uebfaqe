@@ -2,7 +2,7 @@ import type { Dictionary } from "@/lib/i18n/get-dictionary";
 
 export type PostI18nKey = keyof Dictionary["post"]["entries"];
 
-const POST_I18N_KEYS = ["gv2026"] as const satisfies readonly PostI18nKey[];
+const POST_I18N_KEYS = ["gv2026", "campusTalkKurti2026"] as const satisfies readonly PostI18nKey[];
 
 export type PostForI18n = {
   title: string;
