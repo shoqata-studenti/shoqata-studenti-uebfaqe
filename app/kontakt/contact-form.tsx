@@ -3,7 +3,8 @@
 import { useActionState, useEffect, useRef, useState } from "react";
 import Script from "next/script";
 
-import { initialContactFormState, sendContactMessage, type ContactFormState } from "./actions";
+import { sendContactMessage } from "./actions";
+import { initialContactFormState, type ContactFormState } from "./form-state";
 
 type KontaktDictionary = {
   sentOk: string;

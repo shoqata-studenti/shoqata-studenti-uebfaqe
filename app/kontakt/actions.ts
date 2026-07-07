@@ -2,15 +2,7 @@
 
 import { sendContactEmailToInfo } from "@/lib/send-contact-email";
 import { verifyTurnstileToken } from "@/lib/turnstile";
-
-export type ContactFormState = {
-  status: "idle" | "success" | "error";
-  error?: "fields" | "turnstile" | "mail" | "config" | "send";
-};
-
-export const initialContactFormState: ContactFormState = {
-  status: "idle",
-};
+import type { ContactFormState } from "./form-state";
 
 export async function sendContactMessage(
   _prevState: ContactFormState,
