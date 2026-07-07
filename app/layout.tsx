@@ -32,6 +32,14 @@ const playfairNav = Playfair_Display({
 export const metadata: Metadata = {
   title: "Shoqata Studenti Zürich",
   description: "Platforma zyrtare e Shoqata Studenti Zürich.",
+  icons: {
+    icon: [
+      { url: "/icon.png?v=2.0", type: "image/png", sizes: "512x512" },
+      { url: "/icon.png?v=2.0", type: "image/png", sizes: "192x192" },
+    ],
+    apple: [{ url: "/apple-icon.png?v=2.0", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/icon.png?v=2.0"],
+  },
 };
 
 export default async function RootLayout({
