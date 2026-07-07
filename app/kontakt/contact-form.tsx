@@ -9,6 +9,10 @@ type KontaktDictionary = {
   sentOk: string;
   errorFields: string;
   errorSend: string;
+  errorTurnstile: string;
+  errorMail: string;
+  errorConfig: string;
+  errorServer: string;
   labelName: string;
   labelEmail: string;
   labelMessage: string;
@@ -48,6 +52,14 @@ const fieldClass =
   "w-full rounded-sm border border-black/15 bg-white px-3 py-2.5 text-sm text-black outline-none transition-[border-color,box-shadow] placeholder:text-black/40 focus:border-[#E11D48] focus:ring-2 focus:ring-[#E11D48]/20";
 
 export function KontaktForm({ dict, turnstileSiteKey }: KontaktFormProps) {
+  const getErrorMessage = (error: ContactFormState["error"]): string => {
+    if (error === "fields") return dict.errorFields;
+    if (error === "turnstile") return dict.errorTurnstile;
+    if (error === "mail") return dict.errorMail;
+    if (error === "config") return dict.errorConfig;
+    return dict.errorServer;
+  };
+
   const [state, formAction, isSubmitting] = useActionState<ContactFormState, FormData>(
     sendContactMessage,
     initialContactFormState
@@ -105,7 +117,7 @@ export function KontaktForm({ dict, turnstileSiteKey }: KontaktFormProps) {
       ) : null}
       {state.status === "error" && state.error === "send" ? (
         <p className="mt-4 rounded-sm border border-[#E11D48]/35 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
-          {dict.errorSend}{" "}
+          {getErrorMessage(state.error)}{" "}
           <a
             href="mailto:info@shoqata-studenti.ch"
             className="font-medium text-[#E11D48] underline-offset-2 hover:underline"
@@ -113,6 +125,12 @@ export function KontaktForm({ dict, turnstileSiteKey }: KontaktFormProps) {
             info@shoqata-studenti.ch
           </a>
           .
+        </p>
+      ) : null}
+      {state.status === "error" &&
+      (state.error === "turnstile" || state.error === "mail" || state.error === "config") ? (
+        <p className="mt-4 rounded-sm border border-[#E11D48]/35 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
+          {getErrorMessage(state.error)}
         </p>
       ) : null}
 

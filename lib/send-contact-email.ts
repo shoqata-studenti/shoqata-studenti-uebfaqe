@@ -17,29 +17,36 @@ export async function sendContactEmailToInfo(params: {
   email: string;
   message: string;
 }): Promise<{ ok: boolean; error?: string }> {
-  const apiKey = getResendApiKey();
-  if (!apiKey) {
-    return { ok: false, error: "RESEND_API_KEY fehlt" };
-  }
+  try {
+    const apiKey = getResendApiKey();
+    if (!apiKey) {
+      return { ok: false, error: "RESEND_API_KEY fehlt" };
+    }
 
-  const resend = new Resend(apiKey);
-  const { name, email, message } = params;
+    const resend = new Resend(apiKey);
+    const { name, email, message } = params;
 
-  const { error } = await resend.emails.send({
-    from: resendFromAddress(),
-    to: SHOQATA_INFO_EMAIL,
-    replyTo: email,
-    subject: `Kontaktformular: ${name}`,
-    html: `
+    const { error } = await resend.emails.send({
+      from: resendFromAddress(),
+      to: SHOQATA_INFO_EMAIL,
+      replyTo: email,
+      subject: `Kontaktformular: ${name}`,
+      html: `
       <p><strong>Name:</strong> ${escapeHtml(name)}</p>
       <p><strong>E-Mail:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p>
       <p><strong>Nachricht:</strong></p>
       <p style="white-space:pre-wrap">${escapeHtml(message)}</p>
     `,
-  });
+    });
 
-  if (error) {
-    return { ok: false, error: error.message };
+    if (error) {
+      return { ok: false, error: error.message };
+    }
+    return { ok: true };
+  } catch (error) {
+    return {
+      ok: false,
+      error: error instanceof Error ? error.message : "Unbekannter Mail-Fehler",
+    };
   }
-  return { ok: true };
 }
