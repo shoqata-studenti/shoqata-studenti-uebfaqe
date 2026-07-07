@@ -138,6 +138,7 @@
     "sentOk": "Thank you! Your message has been sent. We will get back to you as soon as possible.",
     "errorFields": "Please fill in all fields before sending.",
     "errorSend": "Your message could not be sent. Please try again or email info@shoqata-studenti.ch directly.",
+    "errorSpam": "Security check failed. Please confirm you are not a bot and try again.",
     "labelName": "Name",
     "labelEmail": "Email",
     "labelMessage": "Message",

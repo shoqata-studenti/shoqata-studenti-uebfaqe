@@ -138,6 +138,7 @@
     "sentOk": "Danke! Deine Nachricht wurde gesendet. Wir melden uns so bald wie möglich.",
     "errorFields": "Bitte alle Felder ausfüllen, bevor du sendest.",
     "errorSend": "Die Nachricht konnte nicht gesendet werden. Bitte erneut versuchen oder direkt an info@shoqata-studenti.ch schreiben.",
+    "errorSpam": "Sicherheitspruefung fehlgeschlagen. Bitte bestaetige, dass du kein Bot bist, und versuche es erneut.",
     "labelName": "Name",
     "labelEmail": "E-Mail",
     "labelMessage": "Nachricht",

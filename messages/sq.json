@@ -138,6 +138,7 @@
     "sentOk": "Faleminderit! Mesazhi juaj u dërgua. Do t’ju përgjigjemi sa më shpejt të jetë e mundur.",
     "errorFields": "Plotëso të gjitha fushat para dërgimit.",
     "errorSend": "Mesazhi nuk u dërgua dot. Provo përsëri ose shkruani direkt te info@shoqata-studenti.ch.",
+    "errorSpam": "Verifikimi i sigurise deshtoi. Ju lutemi konfirmoni qe nuk jeni robot dhe provoni perseri.",
     "labelName": "Emri",
     "labelEmail": "Email",
     "labelMessage": "Mesazhi",

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import { Playfair_Display } from "next/font/google";
 
 import { SocialLinks } from "@/components/social-links";
@@ -24,6 +25,7 @@ export default async function KontaktPage({ searchParams }: Props) {
   const locale = await getLocale();
   const dict = getDictionary(locale);
   const k = dict.kontakt;
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   return (
     <main className="min-h-screen bg-white text-black">
@@ -66,6 +68,11 @@ export default async function KontaktPage({ searchParams }: Props) {
                   info@shoqata-studenti.ch
                 </a>
                 .
+              </p>
+            ) : null}
+            {q.error === "3" ? (
+              <p className="mt-4 rounded-sm border border-[#E11D48]/35 bg-[#E11D48]/10 px-4 py-3 text-sm text-black">
+                {k.errorSpam}
               </p>
             ) : null}
 
@@ -129,6 +136,14 @@ export default async function KontaktPage({ searchParams }: Props) {
                   placeholder={k.placeholderMessage}
                 />
               </div>
+              {turnstileSiteKey ? (
+                <div
+                  className="cf-turnstile"
+                  data-sitekey={turnstileSiteKey}
+                  data-theme="light"
+                  data-size="normal"
+                />
+              ) : null}
               <button
                 type="submit"
                 className="inline-flex min-h-11 w-full items-center justify-center rounded-sm bg-[#E11D48] px-6 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-[#be123c] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
@@ -136,6 +151,12 @@ export default async function KontaktPage({ searchParams }: Props) {
                 {k.submit}
               </button>
             </form>
+            {turnstileSiteKey ? (
+              <Script
+                src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+                strategy="afterInteractive"
+              />
+            ) : null}
           </div>
 
           <div className="mx-auto w-full max-w-md border-t border-black/10 pt-12 lg:mx-0 lg:border-t-0 lg:border-l lg:pl-12 lg:pt-0">
