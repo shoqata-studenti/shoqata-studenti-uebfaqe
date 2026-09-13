@@ -97,6 +97,7 @@
       "typeLegend": "Typ",
       "student": "Student",
       "alumni": "Alumni",
+      "paymentMaintenance": "Aufgrund technischer Wartungsarbeiten an unserem Zahlungssystem sind aktuell leider keine Bestellungen möglich. Bitte versuche es in etwa einer Woche noch einmal. Vielen Dank für dein Verständnis!",
       "submit": "Zur Zahlung weiter (Stripe)",
       "pending": "Weiterleitung…",
       "errorPayment": "Fehler beim Erstellen der Zahlung.",

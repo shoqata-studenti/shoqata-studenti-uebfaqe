@@ -97,6 +97,7 @@
       "typeLegend": "Type",
       "student": "Student",
       "alumni": "Alumni",
+      "paymentMaintenance": "Due to technical maintenance on our payment system, orders are unfortunately not possible at the moment. Please try again in about a week. Thank you for your understanding!",
       "submit": "Continue to payment (Stripe)",
       "pending": "Redirecting…",
       "errorPayment": "Could not create payment.",

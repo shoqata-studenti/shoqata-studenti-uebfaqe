@@ -97,6 +97,7 @@
       "typeLegend": "Lloji",
       "student": "Student",
       "alumni": "Alumni",
+      "paymentMaintenance": "Për shkak të punimeve teknike në sistemin tonë të pagesave, aktualisht nuk është e mundur të bëhen porosi. Të lutemi provo përsëri pas rreth një jave. Faleminderit për mirëkuptimin!",
       "submit": "Vazhdo në pagesë (Stripe)",
       "pending": "Po ridrejtohet…",
       "errorPayment": "Gabim gjatë krijimit të pagesës.",
