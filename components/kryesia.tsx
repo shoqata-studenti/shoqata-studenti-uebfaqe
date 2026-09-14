@@ -8,56 +8,45 @@ import { KryesiaMemberPhoto } from "@/components/kryesia-member-photo";
  */
 const KRYESIA_BOARD = [
   {
-    name: "Bardh Jashari",
-    role: "Kryetar",
-    bio: "Master ETH arkitekturë",
-    imageSrc: "/kryesia/Bardh-Jashari.png",
-  },
-  {
-    name: "Anton Krasniqi",
-    role: "Financa",
-    bio: "Master ETH inxhinieri civile",
-    imageSrc: "/kryesia/Anton-Krasniqi.png",
-  },
-  {
-    name: "Altina Orani",
-    role: "Media sociale",
-    bio: "Bachelor ETH arkitekturë",
-    imageSrc: "/kryesia/Altina-Orani.png",
-  },
-  {
-    name: "Hana Syla",
-    role: "Komunikim",
-    bio: "Master ETH studime krahasuese dhe ndërkombëtare",
-    imageSrc: "/kryesia/Hana-Syla.png",
+    name: "Puhiza Selimi",
+    role: "Kryetare",
+    bio: "Master UZH Juridik",
+    imageSrc: "/kryesia/Foto-Puhiza.png",
   },
   {
     name: "Idlir Begalla",
-    role: "Menaxhim eventesh",
-    bio: "Bachelor ETH arkitekturë",
-    imageSrc: "/kryesia/Idlir.png",
+    role: "Koordinim",
+    bio: "Bachelor ETH Arkitekturë",
+    imageSrc: "/kryesia/Foto-Idliri.png",
   },
   {
-    name: "Zana Krasniqi",
-    role: "Menaxhim eventesh",
-    bio: "Master ETH shkenca të inxhinierisë mjedisore",
-    imageSrc: "/kryesia/Zana-Krasniqi01.png",
+    name: "Altina Orani",
+    role: "Public Relations",
+    bio: "Bachelor ETH Arkitekturë",
+    imageSrc: "/kryesia/altina-foto.png",
   },
   {
-    name: "Driton Hasanaj",
-    role: "Marketing",
-    bio: "Master ETH arkitekturë",
-    imageSrc: "/kryesia/Driton.png",
+    name: "Bletarta Sefedini",
+    role: "Community Manager",
+    bio: "Master ETH Farmaci",
+    imageSrc: "/kryesia/bleta-foto.png",
   },
   {
     name: "Jon Stojkaj",
-    role: "IT",
-    bio: "Bachelor ETH shkenca kompjuterike",
-    imageSrc: "/kryesia/Jon-Stojkaj.png",
+    role: "Financa/IT",
+    bio: "Bachelor ETH Shkenca Kompjuterike",
+    imageSrc: "/kryesia/Foto-Jon.png",
   },
+  {
+    name: "Anisa Kadriu",
+    role: "Organizim",
+    bio: "Bachelor UZH Juridik",
+    imageSrc: "/kryesia/Foto-Anisa.png",
+  },
+ 
 ] as const;
 
-const gridClass = "grid grid-cols-1 gap-5 md:grid-cols-4 md:grid-rows-2";
+const gridClass = "grid grid-cols-1 sm:grid-cols-3 gap-5";
 
 const cardClass =
   "mx-auto flex h-full w-full max-w-[280px] flex-col overflow-hidden rounded-xl border border-border shadow-sm md:max-w-none";
