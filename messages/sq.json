@@ -21,7 +21,7 @@
     "info": "Info",
     "kryesia": "Kryesia",
     "historiku": "Historiku",
-    "statutet": "Statutet",
+    "statutet": "Statuti",
     "struktura": "Struktura",
     "questionsAboutStudies": "Pyetje rreth studimeve",
     "studiesAtEth": "Studimet në ETH Zürich",
@@ -40,6 +40,17 @@
     "openMainMenu": "Hap menunë",
     "closeMainMenu": "Mbyll menunë",
     "panelMenuTitle": "Meny"
+  },
+  "statutet": {
+    "title": "Statuti",
+    "paragraphOne": "Statuti i Shoqatës Studenti përbën bazën juridike dhe organizative të funksionimit të shoqatës. Ai përcakton strukturën e organizatës, kompetencat e organeve drejtuese, të drejtat dhe obligimet e anëtarëve, si dhe parimet mbi të cilat ndërtohet veprimtaria e shoqatës. Përmes statutit rregullohen proceset vendimmarrëse, organizimi i Kuvendit të Përgjithshëm, zgjedhja e kryesisë, financimi dhe funksionimi i përgjithshëm i shoqatës.",
+    "paragraphTwo": "Shoqata Studenti funksionon mbi parimet e transparencës, barazisë, pavarësisë politike dhe mbrojtjes së të dhënave personale të anëtarëve. Statuti gjithashtu përcakton qartë qëllimin e shoqatës: krijimin e një platforme akademike, kulturore dhe shoqërore për studentët shqiptarë në Cyrih dhe promovimin e identitetit, gjuhës dhe kulturës shqiptare.",
+    "documentsTitle": "Dokumentet e statutit (PDF)",
+    "documentsHint": "Hape dokumentin në një skedë të re ose shkarko atë.",
+    "albanianPdf": "Statuti Shqip",
+    "germanPdf": "Statuten Deutsch",
+    "open": "Hape",
+    "download": "Shkarko"
   },
   "layout": {
     "logoAlt": "Shoqata Studenti Zürich",
@@ -97,7 +108,6 @@
       "typeLegend": "Lloji",
       "student": "Student",
       "alumni": "Alumni",
-      "paymentMaintenance": "Për shkak të punimeve teknike në sistemin tonë të pagesave, aktualisht nuk është e mundur të bëhen porosi. Të lutemi provo përsëri pas rreth një jave. Faleminderit për mirëkuptimin!",
       "submit": "Vazhdo në pagesë (Stripe)",
       "pending": "Po ridrejtohet…",
       "errorPayment": "Gabim gjatë krijimit të pagesës.",

@@ -41,6 +41,17 @@
     "closeMainMenu": "Close menu",
     "panelMenuTitle": "Menu"
   },
+  "statutet": {
+    "title": "Statutes",
+    "paragraphOne": "The statutes of Shoqata Studenti form the legal and organizational foundation of the association. They define the organization's structure, the responsibilities of its governing bodies, the rights and obligations of its members, and the principles on which the association's work is built. The statutes regulate decision-making processes, the organization of the General Assembly, the election of the board, financing, and the association's overall operation.",
+    "paragraphTwo": "Shoqata Studenti operates according to the principles of transparency, equality, political independence, and protection of its members' personal data. The statutes also clearly define the association's purpose: creating an academic, cultural, and social platform for Albanian students in Zurich and promoting Albanian identity, language, and culture.",
+    "documentsTitle": "Statutes as PDF",
+    "documentsHint": "Open the document in a new tab or download it.",
+    "albanianPdf": "Statuti Shqip",
+    "germanPdf": "Statuten Deutsch",
+    "open": "Open",
+    "download": "Download"
+  },
   "layout": {
     "logoAlt": "Shoqata Studenti Zürich",
     "line1": "SHOQATA",
@@ -97,7 +108,6 @@
       "typeLegend": "Type",
       "student": "Student",
       "alumni": "Alumni",
-      "paymentMaintenance": "Due to technical maintenance on our payment system, orders are unfortunately not possible at the moment. Please try again in about a week. Thank you for your understanding!",
       "submit": "Continue to payment (Stripe)",
       "pending": "Redirecting…",
       "errorPayment": "Could not create payment.",

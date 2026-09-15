@@ -41,6 +41,17 @@
     "closeMainMenu": "Menü schließen",
     "panelMenuTitle": "Menü"
   },
+  "statutet": {
+    "title": "Statuten",
+    "paragraphOne": "Die Statuten der Shoqata Studenti bilden die rechtliche und organisatorische Grundlage für die Tätigkeit des Vereins. Sie legen die Struktur der Organisation, die Zuständigkeiten der Leitungsorgane, die Rechte und Pflichten der Mitglieder sowie die Grundsätze fest, auf denen die Tätigkeit des Vereins beruht. Die Statuten regeln die Entscheidungsprozesse, die Organisation der Generalversammlung, die Wahl des Vorstands, die Finanzierung und den allgemeinen Betrieb des Vereins.",
+    "paragraphTwo": "Shoqata Studenti arbeitet nach den Grundsätzen der Transparenz, Gleichheit, politischen Unabhängigkeit und des Schutzes der personenbezogenen Daten ihrer Mitglieder. Die Statuten bestimmen zudem klar den Zweck des Vereins: die Schaffung einer akademischen, kulturellen und sozialen Plattform für albanische Studierende in Zürich sowie die Förderung der albanischen Identität, Sprache und Kultur.",
+    "documentsTitle": "Statuten als PDF",
+    "documentsHint": "Öffne das gewünschte Dokument in einem neuen Tab oder lade es herunter.",
+    "albanianPdf": "Statuti Shqip",
+    "germanPdf": "Statuten Deutsch",
+    "open": "Öffnen",
+    "download": "Herunterladen"
+  },
   "layout": {
     "logoAlt": "Shoqata Studenti Zürich",
     "line1": "SHOQATA",
@@ -97,7 +108,6 @@
       "typeLegend": "Typ",
       "student": "Student",
       "alumni": "Alumni",
-      "paymentMaintenance": "Aufgrund technischer Wartungsarbeiten an unserem Zahlungssystem sind aktuell leider keine Bestellungen möglich. Bitte versuche es in etwa einer Woche noch einmal. Vielen Dank für dein Verständnis!",
       "submit": "Zur Zahlung weiter (Stripe)",
       "pending": "Weiterleitung…",
       "errorPayment": "Fehler beim Erstellen der Zahlung.",
