@@ -233,7 +233,7 @@
     "badge": "Evente",
     "title": "{{name}}",
     "intro": "{{description}}",
-    "kafeLlafeBody": "Semestri i ri ka filluar dhe ne po e nisim përsëri së bashku!\nLe të vazhdojmë traditën tonë të takimeve me kafe, biseda të këndshme dhe një atmosferë të ngrohtë. Çdo dy javë të mërkurën, bashkohemi për të kaluar një mbrëmje të këndshme dhe për të shijuar kohën së bashku.\n\n🗓 Kur: Çdo të mërkurën e dytë, nga ora 18:30\n📍 Ku: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nTakimi i parë: e mërkurë, 27 maj 2026\n\nMerr shoqërinë me vete dhe vini të fillojmë semestrin së bashku!\n\nShoqata Studenti",
+    "kafeLlafeBody": "Semestri i ri ka filluar dhe ne po e nisim përsëri së bashku!\nLe të vazhdojmë traditën tonë të takimeve me kafe, biseda të këndshme dhe një atmosferë të ngrohtë. Çdo dy javë të enjten, bashkohemi për të kaluar një mbrëmje të këndshme dhe për të shijuar kohën së bashku.\n\n🗓 Kur: Çdo të enjten e dytë, nga ora 18:30\n📍 Ku: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nTakimi i parë: e enjte, 1 tetor 2026\n\nMerr shoqërinë me vete dhe vini të fillojmë semestrin së bashku!\n\nShoqata Studenti",
     "festaFlamuritShort": "Mbrëmja ku festojmë ditën tonë më të rëndësishme.",
     "festaFlamuritBody": "Mbrëmja ku festojmë ditën tonë më të rëndësishme. Një ngjarje e mbushur me këngë, valle tradicionale dhe atmosferë të vërtetë shqiptare. Bëhemi bashkë për të festuar Pavarësinë ashtu siç e meriton – kuq e zi.",
     "sofraBody": "Një mbrëmje e dedikuar traditës sonë të mikpritjes. Secili sjell një gatim nga shtëpia për ta ndarë me të tjerët, duke krijuar një tryezë të përbashkët me ushqim, muzikë dhe valle. Siç e do zakoni ynë, ju mirëpresim \"Me bukë, kripë dhe zemër\".",
@@ -276,6 +276,10 @@
       "campusTalkKurti2026": {
         "title": "Campus Talk me Kryeministrin Albin Kurti",
         "content": "<p>Nesër gjatë drekës do të kemi mundësinë të takohemi me Kryeministrin e Republikës së Kosovës, z. Albin Kurti, në një bashkëbisedim ekskluziv. Jemi shumë të lumtur për këtë mundësi të veçantë, e cila realizohet nga Shoqata Studenti në bashkëpunim me Federatën.</p><p><strong>Kur?</strong><br>NESËR, të shtunën, më 23.05.2026, rreth orës 13:00.</p><p><strong>Ku?</strong><br>Takimi do të zhvillohet në qendër të Cyrihut, në zonën e Niederdörfli-t. Lokacioni i saktë do t'u komunikohet me email vetëm personave të regjistruar.</p><p>Regjistrimi është i detyrueshëm.<br>Ju lutemi të keni parasysh se numri i vendeve është i kufizuar dhe pjesëmarrja është e hapur vetëm për personat e regjistruar.</p><p>Të dhënat tuaja do të përdoren vetëm për informimin rreth lokacionit dhe do të fshihen pas përfundimit të eventit.</p><p>Regjistrohu <a href=\"https://forms.gle/D3qFHhumLjyWfv8P7\" target=\"_blank\" rel=\"noopener noreferrer\">këtu</a></p>"
+      },
+      "activityFair2026": {
+        "title": "Activity Fair 2026",
+        "content": "Ne jemi gati! 🎉\n\nNa vizitoni në stendën tonë gjatë Activity Fair!\nDo të prezantojmë shoqatën tonë. Një rast i shkëlqyer për të na njohur më nga afër dhe për të bërë çdo pyetje që keni! 💬\n\nUZH\n22.09. - Lichthof Irchel, 9:30–16:30\n23.09. - Lichthof Zentrum, 9:30–16:30\nETH\n13.10. - Ndërtesa HG (Zentrum), 9:00–18:00\n\n✨ Ejani, frymëzohuni dhe bëhuni pjesë e komunitetit tonë!\nMezi presim t’ju takojmë!"
       }
     }
   },

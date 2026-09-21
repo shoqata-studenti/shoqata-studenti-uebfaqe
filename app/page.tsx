@@ -81,6 +81,8 @@ export default async function Home() {
             eventAt: p.eventAt,
             venue: p.venue,
             cardLinkPath: p.cardLinkPath,
+            coverSrc:
+              p.i18nKey === "activityFair2026" ? "/evente/acivityfair_post.JPG" : undefined,
           },
         ]
       : []

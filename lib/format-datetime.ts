@@ -8,7 +8,7 @@ export function formatEventDateTime(locale: Locale, date: Date): string {
   return date.toLocaleString(dateLocaleFor(locale), {
     weekday: "long",
     year: "numeric",
-    month: "short",
+    month: "long",
     day: "numeric",
     hour: "2-digit",
     minute: "2-digit",

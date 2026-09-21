@@ -233,7 +233,7 @@
     "badge": "Events",
     "title": "{{name}}",
     "intro": "{{description}}",
-    "kafeLlafeBody": "Das neue Semester hat begonnen — und wir starten wieder gemeinsam!\nLasst uns unsere Tradition der Café-Treffen, angenehmer Gespräche und warmer Atmosphäre fortsetzen. Alle zwei Wochen am Mittwochabend treffen wir uns, um eine schöne Zeit miteinander zu verbringen.\n\n🗓 Wann: jeden zweiten Mittwoch, ab 18:30 Uhr\n📍 Wo: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nErster Termin: Mittwoch, 27.05.2026\n\nBringt Freund*innen mit — lasst uns das Semester gemeinsam beginnen!\n\nShoqata Studenti",
+    "kafeLlafeBody": "Das neue Semester hat begonnen — und wir starten wieder gemeinsam!\nLasst uns unsere Tradition der Café-Treffen, angenehmer Gespräche und warmer Atmosphäre fortsetzen. Alle zwei Wochen am Donnerstagabend treffen wir uns, um eine schöne Zeit miteinander zu verbringen.\n\n🗓 Wann: jeden zweiten Donnerstag, ab 18:30 Uhr\n📍 Wo: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nErster Termin: Donnerstag, 01.10.2026\n\nBringt Freund*innen mit — lasst uns das Semester gemeinsam beginnen!\n\nShoqata Studenti",
     "festaFlamuritShort": "Der Abend, an dem wir unseren wichtigsten Tag feiern.",
     "festaFlamuritBody": "Der Abend, an dem wir unseren wichtigsten Tag feiern. Eine Veranstaltung voller Gesang, traditioneller Tänze und echter albanischer Atmosphäre. Wir kommen zusammen, um die Unabhängigkeit zu feiern, wie sie es verdient – rot und schwarz.",
     "sofraBody": "Ein Abend, der unserer Gastfreundschaftstradition gewidmet ist. Jede:r bringt ein Gericht von zu Hause mit, um es mit anderen zu teilen – eine gemeinsame Tafel mit Essen, Musik und Tanz. Wie es unsere Sitte will, heissen wir Sie willkommen: «Mit Brot, Salz und Herz.»",
@@ -276,6 +276,10 @@
       "campusTalkKurti2026": {
         "title": "Campus Talk mit Premierminister Albin Kurti",
         "content": "<p>Morgen Mittag haben wir die Gelegenheit, den Premierminister der Republik Kosovo, Herrn Albin Kurti, in einem exklusiven Gespräch zu treffen. Wir freuen uns sehr über diese besondere Möglichkeit, die von der Shoqata Studenti in Zusammenarbeit mit der Föderation ermöglicht wird.</p><p><strong>Wann?</strong><br>MORGEN, Samstag, 23.05.2026, um ca. 13:00 Uhr.</p><p><strong>Wo?</strong><br>Das Treffen findet im Zentrum von Zürich, im Niederdörfli-Quartier, statt. Der genaue Ort wird nur den angemeldeten Personen per E-Mail mitgeteilt.</p><p>Die Anmeldung ist obligatorisch.<br>Bitte beachtet, dass die Platzzahl begrenzt ist und die Teilnahme nur für angemeldete Personen offen ist.</p><p>Eure Daten werden ausschliesslich zur Mitteilung des Veranstaltungsorts verwendet und nach dem Event gelöscht.</p><p>Hier anmelden: <a href=\"https://forms.gle/D3qFHhumLjyWfv8P7\" target=\"_blank\" rel=\"noopener noreferrer\">hier</a></p>"
+      },
+      "activityFair2026": {
+        "title": "Activity Fair 2026",
+        "content": "Wir freuen uns auf euch! 🎉\n\nSchaut bei unserem Stand auf der Activity Fair vorbei!\nWir stellen unseren Verein vor. Die perfekte Gelegenheit, uns persönlich kennenzulernen und alle eure Fragen loszuwerden. 💬\n\nUZH\n22.09. - Lichthof Irchel, 9:30–16:30\n23.09. - Lichthof Zentrum, 9:30–16:30\nETH\n13.10. - Gebäude HG (Zentrum), 9:00–18:00\n\n✨ Lasst euch inspirieren und werdet Teil unserer Community!\nWir können es kaum erwarten, euch zu treffen! 😊"
       }
     }
   },

@@ -233,7 +233,7 @@
     "badge": "Events",
     "title": "{{name}}",
     "intro": "{{description}}",
-    "kafeLlafeBody": "The new semester has begun — and we’re starting again together!\nLet’s continue our tradition of café meetups, friendly chats, and a warm atmosphere. Every other Wednesday evening we meet to spend a pleasant night together and enjoy each other’s company.\n\n🗓 When: every second Wednesday, from 18:30\n📍 Where: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nFirst meetup: Wednesday, 27 May 2026\n\nBring your friends — let’s kick off the semester together!\n\nShoqata Studenti",
+    "kafeLlafeBody": "The new semester has begun — and we’re starting again together!\nLet’s continue our tradition of café meetups, friendly chats, and a warm atmosphere. Every other Thursday evening we meet to spend a pleasant night together and enjoy each other’s company.\n\n🗓 When: every second Thursday, from 18:30\n📍 Where: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nFirst meetup: Thursday, 1 October 2026\n\nBring your friends — let’s kick off the semester together!\n\nShoqata Studenti",
     "festaFlamuritShort": "The evening when we celebrate our most important day.",
     "festaFlamuritBody": "The evening when we celebrate our most important day. An event filled with song, traditional dance, and a truly Albanian atmosphere. We come together to celebrate Independence as it deserves – red and black.",
     "sofraBody": "An evening dedicated to our tradition of hospitality. Everyone brings a dish from home to share with others, creating a shared table of food, music, and dance. As our custom goes, we welcome you: \"With bread, salt, and heart.\"",
@@ -276,6 +276,10 @@
       "campusTalkKurti2026": {
         "title": "Campus Talk with Prime Minister Albin Kurti",
         "content": "<p>Tomorrow at lunchtime we will have the opportunity to meet the Prime Minister of the Republic of Kosovo, Mr Albin Kurti, in an exclusive conversation. We are very pleased about this special opportunity, made possible by Shoqata Studenti in collaboration with the Federation.</p><p><strong>When?</strong><br>TOMORROW, Saturday, 23 May 2026, at around 1:00 pm.</p><p><strong>Where?</strong><br>The meeting will take place in the centre of Zurich, in the Niederdörfli area. The exact location will be communicated by email only to registered participants.</p><p>Registration is mandatory.<br>Please note that places are limited and participation is open only to registered persons.</p><p>Your data will be used solely to communicate the venue and will be deleted after the event.</p><p>Register <a href=\"https://forms.gle/D3qFHhumLjyWfv8P7\" target=\"_blank\" rel=\"noopener noreferrer\">here</a></p>"
+      },
+      "activityFair2026": {
+        "title": "Activity Fair 2026",
+        "content": "We are ready! 🎉\n\nCome visit our stand at the Activity Fair!\nWe will introduce our association. It is a great opportunity to get to know us better and ask us any questions you may have. 💬\n\nUZH\n22.09. - Lichthof Irchel, 9:30–16:30\n23.09. - Lichthof Zentrum, 9:30–16:30\nETH\n13.10. - HG Building (Zentrum), 9:00–18:00\n\n✨ Get inspired and become part of our community!\nWe cannot wait to meet you! 😊"
       }
     }
   },
