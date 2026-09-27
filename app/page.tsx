@@ -2,7 +2,6 @@ import { Playfair_Display } from "next/font/google";
 
 import { HeroCarousel } from "@/components/hero-carousel";
 import { UpcomingSection, type UpcomingPost } from "@/components/upcoming-section";
-import { mergeKafeLlafeIntoUpcoming, buildKafeLlafeUpcomingCard } from "@/lib/kafe-llafe-upcoming";
 import { prisma } from "@/lib/db";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
@@ -197,19 +196,14 @@ export default async function Home() {
       : []
   );
 
-  const upcomingWithKafe =
-    process.env.NODE_ENV === "development"
-      ? [
-          ...upcomingPosts,
-          ...LOCAL_SPORT_POSTS,
-          ...LOCAL_KAFE_LLAFE_POSTS,
-          ...LOCAL_VARGJET_E_LIRA_POSTS,
-          ...LOCAL_PREVIEW_POSTS,
-          ...LOCAL_ADDITIONAL_POSTS,
-        ].sort(
-          (a, b) => a.eventAt.getTime() - b.eventAt.getTime(),
-        )
-      : mergeKafeLlafeIntoUpcoming(upcomingPosts, buildKafeLlafeUpcomingCard(dict));
+  const upcomingWithKafe = [
+    ...upcomingPosts,
+    ...LOCAL_SPORT_POSTS,
+    ...LOCAL_KAFE_LLAFE_POSTS,
+    ...LOCAL_VARGJET_E_LIRA_POSTS,
+    ...LOCAL_PREVIEW_POSTS,
+    ...LOCAL_ADDITIONAL_POSTS,
+  ].sort((a, b) => a.eventAt.getTime() - b.eventAt.getTime());
 
   return (
     <main className="w-full bg-white text-black">
