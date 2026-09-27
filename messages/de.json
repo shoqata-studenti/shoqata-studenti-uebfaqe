@@ -72,8 +72,8 @@
     "eventsHeading": "Events",
     "eventsSubheading": "Wähle ein Event für Texte und Fotos vom Anlass.",
     "hero": {
-      "title": "Die beste Wahl",
-      "subtitle": "Werde Teil der Shoqata Studenti und informiere dich über das Studium in der Schweiz.",
+      "title": "Willkommen bei der Shoqata Studenti!",
+      "subtitle": "",
       "cta": "MITGLIED WERDEN",
       "slideLabel": "Folie {{n}} anzeigen"
     }
@@ -205,13 +205,27 @@
     "linkUzhFinance": "UZH",
     "linkEthFinance": "ETH"
   },
+  "studimetZurich": {
+    "title": "Studium an der Universität Zürich",
+    "body": "Die Universität Zürich ist die grösste Universität der Schweiz und bietet eine breite Auswahl an Studienprogrammen in verschiedenen akademischen Bereichen wie Sozialwissenschaften, Rechtswissenschaften, Medizin, Wirtschaft, Sprachen und Geisteswissenschaften. Für Studierende, die sich für ein Studium an der UZH interessieren, dient diese Seite als Orientierung mit grundlegenden Informationen und nützlichen Quellen zur Universität und ihren Studienprogrammen.",
+    "link": "Hier klicken"
+  },
+  "strukturaPage": {
+    "title": "Struktur",
+    "imageAlt": "Organigramm der Shoqata Studenti",
+    "p1": "Die Organisationsstruktur der Shoqata Studenti basiert auf den Grundsätzen des Vereinsstatuts. Das oberste beschlussfassende Organ ist die Generalversammlung, die aus den stimmberechtigten aktiven Mitgliedern besteht. Alle aktiven Mitglieder haben Stimmrecht und nehmen an den wichtigsten Entscheidungsprozessen des Vereins teil.",
+    "p2": "Der Vorstand ist das ausführende Organ des Vereins und für die Umsetzung der Beschlüsse der Generalversammlung, die Verwaltung des Vereins und die Organisation der Aktivitäten verantwortlich. Innerhalb des Vorstands gibt es keine interne Hierarchie. Die Vorstandsmitglieder arbeiten kollektiv und nach dem Prinzip der gemeinsamen Verantwortung. In diesem Sinne steht die Mitgliedschaft institutionell über dem Vorstand, da der Vorstand von den Mitgliedern gewählt und mandatiert wird.",
+    "fundingIntro": "Die Shoqata Studenti finanziert sich durch:",
+    "funding": ["Mitgliederbeiträge", "Unterstützung durch die ETH Zürich (VSETH), die Universität Zürich (VSUZH) und weitere akademische oder kulturelle Institutionen", "Einnahmen aus Aktivitäten und Veranstaltungen des Vereins", "freiwillige Spenden ohne Gegenleistung"],
+    "p3": "Gemäss dem Vereinsstatut hat die Shoqata Studenti keine kommerziellen Sponsoren und darf keine finanziellen Sponsorings von gewinnorientierten Unternehmen annehmen oder beantragen. Diese Finanzierungsstruktur soll die Unabhängigkeit, Neutralität und institutionelle Autonomie des Vereins bewahren."
+  },
   "infoPage": {
     "badge": "Über uns",
     "title": "Info",
-    "p1": "Ab etwa 2000 traf sich eine Gruppe albanischsprachiger Studierender informell. Nur ein Jahr nach dem Krieg im Kosovo und kurz vor dem Konflikt im albanischsprachigen Teil Nordmazedoniens gründeten sie den albanischen Studentenverein «Studenti».",
-    "p2": "Der Kontext war düster – tragisch, auch weil es damals Mitglieder gab, die wegen der Verteilung von Büchern ins Gefängnis mussten.",
-    "p3": "Heute ist die Lage anders. «Studenti» ist und bleibt von und für albanischsprachige Studierende in Zürich – als Informations-, Vernetzungs- und Stimmenplattform.",
-    "p4": "",
+    "p1": "Die Shoqata Studenti ist eine aktive und offiziell an der ETH Zürich und der Universität Zürich anerkannte Organisation. Sie verbindet albanische Studierende unterschiedlicher Fachrichtungen und Hintergründe und schafft eine akademische, soziale und kulturelle Plattform für die albanische Studierendengemeinschaft in Zürich. Mit Vorträgen, Podiumsdiskussionen, Reisen, Sportaktivitäten sowie kulturellen und sozialen Veranstaltungen stärkt der Verein die Verbindungen zwischen Studierenden und fördert die albanische Identität, Sprache, Kultur und akademisches Engagement.",
+    "p2": "Am Vorabend der schwierigen Jahre 1998–2001 wurde der albanische Studentenverein «Studenti» gegründet. Von Anfang an war der Verein ein Raum für albanische Studierende an den Zürcher Hochschulen.",
+    "p3": "Er wurde als Ort gegründet, an dem Studierende sich treffen, Ideen austauschen, Gemeinschaft aufbauen und ihre Stimme im akademischen und gesellschaftlichen Leben vertreten konnten.",
+    "p4": "Die Shoqata Studenti ist Teil von VSETH, VSUZH und der Föderation albanischer Studierendenvereine in der Schweiz. Ihre Arbeit beruht auf Transparenz, Gleichheit, politischer Unabhängigkeit und nationalem Engagement. Vor allem bleibt Studenti ein Raum, in dem albanische Studierende während ihres Studiums und darüber hinaus Teil einer gemeinsamen Gemeinschaft sein können.",
     "vsuzhTitle": "VSUZH",
     "vsuzhBody": "",
     "vsuzhLink": "https://impulsfabrik.vsuzh.ch/en/studorgs",
@@ -223,7 +237,7 @@
   },
   "history": {
     "title": "Geschichte",
-    "body": "Shoqata Studenti wurde im Jahr 2000 von einer kleinen Gruppe albanischer Studierender in Zürich gegründet. Damals war laut Angaben einiger Gründungsmitglieder wie Sami Kurteshi, Luljeta Aliu und Alban Nevzati der Grund für die Gründung der Vereinigung «Studenti» die Formalisierung einer albanischen Studierendengruppe, die sich regelmässig traf. Der damalige Anlass, der sie laut Sami Kurteshi vor allem dazu brachte, sich regelmässig zu treffen und gemeinsam zu organisieren, war insbesondere die Diskriminierung der Albanerinnen und Albaner in Mazedonien – eine Situation, die sich im Januar 2001 zu einem offenen Krieg in Mazedonien eskalierte.\n\nHeute, mehr als 21 Jahre später, ist Shoqata Studenti weiterhin ein Treffpunkt für albanische Studierende in Zürich und darüber hinaus und zählt derzeit zur grössten albanischen Studierendenorganisation in der Schweiz."
+    "body": "Shoqata Studenti wurde 2000–2001 von einer kleinen Gruppe albanischer Studierender in Zürich gegründet. Laut Angaben von Gründungsmitgliedern wie Sami Kurteshi, Luljeta Aliu und Alban Nevzati bestand der Grund für die Gründung des Vereins «Studenti» darin, eine albanische Studierendengruppe zu formalisieren, die sich regelmässig traf. Der damalige Anlass war laut Sami Kurteshi insbesondere die Diskriminierung der Albanerinnen und Albaner in Mazedonien – eine Situation, die im Januar 2001 zu einem offenen Krieg in Mazedonien eskalierte.\n\nHeute, mehr als 25 Jahre später, ist die Shoqata Studenti weiterhin ein Treffpunkt für albanische Studierende in Zürich und darüber hinaus und aktuell die grösste albanische Studierendenorganisation in der Schweiz."
   },
   "status": {
     "title": "Status",
@@ -233,7 +247,7 @@
     "badge": "Events",
     "title": "{{name}}",
     "intro": "{{description}}",
-    "kafeLlafeBody": "Das neue Semester hat begonnen — und wir starten wieder gemeinsam!\nLasst uns unsere Tradition der Café-Treffen, angenehmer Gespräche und warmer Atmosphäre fortsetzen. Alle zwei Wochen am Donnerstagabend treffen wir uns, um eine schöne Zeit miteinander zu verbringen.\n\n🗓 Wann: jeden zweiten Donnerstag, ab 18:30 Uhr\n📍 Wo: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nErster Termin: Donnerstag, 01.10.2026\n\nBringt Freund*innen mit — lasst uns das Semester gemeinsam beginnen!\n\nShoqata Studenti",
+    "kafeLlafeBody": "Das neue Semester hat begonnen und wir starten wieder gemeinsam! Lasst uns unsere Tradition der Kaffeetreffen, angenehmen Gespräche und warmen Atmosphäre fortsetzen. Jeden zweiten Mittwoch treffen wir uns, um einen schönen Abend miteinander zu verbringen.\n\n🗓 Jeden zweiten Mittwoch\n🕓 ab 18:30 Uhr\n📍 bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nErstes Treffen: Mittwoch, 30. September 2026\n\nBringt eure Freundinnen und Freunde mit und lasst uns das Semester gemeinsam beginnen!\n\nShoqata Studenti",
     "festaFlamuritShort": "Der Abend, an dem wir unseren wichtigsten Tag feiern.",
     "festaFlamuritBody": "Der Abend, an dem wir unseren wichtigsten Tag feiern. Eine Veranstaltung voller Gesang, traditioneller Tänze und echter albanischer Atmosphäre. Wir kommen zusammen, um die Unabhängigkeit zu feiern, wie sie es verdient – rot und schwarz.",
     "sofraBody": "Ein Abend, der unserer Gastfreundschaftstradition gewidmet ist. Jede:r bringt ein Gericht von zu Hause mit, um es mit anderen zu teilen – eine gemeinsame Tafel mit Essen, Musik und Tanz. Wie es unsere Sitte will, heissen wir Sie willkommen: «Mit Brot, Salz und Herz.»",
@@ -251,7 +265,7 @@
     "udhetimeEditionSubtitle2026": "Berlin",
     "udhetimeEditionSubtitle2025": "Sizilien",
     "udhetimeEditionSubtitle2024": "",
-    "ligjerataBody": "Jedes Semester organisieren wir akademische Vorträge, um Themen in den Fokus zu rücken, die für uns wichtig sind. Diese Treffen sind eine gute Gelegenheit, unser Verständnis verschiedener Fragen zu vertiefen und gemeinsam wertvolle Diskussionen zu führen.",
+    "ligjerataBody": "Jedes Semester organisieren wir akademische Vorträge, um Themen in den Fokus zu rücken, die für uns wichtig sind. Diese Treffen bieten eine gute Gelegenheit, unser Wissen über verschiedene Fragen zu vertiefen und gemeinsam wertvolle Diskussionen zu führen.",
     "ligjerataTopicsHeading": "Themen",
     "ligjerataBackToHub": "← Vorträge",
     "ligjerataNoMedia": "Bilder folgen in Kürze."

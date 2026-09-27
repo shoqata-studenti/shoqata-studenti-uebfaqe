@@ -72,8 +72,8 @@
     "eventsHeading": "Events",
     "eventsSubheading": "Choose an event to read the description and see photos.",
     "hero": {
-      "title": "The best choice",
-      "subtitle": "Join Shoqata Studenti to learn more about studying in Switzerland.",
+      "title": "Welcome to Shoqata Studenti!",
+      "subtitle": "",
       "cta": "JOIN",
       "slideLabel": "Show slide {{n}}"
     }
@@ -205,13 +205,27 @@
     "linkUzhFinance": "UZH",
     "linkEthFinance": "ETH"
   },
+  "studimetZurich": {
+    "title": "Studies at the University of Zurich",
+    "body": "The University of Zurich is the largest university in Switzerland and offers a wide range of study programmes in fields such as social sciences, law, medicine, economics, languages and the humanities. For students interested in studying at UZH, this page provides orientation through basic information and useful resources about the university and its programmes.",
+    "link": "Click here"
+  },
+  "strukturaPage": {
+    "title": "Structure",
+    "imageAlt": "Organisational chart of Shoqata Studenti",
+    "p1": "The organisational structure of Shoqata Studenti is based on the principles set out in the association’s statutes. The highest decision-making body is the General Assembly, which consists of active members with voting rights. All active members have the right to vote and participate in the association’s key decision-making processes.",
+    "p2": "The board serves as the association’s executive body and is responsible for implementing General Assembly decisions, administering the association and organising its activities. There is no internal hierarchy within the board. Board members work collectively and according to the principle of shared responsibility. In this sense, membership institutionally stands above the board, since the board is elected and mandated by the members themselves.",
+    "fundingIntro": "Shoqata Studenti is financed through:",
+    "funding": ["membership contributions", "support from ETH Zurich (VSETH), the University of Zurich (VSUZH) and other academic or cultural institutions", "income from activities and events organised by the association", "voluntary donations without compensation"],
+    "p3": "In accordance with the association’s statutes, Shoqata Studenti has no commercial sponsors and may not accept or solicit monetary sponsorship from profit-making companies. This funding structure is intended to preserve the association’s independence, neutrality and institutional autonomy."
+  },
   "infoPage": {
     "badge": "About us",
     "title": "Info",
-    "p1": "From around 2000, a group of Albanian-speaking students met informally. Only a year after the war in Kosovo and on the eve of conflict in the Albanian-speaking part of North Macedonia, they founded the Albanian student association «Studenti».",
-    "p2": "The context was bleak — even tragic — including members who were imprisoned for distributing books.",
-    "p3": "Today things are different. «Studenti» is and remains built by and for Albanian-speaking students in Zurich — an information, networking, and advocacy platform.",
-    "p4": "",
+    "p1": "Shoqata Studenti is an active organisation officially recognised at ETH Zurich and the University of Zurich. It brings together Albanian students from different fields and backgrounds, creating an academic, social and cultural platform for the Albanian student community in Zurich. Through lectures, panels, trips, sports activities, and cultural and social events, the association aims to strengthen connections between students and promote Albanian identity, language, culture and academic engagement.",
+    "p2": "On the eve of the difficult years 1998–2001, the Albanian Student Association “Studenti” was founded. From the beginning, the association was created as a space for Albanian students at Zurich’s universities.",
+    "p3": "It was founded as a place where students could meet, exchange ideas, build community and represent their voice in academic and social life.",
+    "p4": "The association is part of VSETH, VSUZH and the Federation of Albanian Student Associations in Switzerland. Its work is based on transparency, equality, political independence and national engagement. Above all, Studenti remains a space where Albanian students can feel part of a shared community during their studies and beyond.",
     "vsuzhTitle": "VSUZH",
     "vsuzhBody": "",
     "vsuzhLink": "https://impulsfabrik.vsuzh.ch/en/studorgs",
@@ -223,7 +237,7 @@
   },
   "history": {
     "title": "History",
-    "body": "Shoqata Studenti was founded in 2000 by a small group of Albanian students in Zurich. At that time, according to accounts from several founders such as Sami Kurteshi, Luljeta Aliu, and Alban Nevzati, the reason for establishing the «Studenti» association was to formalize an Albanian student group that met regularly. The contemporary issue that, according to Sami Kurteshi, above all prompted them to meet regularly and organize together was especially the discrimination of Albanians in Macedonia—a situation that in January 2001 escalated into open war in Macedonia.\n\nToday, more than 21 years later, Shoqata Studenti continues to be a hub for Albanian students in Zurich and beyond, and is currently the largest Albanian student organization in Switzerland."
+    "body": "Shoqata Studenti was founded in 2000–2001 by a small group of Albanian students in Zurich. According to accounts from founders such as Sami Kurteshi, Luljeta Aliu and Alban Nevzati, the reason for establishing the “Studenti” association was to formalise an Albanian student group that met regularly. According to Sami Kurteshi, the issue that especially prompted them to meet and organise together was discrimination against Albanians in Macedonia, a situation that escalated into open war in January 2001.\n\nToday, more than 25 years later, Shoqata Studenti continues to be a hub for Albanian students in Zurich and is also the largest Albanian student organisation in Switzerland."
   },
   "status": {
     "title": "Status",
@@ -233,7 +247,7 @@
     "badge": "Events",
     "title": "{{name}}",
     "intro": "{{description}}",
-    "kafeLlafeBody": "The new semester has begun — and we’re starting again together!\nLet’s continue our tradition of café meetups, friendly chats, and a warm atmosphere. Every other Thursday evening we meet to spend a pleasant night together and enjoy each other’s company.\n\n🗓 When: every second Thursday, from 18:30\n📍 Where: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nFirst meetup: Thursday, 1 October 2026\n\nBring your friends — let’s kick off the semester together!\n\nShoqata Studenti",
+    "kafeLlafeBody": "The new semester has begun and we are starting again together! Let us continue our tradition of coffee meetups, pleasant conversations and a warm atmosphere. Every second Wednesday, we meet to spend a lovely evening together.\n\n🗓 Every second Wednesday\n🕓 from 18:30\n📍 bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nFirst meetup: Wednesday, 30 September 2026\n\nBring your friends and let us start the semester together!\n\nShoqata Studenti",
     "festaFlamuritShort": "The evening when we celebrate our most important day.",
     "festaFlamuritBody": "The evening when we celebrate our most important day. An event filled with song, traditional dance, and a truly Albanian atmosphere. We come together to celebrate Independence as it deserves – red and black.",
     "sofraBody": "An evening dedicated to our tradition of hospitality. Everyone brings a dish from home to share with others, creating a shared table of food, music, and dance. As our custom goes, we welcome you: \"With bread, salt, and heart.\"",
@@ -251,7 +265,7 @@
     "udhetimeEditionSubtitle2026": "Berlin",
     "udhetimeEditionSubtitle2025": "Sicily",
     "udhetimeEditionSubtitle2024": "",
-    "ligjerataBody": "Every semester we organise academic lectures to bring attention to topics that matter to us. These gatherings are a good opportunity to deepen our understanding of different issues and to develop meaningful discussions together.",
+    "ligjerataBody": "Every semester we organise academic lectures to bring attention to topics that matter to us. These gatherings are a good opportunity to deepen our knowledge of different issues and to develop meaningful discussions together.",
     "ligjerataTopicsHeading": "Topics",
     "ligjerataBackToHub": "← Lectures",
     "ligjerataNoMedia": "Images coming soon."

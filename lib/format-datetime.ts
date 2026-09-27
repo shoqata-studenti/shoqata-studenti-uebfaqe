@@ -28,6 +28,16 @@ export function formatDateWithWeekday(locale: Locale, date: Date): string {
   });
 }
 
+/** Nur die Uhrzeit in der Zeitzone Zürich. */
+export function formatTime(locale: Locale, date: Date): string {
+  return date.toLocaleTimeString(dateLocaleFor(locale), {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: ZURICH,
+  });
+}
+
 /** Albanisch (E-Mails, Server-Meldungen ohne UI-Locale). */
 export function formatDateWithWeekdaySq(date: Date): string {
   return formatDateWithWeekday("sq", date);

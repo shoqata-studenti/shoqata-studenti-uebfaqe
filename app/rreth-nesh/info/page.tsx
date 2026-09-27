@@ -20,21 +20,24 @@ export default async function InfoPage() {
 
   return (
     <main className="min-h-screen bg-white text-black">
-      <section className="mx-auto max-w-3xl px-6 py-20 text-center md:py-28">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#E11D48]">
+      <section className="mx-auto max-w-3xl px-6 py-20 md:py-28">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.16em] text-[#E11D48]">
           {i.badge}
         </p>
         <h1
-          className={`${playfair.className} mt-4 text-3xl font-bold tracking-tight text-black md:text-4xl`}
+          className={`${playfair.className} mt-4 text-center text-3xl font-bold tracking-tight text-black md:text-4xl`}
         >
           {i.title}
         </h1>
 
-        <div className="mt-14 space-y-8 text-center text-base leading-[1.85] text-black/80 md:text-lg">
-          <p>{i.p1}</p>
-          <p>{i.p2}</p>
-          <p>{i.p3}</p>
-          {i.p4 ? <p>{i.p4}</p> : null}
+        <div
+          className="mt-14 space-y-8 text-left text-base leading-[1.85] text-black/80 md:text-lg"
+          style={{ textAlign: "left" }}
+        >
+          <p style={{ textAlign: "left" }}>{i.p1}</p>
+          <p style={{ textAlign: "left" }}>{i.p2}</p>
+          <p style={{ textAlign: "left" }}>{i.p3}</p>
+          {i.p4 ? <p style={{ textAlign: "left" }}>{i.p4}</p> : null}
         </div>
 
         {showAssociationSection ? (

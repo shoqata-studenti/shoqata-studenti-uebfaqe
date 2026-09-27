@@ -72,8 +72,8 @@
     "eventsHeading": "Eventet",
     "eventsSubheading": "Zgjidh një event për të parë përshkrimin dhe foto nga aktiviteti.",
     "hero": {
-      "title": "Zgjedhja më e mirë",
-      "subtitle": "Bëhu pjesë e Shoqatës Studenti për t'u informuar më shumë rreth studimit në Zvicër.",
+      "title": "Mirë se vjen në Shoqatën Studenti!",
+      "subtitle": "",
       "cta": "ANËTARËSOHU!",
       "slideLabel": "Shfaq diapositivën {{n}}"
     }
@@ -205,12 +205,26 @@
     "linkUzhFinance": "UZH",
     "linkEthFinance": "ETH"
   },
+  "studimetZurich": {
+    "title": "Studimet në Universitetin e Cyrihut",
+    "body": "Universiteti i Cyrihut është universiteti më i madh në Zvicër dhe ofron një gamë të gjerë programesh studimi në fusha të ndryshme akademike, si shkencat sociale, juridiku, mjekësia, ekonomia, gjuhët dhe shkencat humane. Për studentët që janë të interesuar për studimet në UZH, kjo platformë shërben si një pikë orientimi me informata bazë dhe burime të dobishme rreth universitetit dhe programeve të tij.",
+    "link": "Kliko këtu"
+  },
+  "strukturaPage": {
+    "title": "Struktura",
+    "imageAlt": "Organigrami i Shoqatës Studenti",
+    "p1": "Struktura organizative e Shoqatës Studenti bazohet në parimet e përcaktuara në Statutin e Shoqatës. Organi më i lartë vendimmarrës është Kuvendi i Përgjithshëm, i cili përbëhet nga anëtarët aktivë me të drejtë vote. Të gjithë anëtarët aktivë kanë të drejtë vote dhe marrin pjesë në proceset kryesore vendimmarrëse të shoqatës.",
+    "p2": "Kryesia funksionon si organ ekzekutiv i shoqatës dhe është përgjegjëse për zbatimin e vendimeve të Kuvendit të Përgjithshëm, administrimin e shoqatës dhe organizimin e aktiviteteve. Brenda kryesisë nuk ekziston një hierarki e brendshme - anëtarët e kryesisë bashkëpunojnë në mënyrë kolektive dhe funksionojnë mbi parimin e përgjegjësisë së përbashkët. Në këtë kuptim, anëtarësia e shoqatës qëndron institucionalisht mbi kryesinë, pasi kryesia zgjidhet dhe mandatohet nga vetë anëtarët.",
+    "fundingIntro": "Financimi i Shoqatës Studenti realizohet përmes:",
+    "funding": ["kontributeve të anëtarësisë", "mbështetjes nga ETH Zürich (VSETH), Universität Zürich (VSUZH) dhe institucione të tjera akademike apo kulturore", "të ardhurave nga aktivitetet dhe eventet e organizuara nga vetë shoqata", "donacioneve vullnetare, pa kundërshpërblim"],
+    "p3": "Në përputhje me Statutin e Shoqatës, Shoqata Studenti nuk ka sponsorë komercialë dhe nuk lejohet të pranojë apo të kërkojë sponsorizime monetare nga kompani fitimprurëse. Kjo strukturë financimi synon të ruajë pavarësinë, neutralitetin dhe autonominë institucionale të shoqatës."
+  },
   "infoPage": {
     "badge": "Rreth nesh",
     "title": "Info",
-    "p1": "Shoqata Studenti është një organizatë aktive dhe zyrtarisht e njohur në ETH Zürich dhe Universität Zürich. Ajo bashkon studentë shqiptarë nga fusha dhe prejardhje të ndryshme, duke krijuar një platformë akademike, sociale dhe kulturore për komunitetin studentor shqiptar në Cyrih. Përmes ligjëratave, paneleve, udhëtimeve, aktiviteteve sportive, si dhe ngjarjeve kulturore e shoqërore, shoqata synon të forcojë lidhjet mes studentëve dhe të promovojë identitetin, gjuhën, kulturën dhe angazhimin akademik shqiptar.",
-    "p2": "Vetëm një vit pas luftës në Kosovë dhe në prag të luftës në pjesën shqiptare të Maqedonisë së Veriut (të sotshme) vendosën të formonin Shoqatën Studentore Shqiptare “Studenti”. Që nga fillimi, shoqata u krijua si një hapësirë për studentët shqiptarë në universitetet e Cyrihut.",
-    "p3": "Një vend ku mund të takoheshin, të shkëmbenin ide, të ndërtonin komunitet dhe të përfaqësonin zërin e tyre në jetën akademike dhe shoqërore.",
+    "p1": "Shoqata Studenti është një organizatë aktive dhe zyrtarisht e njohur në ETH Cyrih dhe Universitetin e Cyrihut. Ajo bashkon studentë shqiptarë nga fusha dhe prejardhje të ndryshme, duke krijuar një platformë akademike, sociale dhe kulturore për komunitetin studentor shqiptar në Cyrih. Përmes ligjëratave, paneleve, udhëtimeve, aktiviteteve sportive, si dhe ngjarjeve kulturore e shoqërore, shoqata synon të forcojë lidhjet mes studentëve dhe të promovojë identitetin, gjuhën, kulturën dhe angazhimin akademik shqiptar.",
+    "p2": "Në prag të viteve të vështira 1998-2001 u formua Shoqata Studentore Shqiptare “Studenti”. Që nga fillimi, shoqata u krijua si një hapësirë për studentët shqiptarë në universitetet e Cyrihut.",
+    "p3": "Ajo u themelua si një vend ku studentët mund të takoheshin, të shkëmbenin ide, të ndërtonin komunitet dhe të përfaqësonin zërin e tyre në jetën akademike dhe shoqërore.",
     "p4": "Shoqata është pjesë e VSETH, VSUZH dhe Federatës së Shoqatave Studentore Shqiptare në Zvicër. Veprimtaria e saj mbështetet mbi parime të transparencës, barazisë, pavarësisë politike dhe angazhimit kombëtar. Mbi të gjitha, Studenti mbetet një hapësirë ku studentët shqiptarë mund të ndihen pjesë e një komuniteti të përbashkët - gjatë studimeve, por edhe përtej tyre.",
     "vsuzhTitle": "VSUZH",
     "vsuzhBody": "Shoqata Studenti është organizatë e njohur zyrtarisht në Universität Zürich dhe e miratuar nga VSUZH (Verband der Studierenden der Universität Zürich). Përmes këtij bashkëpunimi, shoqata mbështetet në aspektin administrativ dhe financiar për realizimin e projekteve, eventeve dhe aktiviteteve studentore.",
@@ -223,7 +237,7 @@
   },
   "history": {
     "title": "Historiku",
-    "body": "Shoqata Studenti është themeluar në vitin 2000 nga një grup i vogël studentesh shqiptar në Cyrih. Asaj kohe, sipas të dhënave nga disa themelues si Sami Kurteshi, Luljeta Aliu dhe Alban Nevzati, arsyeja e themelimit të Shoqatës «Studenti» ka qenë formalizimi i një grupi studentor shqiptar, i cili është takuar rregullisht. Aktualiteti në atë kohë që i ka shtyrë të takohen rregullisht dhe të organizohen së bashku ka qenë, sipas Sami Kurteshit, sidomos diskriminimi i shqiptarëve në Maqedoni, një situatë e cila në janar të vitit 2001 u përshkallëzoj në luftë të hapur në Maqedoni.\n\nSot, më shumë se 21 vite më vonë, Shoqata Studenti vazhdon të jetë një nyje për studentët shqiptarë në Cyrih dhe jo vetëm, si dhe është aktualisht organizata më e madhe studentore shqiptare në Zvicër."
+    "body": "Shoqata Studenti u themelua në vitin 2000-2001 nga një grup i vogël studentësh shqiptarë në Cyrih. Asaj kohe, sipas të dhënave nga disa themelues si Sami Kurteshi, Luljeta Aliu dhe Alban Nevzati, arsyeja e themelimit të Shoqatës “Studenti” ka qenë formalizimi i një grupi studentor shqiptar, i cili është takuar rregullisht. Aktualiteti në atë kohë që i ka shtyrë të takohen rregullisht dhe të organizohen së bashku ka qenë, sipas Sami Kurteshit, sidomos diskriminimi i shqiptarëve në Maqedoni, një situatë e cila në janar të vitit 2001 u përshkallëzua në luftë të hapur në Maqedoni.\n\nSot, më shumë se 25 vite më vonë, Shoqata Studenti vazhdon të jetë një nyje për studentët shqiptarë në Cyrih dhe përveç kësaj është aktualisht organizata më e madhe studentore shqiptare në Zvicër."
   },
   "status": {
     "title": "Statusi",
@@ -233,7 +247,7 @@
     "badge": "Evente",
     "title": "{{name}}",
     "intro": "{{description}}",
-    "kafeLlafeBody": "Semestri i ri ka filluar dhe ne po e nisim përsëri së bashku!\nLe të vazhdojmë traditën tonë të takimeve me kafe, biseda të këndshme dhe një atmosferë të ngrohtë. Çdo dy javë të enjten, bashkohemi për të kaluar një mbrëmje të këndshme dhe për të shijuar kohën së bashku.\n\n🗓 Kur: Çdo të enjten e dytë, nga ora 18:30\n📍 Ku: bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nTakimi i parë: e enjte, 1 tetor 2026\n\nMerr shoqërinë me vete dhe vini të fillojmë semestrin së bashku!\n\nShoqata Studenti",
+    "kafeLlafeBody": "Semestri i ri ka filluar dhe ne po e nisim përsëri së bashku! Le të vazhdojmë traditën tonë të takimeve me kafe, biseda të këndshme dhe një atmosferë të ngrohtë. Çdo dy javë të mërkurën, bashkohemi për të kaluar një mbrëmje të këndshme dhe për të shijuar kohën së bashku.\n\n🗓 Çdo dy javë të mërkurën\n🕓 nga ora 18:30\n📍 bQm Kulturcafé & Bar, Leonhardstrasse 34, 8092 Zürich\n\nTakimi i parë: e mërkurë, 30 shtator 2026\n\nMerr shoqërinë me vete dhe ejani të fillojmë semestrin së bashku!\n\nShoqata Studenti",
     "festaFlamuritShort": "Mbrëmja ku festojmë ditën tonë më të rëndësishme.",
     "festaFlamuritBody": "Mbrëmja ku festojmë ditën tonë më të rëndësishme. Një ngjarje e mbushur me këngë, valle tradicionale dhe atmosferë të vërtetë shqiptare. Bëhemi bashkë për të festuar Pavarësinë ashtu siç e meriton – kuq e zi.",
     "sofraBody": "Një mbrëmje e dedikuar traditës sonë të mikpritjes. Secili sjell një gatim nga shtëpia për ta ndarë me të tjerët, duke krijuar një tryezë të përbashkët me ushqim, muzikë dhe valle. Siç e do zakoni ynë, ju mirëpresim \"Me bukë, kripë dhe zemër\".",
@@ -251,7 +265,7 @@
     "udhetimeEditionSubtitle2026": "Berlin",
     "udhetimeEditionSubtitle2025": "Sicilia",
     "udhetimeEditionSubtitle2024": "",
-    "ligjerataBody": "Çdo semestër organizojmë ligjërata akademike për të sjellë në vëmendje tema që kanë rëndësi për ne. Këto takime janë një mundësi e mirë për të thelluar të kuptuarit tonë rreth çështjeve të ndryshme dhe për të zhvilluar diskutime të vlefshme së bashku.",
+    "ligjerataBody": "Çdo semestër organizojmë ligjërata akademike për të sjellë në vëmendje tema që kanë rëndësi për ne. Këto takime janë një mundësi e mirë për të thelluar njohuritë tona rreth çështjeve të ndryshme dhe për të zhvilluar diskutime të vlefshme së bashku.",
     "ligjerataTopicsHeading": "Temat",
     "ligjerataBackToHub": "← Ligjërata",
     "ligjerataNoMedia": "Imazhet do të shtohen së shpejti."

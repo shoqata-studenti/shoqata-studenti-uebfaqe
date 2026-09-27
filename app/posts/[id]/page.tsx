@@ -9,6 +9,7 @@ import { prisma } from "@/lib/db";
 import { formatDateWithWeekday } from "@/lib/format-datetime";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
+import { getLocalPreviewPost, localPreviewContent } from "@/lib/local-preview-posts";
 import { getLocalizedPostFields } from "@/lib/post-i18n";
 
 const playfair = Playfair_Display({
@@ -31,21 +32,30 @@ export default async function PostDetailPage({ params }: Props) {
 
   const locale = await getLocale();
   const dict = getDictionary(locale);
+  const localPost = process.env.NODE_ENV === "development" ? getLocalPreviewPost(numericId) : null;
 
   let post: Awaited<ReturnType<typeof prisma.post.findUnique>> = null;
-  try {
-    post = await prisma.post.findUnique({
-      where: { id: numericId },
-    });
-  } catch {
+  if (!localPost) {
+    try {
+      post = await prisma.post.findUnique({
+        where: { id: numericId },
+      });
+    } catch {
+      notFound();
+    }
+  }
+
+  if (!post && !localPost) {
     notFound();
   }
 
-  if (!post) {
-    notFound();
-  }
-
-  const { title, content } = getLocalizedPostFields(dict, post);
+  const title = localPost?.title ?? getLocalizedPostFields(dict, post!).title;
+  const content = localPost
+    ? localPreviewContent(localPost, locale)
+    : getLocalizedPostFields(dict, post!).content;
+  const eventAt = localPost?.eventAt ?? post!.eventAt;
+  const createdAt = localPost?.eventAt ?? post!.createdAt;
+  const imageMimeType = localPost?.imageMimeType ?? post!.imageMimeType;
 
   return (
     <main className="min-h-screen bg-white text-black">
@@ -63,17 +73,18 @@ export default async function PostDetailPage({ params }: Props) {
           {title}
         </h1>
         <p className="mt-3 text-center text-sm text-black/50">
-          <time dateTime={(post.eventAt ?? post.createdAt).toISOString()}>
-            {formatDateWithWeekday(locale, post.eventAt ?? post.createdAt)}
+          <time dateTime={eventAt?.toISOString() ?? createdAt.toISOString()}>
+            {formatDateWithWeekday(locale, eventAt ?? createdAt)}
           </time>
         </p>
 
         <div className="mt-12 w-full">
           <PostCoverMedia
-            postId={post.id}
+            postId={localPost?.id ?? post!.id}
             title={title}
-            mimeType={post.imageMimeType}
+            mimeType={imageMimeType}
             layout="article"
+            coverSrc={localPost?.detailCoverSrc ?? localPost?.coverSrc}
           />
         </div>
 
@@ -81,7 +92,6 @@ export default async function PostDetailPage({ params }: Props) {
         {content.includes("<") ? (
           <div
             className="mx-auto mt-14 max-w-2xl text-base leading-[1.85] text-black/90 [&_a]:font-semibold [&_a]:text-[#E11D48] [&_a]:underline-offset-2 [&_a:hover]:underline [&_br]:block [&_p]:mb-4 [&_p:last-child]:mb-0"
-            // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: content }}
           />
         ) : (

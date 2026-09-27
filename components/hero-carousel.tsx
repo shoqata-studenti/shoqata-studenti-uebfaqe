@@ -32,9 +32,11 @@ export function HeroCarousel({ headingFontClassName }: { headingFontClassName: s
         >
           {dict.home.hero.title}
         </h1>
-        <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/95 md:text-lg">
-          {dict.home.hero.subtitle}
-        </p>
+        {dict.home.hero.subtitle ? (
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/95 md:text-lg">
+            {dict.home.hero.subtitle}
+          </p>
+        ) : null}
         <Link
           href="/membership"
           className="mt-10 inline-flex min-h-11 items-center justify-center rounded-sm bg-[#E11D48] px-8 py-2.5 text-sm font-bold uppercase tracking-[0.07em] text-white shadow-md ring-1 ring-black/15 transition-[background,box-shadow,transform] hover:bg-[#be123c] hover:shadow-lg hover:ring-black/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-[0.98]"
