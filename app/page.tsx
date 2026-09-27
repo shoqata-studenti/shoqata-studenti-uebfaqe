@@ -73,13 +73,13 @@ const LOCAL_VARGJET_E_LIRA_POSTS: UpcomingPost[] = LOCAL_VARGJET_E_LIRA_EVENTS.m
     id: -(200 + index),
     title: "Vargjet e Lira",
     imageMimeType: "image/jpeg",
-    eventAt: new Date(eventAt),
-    venue: null,
+    eventAt: new Date(index === 0 ? "2026-10-07T18:30:00+02:00" : eventAt),
+    venue: index === 0 ? "Rämistrasse 71, 8006 Zürich, KOL-H-309 EV" : null,
     cardLinkPath: "/projekte/kultura/vargjet-e-lira",
     coverSrc: "/media/vargjet-e-lira.jpg",
     detailHref: "/projekte/kultura/vargjet-e-lira",
-    showTime: false,
-    showVenue: false,
+    showTime: index === 0 ? undefined : false,
+    showVenue: index === 0 ? undefined : false,
   }),
 );
 
