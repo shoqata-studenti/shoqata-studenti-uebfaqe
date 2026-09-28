@@ -36,7 +36,7 @@ const LOCAL_SPORT_POSTS: UpcomingPost[] = LOCAL_SPORT_EVENTS.map(([title, eventA
   eventAt: new Date(eventAt),
   venue: "Messehalle 9, Thurgauerstrasse 11, 8050 Zürich",
   cardLinkPath: "/projekte/sporti",
-  coverSrc: title === "Futboll" ? "/media/futboll1.jpg" : "/media/vollejboll1.jpg",
+  coverSrc: title === "Futboll" ? "/media/Futboll.jpg" : "/media/Vollejboll.jpg",
   detailHref: "/projekte/sporti",
 }));
 
@@ -76,7 +76,7 @@ const LOCAL_VARGJET_E_LIRA_POSTS: UpcomingPost[] = LOCAL_VARGJET_E_LIRA_EVENTS.m
     eventAt: new Date(index === 0 ? "2026-10-07T18:30:00+02:00" : eventAt),
     venue: index === 0 ? "Rämistrasse 71, 8006 Zürich, KOL-H-309 EV" : null,
     cardLinkPath: "/projekte/kultura/vargjet-e-lira",
-    coverSrc: "/media/vargjet-e-lira-x.jpg",
+    coverSrc: "/media/vargjet.jpeg",
     detailHref: "/projekte/kultura/vargjet-e-lira",
     showTime: index === 0 ? undefined : false,
     showVenue: index === 0 ? undefined : false,
