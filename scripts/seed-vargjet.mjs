@@ -92,7 +92,20 @@ async function main() {
     data: { sortOrder: 3, title: "Gjakmarrja" },
   });
 
-  console.log("Vargjet: u përditësuan temat (1 Kuvendi, 2 Abeceja, 3 Gjakmarrja) dhe dokumentet.");
+  await upsertTopicWithDocs({
+    slug: "shkolla-shqipe",
+    title: "Shkolla Shqipe",
+    sortOrder: 4,
+    docs: [
+      {
+        file: "Shkolla Shqipe (Sami Frashëri — 1899).pdf",
+        title: "Shkolla Shqipe (Sami Frashëri — 1899)",
+        originalFileName: "Shkolla Shqipe (Sami Frashëri — 1899).pdf",
+      },
+    ],
+  });
+
+  console.log("Vargjet: u përditësuan temat (1 Kuvendi, 2 Abeceja, 3 Gjakmarrja, 4 Shkolla Shqipe) dhe dokumentet.");
 }
 
 main()

@@ -3,6 +3,7 @@ const VARGJET_TOPIC_DATE_BY_SORT_ORDER: Readonly<Record<number, string>> = {
   1: "02.04.2026",
   2: "23.04.2026",
   3: "07.05.2026",
+  4: "07.10.2026",
 };
 
 export function vargjetTopicDateLabel(sortOrder: number): string | undefined {
