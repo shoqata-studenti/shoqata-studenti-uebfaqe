@@ -73,6 +73,8 @@ const LOCAL_VARGJET_E_LIRA_POSTS: UpcomingPost[] = LOCAL_VARGJET_E_LIRA_EVENTS.m
     id: -(200 + index),
     title: "Vargjet e Lira",
     imageMimeType: "image/jpeg",
+    eventAt: new Date(index === 0 ? "2026-10-07T18:30:00+02:00" : eventAt),
+    venue: index === 0 ? "Rämistrasse 71, 8006 Zürich, KOL-H-309 EV" : null,
     eventAt: new Date(index === 0 ? "2026-10-07T18:00:00+02:00" : eventAt),
     venue: index === 0 ? "Rämistrasse 71, 8006 Zürich, KOL-H-309" : null,
     cardLinkPath: "/projekte/kultura/vargjet-e-lira",
@@ -84,18 +86,6 @@ const LOCAL_VARGJET_E_LIRA_POSTS: UpcomingPost[] = LOCAL_VARGJET_E_LIRA_EVENTS.m
 );
 
 const LOCAL_ADDITIONAL_POSTS: UpcomingPost[] = [
-  {
-    id: -400,
-    title: "25 Vjetori",
-    imageMimeType: "image/png",
-    eventAt: new Date("2026-10-17T12:00:00+02:00"),
-    venue: "Glattalstrasse 201, 8153 Rümlang",
-    cardLinkPath: null,
-    coverSrc: "/media/image-2-2.png",
-    showTime: false,
-    showVenue: true,
-    clickable: false,
-  },
   {
     id: -401,
     title: "Diskutim në panel",
