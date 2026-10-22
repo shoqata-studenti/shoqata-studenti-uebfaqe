@@ -65,20 +65,21 @@ export function sendDonationNotificationToInfo(d: DonationDetails) {
   });
 }
 
-const THANKS: Record<Locale, { subject: string; body: (name: string, amount: string) => string }> = {
+type ThanksNames = { firstName: string; fullName: string };
+
+const THANKS: Record<Locale, { subject: string; body: (names: ThanksNames, amount: string) => string }> = {
   sq: {
     subject: "Shoqata Studenti — Faleminderit për donacionin tuaj!",
-    body: (name, amount) => `
-      <p>I/E dashur ${name},</p>
-      <p>Faleminderit nga zemra për donacionin tënd prej <strong>${amount}</strong>, i cili u krye me sukses.</p>
-      <p>Me mbështetjen tënde na ndihmon drejtpërdrejt të financojmë veprimtarinë dhe nismat e Shoqatës Studenti dhe të forcojmë komunitetin studentor.</p>
-      <p>Nëse ke pyetje, na shkruaj në <a href="mailto:${SHOQATA_INFO_EMAIL}">${SHOQATA_INFO_EMAIL}</a>.</p>
-      <p>Me mirënjohje,<br/>Shoqata Studenti</p>
+    body: ({ fullName }) => `
+      <p>Përshëndetje ${fullName},</p>
+      <p>Ju falënderojmë përzemërsisht për donacionin tuaj ndaj Shoqatës Studenti! Kontributi juaj ndihmon të financojë veprimtarinë e shoqatës dhe mbështet komunitetin studentor.<br/>
+      E vlerësojmë sinqerisht besimin dhe bujarinë tuaj!</p>
+      <p>Me shumë mirënjohje,<br/>Shoqata Studenti</p>
     `,
   },
   de: {
     subject: "Shoqata Studenti — Danke für deine Spende!",
-    body: (name, amount) => `
+    body: ({ firstName: name }, amount) => `
       <p>Liebe/r ${name}</p>
       <p>Deine Spende von <strong>${amount}</strong> ist erfolgreich eingegangen. Herzlichen Dank für deine Unterstützung!</p>
       <p>Dein Beitrag hilft uns direkt, die Tätigkeit und die Initiativen der Shoqata Studenti zu finanzieren und die studentische Gemeinschaft zu stärken.</p>
@@ -88,7 +89,7 @@ const THANKS: Record<Locale, { subject: string; body: (name: string, amount: str
   },
   en: {
     subject: "Shoqata Studenti — Thank you for your donation!",
-    body: (name, amount) => `
+    body: ({ firstName: name }, amount) => `
       <p>Hi ${name},</p>
       <p>Your donation of <strong>${amount}</strong> was successful. Thank you very much for your support!</p>
       <p>Your contribution directly helps us fund the activities and initiatives of Shoqata Studenti and strengthen the student community.</p>
@@ -105,7 +106,13 @@ export function sendDonationThanksEmail(d: DonationDetails) {
     to: d.email,
     replyTo: SHOQATA_INFO_EMAIL,
     subject: t.subject,
-    // Nur mit Vornamen ansprechen (erstes Wort des Namensfelds).
-    html: t.body(escapeHtml(d.name.trim().split(/\s+/)[0] ?? ""), `CHF ${d.amount.toFixed(2)}`),
+    // Albanisch mit vollem Namen, Deutsch/Englisch nur mit Vornamen (erstes Wort des Namensfelds).
+    html: t.body(
+      {
+        firstName: escapeHtml(d.name.trim().split(/\s+/)[0] ?? ""),
+        fullName: escapeHtml(d.name.trim()),
+      },
+      `CHF ${d.amount.toFixed(2)}`
+    ),
   });
 }
