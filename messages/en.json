@@ -17,6 +17,7 @@
     "projects": "PROJECTS",
     "federata": "FEDERATION",
     "contact": "CONTACT",
+    "donations": "DONATE",
     "register": "JOIN",
     "info": "Info",
     "kryesia": "Board",
@@ -118,7 +119,7 @@
     },
     "status": {
       "title": "Check status",
-      "hint": "Enter your email to see your membership status.",
+      "hint": "Enter your email and we will send you your membership status by email.",
       "emailPlaceholder": "name@example.com",
       "check": "Check",
       "checking": "…"
@@ -139,7 +140,9 @@
     "renewBlocked": "A membership with this email already exists. Renewal is only possible when less than one month remains (currently active until {{until}}).",
     "checkEmailMissing": "Please enter an email address.",
     "none": "No active membership.",
-    "activeUntil": "Active until {{date}}"
+    "activeUntil": "Active until {{date}}",
+    "statusMailSent": "If a membership exists for this address, you will receive an email with its status within a few minutes.",
+    "errorTurnstile": "The security check failed. Please try again."
   },
   "kontakt": {
     "badge": "Shoqata Studenti Zürich",
@@ -166,6 +169,39 @@
     "impressum": "Legal notice",
     "addressLine": "Universitätstrasse 6, CAB E 27",
     "addressSample": "8006 Zürich, Switzerland"
+  },
+  "donacione": {
+    "badge": "Shoqata Studenti Zürich",
+    "title": "Donations",
+    "intro": "In accordance with its statutes, Shoqata Studenti has no commercial sponsors and neither accepts nor seeks financial sponsorship from for-profit companies. This approach helps us preserve the independence, neutrality and institutional autonomy of the association.",
+    "usage": "We do, however, gratefully accept voluntary donations without any consideration in return. Your contributions are very welcome and directly help fund the activities and initiatives of Shoqata Studenti. Thank you for supporting our work and the student community!",
+    "stripeTitle": "Card or TWINT",
+    "stripeIntro": "Choose an amount and pay securely via Stripe with card or TWINT.",
+    "stripeHint": "The payment is processed securely by Stripe. We only use your name and email to record the donation.",
+    "qrTitle": "Bank transfer (QR bill)",
+    "qrIntro": "Enter an amount, generate the QR bill and scan it with your e-banking app. All details are pre-filled.",
+    "labelAmount": "Amount (CHF)",
+    "placeholderAmount": "",
+    "labelName": "Name",
+    "placeholderName": "First and last name",
+    "labelEmail": "Email",
+    "placeholderEmail": "email@example.com",
+    "labelMessage": "Message (optional)",
+    "placeholderMessage": "A message for us…",
+    "submitStripe": "Donate with card or TWINT",
+    "submitQr": "Generate QR bill",
+    "qrReady": "Scan the QR code with your e-banking app.",
+    "downloadQr": "Download QR bill (PDF)",
+    "qrPayableTo": "Account / Payable to",
+    "qrMessage": "Message",
+    "thanks": "Thank you very much for your donation!",
+    "errorFields": "Please enter your name and a valid email address.",
+    "errorAmountStripe": "Please enter an amount of at least CHF 5.",
+    "errorAmountQr": "Please enter an amount of at least CHF 5.",
+    "errorTurnstile": "The security check failed. Please try again.",
+    "errorConfig": "Donations are not available right now. Please try again later.",
+    "errorStripe": "The payment could not be started. Please try again.",
+    "errorQr": "The QR bill could not be generated. Please try again."
   },
   "kryesia": {
     "heading": "Board",

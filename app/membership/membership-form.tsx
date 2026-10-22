@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { useDictionary } from "@/components/locale-provider";
+import { TurnstileWidget } from "@/components/turnstile-widget";
 import { Button } from "@/components/ui/button";
 
 type CheckoutBody = {
@@ -17,9 +18,10 @@ type CheckoutBody = {
 
 export type MembershipFormProps = {
   defaultMembershipType?: "STUDENT" | "ALUMNI";
+  turnstileSiteKey?: string;
 };
 
-export function MembershipForm({ defaultMembershipType = "STUDENT" }: MembershipFormProps) {
+export function MembershipForm({ defaultMembershipType = "STUDENT", turnstileSiteKey }: MembershipFormProps) {
   const dict = useDictionary();
   const f = dict.membership.form;
   const [pending, setPending] = useState(false);
@@ -27,13 +29,17 @@ export function MembershipForm({ defaultMembershipType = "STUDENT" }: Membership
   const [renewalOpen, setRenewalOpen] = useState(false);
   const [renewalMessage, setRenewalMessage] = useState<string | null>(null);
   const [pendingCheckout, setPendingCheckout] = useState<CheckoutBody | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileReset, setTurnstileReset] = useState(0);
 
   const runCheckout = async (payload: CheckoutBody) => {
     const res = await fetch("/api/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ ...payload, turnstileToken }),
     });
+    // Jedes Turnstile-Token gilt nur einmal: für den nächsten Versuch (z. B. Verlängerung bestätigen) neu prüfen.
+    setTurnstileReset((n) => n + 1);
     const resData = (await res.json()) as { url?: string; error?: string; code?: string; message?: string };
 
     if (resData.url) {
@@ -123,10 +129,11 @@ export function MembershipForm({ defaultMembershipType = "STUDENT" }: Membership
         <div className="space-y-2"><label htmlFor="m-uni" className="text-sm font-medium text-foreground">{f.uni}</label><input id="m-uni" name="uni" required className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring" /></div>
         <div className="space-y-2"><label htmlFor="m-studium" className="text-sm font-medium text-foreground">{f.studium}</label><input id="m-studium" name="studium" required className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring" /></div>
         <fieldset className="space-y-2"><legend className="text-sm font-medium text-foreground">{f.typeLegend}</legend><div className="flex flex-wrap gap-4"><label className="flex items-center gap-2 text-sm"><input type="radio" name="type" value="STUDENT" required defaultChecked={defaultMembershipType === "STUDENT"} />{f.student}</label><label className="flex items-center gap-2 text-sm"><input type="radio" name="type" value="ALUMNI" required defaultChecked={defaultMembershipType === "ALUMNI"} />{f.alumni}</label></div></fieldset>
+        <TurnstileWidget siteKey={turnstileSiteKey} onToken={setTurnstileToken} resetSignal={turnstileReset} />
         {error ? <p className="text-sm text-destructive" role="alert">{error}</p> : null}
-        <Button type="submit" disabled={pending}>{pending ? f.pending : f.submit}</Button>
+        <Button type="submit" disabled={pending || !turnstileToken}>{pending ? f.pending : f.submit}</Button>
       </form>
-      {renewalOpen && renewalMessage ? <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" role="presentation" onMouseDown={(e) => { if (e.target === e.currentTarget) cancelRenewal(); }}><div role="dialog" aria-modal="true" aria-labelledby="renewal-dialog-title" className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-lg border-2 border-amber-600 bg-amber-50 p-6 text-amber-950 shadow-lg" onMouseDown={(e) => e.stopPropagation()}><h2 id="renewal-dialog-title" className="text-lg font-semibold">{f.renewalDialogTitle}</h2><p className="mt-4 whitespace-pre-wrap text-sm">{renewalMessage}</p><div className="mt-6 flex justify-end gap-3"><Button type="button" variant="outline" onClick={cancelRenewal} disabled={pending}>{f.renewalCancel}</Button><Button type="button" onClick={() => void confirmRenewal()} disabled={pending}>{pending ? f.pending : f.renewalContinue}</Button></div></div></div> : null}
+      {renewalOpen && renewalMessage ? <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" role="presentation" onMouseDown={(e) => { if (e.target === e.currentTarget) cancelRenewal(); }}><div role="dialog" aria-modal="true" aria-labelledby="renewal-dialog-title" className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-lg border-2 border-amber-600 bg-amber-50 p-6 text-amber-950 shadow-lg" onMouseDown={(e) => e.stopPropagation()}><h2 id="renewal-dialog-title" className="text-lg font-semibold">{f.renewalDialogTitle}</h2><p className="mt-4 whitespace-pre-wrap text-sm">{renewalMessage}</p><div className="mt-6 flex justify-end gap-3"><Button type="button" variant="outline" onClick={cancelRenewal} disabled={pending}>{f.renewalCancel}</Button><Button type="button" onClick={() => void confirmRenewal()} disabled={pending || !turnstileToken}>{pending ? f.pending : f.renewalContinue}</Button></div></div></div> : null}
     </>
   );
 }

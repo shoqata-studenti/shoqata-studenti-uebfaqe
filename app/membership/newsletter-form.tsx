@@ -1,18 +1,29 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 
 import { useDictionary } from "@/components/locale-provider";
+import { TurnstileWidget } from "@/components/turnstile-widget";
 import { Button } from "@/components/ui/button";
 
 import { subscribeNewsletter, type NewsletterSubscribeState } from "./actions";
 
 const initial: NewsletterSubscribeState = { ok: true, message: "" };
 
-export function NewsletterForm() {
+export function NewsletterForm({ turnstileSiteKey }: { turnstileSiteKey?: string }) {
   const dict = useDictionary();
   const n = dict.membership.newsletter;
-  const [state, formAction, pending] = useActionState(subscribeNewsletter, initial);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [resetSignal, setResetSignal] = useState(0);
+  const [state, formAction, pending] = useActionState(
+    async (prev: NewsletterSubscribeState, formData: FormData) => {
+      const result = await subscribeNewsletter(prev, formData);
+      // Jedes Token gilt nur einmal: nach jeder Antwort neu prüfen.
+      setResetSignal((c) => c + 1);
+      return result;
+    },
+    initial
+  );
 
   return (
     <div className="mt-8 rounded-lg border border-border bg-muted/30 p-6">
@@ -70,7 +81,9 @@ export function NewsletterForm() {
             className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
-        <Button type="submit" disabled={pending}>
+        <input type="hidden" name="cf-turnstile-response" value={turnstileToken ?? ""} />
+        <TurnstileWidget siteKey={turnstileSiteKey} onToken={setTurnstileToken} resetSignal={resetSignal} />
+        <Button type="submit" disabled={pending || !turnstileToken}>
           {pending ? n.pending : n.submit}
         </Button>
       </form>

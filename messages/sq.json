@@ -17,6 +17,7 @@
     "projects": "PROJEKTE",
     "federata": "FEDERATA",
     "contact": "KONTAKT",
+    "donations": "DONACIONE",
     "register": "ANËTARËSOHU!",
     "info": "Info",
     "kryesia": "Kryesia",
@@ -118,7 +119,7 @@
     },
     "status": {
       "title": "Kontrollo statusin",
-      "hint": "Shkruaj email-in për të parë statusin e anëtarësimit.",
+      "hint": "Shkruaj email-in dhe do të të dërgojmë statusin e anëtarësimit me email.",
       "emailPlaceholder": "emri@shembull.com",
       "check": "Kontrollo",
       "checking": "…"
@@ -139,7 +140,9 @@
     "renewBlocked": "Me këtë email ekziston tashmë një anëtarësim aktiv. Vazhdimi është i mundur vetëm kur kanë mbetur më pak se një muaj deri në skadencë (aktualisht aktiv deri më {{until}}).",
     "checkEmailMissing": "Shkruaj një adresë email.",
     "none": "Nuk ka anëtarësim aktiv.",
-    "activeUntil": "Aktiv deri më {{date}}"
+    "activeUntil": "Aktiv deri më {{date}}",
+    "statusMailSent": "Nëse me këtë email ekziston një anëtarësim, brenda pak minutash do të marrësh një email me statusin.",
+    "errorTurnstile": "Verifikimi i sigurisë dështoi. Të lutem provo përsëri."
   },
   "kontakt": {
     "badge": "Shoqata Studenti Zürich",
@@ -166,6 +169,39 @@
     "impressum": "Të dhënat ligjore",
     "addressLine": "Universitätstrasse 6, CAB E 27",
     "addressSample": "8006 Zürich, Zvicër"
+  },
+  "donacione": {
+    "badge": "Shoqata Studenti Zürich",
+    "title": "Donacione",
+    "intro": "Në përputhje me Statutin, Shoqata Studenti nuk ka sponsorë komercialë dhe nuk pranon apo kërkon sponsorizime monetare nga kompani fitimprurëse. Kjo qasje na ndihmon të ruajmë pavarësinë, neutralitetin dhe autonominë institucionale të shoqatës.",
+    "usage": "Megjithatë, pranojmë me mirënjohje donacione vullnetare, pa asnjë kundërshpërblim. Kontributet tuaja janë shumë të mirëpritura dhe ndihmojnë drejtpërdrejt në financimin e veprimtarisë dhe nismave të Shoqatës Studenti. Faleminderit që mbështesni punën tonë dhe komunitetin studentor!",
+    "stripeTitle": "Kartë ose TWINT",
+    "stripeIntro": "Zgjidh shumën dhe paguaj në mënyrë të sigurt përmes Stripe me kartë ose TWINT.",
+    "stripeHint": "Pagesa përpunohet në mënyrë të sigurt nga Stripe. Emrin dhe email-in tënd i përdorim vetëm për ta regjistruar donacionin.",
+    "qrTitle": "Transfertë bankare (faturë QR)",
+    "qrIntro": "Shkruaj shumën, krijo faturën QR dhe skanoje me aplikacionin tënd të e-banking. Të gjitha të dhënat janë të plotësuara paraprakisht.",
+    "labelAmount": "Shuma (CHF)",
+    "placeholderAmount": "",
+    "labelName": "Emri dhe mbiemri",
+    "placeholderName": "Emri dhe mbiemri",
+    "labelEmail": "Email",
+    "placeholderEmail": "email@shembull.com",
+    "labelMessage": "Mesazh (opsional)",
+    "placeholderMessage": "Një mesazh për ne…",
+    "submitStripe": "Dhuro me kartë ose TWINT",
+    "submitQr": "Krijo faturën QR",
+    "qrReady": "Skanoje kodin QR me aplikacionin tënd të e-banking.",
+    "downloadQr": "Shkarko faturën QR (PDF)",
+    "qrPayableTo": "Llogaria / Pagueshme te",
+    "qrMessage": "Mesazhi",
+    "thanks": "Faleminderit shumë për donacionin tënd!",
+    "errorFields": "Të lutem plotëso emrin dhe një email të vlefshëm.",
+    "errorAmountStripe": "Të lutem shkruaj një shumë prej të paktën CHF 5.",
+    "errorAmountQr": "Të lutem shkruaj një shumë prej të paktën CHF 5.",
+    "errorTurnstile": "Verifikimi i sigurisë dështoi. Të lutem provo përsëri.",
+    "errorConfig": "Donacionet nuk janë të disponueshme për momentin. Të lutem provo më vonë.",
+    "errorStripe": "Pagesa nuk mund të niste. Të lutem provo përsëri.",
+    "errorQr": "Fatura QR nuk mund të krijohej. Të lutem provo përsëri."
   },
   "kryesia": {
     "heading": "Kryesia",

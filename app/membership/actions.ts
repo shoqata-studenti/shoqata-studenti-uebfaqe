@@ -1,18 +1,17 @@
 "use server";
 
 import { prisma } from "@/lib/db";
-import { formatDateWithWeekday } from "@/lib/format-datetime";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
-import { interpolate } from "@/lib/i18n/interpolate";
 import { getLocale } from "@/lib/i18n/server";
-import { daysUntil, memberFullName } from "@/lib/membership-logic";
+import { memberFullName } from "@/lib/membership-logic";
 import { sendNewsletterWelcomeEmailSq } from "@/lib/membership-email-albanian";
+import { sendMembershipStatusEmail } from "@/lib/membership-status-email";
 import { subscribeInfomaniakNewsletter } from "@/lib/infomaniak-newsletter";
+import { verifyTurnstileToken } from "@/lib/turnstile";
 
 export type MembershipCheckState = {
   ok: boolean;
   message: string;
-  expiresAtIso?: string;
 };
 
 export type NewsletterSubscribeState = {
@@ -37,26 +36,30 @@ export async function checkMembershipStatus(
     return { ok: false, message: ma.checkEmailMissing };
   }
 
+  const turnstile = await verifyTurnstileToken(String(formData.get("cf-turnstile-response") ?? "").trim());
+  if (!turnstile.ok) {
+    console.warn("[Status] Turnstile verification failed:", turnstile.error ?? "unknown");
+    return { ok: false, message: ma.errorTurnstile };
+  }
+
   const member = await prisma.member.findUnique({
     where: { email },
-    select: { expiresAt: true },
+    select: { expiresAt: true, name: true },
   });
 
-  if (!member?.expiresAt) {
-    return { ok: true, message: ma.none };
+  // Der Status geht nur per Mail an die Adresse selbst; die Antwort ist für alle Adressen gleich,
+  // damit niemand über das Formular herausfinden kann, wer Mitglied ist.
+  if (member?.expiresAt) {
+    const mail = await sendMembershipStatusEmail({
+      email,
+      firstName: member.name,
+      expiresAt: member.expiresAt,
+      locale,
+    });
+    if (!mail.ok) console.error("[Status] Status-Mail fehlgeschlagen:", mail.error);
   }
 
-  if (daysUntil(member.expiresAt) <= 0) {
-    return { ok: true, message: ma.none };
-  }
-
-  const dateStr = formatDateWithWeekday(locale, member.expiresAt);
-
-  return {
-    ok: true,
-    message: interpolate(ma.activeUntil, { date: dateStr }),
-    expiresAtIso: member.expiresAt.toISOString(),
-  };
+  return { ok: true, message: ma.statusMailSent };
 }
 
 export async function subscribeNewsletter(
@@ -86,6 +89,12 @@ export async function subscribeNewsletter(
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { ok: false, message: n.errorInvalidEmail };
+  }
+
+  const turnstile = await verifyTurnstileToken(String(formData.get("cf-turnstile-response") ?? "").trim());
+  if (!turnstile.ok) {
+    console.warn("[Newsletter] Turnstile verification failed:", turnstile.error ?? "unknown");
+    return { ok: false, message: ma.errorTurnstile };
   }
 
   try {

@@ -8,6 +8,7 @@ import { HeaderNav } from "@/components/header-nav";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { LocaleProvider } from "@/components/locale-provider";
 import { SiteFooter } from "@/components/site-footer";
+import { donationsEnabled } from "@/lib/donation-config";
 import { getDictionary, htmlLangFor } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
 import "./globals.css";
@@ -84,7 +85,7 @@ export default async function RootLayout({
                   </div>
                 </Link>
 
-                <HeaderNav navFontClassName={playfairNav.className} />
+                <HeaderNav navFontClassName={playfairNav.className} showDonations={donationsEnabled()} />
 
                 <div className="ml-2 shrink-0 md:ml-3">
                   <LanguageSwitcher />

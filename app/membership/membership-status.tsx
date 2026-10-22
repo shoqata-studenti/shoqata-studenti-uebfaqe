@@ -1,19 +1,30 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 
 import { useDictionary } from "@/components/locale-provider";
+import { TurnstileWidget } from "@/components/turnstile-widget";
 import { Button } from "@/components/ui/button";
 
 import { checkMembershipStatus, type MembershipCheckState } from "./actions";
 
 const initial: MembershipCheckState = { ok: true, message: "" };
 
-export function MembershipStatusCheck() {
+export function MembershipStatusCheck({ turnstileSiteKey }: { turnstileSiteKey?: string }) {
   const dict = useDictionary();
   const s = dict.membership.status;
 
-  const [state, formAction, pending] = useActionState(checkMembershipStatus, initial);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [resetSignal, setResetSignal] = useState(0);
+  const [state, formAction, pending] = useActionState(
+    async (prev: MembershipCheckState, formData: FormData) => {
+      const result = await checkMembershipStatus(prev, formData);
+      // Jedes Token gilt nur einmal: nach jeder Antwort neu prüfen.
+      setResetSignal((n) => n + 1);
+      return result;
+    },
+    initial
+  );
 
   return (
     <div className="mt-14 max-w-xl rounded-lg border border-border bg-muted/30 p-6">
@@ -34,10 +45,14 @@ export function MembershipStatusCheck() {
             className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
-        <Button type="submit" variant="outline" disabled={pending}>
+        <input type="hidden" name="cf-turnstile-response" value={turnstileToken ?? ""} />
+        <Button type="submit" variant="outline" disabled={pending || !turnstileToken}>
           {pending ? s.checking : s.check}
         </Button>
       </form>
+      <div className="mt-4">
+        <TurnstileWidget siteKey={turnstileSiteKey} onToken={setTurnstileToken} resetSignal={resetSignal} />
+      </div>
       {state.message ? (
         <p
           className={`mt-4 text-sm ${state.ok ? "text-foreground" : "text-destructive"}`}

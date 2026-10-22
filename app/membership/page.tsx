@@ -18,6 +18,7 @@ export default async function MembershipPage({ searchParams }: Props) {
   const dict = getDictionary(locale);
   const intro = getMembershipPageIntro(locale);
   const defaultMembershipType = membershipTypeFromSearch(sp.type);
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   return (
     <main className="mx-auto w-full max-w-6xl px-6 py-20 md:px-10 lg:px-16">
@@ -25,11 +26,15 @@ export default async function MembershipPage({ searchParams }: Props) {
       <p className="mt-4 max-w-2xl text-black/70">{intro}</p>
       <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-12">
         <section>
-          <MembershipForm key={defaultMembershipType} defaultMembershipType={defaultMembershipType} />
-          <MembershipStatusCheck />
+          <MembershipForm
+            key={defaultMembershipType}
+            defaultMembershipType={defaultMembershipType}
+            turnstileSiteKey={turnstileSiteKey}
+          />
+          <MembershipStatusCheck turnstileSiteKey={turnstileSiteKey} />
         </section>
         <aside className="lg:border-l lg:border-black/10 lg:pl-12">
-          <NewsletterForm />
+          <NewsletterForm turnstileSiteKey={turnstileSiteKey} />
         </aside>
       </div>
     </main>

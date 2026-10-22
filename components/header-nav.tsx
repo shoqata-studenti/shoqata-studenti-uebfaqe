@@ -88,9 +88,11 @@ function MobileNavLink({
 
 type HeaderNavProps = {
   navFontClassName: string;
+  /** Menüpunkt „Donacione“ nur zeigen, wenn DONATIONS_ENABLED=true. */
+  showDonations?: boolean;
 };
 
-export function HeaderNav({ navFontClassName }: HeaderNavProps) {
+export function HeaderNav({ navFontClassName, showDonations = false }: HeaderNavProps) {
   const d = useDictionary();
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -205,6 +207,7 @@ export function HeaderNav({ navFontClassName }: HeaderNavProps) {
 
         <NavLink href="/federata">{d.nav.federata}</NavLink>
         <NavLink href="/kontakt">{d.nav.contact}</NavLink>
+        {showDonations ? <NavLink href="/donacione">{d.nav.donations}</NavLink> : null}
         <Link
           href="/membership"
           className="inline-flex h-9 shrink-0 items-center rounded-sm bg-[#E11D48] px-2.5 text-[0.65rem] font-bold uppercase tracking-[0.07em] text-white shadow-md ring-1 ring-black/10 transition-[background,box-shadow,transform] hover:bg-[#be123c] hover:shadow-lg hover:ring-black/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E11D48] active:scale-[0.98] md:px-3 md:text-xs lg:text-sm"
@@ -288,6 +291,9 @@ export function HeaderNav({ navFontClassName }: HeaderNavProps) {
                 <div className="flex flex-col gap-0.5">
                   <MobileNavLink href="/federata" label={d.nav.federata} onNavigate={closeMobile} />
                   <MobileNavLink href="/kontakt" label={d.nav.contact} onNavigate={closeMobile} />
+                  {showDonations ? (
+                    <MobileNavLink href="/donacione" label={d.nav.donations} onNavigate={closeMobile} />
+                  ) : null}
                 </div>
               </div>
 

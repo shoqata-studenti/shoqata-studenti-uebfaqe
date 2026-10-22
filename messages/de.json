@@ -17,6 +17,7 @@
     "projects": "PROJEKTE",
     "federata": "FÖDERATION",
     "contact": "KONTAKT",
+    "donations": "SPENDEN",
     "register": "MITGLIED WERDEN",
     "info": "Info",
     "kryesia": "Vorstand",
@@ -118,7 +119,7 @@
     },
     "status": {
       "title": "Status prüfen",
-      "hint": "Gib deine E-Mail ein, um den Status deiner Mitgliedschaft zu sehen.",
+      "hint": "Gib deine E-Mail ein – wir schicken dir den Status deiner Mitgliedschaft per Mail.",
       "emailPlaceholder": "name@beispiel.ch",
       "check": "Prüfen",
       "checking": "…"
@@ -139,7 +140,9 @@
     "renewBlocked": "Mit dieser E-Mail besteht bereits eine Mitgliedschaft. Verlängerung ist erst möglich, wenn weniger als ein Monat Restlaufzeit besteht (aktuell aktiv bis {{until}}).",
     "checkEmailMissing": "Bitte eine E-Mail-Adresse eingeben.",
     "none": "Keine aktive Mitgliedschaft.",
-    "activeUntil": "Aktiv bis {{date}}"
+    "activeUntil": "Aktiv bis {{date}}",
+    "statusMailSent": "Falls zu dieser Adresse eine Mitgliedschaft besteht, bekommst du in wenigen Minuten eine Mail mit dem Status.",
+    "errorTurnstile": "Die Sicherheitsprüfung ist fehlgeschlagen. Bitte versuche es erneut."
   },
   "kontakt": {
     "badge": "Shoqata Studenti Zürich",
@@ -166,6 +169,39 @@
     "impressum": "Impressum",
     "addressLine": "Universitätstrasse 6, CAB E 27",
     "addressSample": "8006 Zürich, Schweiz"
+  },
+  "donacione": {
+    "badge": "Shoqata Studenti Zürich",
+    "title": "Spenden",
+    "intro": "Gemäss den Statuten hat die Shoqata Studenti keine kommerziellen Sponsoren und nimmt keine finanziellen Sponsorings von gewinnorientierten Unternehmen an, noch bemüht sie sich darum. Dieser Ansatz hilft uns, die Unabhängigkeit, Neutralität und institutionelle Autonomie des Vereins zu wahren.",
+    "usage": "Freiwillige Spenden ohne jegliche Gegenleistung nehmen wir jedoch dankbar an. Eure Beiträge sind sehr willkommen und tragen direkt zur Finanzierung der Tätigkeit und der Initiativen der Shoqata Studenti bei. Danke, dass ihr unsere Arbeit und die studentische Gemeinschaft unterstützt!",
+    "stripeTitle": "Karte oder TWINT",
+    "stripeIntro": "Wähle einen Betrag und bezahle sicher über Stripe mit Karte oder TWINT.",
+    "stripeHint": "Die Zahlung wird sicher über Stripe abgewickelt. Name und E-Mail verwenden wir nur, um die Spende zu erfassen.",
+    "qrTitle": "Banküberweisung (QR-Rechnung)",
+    "qrIntro": "Gib einen Betrag ein, erzeuge die QR-Rechnung und scanne sie mit deiner E-Banking-App. Alle Angaben sind vorausgefüllt.",
+    "labelAmount": "Betrag (CHF)",
+    "placeholderAmount": "",
+    "labelName": "Name",
+    "placeholderName": "Vor- und Nachname",
+    "labelEmail": "E-Mail",
+    "placeholderEmail": "email@beispiel.ch",
+    "labelMessage": "Nachricht (optional)",
+    "placeholderMessage": "Eine Nachricht an uns…",
+    "submitStripe": "Mit Karte oder TWINT spenden",
+    "submitQr": "QR-Rechnung erzeugen",
+    "qrReady": "Scanne den QR-Code mit deiner E-Banking-App.",
+    "downloadQr": "QR-Rechnung herunterladen (PDF)",
+    "qrPayableTo": "Konto / Zahlbar an",
+    "qrMessage": "Mitteilung",
+    "thanks": "Herzlichen Dank für deine Spende!",
+    "errorFields": "Bitte Name und eine gültige E-Mail-Adresse angeben.",
+    "errorAmountStripe": "Bitte einen Betrag von mindestens CHF 5 eingeben.",
+    "errorAmountQr": "Bitte einen Betrag von mindestens CHF 5 eingeben.",
+    "errorTurnstile": "Die Sicherheitsprüfung ist fehlgeschlagen. Bitte versuche es erneut.",
+    "errorConfig": "Spenden sind gerade nicht möglich. Bitte versuche es später erneut.",
+    "errorStripe": "Die Zahlung konnte nicht gestartet werden. Bitte versuche es erneut.",
+    "errorQr": "Die QR-Rechnung konnte nicht erzeugt werden. Bitte versuche es erneut."
   },
   "kryesia": {
     "heading": "Vorstand",

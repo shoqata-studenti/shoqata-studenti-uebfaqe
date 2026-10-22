@@ -2,10 +2,12 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 import { prisma } from "@/lib/db";
-import { canRenewMembership, daysUntil, isMembershipStillActive, RENEWAL_WINDOW_DAYS } from "@/lib/membership-logic";
-import { formatDateWithWeekdaySq } from "@/lib/format-datetime";
+import { getDictionary } from "@/lib/i18n/get-dictionary";
+import { getLocale } from "@/lib/i18n/server";
+import { canRenewMembership, isMembershipStillActive, RENEWAL_WINDOW_DAYS } from "@/lib/membership-logic";
 import { membershipStripeCatalogRef, resolveStripeCheckoutPriceId } from "@/lib/stripe-membership-catalog";
 import { getSiteOrigin } from "@/lib/site-url";
+import { verifyTurnstileToken } from "@/lib/turnstile";
 
 export async function POST(req: Request) {
   if (!process.env.STRIPE_SECRET_KEY) {
@@ -17,6 +19,7 @@ export async function POST(req: Request) {
     const body = await req.json() as {
       email?: string; firstName?: string; surname?: string; lastName?: string; name?: string;
       university?: string; studyField?: string; type?: string; confirmEarlyRenewal?: boolean;
+      turnstileToken?: string;
     };
     const givenName = String(body.firstName ?? "").trim();
     const familyName = String(body.surname ?? body.lastName ?? "").trim();
@@ -31,15 +34,21 @@ export async function POST(req: Request) {
     if (!uni || !studium) return NextResponse.json({ error: "Universität und Studiengang sind erforderlich." }, { status: 400 });
     if (type !== "STUDENT" && type !== "ALUMNI") return NextResponse.json({ error: "Ungültiger Mitgliedschaftstyp." }, { status: 400 });
 
+    const turnstile = await verifyTurnstileToken(String(body.turnstileToken ?? "").trim());
+    if (!turnstile.ok) {
+      console.warn("[Checkout] Turnstile verification failed:", turnstile.error ?? "unknown");
+      const dict = getDictionary(await getLocale());
+      return NextResponse.json({ error: dict.membershipActions.errorTurnstile }, { status: 403 });
+    }
+
+    // Keine Daten (Ablaufdatum, Resttage) in der Antwort: sonst liesse sich für fremde Adressen abfragen,
+    // bis wann jemand Mitglied ist. Das genaue Datum gibt es per Mail über „Status prüfen“.
     const existing = await prisma.member.findUnique({ where: { email }, select: { expiresAt: true } });
     if (existing?.expiresAt && !canRenewMembership(existing.expiresAt)) {
-      const until = formatDateWithWeekdaySq(existing.expiresAt);
-      return NextResponse.json({ code: "RENEW_TOO_EARLY", activeUntil: existing.expiresAt.toISOString(), message: `Anëtarësimi me këtë email është ende aktiv deri më ${until}. Rinovimi nëpërmjet pagesës online është i mundur vetëm kur kanë mbetur më pak se një muaj deri në skadencë (më pak se ${RENEWAL_WINDOW_DAYS} ditë).` }, { status: 403 });
+      return NextResponse.json({ code: "RENEW_TOO_EARLY", message: `Me këtë email ekziston tashmë një anëtarësim aktiv. Rinovimi online është i mundur vetëm kur kanë mbetur më pak se ${RENEWAL_WINDOW_DAYS} ditë deri në skadencë. Datën e saktë mund ta marrësh me email te „Kontrollo statusin“.` }, { status: 403 });
     }
     if (existing?.expiresAt && canRenewMembership(existing.expiresAt) && isMembershipStillActive(existing.expiresAt) && !confirmEarlyRenewal) {
-      const until = formatDateWithWeekdaySq(existing.expiresAt);
-      const roughlyDaysLeft = Math.max(1, Math.ceil(daysUntil(existing.expiresAt)));
-      return NextResponse.json({ code: "CONFIRM_RENEWAL_REQUIRED", activeUntil: existing.expiresAt.toISOString(), message: `Anëtarësimi juaj është ende aktiv deri më ${until}. Kanë mbetur afërsisht ${roughlyDaysLeft} ditë deri në skadencë. Nëse vazhdoni me pagesë, viti i ri do të shtohet datës aktuale të skadencës, jo nga dita e sotme. Mund të anuloni ose të vazhdoni me pagesë.` }, { status: 409 });
+      return NextResponse.json({ code: "CONFIRM_RENEWAL_REQUIRED", message: "Anëtarësimi me këtë email është ende aktiv. Nëse vazhdon me pagesë, viti i ri shtohet te data aktuale e skadencës, jo nga dita e sotme. Mund të anulosh ose të vazhdosh me pagesë." }, { status: 409 });
     }
 
     const priceId = await resolveStripeCheckoutPriceId(stripe, membershipStripeCatalogRef(type));
