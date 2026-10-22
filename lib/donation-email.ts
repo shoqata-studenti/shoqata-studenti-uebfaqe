@@ -69,7 +69,7 @@ type ThanksNames = { firstName: string; fullName: string };
 
 const THANKS: Record<Locale, { subject: string; body: (names: ThanksNames, amount: string) => string }> = {
   sq: {
-    subject: "Shoqata Studenti — Faleminderit për donacionin tuaj!",
+    subject: "Faleminderit për donacionin tuaj!",
     body: ({ fullName }) => `
       <p>Përshëndetje ${fullName},</p>
       <p>Ju falënderojmë përzemërsisht për donacionin tuaj ndaj Shoqatës Studenti! Kontributi juaj ndihmon të financojë veprimtarinë e shoqatës dhe mbështet komunitetin studentor.<br/>
