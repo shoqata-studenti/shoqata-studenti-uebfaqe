@@ -105,7 +105,20 @@ async function main() {
     ],
   });
 
-  console.log("Vargjet: u përditësuan temat (1 Kuvendi, 2 Abeceja, 3 Gjakmarrja, 4 Shkolla Shqipe) dhe dokumentet.");
+  await upsertTopicWithDocs({
+    slug: "revolta-e-spacit",
+    title: "Revolta e Spaçit",
+    sortOrder: 5,
+    docs: [
+      {
+        file: "Fragmente nga Revolta e Spaçit (Zef Pllumi).pdf",
+        title: "Fragmente nga Revolta e Spaçit (Zef Pllumi)",
+        originalFileName: "Fragmente nga Revolta e Spaçit (Zef Pllumi).pdf",
+      },
+    ],
+  });
+
+  console.log("Vargjet: u përditësuan temat (1 Kuvendi, 2 Abeceja, 3 Gjakmarrja, 4 Shkolla Shqipe, 5 Revolta e Spaçit) dhe dokumentet.");
 }
 
 main()

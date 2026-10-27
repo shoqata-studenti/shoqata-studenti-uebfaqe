@@ -49,7 +49,7 @@ export function TurnstileWidget({ siteKey, onToken, resetSignal = 0 }: Turnstile
         id="cf-turnstile-api"
         src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
         strategy="afterInteractive"
-        onReady={() => setScriptReady(true)}
+        onLoad={() => setScriptReady(true)}
       />
     </>
   );
