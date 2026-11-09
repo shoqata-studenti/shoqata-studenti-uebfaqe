@@ -7,15 +7,22 @@ import { NextResponse, type NextRequest } from "next/server";
  * Benutzername: beliebig, Passwort: PREVIEW_PASSWORD.
  */
 export function proxy(request: NextRequest) {
-  const password = process.env.PREVIEW_PASSWORD;
+  // Leerzeichen und Anführungszeichen, die beim Eintragen in Vercel mitkopiert wurden, ignorieren.
+  const password = process.env.PREVIEW_PASSWORD?.trim().replace(/^["']|["']$/g, "");
   const isPreview = process.env.NODE_ENV === "development" || process.env.VERCEL_ENV === "preview";
   if (!isPreview || !password) return NextResponse.next();
 
   const auth = request.headers.get("authorization") ?? "";
   const [scheme, encoded] = auth.split(" ");
   if (scheme === "Basic" && encoded) {
-    const decoded = atob(encoded);
-    if (decoded.slice(decoded.indexOf(":") + 1) === password) return NextResponse.next();
+    try {
+      // UTF-8 dekodieren, damit auch Passwörter mit ë, ç oder Umlauten funktionieren.
+      const bytes = Uint8Array.from(atob(encoded), (c) => c.charCodeAt(0));
+      const decoded = new TextDecoder().decode(bytes);
+      if (decoded.slice(decoded.indexOf(":") + 1).trim() === password) return NextResponse.next();
+    } catch {
+      // Ungültiger Header: wie falsches Passwort behandeln.
+    }
   }
 
   return new NextResponse("Passwort erforderlich", {
