@@ -8,6 +8,7 @@ import { HeaderNav } from "@/components/header-nav";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { LocaleProvider } from "@/components/locale-provider";
 import { SiteFooter } from "@/components/site-footer";
+import { archiveEnabled } from "@/lib/archive-config";
 import { donationsEnabled } from "@/lib/donation-config";
 import { getDictionary, htmlLangFor } from "@/lib/i18n/get-dictionary";
 import { getLocale } from "@/lib/i18n/server";
@@ -72,7 +73,8 @@ export default async function RootLayout({
                     decoding="async"
                     fetchPriority="high"
                   />
-                  <div className="flex flex-col justify-center leading-tight text-black">
+                  {/* Zwischen 1024 und 1279 px nur das Logo, damit das Menü in eine Zeile passt. */}
+                  <div className="flex flex-col justify-center leading-tight text-black lg:hidden xl:flex">
                     <span className="text-sm font-bold uppercase tracking-wide md:text-base">
                       {dict.layout.line1}
                     </span>
@@ -85,7 +87,11 @@ export default async function RootLayout({
                   </div>
                 </Link>
 
-                <HeaderNav navFontClassName={playfairNav.className} showDonations={donationsEnabled()} />
+                <HeaderNav
+                  navFontClassName={playfairNav.className}
+                  showDonations={donationsEnabled()}
+                  showArchive={archiveEnabled()}
+                />
 
                 <div className="ml-2 shrink-0 md:ml-3">
                   <LanguageSwitcher />

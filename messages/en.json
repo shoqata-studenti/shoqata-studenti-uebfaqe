@@ -17,6 +17,7 @@
     "projects": "PROJECTS",
     "federata": "FEDERATION",
     "contact": "CONTACT",
+    "archive": "ARCHIVE",
     "donations": "DONATE",
     "register": "JOIN",
     "info": "Info",
@@ -371,6 +372,26 @@
       "representation": "Shoqata Studenti is represented in the federation through its delegates and participates in annual meetings, joint projects, and national-level student initiatives.",
       "activities": "Within the federation, trips, events, and various collaborations are also organised among the participating associations.",
       "instagramLabel": "Instagram of the Federation"
+    }
+  },
+  "archive": {
+    "badge": "Shoqata Studenti Zürich",
+    "title": "Archive",
+    "intro": "Welcome to our archive! This is where we publish the photos from our events, so the best moments don't remain just memories. Pick an event and browse all the pictures.",
+    "eventsHeading": "Events",
+    "photoCount": "{{count}} photos",
+    "viewPhotos": "View photos",
+    "back": "← Archive",
+    "openPhoto": "Open photo {{n}} of {{total}}",
+    "previous": "Previous photo",
+    "next": "Next photo",
+    "close": "Close",
+    "download": "Download photo",
+    "events": {
+      "25-vjetori": {
+        "title": "25 Vjetori",
+        "description": "25 years of history, 25 years of community: the photos from Shoqata Studenti's 25th anniversary celebration in Rümlang."
+      }
     }
   }
 }

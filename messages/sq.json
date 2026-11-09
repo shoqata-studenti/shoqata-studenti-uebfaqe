@@ -17,6 +17,7 @@
     "projects": "PROJEKTE",
     "federata": "FEDERATA",
     "contact": "KONTAKT",
+    "archive": "ARKIVI",
     "donations": "DONACIONE",
     "register": "ANËTARËSOHU!",
     "info": "Info",
@@ -371,6 +372,26 @@
       "representation": "Shoqata Studenti përfaqësohet në federatë përmes delegatëve të saj dhe merr pjesë në mbledhjet vjetore, projektet e përbashkëta dhe iniciativat studentore në nivel kombëtar.",
       "activities": "Në kuadër të federatës organizohen gjithashtu udhëtime, evente dhe bashkëpunime të ndryshme mes shoqatave pjesëmarrëse.",
       "instagramLabel": "Instagrami i Federatës"
+    }
+  },
+  "archive": {
+    "badge": "Shoqata Studenti Zürich",
+    "title": "Arkivi",
+    "intro": "Mirë se vini në arkivin tonë! Këtu publikojmë fotot nga eventet tona, që momentet e bukura të mos mbeten vetëm kujtime. Zgjidh një event dhe shfleto të gjitha fotot.",
+    "eventsHeading": "Eventet",
+    "photoCount": "{{count}} foto",
+    "viewPhotos": "Shiko fotot",
+    "back": "← Arkivi",
+    "openPhoto": "Hap foton {{n}} nga {{total}}",
+    "previous": "Fotoja e mëparshme",
+    "next": "Fotoja tjetër",
+    "close": "Mbyll",
+    "download": "Shkarko foton",
+    "events": {
+      "25-vjetori": {
+        "title": "25 Vjetori",
+        "description": "25 vite histori, 25 vite komunitet: fotot nga festa e 25-vjetorit të Shoqatës Studenti në Rümlang."
+      }
     }
   }
 }

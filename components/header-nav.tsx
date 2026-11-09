@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronDownIcon, MenuIcon, XIcon } from "lucide-react";
 
 import { useDictionary } from "@/components/locale-provider";
@@ -15,7 +15,7 @@ import {
 import { cn } from "@/lib/utils";
 
 const triggerBtn =
-  "inline-flex h-9 items-center gap-1 rounded-sm border border-transparent bg-transparent px-2 text-[0.65rem] font-semibold uppercase tracking-[0.06em] text-black outline-none hover:border-black/15 hover:bg-black/[0.04] data-[popup-open]:border-black/20 data-[popup-open]:bg-black/[0.04] md:text-xs lg:text-sm";
+  "inline-flex h-9 items-center gap-[0.3em] rounded-sm border border-transparent bg-transparent px-[0.5em] whitespace-nowrap text-[1em] font-semibold uppercase tracking-[0.06em] text-black outline-none hover:border-black/15 hover:bg-black/[0.04] data-[popup-open]:border-black/20 data-[popup-open]:bg-black/[0.04]";
 
 const menuContent =
   "min-w-[12rem] rounded-sm border border-black/10 bg-white p-1 shadow-lg ring-0";
@@ -23,12 +23,22 @@ const menuContent =
 const menuItem =
   "cursor-pointer rounded-sm px-3 py-2 text-sm font-medium normal-case tracking-normal text-black focus:bg-[#E11D48]/10 focus:text-black";
 
+const navLinkClass =
+  "inline-flex h-9 items-center rounded-sm border border-transparent px-[0.5em] whitespace-nowrap text-[1em] font-semibold uppercase tracking-[0.06em] text-black transition-colors hover:border-black/15 hover:bg-black/[0.04] hover:text-[#E11D48] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E11D48]";
+
+const registerClass =
+  "inline-flex h-9 shrink-0 items-center rounded-sm bg-[#E11D48] px-[0.7em] whitespace-nowrap text-[1em] font-bold uppercase tracking-[0.07em] text-white shadow-md ring-1 ring-black/10 transition-[background,box-shadow,transform] hover:bg-[#be123c] hover:shadow-lg hover:ring-black/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E11D48] active:scale-[0.98]";
+
+/** Zeile der Desktop-Navigation; Abstände in em, damit alles mit der Schriftgrösse skaliert. */
+const navRowClass = "flex min-h-9 flex-nowrap items-center gap-x-[0.35em]";
+
+/** Schriftgrösse der Desktop-Navigation; passt sie bei der kleinsten nicht in eine Zeile, kommt das Hamburger-Menü. */
+const MIN_NAV_FONT_PX = 10;
+const MAX_NAV_FONT_PX = 14;
+
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <Link
-      href={href}
-      className="inline-flex h-9 items-center rounded-sm border border-transparent px-2 text-[0.65rem] font-semibold uppercase tracking-[0.06em] text-black transition-colors hover:border-black/15 hover:bg-black/[0.04] hover:text-[#E11D48] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E11D48] md:text-xs lg:text-sm"
-    >
+    <Link href={href} className={navLinkClass}>
       {children}
     </Link>
   );
@@ -90,12 +100,37 @@ type HeaderNavProps = {
   navFontClassName: string;
   /** Menüpunkt „Donacione“ nur zeigen, wenn DONATIONS_ENABLED=true. */
   showDonations?: boolean;
+  /** Menüpunkt „Arkivi“: lokal (`next dev`) immer, sonst nur mit ARCHIVE_ENABLED=true. */
+  showArchive?: boolean;
 };
 
-export function HeaderNav({ navFontClassName, showDonations = false }: HeaderNavProps) {
+export function HeaderNav({ navFontClassName, showDonations = false, showArchive = false }: HeaderNavProps) {
   const d = useDictionary();
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const slotRef = useRef<HTMLDivElement>(null);
+  const measureRef = useRef<HTMLDivElement>(null);
+  /** `null` bis zur ersten Messung; danach: passt die Navigation in eine Zeile, und in welcher Schriftgrösse. */
+  const [navLayout, setNavLayout] = useState<{ fits: boolean; fontPx: number } | null>(null);
+
+  useEffect(() => {
+    const slot = slotRef.current;
+    const measure = measureRef.current;
+    if (!slot || !measure) return;
+    // ResizeObserver meldet sich direkt nach observe() einmal und danach bei jeder Grössenänderung
+    // (Fenster, Sprache, eingeblendete Menüpunkte).
+    const observer = new ResizeObserver(() => {
+      const needed = measure.scrollWidth;
+      const available = slot.clientWidth;
+      if (!needed || !available) return;
+      // 4 px Reserve, damit Rundungen nie zu einem Umbruch führen.
+      const fontPx = Math.min(MAX_NAV_FONT_PX, (MIN_NAV_FONT_PX * (available - 4)) / needed);
+      setNavLayout(fontPx >= MIN_NAV_FONT_PX ? { fits: true, fontPx } : { fits: false, fontPx: MIN_NAV_FONT_PX });
+    });
+    observer.observe(slot);
+    observer.observe(measure);
+    return () => observer.disconnect();
+  }, []);
 
   const closeMobile = useCallback(() => setMobileOpen(false), []);
 
@@ -147,20 +182,59 @@ export function HeaderNav({ navFontClassName, showDonations = false }: HeaderNav
     { href: "/projekte/bashkpunimet", label: d.nav.bashkpunimet },
   ];
 
+  const dropdownLabels = [d.nav.about, d.nav.events, d.nav.studies, d.nav.projects];
+  const plainLabels = [
+    d.nav.home,
+    ...(showArchive ? [d.nav.archive] : []),
+    d.nav.federata,
+    d.nav.contact,
+    ...(showDonations ? [d.nav.donations] : []),
+  ];
+
   return (
-    <>
+    <div ref={slotRef} className="relative min-w-0 flex-1">
+      {/*
+        Unsichtbare Kopie der Menüpunkte in der kleinsten Schrift: daraus ergibt sich, wie breit die Navigation
+        mindestens sein muss. Die sichtbare Schrift wird so gross gewählt, dass alles exakt in eine Zeile passt.
+      */}
+      <div
+        ref={measureRef}
+        aria-hidden
+        className={cn(navFontClassName, navRowClass, "pointer-events-none invisible absolute left-0 top-0 w-max")}
+        style={{ fontSize: MIN_NAV_FONT_PX }}
+      >
+        {plainLabels.map((label) => (
+          <span key={label} className={navLinkClass}>
+            {label}
+          </span>
+        ))}
+        {dropdownLabels.map((label) => (
+          <span key={label} className={triggerBtn}>
+            {label}
+            <ChevronDownIcon className="size-[1em]" />
+          </span>
+        ))}
+        <span className={registerClass}>{d.nav.register}</span>
+      </div>
+
       <nav
         className={cn(
           navFontClassName,
-          "hidden min-h-9 min-w-0 flex-1 flex-wrap items-center justify-start gap-x-2 gap-y-2 md:flex md:gap-x-3"
+          "min-h-9 min-w-0",
+          // Bis gemessen ist (erstes Rendern) entscheidet die Fensterbreite.
+          navLayout === null ? "hidden xl:block" : navLayout.fits ? "block" : "hidden"
         )}
       >
+        <div
+          className={cn(navRowClass, "justify-between")}
+          style={{ fontSize: navLayout?.fits ? navLayout.fontPx : 12 }}
+        >
         <NavLink href="/">{d.nav.home}</NavLink>
 
         <DropdownMenu>
           <DropdownMenuTrigger className={triggerBtn}>
             {d.nav.about}
-            <ChevronDownIcon className="size-3.5 opacity-70" aria-hidden />
+            <ChevronDownIcon className="size-[1em] opacity-70" aria-hidden />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className={menuContent}>
             {aboutItems.map((item) => (
@@ -172,7 +246,7 @@ export function HeaderNav({ navFontClassName, showDonations = false }: HeaderNav
         <DropdownMenu>
           <DropdownMenuTrigger className={triggerBtn}>
             {d.nav.events}
-            <ChevronDownIcon className="size-3.5 opacity-70" aria-hidden />
+            <ChevronDownIcon className="size-[1em] opacity-70" aria-hidden />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className={menuContent}>
             {eventItems.map((item) => (
@@ -184,7 +258,7 @@ export function HeaderNav({ navFontClassName, showDonations = false }: HeaderNav
         <DropdownMenu>
           <DropdownMenuTrigger className={triggerBtn}>
             {d.nav.studies}
-            <ChevronDownIcon className="size-3.5 opacity-70" aria-hidden />
+            <ChevronDownIcon className="size-[1em] opacity-70" aria-hidden />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className={cn(menuContent, "min-w-[14rem]")}>
             {studyItems.map((item) => (
@@ -196,7 +270,7 @@ export function HeaderNav({ navFontClassName, showDonations = false }: HeaderNav
         <DropdownMenu>
           <DropdownMenuTrigger className={triggerBtn}>
             {d.nav.projects}
-            <ChevronDownIcon className="size-3.5 opacity-70" aria-hidden />
+            <ChevronDownIcon className="size-[1em] opacity-70" aria-hidden />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className={menuContent}>
             {projectItems.map((item) => (
@@ -205,18 +279,22 @@ export function HeaderNav({ navFontClassName, showDonations = false }: HeaderNav
           </DropdownMenuContent>
         </DropdownMenu>
 
+        {showArchive ? <NavLink href="/arkivi">{d.nav.archive}</NavLink> : null}
         <NavLink href="/federata">{d.nav.federata}</NavLink>
         <NavLink href="/kontakt">{d.nav.contact}</NavLink>
         {showDonations ? <NavLink href="/donacione">{d.nav.donations}</NavLink> : null}
-        <Link
-          href="/membership"
-          className="inline-flex h-9 shrink-0 items-center rounded-sm bg-[#E11D48] px-2.5 text-[0.65rem] font-bold uppercase tracking-[0.07em] text-white shadow-md ring-1 ring-black/10 transition-[background,box-shadow,transform] hover:bg-[#be123c] hover:shadow-lg hover:ring-black/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#E11D48] active:scale-[0.98] md:px-3 md:text-xs lg:text-sm"
-        >
+        <Link href="/membership" className={registerClass}>
           {d.nav.register}
         </Link>
+        </div>
       </nav>
 
-      <div className="relative flex min-h-11 min-w-0 flex-1 items-center justify-end md:hidden">
+      <div
+        className={cn(
+          "relative min-h-11 min-w-0 items-center justify-end",
+          navLayout === null ? "flex xl:hidden" : navLayout.fits ? "hidden" : "flex"
+        )}
+      >
         <button
           type="button"
           aria-expanded={mobileOpen}
@@ -229,12 +307,12 @@ export function HeaderNav({ navFontClassName, showDonations = false }: HeaderNav
         </button>
       </div>
 
-      {mobileOpen ? (
+      {mobileOpen && !navLayout?.fits ? (
         <>
           <button
             type="button"
             aria-label={d.nav.closeMainMenu}
-            className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-[1px] md:hidden"
+            className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-[1px]"
             onClick={closeMobile}
           />
           <div
@@ -244,7 +322,7 @@ export function HeaderNav({ navFontClassName, showDonations = false }: HeaderNav
             aria-label={d.nav.panelMenuTitle}
             className={cn(
               navFontClassName,
-              "fixed right-0 top-0 z-[70] flex h-[100dvh] w-[min(22rem,calc(100vw-1rem))] flex-col border-l border-black/10 bg-white shadow-2xl md:hidden"
+              "fixed right-0 top-0 z-[70] flex h-[100dvh] w-[min(22rem,calc(100vw-1rem))] flex-col border-l border-black/10 bg-white shadow-2xl"
             )}
             style={{ paddingTop: "max(0.75rem, env(safe-area-inset-top))" }}
           >
@@ -289,6 +367,9 @@ export function HeaderNav({ navFontClassName, showDonations = false }: HeaderNav
 
               <div className="border-b border-black/10 py-4">
                 <div className="flex flex-col gap-0.5">
+                  {showArchive ? (
+                    <MobileNavLink href="/arkivi" label={d.nav.archive} onNavigate={closeMobile} />
+                  ) : null}
                   <MobileNavLink href="/federata" label={d.nav.federata} onNavigate={closeMobile} />
                   <MobileNavLink href="/kontakt" label={d.nav.contact} onNavigate={closeMobile} />
                   {showDonations ? (
@@ -310,6 +391,6 @@ export function HeaderNav({ navFontClassName, showDonations = false }: HeaderNav
           </div>
         </>
       ) : null}
-    </>
+    </div>
   );
 }
