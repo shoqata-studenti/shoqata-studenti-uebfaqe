@@ -81,7 +81,9 @@ const LOCAL_VARGJET_E_LIRA_POSTS: UpcomingPost[] = LOCAL_VARGJET_E_LIRA_EVENTS.m
     coverSrc: "/media/vargjet.jpeg",
     detailHref: index === 1
       ? "/projekte/kultura/vargjet-e-lira/revolta-e-spacit"
-      : "/projekte/kultura/vargjet-e-lira",
+      : index === 2
+        ? "/projekte/kultura/vargjet-e-lira/gruaja-shqiptare"
+        : "/projekte/kultura/vargjet-e-lira",
     showTime: index === 0 ? undefined : false,
     showVenue: true,
   }),

@@ -118,7 +118,33 @@ async function main() {
     ],
   });
 
-  console.log("Vargjet: u përditësuan temat (1 Kuvendi, 2 Abeceja, 3 Gjakmarrja, 4 Shkolla Shqipe, 5 Revolta e Spaçit) dhe dokumentet.");
+  await upsertTopicWithDocs({
+    slug: "burgosjet-politike",
+    title: "Burgosjet Politike",
+    sortOrder: 6,
+    docs: [
+      {
+        file: "Për Kosovën Republikë (Enver Dugolli — 2026).pdf",
+        title: "Për Kosovën Republikë (Enver Dugolli — 2026)",
+        originalFileName: "Për Kosovën Republikë (Enver Dugolli — 2026).pdf",
+      },
+    ],
+  });
+
+  await upsertTopicWithDocs({
+    slug: "gruaja-shqiptare",
+    title: "Gruaja Shqiptare",
+    sortOrder: 7,
+    docs: [
+      {
+        file: "Sikur t'isha djalë (Haki Stërmilli — 1936).pdf",
+        title: "Sikur t'isha djalë (Haki Stërmilli — 1936)",
+        originalFileName: "Sikur t'isha djalë (Haki Stërmilli — 1936).pdf",
+      },
+    ],
+  });
+
+  console.log("Vargjet: u përditësuan temat (1 Kuvendi, 2 Abeceja, 3 Gjakmarrja, 4 Shkolla Shqipe, 5 Revolta e Spaçit, 6 Burgosjet Politike, 7 Gruaja Shqiptare) dhe dokumentet.");
 }
 
 main()
