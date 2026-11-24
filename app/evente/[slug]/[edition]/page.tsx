@@ -24,6 +24,9 @@ import { getLocale } from "@/lib/i18n/server";
 export const dynamic = "force-dynamic";
 import { cn } from "@/lib/utils";
 
+const FESTA_FLAMURIT_2026_TICKETS_URL =
+  "https://eventfrog.ch/de/p/partys/sonstige-partys/festa-e-flamurit-zuerich-7523020456535813155.html";
+
 const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["600", "700"],
@@ -120,6 +123,25 @@ export default async function EventeEditionPage({ params }: Props) {
                 {editionYear === 2025 ? ev.festaFlamuritEdition2025Body : ev.festaFlamuritBody}
               </p>
             ) : null}
+          </>
+        ) : null}
+
+        {meta.slug === "festa-e-flamurit" && editionYear === 2026 ? (
+          <>
+            <p className="mt-8 max-w-prose text-[15px] leading-[1.75] text-black/70 whitespace-pre-line md:text-base md:leading-[1.7]">
+              {ev.festaFlamuritEdition2026Body}
+            </p>
+            <p className="mt-6 max-w-prose text-[15px] leading-[1.75] text-black/70 md:text-base">
+              {ev.festaFlamuritTicketsLabel}{" "}
+              <a
+                href={FESTA_FLAMURIT_2026_TICKETS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[#E11D48] underline-offset-2 hover:underline"
+              >
+                eventfrog.ch
+              </a>
+            </p>
           </>
         ) : null}
 

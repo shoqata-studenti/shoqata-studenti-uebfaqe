@@ -141,6 +141,11 @@ async function main() {
         title: "Sikur t'isha djalë (Haki Stërmilli — 1936)",
         originalFileName: "Sikur t'isha djalë (Haki Stërmilli — 1936).pdf",
       },
+      {
+        file: "Siç më thotë nënua plakë (Musine Kokalari — 1940).pdf",
+        title: "Siç më thotë nënua plakë (Musine Kokalari — 1940)",
+        originalFileName: "Siç më thotë nënua plakë (Musine Kokalari — 1940).pdf",
+      },
     ],
   });
 

@@ -16,7 +16,7 @@ export function editionYearsForEventHub(slug: string): readonly EventEditionYear
     case "udhetime":
       return [2026, 2025];
     case FESTA_E_FLAMURIT_SLUG:
-      return [2025];
+      return [2026, 2025];
     default:
       return EVENT_EDITION_YEARS;
   }
